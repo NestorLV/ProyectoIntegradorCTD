@@ -19,7 +19,8 @@ function DateBar(props) {
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
-    const booksMade = [new Date(2021, 10, 30), new Date(2021, 10, 28), new Date(2021,11,8)] // ojo con los mes son de 0 a 11
+    const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021,11,8).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
+    
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
 
@@ -53,11 +54,7 @@ function DateBar(props) {
     };
 
 
-    function disableDates(e) {
-        let flag = false;
-        booksMade.map((bs) =>e.toString() === bs.toString()? flag = true: null);
-        return flag;
-    }
+    function disableDates(e) { return booksMade.includes(e.toString())}
 
     return (
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>
@@ -76,7 +73,7 @@ function DateBar(props) {
                                     value={valueDate}
                                     onChange={(newValue) => setValueDate(newValue)}
                                     showToolbar={false}
-                                    hintText="Random Dates Disabled"
+                                    hintText="Dates Disabled"
                                     shouldDisableDate={disableDates}
                                     renderInput={(startProps, endProps) => (
                                         <React.Fragment>
