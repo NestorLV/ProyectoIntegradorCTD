@@ -10,13 +10,13 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
     const baseUrlProductosRecomendados = `${baseUrl}products/get/recommended`;
     const baseUrlPorCategoria = `${baseUrl}products/get/category/${category}`;
     const baseUrlPorCiudad = `${baseUrl}products/get/city/${city}`;
-    const baseUrlFavourite = `${baseUrl}products/all`;
+    const baseUrlFavourite = `${baseUrl}users/getFavorites`;
     //const baseUrlPorFecha = `http://localhost:8080/products/date`;
     //const baseUrlPorCiudadYFecha = `http://localhost:8080/products/search/date/${search}`;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-    const limitCardPerPage = 4;
+    const limitCardPerPage = 8;
     const [numberPage, setNumberPage] = useState(1);
     const [titulo, setTitulo] = useState("Recomendaciones");
 
@@ -56,7 +56,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                     setLoading(false);
                 });
         } else if (favourite) {
-            axios.get(baseUrlFavourite)
+            axios.post(baseUrlFavourite,{email: sessionStorage.getItem("email")})
                 .then(response => {
                     setData(response.data);
                     setLoading(false);
@@ -72,6 +72,10 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
         }
 
     }, [category, clickBusqueda, favourite]);
+
+    const handleFavorite = (e) => {
+
+    }
 
     const dataLimited = () => { return data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage); };
     const indexPages = () => {
