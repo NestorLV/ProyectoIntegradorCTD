@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] = `
+<BrowserRouter>
+  <LayoutPrincipal
+    handleClean={[Function]}
+    handleFavourite={[Function]}
+    isLogged={false}
+  >
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+      >
+        <Home
+          category="All"
+          city=""
+          clickBusqueda={false}
+          favourite={false}
+          handleCategory={[Function]}
+          handleCity={[Function]}
+          handleSearch={[Function]}
+          search={false}
+          setActiveCreate={[Function]}
+          setActiveLogin={[Function]}
+        />
+      </Route>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/login"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/create"
+      />
+      <Route
+        component={[Function]}
+        path="/product/:id"
+      />
+      <Route
+        path="*"
+      >
+         
+        <NotFound />
+         
+      </Route>
+    </Switch>
+  </LayoutPrincipal>
+</BrowserRouter>
+`;

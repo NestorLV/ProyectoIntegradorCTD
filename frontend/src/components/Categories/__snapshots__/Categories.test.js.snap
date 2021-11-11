@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Categories /> Deberia mostrar <Categories/> correctamente 1`] = `
+<div
+  className="categoryContainer delimiter"
+>
+  <div
+    className="categoryBlock delimiterChild"
+  >
+    <h2>
+      Buscar por tipo de alojamiento
+    </h2>
+    <p>
+      Loading Data...
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<Category /> Renderiza el componente correctamente 1`] = `
+<div
+  className="categoryCard"
+  onClick={[Function]}
+>
+  <img
+    alt="imagen 1"
+    className="categoryImage"
+    src={
+      Object {
+        "url": "test",
+      }
+    }
+  />
+  <div
+    className="categoryType"
+  >
+    <h3>
+      Hoteles
+    </h3>
+    <p>
+      test
+    </p>
+  </div>
+</div>
+`;

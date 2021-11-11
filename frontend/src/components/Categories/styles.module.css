@@ -1,0 +1,146 @@
+.categoryContainer {
+  background-color: white; 
+  width: 100%;
+}
+
+.categoryBlock{
+  padding-bottom:5px;
+  padding-left: clamp(10px,3.9%,40px);
+  padding-right: clamp(10px,3.9%,40px);
+  width: 100%;
+}
+
+.categoryBox {
+  color: var(--secondary-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.categoryCard {
+  border-radius: 10px;
+  box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 7px 0;
+  max-width: 310px;
+  width: 22.7vw;
+  transition: all 0.3s;
+}
+
+.categoryBox>div:first-child{
+  margin-left: 0px;;
+}
+.categoryBox>div:last-child{
+  margin-right: 0px;;
+}
+
+.categoryCard:hover {
+  box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.5);
+  transform: scale(1.02);
+}
+
+.categoryCard:active {  
+  transform: scale(0.95);
+}
+
+.categoryImage {
+  background-size: cover;
+  border-radius: 10px 10px 0px 0px;
+  height: 183.81px;
+  max-width: 310px;
+  width: 100%;
+}
+
+.image1 {
+  background-image: url("./img/hoteles.jpg");
+}
+
+.image2 {
+  background-image: url("./img/hostels.jpg");
+}
+
+.image3 {
+  background-image: url("./img/departamentos.jpeg");
+}
+
+.image4 {
+  background-image: url("./img/bedAndBreakfast.jpg");
+}
+
+.categoryBlock h2 {
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  font-weight: var(--font-bold);
+  margin-bottom: 9px;
+  margin-left: 7px;
+  padding-top: 16px;
+}
+
+.categoryType {
+  display: flex;
+  flex-direction: column;
+  height: 63.7px;
+  justify-content: center;
+  margin-left: 11px;
+  margin-right: 11px;
+}
+
+.categoryType h3 {
+  font-size: var(--heading3);
+  font-weight: var(--font-bold);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.categoryType p {
+  font-size: var(--text2);
+}
+
+@media all and (max-width: 769px) {
+  .categoryBox {
+    flex-wrap: wrap;
+  }
+
+  .categoryCard {
+    max-width: 347px;
+    width: 43vw;
+  }
+
+  .categoryImage {
+    height: 181.3px;
+    max-width: 347px;
+  }
+
+  .categoryType {
+    height: 62.7px;
+  }
+
+  .categoryBlock h2 {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+@media all and (max-width: 415px) { 
+  .categoryBox {
+    justify-content: center;
+  }
+  .categoryCard {
+    margin: 7px 0;
+    max-width: 392px;
+    width: 94.7vw;
+  }
+
+  .categoryImage {
+    height: 205.1px;
+    max-width: 392px;
+    width: 94.7vw;
+  }
+
+  .categoryType {
+    height: 70.9px;
+  }
+
+  .categoryBlock h2 {
+    font-size: var(--heading3);
+    margin: 36px 0 3px 0;
+  }
+}

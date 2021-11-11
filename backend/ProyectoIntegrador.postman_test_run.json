@@ -1,0 +1,437 @@
+{
+	"id": "9dbfe360-af7e-4da1-9ddf-229ac7e9f3c1",
+	"name": "ProyectoIntegrador",
+	"timestamp": "2021-10-28T01:37:30.753Z",
+	"collection_id": "0-6911d056-3ba2-47e4-a315-17c1f6b26510",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 33,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "0d9e0d0f-3cf4-40cb-9443-dbdf460c9d51",
+			"name": "Creación del primer alojamiento",
+			"url": "http://localhost:8080/categories/create",
+			"time": 201,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true,
+				"response must be valid and have a body": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				201
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true,
+					"response must be valid and have a body": true
+				}
+			]
+		},
+		{
+			"id": "5baab055-43a8-4277-8640-bf7dae07f13d",
+			"name": "Crear categoría para luego ser eliminada",
+			"url": "http://localhost:8080/categories/create",
+			"time": 336,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true,
+				"response must be valid and have a body": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				336
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true,
+					"response must be valid and have a body": true
+				}
+			]
+		},
+		{
+			"id": "74c63c66-80e5-4126-8cf0-1e0cd9f4017e",
+			"name": "Crear categoría para luego ser actualizada",
+			"url": "http://localhost:8080/categories/create",
+			"time": 205,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true,
+				"response must be valid and have a body": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				205
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true,
+					"response must be valid and have a body": true
+				}
+			]
+		},
+		{
+			"id": "048c20bc-91e2-4fa4-8e67-6246d35bcd81",
+			"name": "Buscar todos antes de modificaciones y eliminaciones",
+			"url": "http://localhost:8080/categories/all",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true,
+				"response must be valid and have a body": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response must be valid and have a body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true,
+					"response must be valid and have a body": true
+				}
+			]
+		},
+		{
+			"id": "08003af5-8786-4a65-b240-73f03a5bbbd8",
+			"name": "Buscar por Id",
+			"url": "http://localhost:8080/categories/get/1",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body is correct": true
+				}
+			]
+		},
+		{
+			"id": "d96541ea-bfc5-44bc-aed2-7e8634dd6d8e",
+			"name": "Eliminar categoría",
+			"url": "http://localhost:8080/categories/delete/33",
+			"time": 543,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				543
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body is correct": true
+				}
+			]
+		},
+		{
+			"id": "1d72b441-bfb7-46c7-a209-3d66f498c246",
+			"name": "Actualizar categoría",
+			"url": "http://localhost:8080/categories/update/31",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body is correct": true
+				}
+			]
+		},
+		{
+			"id": "f6ea025e-3747-494d-8145-8e392df6cf18",
+			"name": "Buscar todos post modificaciones/eliminaciones",
+			"url": "http://localhost:8080/categories/all",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true
+				}
+			]
+		},
+		{
+			"id": "10d50e26-e899-455a-91d2-f8193ca63b48",
+			"name": "Eliminar categoría inexsistente",
+			"url": "http://localhost:8080/categories/delete/5",
+			"time": 23,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code is 500": true
+			},
+			"testPassFailCounts": {
+				"Status code is 500": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status code is 500": true
+				}
+			]
+		},
+		{
+			"id": "b29c778c-ece5-4ecc-bbfb-becc53c879b9",
+			"name": "Actualizar categoría inextistente",
+			"url": "http://localhost:8080/categories/update/4",
+			"time": 10,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "e5ecc328-566d-4f62-9b6d-77af65eb2c55",
+			"name": "Agregar alojamiento sin título",
+			"url": "http://localhost:8080/categories/create",
+			"time": 15,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code is 500": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 500": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Status code is 500": true,
+					"Body matches string": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1370,
+	"collection": {
+		"requests": [
+			{
+				"id": "0d9e0d0f-3cf4-40cb-9443-dbdf460c9d51",
+				"method": "POST"
+			},
+			{
+				"id": "5baab055-43a8-4277-8640-bf7dae07f13d",
+				"method": "POST"
+			},
+			{
+				"id": "74c63c66-80e5-4126-8cf0-1e0cd9f4017e",
+				"method": "POST"
+			},
+			{
+				"id": "048c20bc-91e2-4fa4-8e67-6246d35bcd81",
+				"method": "GET"
+			},
+			{
+				"id": "08003af5-8786-4a65-b240-73f03a5bbbd8",
+				"method": "GET"
+			},
+			{
+				"id": "d96541ea-bfc5-44bc-aed2-7e8634dd6d8e",
+				"method": "DELETE"
+			},
+			{
+				"id": "1d72b441-bfb7-46c7-a209-3d66f498c246",
+				"method": "PUT"
+			},
+			{
+				"id": "f6ea025e-3747-494d-8145-8e392df6cf18",
+				"method": "GET"
+			},
+			{
+				"id": "10d50e26-e899-455a-91d2-f8193ca63b48",
+				"method": "DELETE"
+			},
+			{
+				"id": "b29c778c-ece5-4ecc-bbfb-becc53c879b9",
+				"method": "PUT"
+			},
+			{
+				"id": "e5ecc328-566d-4f62-9b6d-77af65eb2c55",
+				"method": "POST"
+			}
+		]
+	}
+}

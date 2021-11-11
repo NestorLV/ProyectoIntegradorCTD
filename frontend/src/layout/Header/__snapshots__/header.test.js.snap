@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctamente 1`] = `
+<styled.header
+  className="header delimiter"
+>
+  <div
+    className="headerTop delimiterChild"
+  >
+    <Link
+      className="home"
+      onClick={[Function]}
+      to="/"
+    >
+      <div
+        className="logo"
+        onClick={[MockFunction]}
+      >
+        <img
+          alt="logo"
+          src="logoWguest.jpg"
+        />
+        <h3>
+          Un mundo por descubrir
+        </h3>
+      </div>
+    </Link>
+    <div
+      className="buttons"
+    >
+      <Link
+        to="/create"
+      >
+        <button
+          className={null}
+        >
+          Crear Cuenta
+        </button>
+      </Link>
+      <Link
+        to="/login"
+      >
+        <button
+          className={null}
+        >
+          Iniciar Sesión
+        </button>
+      </Link>
+    </div>
+    <div
+      className="user"
+    >
+      <div
+        className="logoName"
+      >
+        <p>
+          GU
+        </p>
+      </div>
+      <div
+        className="text"
+      >
+        <h3
+          className="great"
+        >
+          Hola,
+        </h3>
+        <h3
+          className="name"
+        >
+          Grupo
+           
+          Uno
+        </h3>
+        <h4
+          className="seeFavourite"
+          onClick={[MockFunction]}
+        >
+          Ver favoritos
+        </h4>
+      </div>
+      <div>
+        <div
+          className="close"
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            X
+          </a>
+           
+        </div>
+      </div>
+    </div>
+    <MenuButton
+      handleShow={[Function]}
+    />
+  </div>
+  <MenuMobile
+    activeCreate={false}
+    activeLogin={false}
+    handleFavourite={[MockFunction]}
+    handleHide={[Function]}
+    handleLogOut={[Function]}
+    iniciales="GU"
+  />
+</styled.header>
+`;

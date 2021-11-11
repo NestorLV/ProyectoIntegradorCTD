@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <Footer/> Deberia mostrar <Footer/> correctamente 1`] = `
+<footer
+  className="footer null delimiter"
+>
+  <div
+    className="delimiterChild delimiterChild "
+  >
+    <div>
+      <h3
+        className="footerTittle"
+      >
+        2021 @ World Guest Booking
+      </h3>
+    </div>
+    <div
+      className="icons"
+    >
+      <img
+        alt="iconSocial"
+        className="iconsImg"
+        onClick={[Function]}
+        src="icon-social.svg"
+      />
+      <Share
+        placeShareCall="footer"
+        setShareIsOpen={[Function]}
+        shareIsOpen={false}
+      />
+      <img
+        alt=""
+        className="iconsImg"
+        src="icon facebook.png"
+      />
+      <img
+        alt=""
+        className="iconsImg"
+        src="icon linkedin.png"
+      />
+      <img
+        alt=""
+        className="iconsImg"
+        src="tweet.png"
+      />
+      <img
+        alt=""
+        className="iconsImg"
+        src="icon ig.png"
+      />
+    </div>
+  </div>
+</footer>
+`;

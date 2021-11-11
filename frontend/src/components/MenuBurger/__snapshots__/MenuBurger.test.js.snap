@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <HeaderWrapper Deberia mostrar <HeaderWrapper/> correctamente 1`] = `
+<header
+  className="sc-dkPtRN cncBBD"
+/>
+`;
+
+exports[`Probando el componente <MenuBurger/> Deberia mostrar <MenuBurger/> correctamente 1`] = `
+<styled.nav
+  className="containerMobile"
+>
+  <div
+    className="mobileHeader"
+  >
+    <div
+      className="close"
+    >
+      X
+    </div>
+    <div
+      className="avatar hide"
+    >
+      <div
+        className="logoMobile"
+      >
+        <p />
+      </div>
+      <div
+        className="text"
+      >
+        <h3
+          className="great"
+        >
+          Hola,
+        </h3>
+        <h3
+          className="name"
+        >
+          Grupo
+           
+          Uno
+        </h3>
+      </div>
+    </div>
+    <p
+      className="textMenu null"
+    >
+      MENÚ
+    </p>
+  </div>
+  <div
+    className="mobileBody"
+  >
+    <div
+      className="menuFavoritos hide "
+    >
+      <p>
+        Favoritos
+      </p>
+      <img
+        alt=""
+        src="Line.png"
+      />
+    </div>
+    <div
+      className="botones null null"
+    >
+      <Link
+        to="/create"
+      >
+        <p
+          className={null}
+        >
+          Crear cuenta
+        </p>
+      </Link>
+      <img
+        alt=""
+        className="null"
+        src="Line.png"
+      />
+      <Link
+        to="/login"
+      >
+        <p
+          className={null}
+        >
+          Iniciar sesión
+        </p>
+      </Link>
+    </div>
+  </div>
+  <div
+    className="mobileFooter"
+  >
+    <div
+      className="logOut hide"
+    >
+      <div>
+        ¿Deseas 
+        <a
+          href="/"
+        >
+          cerrar sesión?
+        </a>
+      </div>
+      <img
+        alt=""
+        className="iconsImgMobile"
+        src="Line.png"
+      />
+    </div>
+    <div
+      className="iconsMobile"
+    >
+      <img
+        alt="iconSocial"
+        className="iconSocial"
+        onClick={[Function]}
+        src="icon-share.svg"
+      />
+      <Share
+        placeShareCall="footer"
+        setShareIsOpen={[Function]}
+        shareIsOpen={false}
+      />
+      <img
+        alt=""
+        src="IconFb.png"
+      />
+      <img
+        alt=""
+        src="IconLinkedIn.png"
+      />
+      <img
+        alt=""
+        src="IconTw.png"
+      />
+      <img
+        alt=""
+        src="IconIg.png"
+      />
+    </div>
+  </div>
+</styled.nav>
+`;
+
+exports[`Probando el componente <MenuBurgerWrapper Deberia mostrar <MenuBurgerWrapper/> correctamente 1`] = `
+<nav
+  className="sc-bdvvtL gfcYty"
+/>
+`;
+
+exports[`Probando el componente <MenuButton/> Deberia mostrar <MenuButton/> correctamente 1`] = `
+<styled.button>
+  <svg
+    height="30"
+    viewBox="0 0 100 80"
+    width="30"
+  >
+    <rect
+      height="10"
+      width="100"
+    />
+    <rect
+      height="10"
+      width="100"
+      y="20"
+    />
+    <rect
+      height="10"
+      width="100"
+      y="40"
+    />
+  </svg>
+</styled.button>
+`;
