@@ -25,7 +25,7 @@ public class Score {
     @Column(name = "favorite")
     private Boolean favorite = false;
     @ManyToOne
-    @JoinColumn(name = "idProduct", nullable = false)
+    @JoinColumn(name = "idProduct")
     private Product product;
 
     public ScoreDTO toDto(){

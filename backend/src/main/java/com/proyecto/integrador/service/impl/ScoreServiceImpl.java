@@ -54,9 +54,6 @@ public class ScoreServiceImpl implements IScoreService {
     @Override
     public ScoreDTO save(ScoreDTO score) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar puntuación");
-        if (score.getScore() < 1 || score.getScore() > 5 ) {
-            throw new BadRequestException("La puntuación debe ser entre 1 y 5");
-        }
         Score scoreEntity = score.toEntity();
         scoreEntity.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
         ScoreDTO scoreDTO = scoresRepository.save(scoreEntity).toDto();
