@@ -19,7 +19,7 @@ function DateBar(props) {
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth>700?"desktop":"mobile"}`);
-
+    const booksMade =[]
     window.addEventListener('resize', () => {setSize(`${window.innerWidth>700?"desktop":"mobile"}`)});  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
 
@@ -52,6 +52,14 @@ function DateBar(props) {
         console.log(valueDate, "valueDate");
     };
 
+    function disableWeekends(date) {
+        return date.getDay() === 0 || date.getDay() === 6;
+      }
+      
+      function disableRandomDates() {
+        return Math.random() > 0.7;
+      }
+
     return (
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>
             <div className={`${Styles.dateBarChild} ${StylesApp.delimiterChild}`}>
@@ -68,6 +76,8 @@ function DateBar(props) {
                                     value={valueDate}
                                     onChange={(newValue) => setValueDate(newValue)}
                                     showToolbar={false}
+                                    hintText="Random Dates Disabled" 
+                                    shouldDisableDate={disableRandomDates}
                                     renderInput={(startProps, endProps) => (
                                         <React.Fragment>
                                             <TextField {...startProps} />

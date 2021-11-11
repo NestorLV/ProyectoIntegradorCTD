@@ -54,7 +54,7 @@ public class UserController implements CRUDController <UserDTO> {
     }
 
     @Operation(summary = "Get User Favorites")
-    @GetMapping("/getFavorites")
+    @PostMapping("/getFavorites")
     public ResponseEntity<List<ProductDTO>> getFavorites(@RequestBody String email) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(userService.getFavorites(email));
     }

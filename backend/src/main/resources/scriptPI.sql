@@ -429,3 +429,5 @@ VALUES (8,4);
 
 INSERT INTO `proyecto_integrador`.`featurePerProduct` (idFeature,idProduct)
 VALUES (11,11);
+
+INSERT INTO `proyecto_integrador`.`user` (`idUser`, `userEmail`, `userName`) VALUES ('1', 'grupo1@digital.com', 'grupo1');
