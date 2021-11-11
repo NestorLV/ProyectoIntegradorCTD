@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import StylesApp from "../../App.module.css";
 import Styles from "./styles.module.css";
 import axios from "axios";
 
 export default function QualificationBar({id}) {
-    const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion'));
+    const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion')==null?0:sessionStorage.getItem('calificacion'));
     const [submit, setSubmit] = useState(false);
-    const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex==null?"":starIndex}`);
+    const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex===0?"":starIndex}`);
     const [errorMessage, setErrorMessage] = useState("");
 
     let stars = [];
@@ -41,7 +41,7 @@ export default function QualificationBar({id}) {
                 productId:id                
             })
             .then((response) => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     setCalificacion_text(`Se envió correctamente la puntuación de: ${starIndex}`);
                 }               
 
