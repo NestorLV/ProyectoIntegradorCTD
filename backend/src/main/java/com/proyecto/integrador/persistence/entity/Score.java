@@ -22,9 +22,8 @@ public class Score {
     private Integer idUser;
     @Column(name = "score", nullable = false)
     private Integer score;
-    @Column(name = "favorite", nullable = false)
-    private Boolean favorite;
-
+    @Column(name = "favorite")
+    private Boolean favorite = false;
     @ManyToOne
     @JoinColumn(name = "idProduct", nullable = false)
     private Product product;
@@ -32,9 +31,8 @@ public class Score {
     public ScoreDTO toDto(){
         ScoreDTO scoreDTO = new ScoreDTO();
         scoreDTO.setIdScores(idScores);
-        scoreDTO.setIdUser(idUser);
         scoreDTO.setScore(score);
-        scoreDTO.setFavorite(favorite);
+        scoreDTO.setProductId(product.getId());
         return scoreDTO;
     }
 }

@@ -52,7 +52,7 @@ public class Product {
     private Set<Image> images = new HashSet<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private  Set<Score> scores;
+    private  Set<Score> scores = new HashSet<>();
 
     @ManyToMany(targetEntity = Feature.class, mappedBy = "products", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
     private Set<Feature> features = new HashSet<>();

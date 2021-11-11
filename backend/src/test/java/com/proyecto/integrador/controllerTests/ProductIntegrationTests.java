@@ -47,16 +47,16 @@ public class ProductIntegrationTests {
     public void cargarDatos() throws FindByIdException {
         CategoryDTO categoryDTO = categoryServiceImpl.save(new CategoryDTO(1,"Apart Hotels", "500.012", "http://exampleproduct.com"));
         CityDTO cityDTO = cityServiceImpl.save(new CityDTO (1,"Merlo","Argentina"));
-        productController.create(new ProductDTO("Hotel Plaza","Hotel 5 estrellas",236.45,256.67,"Calle Falsa 123, CABA",9,false,"En el centro",categoryDTO,cityDTO,"rules","health","politics"));
-        productController.create(new ProductDTO("Hotel New World","Hotel 3 estrellas",543.45,143.67,"Calle Falsa 123, CABA",7,false,"Lejos del centro",categoryDTO,cityDTO,"rules","health","politics"));
+        productController.create(new ProductDTO("Hotel Plaza","Hotel 5 estrellas",236.45,256.67,"Calle Falsa 123, CABA",9,false,0,"En el centro",categoryDTO,cityDTO,"rules","health","politics"));
+        productController.create(new ProductDTO("Hotel New World","Hotel 3 estrellas",543.45,143.67,"Calle Falsa 123, CABA",7,false,0,"Lejos del centro",categoryDTO,cityDTO,"rules","health","politics"));
     }
 
     @Test
     public void crearProducto() throws Exception {
         CategoryDTO categoryDTO = categoryServiceImpl.save(new CategoryDTO(1,"Apart Hotels", "500.012", "http://exampleproduct.com"));
         CityDTO cityDTO = cityServiceImpl.save(new CityDTO (1,"Merlo","Argentina"));
-        ProductDTO payloadDTO = new ProductDTO("Hotel Plaza","Hotel 5 estrellas",236.45,256.67,"Calle Falsa 123, CABA",9,false,"En el centro",categoryDTO,cityDTO,"rules","health","politics");
-        ProductDTO responseDTO = new ProductDTO(1,"Hotel Plaza","Hotel 5 estrellas",236.45,256.67,"Calle Falsa 123, CABA",9,false,"En el centro",categoryDTO,cityDTO,"rules","health","politics");
+        ProductDTO payloadDTO = new ProductDTO("Hotel Plaza","Hotel 5 estrellas",236.45,256.67,"Calle Falsa 123, CABA",9,false,0,"En el centro",categoryDTO,cityDTO,"rules","health","politics");
+        ProductDTO responseDTO = new ProductDTO(1,"Hotel Plaza","Hotel 5 estrellas",236.45,256.67,"Calle Falsa 123, CABA",9,false,0,"En el centro",categoryDTO,cityDTO,"rules","health","politics");
 
         ObjectWriter writer = new ObjectMapper()
                 .configure(SerializationFeature.WRAP_ROOT_VALUE, false)

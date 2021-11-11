@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class ProductDTO /*implements Comparable<ProductDTO>*/ {
+public class ProductDTO {
     private Integer id;
     private String name;
     private String description;
@@ -19,6 +19,7 @@ public class ProductDTO /*implements Comparable<ProductDTO>*/ {
     private String address;
     private double qualification;
     private boolean favourite = false;
+    private Integer scoreAverage;
     private String reference;
     private CategoryDTO category;
     private CityDTO city;
@@ -26,13 +27,12 @@ public class ProductDTO /*implements Comparable<ProductDTO>*/ {
     private String health;
     private String politics;
     private Set<ImageDTO> images = new HashSet<>();
-    private Set<ScoreDTO> scores;
     private Set<FeatureDTO> features = new HashSet<>();
 
     public ProductDTO() {
     }
 
-    public ProductDTO(String name, String description, double latitude, double longitude, String address, double qualification, boolean favourite, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
+    public ProductDTO(String name, String description, double latitude, double longitude, String address, double qualification, boolean favourite, Integer scoreAverage, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
         this.name = name;
         this.description = description;
         this.latitude = latitude;
@@ -40,6 +40,7 @@ public class ProductDTO /*implements Comparable<ProductDTO>*/ {
         this.address = address;
         this.qualification = qualification;
         this.favourite = favourite;
+        this.scoreAverage = scoreAverage;
         this.reference = reference;
         this.category = category;
         this.city = city;
@@ -48,7 +49,7 @@ public class ProductDTO /*implements Comparable<ProductDTO>*/ {
         this.politics = politics;
     }
 
-    public ProductDTO(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, boolean favourite, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
+    public ProductDTO(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, boolean favourite, Integer scoreAverage, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,6 +58,7 @@ public class ProductDTO /*implements Comparable<ProductDTO>*/ {
         this.address = address;
         this.qualification = qualification;
         this.favourite = favourite;
+        this.scoreAverage = scoreAverage;
         this.reference = reference;
         this.category = category;
         this.city = city;
@@ -64,7 +66,6 @@ public class ProductDTO /*implements Comparable<ProductDTO>*/ {
         this.health = health;
         this.politics = politics;
     }
-
 
     public Product toEntity(){
         Product product = new Product();
