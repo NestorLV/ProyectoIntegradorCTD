@@ -6,7 +6,7 @@ import axios from "axios";
 export default function QualificationBar({id}) {
     const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion'));
     const [submit, setSubmit] = useState(false);
-    const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex}`);
+    const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex==null?"":starIndex}`);
     const [errorMessage, setErrorMessage] = useState("");
 
     let stars = [];
