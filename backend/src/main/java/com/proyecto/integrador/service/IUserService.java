@@ -17,4 +17,5 @@ public interface IUserService {
     void deleteById(Integer idUsers) throws FindByIdException;
     UserDTO update(UserDTO user) throws FindByIdException;
     List<ProductDTO> getFavorites(String email) throws BadRequestException, FindByIdException;
+    UserDTO findByEmail(String email);
 }

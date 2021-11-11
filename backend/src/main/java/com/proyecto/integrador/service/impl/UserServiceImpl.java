@@ -78,10 +78,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<ProductDTO> getFavorites(String email) throws BadRequestException, FindByIdException {
-        if ( userRepository.findByEmail(email) == null) {
-            throw new BadRequestException("El usuario no se encuentra regisstrado en la base de datos");
-        }
+    public List<ProductDTO> getFavorites(String email) throws FindByIdException {
         return productService.findFavorites();
+    }
+
+    public UserDTO findByEmail(String email) {
+        return userRepository.findByEmail(email).toDto();
     }
 }

@@ -15,7 +15,7 @@ public class UserDTO {
     private Integer id;
     private String name;
     private String email;
-    private List<ProductDTO> products = new ArrayList<>();
+    private List<ProductDTO> favoriteProducts = new ArrayList<>();
 
     public User toEntity(){
         User user = new User();

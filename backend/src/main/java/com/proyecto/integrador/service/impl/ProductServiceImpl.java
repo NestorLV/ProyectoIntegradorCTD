@@ -52,8 +52,8 @@ public class ProductServiceImpl implements IProductService {
         ProductDTO productDto = product.toDto();
         productDto.setCategory(categoryService.findById(product.getCategory().getId()));
         productDto.setCity(cityService.findById(product.getCity().getId()));
+        productDto.setScoreAverage(scoreService.average(product.getId()));
         productDto.setImages(findAssociatedImages(product.getId()));
-        productDto.setScores(scoreService.findAllByIdProduct(product.getId()));
         productDto.setFeatures(findAssociatedFeatures(product));
         return productDto;
     }
@@ -160,4 +160,5 @@ public class ProductServiceImpl implements IProductService {
         }
         return recommendedFavorites;
     }
+
 }
