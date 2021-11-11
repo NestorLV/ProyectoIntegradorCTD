@@ -32,7 +32,7 @@ export default function QualificationBar({id}) {
 
     const handleSubmit = () => {
         setSubmit(true);
-        sessionStorage.setItem('calificacion', starIndex);
+        sessionStorage.setItem('calificacion', starIndex.toString());
         setCalificacion_text(`Enviando puntuación...`);
         axios
             .post("http://localhost:8080/products/scores/create", {                
