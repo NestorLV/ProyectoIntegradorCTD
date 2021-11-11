@@ -82,7 +82,7 @@ function Product(props) {
                         {props.latitude !== null || props.longitude !== null ?
                             <MapBar city={prod.city} latitude={prod.latitude} longitude={prod.longitude} name={prod.name} address={prod.address} />
                             : null}
-                        {sessionStorage.getItem("log")==="true"?<QualificationBar />:null}
+                        {sessionStorage.getItem("log")==="true"?<QualificationBar id={prod.id} />:null}
                         <InfoBar health={prod.health} rules={prod.rules} politics={prod.politics} />
                     </>
                 )}
