@@ -399,6 +399,11 @@ div.buttons button.create:hover {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  border-radius: 25px;
+}
+
+.contenedorCalendario>div{
+  border-radius: 25px !important;
 }
 
 .contenedorReservaBox {
