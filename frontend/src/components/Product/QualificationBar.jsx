@@ -1,16 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StylesApp from "../../App.module.css";
 import Styles from "./styles.module.css";
+import axios from "axios";
 
-export default function QualificationBar() {
+export default function QualificationBar({id}) {
     const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion'));
-    const [submit,setSubmit] = useState(false);
-    const [calificacion, setCalificacion] = useState(0);
-   
+    const [submit, setSubmit] = useState(false);
+    const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex}`);
+    const [errorMessage, setErrorMessage] = useState("");
+
     let stars = [];
 
     let star = (i) => <svg key={i} index={i} viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z" className={i >= starIndex ? Styles.star : Styles.starActive} /></svg>;
-    
+
+    useEffect(() => {
+        axios
+            .post("http://localhost:8080/products/scores/create", {                
+                score: starIndex,
+                userEmail: sessionStorage.getItem('email'),                
+                productId:id                
+            })
+            .then((response) => {
+                if (response.status == 200) {
+                    setCalificacion_text(`Se envió correctamente la puntuación de: ${starIndex}`);
+                }               
+
+            })
+            .catch((error) => {
+                setErrorMessage(error);
+            });
+    }, [submit]);
+
+    console.log(sessionStorage.getItem('email'))
 
     const renderStar = () => {
         for (let i = 0; i < 5; i++) {
@@ -23,19 +44,21 @@ export default function QualificationBar() {
 
     const handleStarIndex = (i) => {
         setStarIndex(i);
+        setSubmit(false);
+        setCalificacion_text(`Puntuación: ${i}`);
     }
 
     const handleSubmit = () => {
         setSubmit(true);
-        sessionStorage.setItem('calificacion',starIndex)  
+        sessionStorage.setItem('calificacion', starIndex);
+        setCalificacion_text(`Enviando puntuación...`);
     }
 
     const handleReset = () => {
         setStarIndex(0);
-        setSubmit(false);        
+        setSubmit(false);
+        setCalificacion_text(`Seleccione puntuación`);
     }
-
-    let loggued = sessionStorage.getItem("log");
 
     return (
         <div className={`${Styles.qualificationBar} ${StylesApp.delimiter}`}>
@@ -43,14 +66,15 @@ export default function QualificationBar() {
                 <h2>Califica este alojamiento: </h2>
                 <div className={Styles.starsMap}>
                     {stars.map((star, i) => {
-                        return <div key={i} className={Styles.starBox} onClick={loggued === "true"? ()=> handleStarIndex(i+1) : null } >{star}</div>;
+                        return <div key={i} className={Styles.starBox} onClick={() => handleStarIndex(i + 1)} >{star}</div>;
                     })}
                 </div>
                 <div className={Styles.qualificationButtons}>
                     <button className={Styles.qualificationReset} onClick={handleReset} > Resetear </button>
-                    <button className={Styles.qualificationSubmit} onClick={handleSubmit} > Enviar     </button>
+                    <button className={Styles.qualificationSubmit} onClick={starIndex > 0 ? handleSubmit : null} > Enviar     </button>
+                    <div className={Styles.qualificationConfirm} >{calificacion_text}</div>
                 </div>
-                
+
             </div>
         </div>
     )
