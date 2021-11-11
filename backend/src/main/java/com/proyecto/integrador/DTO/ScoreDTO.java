@@ -1,6 +1,7 @@
 package com.proyecto.integrador.DTO;
 
 
+import com.proyecto.integrador.persistence.entity.Product;
 import com.proyecto.integrador.persistence.entity.Score;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,16 +10,14 @@ import lombok.Setter;
 @Setter
 public class ScoreDTO {
     private Integer idScores;
-    private Integer idUser;
     private Integer score;
-    private Boolean favorite;
+    private String userEmail;
+    private Integer productId;
 
     public Score toEntity(){
-        Score score = new Score();
-        score.setIdScores(idScores);
-        score.setIdUser(idUser);
-        score.setScore(this.score);
-        score.setFavorite(favorite);
-        return score;
+        Score scoreEntity = new Score();
+        scoreEntity.setScore(score);
+        scoreEntity.setProduct(new Product(productId));
+        return scoreEntity;
     }
 }
