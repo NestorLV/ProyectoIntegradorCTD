@@ -102,6 +102,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                 <div className={`${Styles.cardsBlock} ${StylesApp.delimiterChild}`}>
                     <h2>{titulo}</h2>
                     <div className={Styles.cardsBox}>
+                    {console.log(data,"dataCARDS")}
                         {dataLimited().map((e, index) =>
                             <Card image={e.images.length > 0 ? e.images[0].url : ""}
                                 cardCategory={e.category.title}
@@ -117,10 +118,9 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                                 latitude={e.latitude}
                                 longitude={e.longitude}
                                 address={e.address}
-                                favourite={e.favourite}
+                                favorite={e.favourite}
                             />
                         )}
-                        {console.log(data,"data")}
                     </div>
                     <div className={Styles.pages}>
                         {numberPage > 1 && <img className={Styles.left} onClick={() => setNumberPage(numberPage - 1)} src={arrow} alt="arrowLeft" />}
