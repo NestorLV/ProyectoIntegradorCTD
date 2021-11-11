@@ -113,7 +113,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                                 key={index}
                                 id={e.id}
                                 reference={e.reference}
-                                qualification={e.qualification}
+                                qualification={e.qualification*2}
                                 features={e.features}
                                 latitude={e.latitude}
                                 longitude={e.longitude}
