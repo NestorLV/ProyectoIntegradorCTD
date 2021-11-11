@@ -19,8 +19,8 @@ import MapModal from './MapModal';
 import { Modal } from 'react-responsive-modal';
 
 
-function Card({ image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address }) {
-    const [isLike, setLike] = useState("false");
+function Card({ image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address,favourite }) {
+    const [isLike, setLike] = useState(favourite);
     const [mapIsOpen, setMapIsOpen] = useState(false)
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
     const [despliegue, setDespliegue] = useState(false)

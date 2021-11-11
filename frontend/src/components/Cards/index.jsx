@@ -70,6 +70,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
             setErrorMessage("Error");
             setLoading(false);
         }
+        
 
     }, [category, clickBusqueda, favourite]);
 
@@ -116,8 +117,10 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                                 latitude={e.latitude}
                                 longitude={e.longitude}
                                 address={e.address}
+                                favourite={e.favourite}
                             />
                         )}
+                        {console.log(data,"data")}
                     </div>
                     <div className={Styles.pages}>
                         {numberPage > 1 && <img className={Styles.left} onClick={() => setNumberPage(numberPage - 1)} src={arrow} alt="arrowLeft" />}
