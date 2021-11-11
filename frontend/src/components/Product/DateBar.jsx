@@ -18,9 +18,9 @@ function DateBar(props) {
     const { valueDate, setValueDate } = props;
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
-    const [size, setSize] = useState(`${window.innerWidth>700?"desktop":"mobile"}`);
-    const booksMade =[]
-    window.addEventListener('resize', () => {setSize(`${window.innerWidth>700?"desktop":"mobile"}`)});  // funcion para ajustar el tamaño del calendario de desktop a mobile
+    const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
+    const booksMade = [new Date(2021, 10, 30), new Date(2021, 10, 28), new Date(2021,11,8)] // ojo con los mes son de 0 a 11
+    window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
 
     const theme = createTheme({
@@ -52,18 +52,18 @@ function DateBar(props) {
         console.log(valueDate, "valueDate");
     };
 
-    function disableWeekends(date) {
-        return date.getDay() === 0 || date.getDay() === 6;
-      }
-      
-      function disableRandomDates() {
-        return Math.random() > 0.7;
-      }
+
+    function disableDates(e) {
+        let flag = false;
+        booksMade.map((bs) =>e.toString() === bs.toString()? flag = true: null);
+        return flag;
+    }
 
     return (
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>
             <div className={`${Styles.dateBarChild} ${StylesApp.delimiterChild}`}>
                 <h2>Fechas Disponibles</h2>
+                {console.log(booksMade, "booksMade")}
                 <div className={Styles.contenedorInterno}>
                     <div className={Styles.contenedorCalendario}>
                         <ThemeProvider theme={theme} >
@@ -76,8 +76,8 @@ function DateBar(props) {
                                     value={valueDate}
                                     onChange={(newValue) => setValueDate(newValue)}
                                     showToolbar={false}
-                                    hintText="Random Dates Disabled" 
-                                    shouldDisableDate={disableRandomDates}
+                                    hintText="Random Dates Disabled"
+                                    shouldDisableDate={disableDates}
                                     renderInput={(startProps, endProps) => (
                                         <React.Fragment>
                                             <TextField {...startProps} />
