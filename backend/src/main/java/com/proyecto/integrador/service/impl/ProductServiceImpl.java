@@ -1,25 +1,18 @@
 package com.proyecto.integrador.service.impl;
 
-import com.proyecto.integrador.DTO.FeatureDTO;
-import com.proyecto.integrador.DTO.ImageDTO;
 import com.proyecto.integrador.DTO.ProductDTO;
-import com.proyecto.integrador.DTO.ScoreDTO;
 import com.proyecto.integrador.persistence.entity.Category;
 import com.proyecto.integrador.persistence.entity.City;
 import com.proyecto.integrador.persistence.entity.Product;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
-import com.proyecto.integrador.persistence.entity.Score;
 import com.proyecto.integrador.persistence.repository.IProductRepository;
 import com.proyecto.integrador.service.IProductService;
-import com.proyecto.integrador.service.IScoreService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -36,25 +29,18 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     FeatureServiceImpl featureService;
     @Autowired
-    IScoreService scoreService;
-
-
-    private Set<ImageDTO> findAssociatedImages(Integer productId) {
-        Stream<ImageDTO> filterImages = imageService.findAll().stream().filter(image -> Objects.equals(image.getProductId(),productId));
-        return filterImages.collect(Collectors.toSet());
-    }
-    private Set<FeatureDTO> findAssociatedFeatures(Product product) {
-        return featureService.findByProduct(product);
-    }
-
+    ScoreServiceImpl scoreService;
+    @Autowired
+    UserServiceImpl userService;
 
     private ProductDTO loadDataIntoProductDTO(Product product) throws FindByIdException {
         ProductDTO productDto = product.toDto();
+        productDto.setFavourite(userService.isFavourite(productDto));
         productDto.setCategory(categoryService.findById(product.getCategory().getId()));
         productDto.setCity(cityService.findById(product.getCity().getId()));
-        productDto.setScoreAverage(scoreService.average(product.getId()));
-        productDto.setImages(findAssociatedImages(product.getId()));
-        productDto.setFeatures(findAssociatedFeatures(product));
+        productDto.setQualification(scoreService.average(product.getId()));
+        productDto.setImages(imageService.findByProductId(product.getId()));
+        productDto.setFeatures(featureService.findByProduct(product));
         return productDto;
     }
 
@@ -62,7 +48,7 @@ public class ProductServiceImpl implements IProductService {
     public List<ProductDTO> findAll() throws FindByIdException {
         logger.debug("Iniciando método buscar todos los productos");
         List<ProductDTO> products = new ArrayList<>();
-        for (Product product: productRepository.findAll()) {
+        for (Product product : productRepository.findAll()) {
             products.add(loadDataIntoProductDTO(product));
         }
         logger.debug("Terminó la ejecución del método buscar todos los productos");
@@ -109,11 +95,11 @@ public class ProductServiceImpl implements IProductService {
         product.setDescription(productDTO.getDescription());
         product.setLatitude(productDTO.getLatitude());
         product.setLongitude(productDTO.getLongitude());
-        product.setQualification(productDTO.getQualification());
         product.setFavourite(productDTO.isFavourite());
         product.setReference(productDTO.getReference());
         product.setCategory(new Category(productDTO.getCategory().getId()));
         product.setCity(new City(productDTO.getCity().getId()));
+        productRepository.save(product);
         logger.debug("Terminó la ejecución del método actualizar producto");
         return loadDataIntoProductDTO(product);
     }
@@ -123,7 +109,7 @@ public class ProductServiceImpl implements IProductService {
         logger.debug("Iniciando método buscar productos por categoría");
         categoryService.categoryExistsInDatabase(categoryName);
         List<ProductDTO> productsByCategory = new ArrayList<>();
-        for (Product product: productRepository.findByCategory_Title(categoryName)) {
+        for (Product product : productRepository.findByCategory_Title(categoryName)) {
             productsByCategory.add(loadDataIntoProductDTO(product));
         }
         logger.debug("Terminó la ejecución del método buscar productos por categoría");
@@ -137,7 +123,7 @@ public class ProductServiceImpl implements IProductService {
             throw new BadRequestException("No se registra ninguna ciudad asociada al id ingresado");
         }
         List<ProductDTO> productsByCity = new ArrayList<>();
-        for (Product product: productRepository.findByCity_Id(cityId)) {
+        for (Product product : productRepository.findByCity_Id(cityId)) {
             productsByCity.add(loadDataIntoProductDTO(product));
         }
         logger.debug("Terminó la ejecución del método buscar productos por ciudad");
@@ -146,19 +132,31 @@ public class ProductServiceImpl implements IProductService {
 
     public List<ProductDTO> findRecommendations() throws FindByIdException {
         List<ProductDTO> recommendedProducts = new ArrayList<>();
-        for (Product product: productRepository.findFirst12ByOrderByQualificationDesc()) {
+        for (Product product : productRepository.findFirst12ByOrderByQualificationDesc()) {
             recommendedProducts.add(loadDataIntoProductDTO(product));
         }
         return recommendedProducts;
     }
 
+    // A corregir lo de favoritos --> Que no se hardcodee
     public List<ProductDTO> findFavorites() throws FindByIdException {
         List<ProductDTO> recommendedFavorites = new ArrayList<>();
-        for (Product product: productRepository.findFirst5ByOrderByQualificationDesc()) {
+        for (Product product : productRepository.findFirst5ByOrderByQualificationDesc()) {
             product.setFavourite(true);
             recommendedFavorites.add(loadDataIntoProductDTO(product));
         }
         return recommendedFavorites;
+    }
+
+    public void updateQualification(Integer productId, double newQualification) throws FindByIdException {
+        logger.debug("Iniciando método actualizar calificación de producto");
+        if (!productRepository.existsById(productId)) {
+            throw new FindByIdException("No existe una producto con el id ingresado");
+        }
+        Product product = productRepository.findById(productId).get();
+        product.setQualification(newQualification);
+        productRepository.save(product);
+        logger.debug("Terminó la ejecución del método actualizar calificación de producto");
     }
 
 }

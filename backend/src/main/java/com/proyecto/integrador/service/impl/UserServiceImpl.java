@@ -74,7 +74,7 @@ public class UserServiceImpl implements IUserService {
         user1.setName(user.getName());
         user1.setEmail(user.getEmail());
         logger.debug("Terminó la ejecución del método actualizar usuario");
-        return user1.toDto();
+        return userRepository.save(user1).toDto();
     }
 
     @Override
@@ -84,5 +84,11 @@ public class UserServiceImpl implements IUserService {
 
     public UserDTO findByEmail(String email) {
         return userRepository.findByEmail(email).toDto();
+    }
+
+
+    public boolean isFavourite(ProductDTO productDTO) {
+        return false;
+        /*if (findByEmail()) --> Validar usuario y filtrar los favoritos del usuario */
     }
 }

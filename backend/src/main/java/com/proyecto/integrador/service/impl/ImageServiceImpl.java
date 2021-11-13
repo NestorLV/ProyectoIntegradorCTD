@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ImageServiceImpl implements IImageService {
@@ -19,8 +21,6 @@ public class ImageServiceImpl implements IImageService {
 
     @Autowired
     IImageRepository imageRepository;
-    @Autowired
-    ProductServiceImpl productService;
 
     @Override
     public List<ImageDTO> findAll() {
@@ -72,6 +72,12 @@ public class ImageServiceImpl implements IImageService {
         image.getProduct().setId(imageDTO.getProductId());
         logger.debug("Terminó la ejecución del método actualizar imagen por ID");
         return imageRepository.save(image).toDto();
+    }
+
+    public Set<ImageDTO> findByProductId(Integer productId) {
+        logger.debug("Iniciando método buscar imágenes asociados al producto");
+        logger.debug("Terminó la ejecución del método buscar imágenes asociados al producto");
+        return imageRepository.findByProduct_Id(productId).stream().map(Image::toDto).collect(Collectors.toSet());
     }
 
 }

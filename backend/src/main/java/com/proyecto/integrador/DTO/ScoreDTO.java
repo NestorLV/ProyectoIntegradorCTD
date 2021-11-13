@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ScoreDTO {
-    private Integer idScores;
+    private Integer idScore;
     private Integer score;
     private String userEmail;
     private Integer productId;
