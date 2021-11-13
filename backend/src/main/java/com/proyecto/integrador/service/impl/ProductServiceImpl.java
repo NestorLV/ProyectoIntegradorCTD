@@ -130,8 +130,13 @@ public class ProductServiceImpl implements IProductService {
         return productsByCity;
     }
 
+    // Revisar si se puede mejorar este método
     public List<ProductDTO> findRecommendations() throws FindByIdException {
         List<ProductDTO> recommendedProducts = new ArrayList<>();
+        productRepository.findAll().forEach(p -> {
+            p.setQualification(scoreService.average(p.getId()));
+            productRepository.save(p);
+        });
         for (Product product : productRepository.findFirst12ByOrderByQualificationDesc()) {
             recommendedProducts.add(loadDataIntoProductDTO(product));
         }
