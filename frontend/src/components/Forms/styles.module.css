@@ -66,7 +66,7 @@
   padding-left: 10px;
 }
 
-.inputLabel input[type="text"] {
+.inputText input[type="text"]{
   width: 16.5vw;
 }
 
@@ -114,7 +114,37 @@ form ul {
   border: solid 1px red;
 }
 
+.hidePassword{
+position: absolute;
+width: 25px;
+left:64.2vw;
+
+opacity: 0.7;
+}
+.password{
+  
+  bottom:49.6%
+}
+.confirm{
+  bottom:39.4%
+}
+
+.confirmPassword input{
+  justify-self: flex-start;
+}
+
+.passLogin{
+  bottom: 44.5vh;
+}
+
+
 /* media queries */
+
+@media all and (max-width: 1000px) {
+  .hidePassword{
+  left:63.3vw;
+  }
+}
 
 @media all and (max-width: 769px) {
   .container{
@@ -144,8 +174,33 @@ form ul {
   .login{
     height:38vh;
   } 
+
+  .hidePassword{
+  left:68vw;
+  
+  }
+
+  .password{
+  
+    bottom:44.6%
+  }
+  .confirm{
+    bottom:34.3%
+  }
+
+  .passLogin{
+    bottom: 43.5vh;
+  }
+  
 }
 
+@media all and (max-width: 550px) {
+  .hidePassword{
+    left:66vw;
+    
+    }
+  
+}
 @media all and (max-width: 415px) {
   .container {
     height: calc(95vh - 93px - 58px);    
@@ -163,4 +218,21 @@ form ul {
   .error{
     width: 72vw;
   }
+
+  .hidePassword{
+    left:77vw;
+  }
+
+  .password{
+  
+    bottom:42.6%
+  }
+  .confirm{
+    bottom:31.7%
+  }
+
+  .passLogin{
+    bottom: 36.6vh;
+  }
+  
 }

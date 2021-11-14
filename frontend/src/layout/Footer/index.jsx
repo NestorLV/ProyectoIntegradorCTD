@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Styles from './styles.module.css';
 import StylesApp from "../../App.module.css"
-import StylesLayout from "../styles.module.css"
 import logoFacebook from "./img/icon facebook.png";
 import logoLinkedin from "./img/icon linkedin.png";
 import logoTwitter from "./img/tweet.png";
@@ -15,7 +14,7 @@ function Footer({ showBurger }) {
     let placeShareCall="footer"
 
     return (
-        <footer className={`${Styles.footer} ${showBurger === true ? StylesLayout.opacity:null} ${StylesApp.delimiter}`} >
+        <footer className={`${Styles.footer} ${StylesApp.delimiter}`} >
             <div className={`${Styles.delimiterChild} ${StylesApp.delimiterChild} `}>
                 <div>
                     <h3 className={Styles.footerTittle} >2021 @ World Guest Booking</h3>
