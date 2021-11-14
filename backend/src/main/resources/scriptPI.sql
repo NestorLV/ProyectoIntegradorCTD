@@ -322,30 +322,34 @@ VALUES ('imagen alojamiento 12-5','https://proyecto-integrador-bucket.s3.amazona
 -- Dumping data for table `feature`
 --
 
+
+
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
 VALUES ('wifi',0);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('pool',1);
+VALUES ('pileta',1);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('kitchen',2);
+VALUES ('cocina',2);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('tv',3);
+VALUES ('televisor',3);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('ac',4);
+VALUES ('aire acondicionado',4);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('pet',5);
+VALUES ('apto mascotas',5);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('parking',6);
+VALUES ('estacionamiento gratuito',6);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('creditCard',7);
+VALUES ('acepta tarjeta',7);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('smoke',8);
+VALUES ('espacio fumadores',8);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('noParty',9);
+VALUES ('prohibido fiestas',9);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('checkIn',10);
+VALUES ('check in online',10);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
-VALUES ('noSmoke',11);
+VALUES ('prohibido fumar',11);
+
+
 
 
 --
