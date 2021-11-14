@@ -51,7 +51,7 @@ a:active {
 .cardImage {
   background-size: cover;
   border-radius: 10px;
-  height: 93%;
+  height: 100%;
   position: relative;
   width: 47%;
 }
@@ -146,7 +146,9 @@ div.buttons button.create:hover {
 
 /* cambiar color del corazon */
 .heartColor {
-  fill: white;
+  fill: rgba(255, 255, 255, 0.459);
+  stroke: white;
+  stroke-width: 2px;
 }
 
 .heartColor2 {

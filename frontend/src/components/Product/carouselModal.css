@@ -63,12 +63,16 @@
 
  .carousel .control-prev.control-arrow:before{
      border-right:4px solid #fff !important;
-     transform:rotate(-135deg)
+     transform:rotate(-135deg);
+     position: relative;
+        right:-3px;
     }
  
     .carousel .control-next.control-arrow:before{
         border-left:4px solid #fff !important;
-        transform:rotate(135deg)
+        transform:rotate(135deg);
+        position: relative;
+        left:-3px;
     }
 
     .carousel .control-arrow,.carousel.carousel-slider .control-arrow{

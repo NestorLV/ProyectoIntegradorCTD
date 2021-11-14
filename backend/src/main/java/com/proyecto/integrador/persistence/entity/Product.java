@@ -50,10 +50,8 @@ public class Product {
     private City city;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<Image> images = new HashSet<>();
-
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private  Set<Score> scores = new HashSet<>();
-
     @ManyToMany(targetEntity = Feature.class, mappedBy = "products", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
     private Set<Feature> features = new HashSet<>();
 
@@ -102,7 +100,6 @@ public class Product {
         productDTO.setLatitude(latitude);
         productDTO.setLongitude(longitude);
         productDTO.setAddress(address);
-        productDTO.setQualification(qualification);
         productDTO.setFavourite(favourite);
         productDTO.setReference(reference);
         productDTO.setCategory(new CategoryDTO(category.getId()));

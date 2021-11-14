@@ -16,11 +16,11 @@ function Calendar(props) {
   const startDateToString = `${format(startDate, "dd")} de ${format(
     startDate,
     "MMM"
-  )}`;
+  )} de ${format(startDate, "y")}`;
   const endDateToString = `${format(endDate, "dd")} de ${format(
     endDate,
     "MMM"
-  )}`;
+  )} de ${format(endDate, "y")}`;
 
   const handleSelection = (event) => {
     event.preventDefault();
