@@ -1,6 +1,7 @@
 package com.proyecto.integrador.service.impl;
 
 
+import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.DTO.ScoreDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
@@ -23,7 +24,9 @@ public class ScoreServiceImpl implements IScoreService {
     @Autowired
     IScoreRepository scoresRepository;
     @Autowired
-    IUserService userService;
+    UserServiceImpl userService;
+    @Autowired
+    ProductServiceImpl productService;
 
     public Integer average(Integer idProduct) {
         logger.debug("Iniciando método promedio de todas las puntuaciones");
@@ -58,6 +61,7 @@ public class ScoreServiceImpl implements IScoreService {
         scoreEntity.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
         ScoreDTO scoreDTO = scoresRepository.save(scoreEntity).toDto();
         scoreDTO.setUserEmail(userService.findByEmail(score.getUserEmail()).getEmail());
+        productService.updateQualification(score.getProductId(),average(score.getProductId()));
         logger.debug("Terminó la ejecución del método guardar puntuación");
         return scoreDTO;
     }
@@ -86,14 +90,14 @@ public class ScoreServiceImpl implements IScoreService {
     @Override
     public ScoreDTO update(ScoreDTO score) throws FindByIdException {
         logger.debug("Iniciando método actualizar producto");
-        if (!scoresRepository.existsById(score.getIdScores())) {
+        if (!scoresRepository.existsById(score.getIdScore())) {
             throw new FindByIdException("No existe una puntuación con el id ingresado");
         }
-        Score score1 = scoresRepository.findById(score.getIdScores()).get();
+        Score score1 = scoresRepository.findById(score.getIdScore()).get();
         score1.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
         score1.setScore(score.getScore());
         logger.debug("Terminó la ejecución del método actualizar puntuación");
-        return score1.toDto();
+        return scoresRepository.save(score1).toDto();
     }
 
     @Override

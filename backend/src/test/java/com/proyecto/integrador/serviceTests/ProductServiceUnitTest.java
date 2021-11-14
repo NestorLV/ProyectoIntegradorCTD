@@ -45,7 +45,7 @@ public class ProductServiceUnitTest {
     @Before
     public void reset() throws Exception{
         mockMvc = MockMvcBuilders.standaloneSetup(productController).setControllerAdvice(GlobalException.class).build();
-        product = new ProductDTO (3,"Hotel Plaza","Hotel 5 estrellas",123.45,143.67,"Calle Falsa 123, CABA",9,false,0,"En el centro",new CategoryDTO(1),new CityDTO(1),"rules","health","politics");
+        product = new ProductDTO (3,"Hotel Plaza","Hotel 5 estrellas",123.45,143.67,"Calle Falsa 123, CABA",9,false,"En el centro",new CategoryDTO(1),new CityDTO(1),"rules","health","politics");
         configureMockito();
     }
 
