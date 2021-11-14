@@ -139,12 +139,30 @@ opacity: 0.7;
 
 
 /* media queries */
+@media all and (min-height: 900px) {
+  .passLogin, .password{
+    bottom: 50%;
+  }
+  .confirm{
+    bottom: 40%;
+  }
+  }
+
+  @media all and (min-height: 1200px) {
+    .passLogin, .password{
+      bottom: 51%;
+    }
+    .confirm{
+      bottom: 41.5%;
+    }
+    }
 
 @media all and (max-width: 1000px) {
   .hidePassword{
   left:63.3vw;
   }
 }
+
 
 @media all and (max-width: 769px) {
   .container{
