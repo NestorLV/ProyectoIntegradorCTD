@@ -348,6 +348,8 @@ div.buttons button.create:hover {
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 30px;
+  font-size: var(--heading4);
+  font-weight: var(--font-medium);
 }
 
 .featuresBarChild div.featureBox {
