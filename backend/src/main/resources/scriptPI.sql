@@ -323,6 +323,7 @@ VALUES ('imagen alojamiento 12-5','https://proyecto-integrador-bucket.s3.amazona
 --
 
 
+
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
 VALUES ('wifi',0);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
@@ -347,6 +348,8 @@ INSERT INTO `proyecto_integrador`.`feature` (title,type)
 VALUES ('check in online',10);
 INSERT INTO `proyecto_integrador`.`feature` (title,type)
 VALUES ('prohibido fumar',11);
+
+
 
 
 --
