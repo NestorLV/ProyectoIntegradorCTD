@@ -11,6 +11,7 @@ import InfoBar from "./InfoBar";
 import axios from "axios";
 import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
+import Spinner from "../spinner/Spinner";
 
 
 function Product(props) {
@@ -70,7 +71,8 @@ function Product(props) {
         return (
             <section>
                 {loading ? (
-                    <p className={StylesApp.delimiter}>Loading Data...</p>
+                    /* <p className={StylesApp.delimiter}>Loading Data...</p> */
+                    <Spinner />
                 ) : (
                     <>
                         <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />

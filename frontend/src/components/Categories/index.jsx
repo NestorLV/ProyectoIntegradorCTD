@@ -4,6 +4,7 @@ import StylesApp from "../../App.module.css";
 import Category from "./Category";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Spinner from "../spinner/Spinner";
 
 export default function Categories({handleCategory}) {
   const baseURL = "http://localhost:8080/categories/all";
@@ -41,7 +42,8 @@ export default function Categories({handleCategory}) {
         <div className={`${Styles.categoryBlock} ${StylesApp.delimiterChild}`}>
           <h2>Buscar por tipo de alojamiento</h2>
           {loading ? (
-            <p>Loading Data...</p>
+            <Spinner />
+            /* <p>Loading Data...</p> */
           ) : (
             <div className={Styles.categoryBox}>
               {data.map((c, index) => (                
