@@ -46,9 +46,9 @@ export default function Categories({handleCategory}) {
             /* <p>Loading Data...</p> */
           ) : (
             <div className={Styles.categoryBox}>
-              {data.map((c, index) => (                
+              {data.map((c) => (                
                 <Category
-                  key={index}
+                  key={c.id}
                   title={c.title}
                   imageUrl={c.url}
                   description={c.description}                                                                    

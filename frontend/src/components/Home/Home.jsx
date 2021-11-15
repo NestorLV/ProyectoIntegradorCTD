@@ -1,6 +1,6 @@
-import Categories from "../Categories/index.jsx";
+import Categories from "../Categories/Categories.jsx";
 import SearchBlock from "../SearchBlock/SearchBlock";
-import Cards from "../Cards/index.jsx";
+import Cards from "../Cards/Cards";
 
 export default function Home(props) {
   

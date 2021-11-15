@@ -159,10 +159,14 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
     <div
       className="cardDescription"
     >
-      <p>
+      <p
+        className="noDesplegado"
+      >
         test
       </p>
-      <span>
+      <span
+        onClick={[Function]}
+      >
         más...
       </span>
     </div>
@@ -317,10 +321,14 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
     <div
       className="cardDescription"
     >
-      <p>
+      <p
+        className="noDesplegado"
+      >
         test
       </p>
-      <span>
+      <span
+        onClick={[Function]}
+      >
         más...
       </span>
     </div>
@@ -480,10 +488,14 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
     <div
       className="cardDescription"
     >
-      <p>
+      <p
+        className="noDesplegado"
+      >
         test
       </p>
-      <span>
+      <span
+        onClick={[Function]}
+      >
         más...
       </span>
     </div>
@@ -648,10 +660,14 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
     <div
       className="cardDescription"
     >
-      <p>
+      <p
+        className="noDesplegado"
+      >
         test
       </p>
-      <span>
+      <span
+        onClick={[Function]}
+      >
         más...
       </span>
     </div>
@@ -826,10 +842,14 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
     <div
       className="cardDescription"
     >
-      <p>
+      <p
+        className="noDesplegado"
+      >
         test
       </p>
-      <span>
+      <span
+        onClick={[Function]}
+      >
         más...
       </span>
     </div>
@@ -1004,10 +1024,14 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
     <div
       className="cardDescription"
     >
-      <p>
+      <p
+        className="noDesplegado"
+      >
         test
       </p>
-      <span>
+      <span
+        onClick={[Function]}
+      >
         más...
       </span>
     </div>
