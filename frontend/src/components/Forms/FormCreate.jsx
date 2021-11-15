@@ -57,10 +57,8 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
         if(!regEx.test(surname.campo) || surname.campo===""){
             setError("El apellido no puede estar vacio ni contener numeros o caracteres especiales")
             setSurname({...surname, valido:false})
-        }
-        
+        }        
     }
-
 
     const validarEmail = () => {
         setEmail({...email, valido:true})
@@ -97,10 +95,8 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
             setError("Las contraseñas deben ser iguales")
             setConfirmPassword({...confirmPassword, valido:false})
         }
-
     }
-
-   
+       
     const sendData = (event) => {
         event.preventDefault();
         validarName()

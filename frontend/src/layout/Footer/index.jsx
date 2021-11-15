@@ -22,13 +22,12 @@ function Footer({ showBurger }) {
                 <div className={Styles.icons}>
                     <img src={iconSocial} alt="iconSocial" className={`${Styles.iconsImg}`} onClick={openShareModal} />
                     <Share shareIsOpen={shareIsOpenFooter} placeShareCall={placeShareCall} setShareIsOpen={setShareIsOpenFooter} />
-                    <img className={Styles.iconsImg} src={logoFacebook} alt="" />
-                    <img className={Styles.iconsImg} src={logoLinkedin} alt="" />
-                    <img className={Styles.iconsImg} src={logoTwitter} alt="" />
-                    <img className={Styles.iconsImg} src={logoInstagram} alt="" />
+                    <a href="https://www.facebook.com/profile.php?id=100074545225635" target="_blank" rel="noreferrer"><img className={Styles.iconsImg} src={logoFacebook} alt="" /></a>
+                    <a href="https://www.linkedin.com/in/world-guest-2b195b225/" target="_blank" rel="noreferrer"><img className={Styles.iconsImg} src={logoLinkedin} alt="" /></a>
+                    <a href="https://twitter.com/WorldGuest2" target="_blank" rel="noreferrer"><img className={Styles.iconsImg} src={logoTwitter} alt="" /></a>
+                    <a href="https://www.instagram.com/world_guest_booking/" target="_blank" rel="noreferrer"><img className={Styles.iconsImg} src={logoInstagram} alt="" /></a>
                 </div>
             </div>
-
         </footer>
     );
 }
