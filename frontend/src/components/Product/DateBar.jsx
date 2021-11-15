@@ -23,7 +23,6 @@ function DateBar(props) {
     
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
-
     const theme = createTheme({
         palette: {
             primary: {
@@ -52,7 +51,6 @@ function DateBar(props) {
         sessionStorage.setItem("endDate", endDate.toDateString());
         console.log(valueDate, "valueDate");
     };
-
 
     function disableDates(e) { return booksMade.includes(e.toString())}
 

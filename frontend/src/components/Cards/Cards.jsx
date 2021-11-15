@@ -78,7 +78,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
 
     }
 
-    const dataLimited = () => { return data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage); };
+    const dataLimited = () => data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage); 
     const indexPages = () => {
         let pages = [];
         let cant = data.length % limitCardPerPage === 0 ? data.length / limitCardPerPage : Math.floor(data.length / limitCardPerPage) + 1
