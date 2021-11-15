@@ -54,10 +54,10 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
                 <div className="iconsMobile">
                     <img src={iconSocial} alt="iconSocial" onClick={openShareModal} className= "iconSocial"/>
                     <Share shareIsOpen={shareIsOpenFooter} placeShareCall={placeShareCall} setShareIsOpen={setShareIsOpenFooter} />
-                    <img src={logoFb} alt="" />
-                    <img src={logoLinkedIn} alt="" />
-                    <img src={logoTwitter} alt="" />
-                    <img src={logoIg} alt="" />
+                    <a href="https://www.facebook.com/profile.php?id=100074545225635" target="_blank" rel="noreferrer" ><img src={logoFb} alt="" /></a>
+                    <a href="https://www.linkedin.com/in/world-guest-2b195b225/" target="_blank" rel="noreferrer" ><img src={logoLinkedIn} alt="" /></a>
+                    <a href="https://twitter.com/WorldGuest2" target="_blank" rel="noreferrer" > <img src={logoTwitter} alt="" /></a>
+                    <a href="https://www.instagram.com/world_guest_booking/" target="_blank" rel="noreferrer"> <img src={logoIg} alt="" /></a>
                 </div>
             </div>
         </MenuBurgerWrapper>

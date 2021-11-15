@@ -167,15 +167,31 @@
 }
 
 .imageBar .verMas {
-  bottom: 10px;
+  background-color:var(--primary-color);
+  padding: 3px 12px;
+  border-radius: 5px;
+  bottom: 10px;  
   color: white;
   cursor: pointer;
   font-size: var(--heading3);
   font-weight: var(--font-bold);
-  position: absolute;
+  position: absolute;  
   right: 20px;
-  text-decoration: underline;
+  text-decoration: none;
+  transition: all 0.3s;
 }
+
+.imageBar .verMas:hover {
+  background-color: white;
+  color:var(--primary-color);
+  transform: scale(1.08);
+}
+
+.imageBar .verMas:active {
+  transform: scale(0.9);
+}
+
+
 
 .imageBar .slider {
   display: none;
@@ -353,6 +369,8 @@ div.buttons button.create:hover {
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 30px;
+  font-size: var(--heading4);
+  font-weight: var(--font-medium);
 }
 
 .featuresBarChild div.featureBox {
