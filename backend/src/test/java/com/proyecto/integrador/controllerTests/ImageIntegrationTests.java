@@ -48,7 +48,7 @@ public class ImageIntegrationTests {
     public void cargarDatos() throws FindByIdException {
         CategoryDTO categoryDTO = categoryServiceImpl.save(new CategoryDTO(1,"Apart Hotels", "500.012", "http://exampleimage.com"));
         CityDTO cityDTO = cityServiceImpl.save(new CityDTO (1,"Córdoba","Argentina"));
-        ProductDTO productDTO = productServiceImpl.save(new ProductDTO(1,"Hotel Plaza","Hotel 5 estrellas",123.45,143.67,"Calle Falsa 123, CABA",9,false,0,"En el centro",categoryDTO,cityDTO,"rules","health","politics"));
+        ProductDTO productDTO = productServiceImpl.save(new ProductDTO(1,"Hotel Plaza","Hotel 5 estrellas",123.45,143.67,"Calle Falsa 123, CABA",9,false,"En el centro",categoryDTO,cityDTO,"rules","health","politics"));
         imageController.create(new ImageDTO("image1","http://image1.com", productDTO.getId()));
         imageController.create(new ImageDTO ("image2","http://image2.com", productDTO.getId()));
     }

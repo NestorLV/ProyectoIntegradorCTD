@@ -15,22 +15,23 @@ import javax.persistence.*;
 @Check(constraints = "score >= 1 && score <= 5")
 public class Score {
     @Id
-    @Column(name = "idScores", nullable = false)
+    @Column(name = "idScore", nullable = false)
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer idScores;
-    @Column(name = "idUser", nullable = false)
+    private Integer idScore;
+    @Column(name = "idUser")
     private Integer idUser;
-    @Column(name = "score", nullable = false)
+    @Column(name = "score")
     private Integer score;
-    @Column(name = "favorite")
-    private Boolean favorite = false;
+    // Revisar si esto tiene sentido que esté acá! Capaz no es necesario este atributo de fav acá porque ya está en producto
+    @Column(name = "favourite")
+    private Boolean favourite = false;
     @ManyToOne
-    @JoinColumn(name = "idProduct", nullable = false)
+    @JoinColumn(name = "idProduct")
     private Product product;
 
     public ScoreDTO toDto(){
         ScoreDTO scoreDTO = new ScoreDTO();
-        scoreDTO.setIdScores(idScores);
+        scoreDTO.setIdScore(idScore);
         scoreDTO.setScore(score);
         scoreDTO.setProductId(product.getId());
         return scoreDTO;
