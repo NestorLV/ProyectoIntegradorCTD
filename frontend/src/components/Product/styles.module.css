@@ -139,6 +139,11 @@
   min-width: 50%;
 }
 
+.barraIzq img, .barraDer img, .image{
+  object-fit:cover;
+ 
+}
+
 .imageBar img {
   border-radius: 15px;
   height: 100%;

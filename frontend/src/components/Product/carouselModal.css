@@ -15,12 +15,13 @@
 
  .slide div img{
     height: 44vh;
+    object-fit:cover;
+    
  }
  
  .thumb img{
      border-radius: 10px;
      height:11vh;
-     
  }
  .carousel .thumb{
      margin-right: 0 !important;
