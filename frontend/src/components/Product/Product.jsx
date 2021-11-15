@@ -11,6 +11,7 @@ import InfoBar from "./InfoBar";
 import axios from "axios";
 import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
+import Spinner from "../spinner/Spinner";
 
 
 function Product(props) {
@@ -26,7 +27,6 @@ function Product(props) {
     /*ESTADO PARA EL CALENDARIO */
     const [valueDate, setValueDate] = useState([sessionStorage.getItem("startDate")!=null?sessionStorage.getItem("startDate"):null, sessionStorage.getItem("endDate")!=null?sessionStorage.getItem("endDate"):null]);
    
-
     let { id } = useParams();
     const [prod, setProd] = useState({
         id: id,
@@ -70,7 +70,8 @@ function Product(props) {
         return (
             <section>
                 {loading ? (
-                    <p className={StylesApp.delimiter}>Loading Data...</p>
+                    /* <p className={StylesApp.delimiter}>Loading Data...</p> */
+                    <Spinner />
                 ) : (
                     <>
                         <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
@@ -82,7 +83,7 @@ function Product(props) {
                         {props.latitude !== null || props.longitude !== null ?
                             <MapBar city={prod.city} latitude={prod.latitude} longitude={prod.longitude} name={prod.name} address={prod.address} />
                             : null}
-                        <QualificationBar />
+                        {sessionStorage.getItem("log")==="true"?<QualificationBar id={prod.id} />:null}
                         <InfoBar health={prod.health} rules={prod.rules} politics={prod.politics} />
                     </>
                 )}

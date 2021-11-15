@@ -2,6 +2,7 @@ import styles from "./styles.module.css"
 import { Link } from "react-router-dom"
 import { useState } from "react";
 import ValidCredentials from "../../credentials/ValidCredentials";
+import hidePassword from "./icons/hidePassword.png"
 
 export default function FormLogin( { setActiveLogin, setActiveCreate, setLog } ){
     const[email, setEmail] = useState({campo:"", valido:true});
@@ -54,9 +55,18 @@ export default function FormLogin( { setActiveLogin, setActiveCreate, setLog } )
             setFormValido(false)
         }
     }
-    console.log(email);
-    console.log(password);
     
+    function mostrarContrasena(){
+        let tipo = document.getElementById("password");
+        
+        if(tipo.type == "password"){
+            tipo.type = "text";
+        }else{
+            tipo.type = "password";
+        }
+        
+    }
+
     return(
         
         <div className={styles.container}>
@@ -68,8 +78,10 @@ export default function FormLogin( { setActiveLogin, setActiveCreate, setLog } )
                 </div>
                 <div className={`${styles.inputLabel} ${!password.valido?styles.inputError:null}`}>
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" value = {password.campo} onKeyUp={validarPassword} onChange = {handleChangePassword}/>
+                    <input type="password" name="password" id="password" value = {password.campo} onKeyUp={validarPassword} onChange = {handleChangePassword} />
+                    <img src={hidePassword} className={`${styles.hidePassword} ${styles.passLogin}`} onClick={mostrarContrasena}/>
                 </div>
+                
                 {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}
                 <div className={`${styles.inputLabel} ${styles.boton}`}>
                     <button type="submit">Ingresar</button>
