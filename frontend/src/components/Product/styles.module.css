@@ -139,6 +139,11 @@
   min-width: 50%;
 }
 
+.barraIzq img, .barraDer img, .image{
+  object-fit:cover;
+ 
+}
+
 .imageBar img {
   border-radius: 15px;
   height: 100%;
@@ -162,15 +167,31 @@
 }
 
 .imageBar .verMas {
-  bottom: 10px;
+  background-color:var(--primary-color);
+  padding: 3px 12px;
+  border-radius: 5px;
+  bottom: 10px;  
   color: white;
   cursor: pointer;
   font-size: var(--heading3);
   font-weight: var(--font-bold);
-  position: absolute;
+  position: absolute;  
   right: 20px;
-  text-decoration: underline;
+  text-decoration: none;
+  transition: all 0.3s;
 }
+
+.imageBar .verMas:hover {
+  background-color: white;
+  color:var(--primary-color);
+  transform: scale(1.08);
+}
+
+.imageBar .verMas:active {
+  transform: scale(0.9);
+}
+
+
 
 .imageBar .slider {
   display: none;
@@ -348,6 +369,8 @@ div.buttons button.create:hover {
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 30px;
+  font-size: var(--heading4);
+  font-weight: var(--font-medium);
 }
 
 .featuresBarChild div.featureBox {
@@ -399,6 +422,11 @@ div.buttons button.create:hover {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  border-radius: 25px;
+}
+
+.contenedorCalendario>div{
+  border-radius: 25px !important;
 }
 
 .contenedorReservaBox {
@@ -491,8 +519,9 @@ div.buttons button.create:hover {
   padding-left: clamp(20px, 3.9%, 40px);
   padding-right: clamp(20px, 3.9%, 40px); 
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;  
  
 }
 
@@ -501,6 +530,14 @@ div.buttons button.create:hover {
   font-size: var(--heading2);
   font-weight: var(--font-bold);
   display: flex;
+}
+
+.qualificationBarTitle {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  align-items: space-evenly;
+  padding: 2% 0;
 }
 
 .starBox {
@@ -536,7 +573,7 @@ div.buttons button.create:hover {
   display: flex;
   justify-content: space-evenly;
   align-items: center;    
-  width: 40%;
+  width: 50%;
   
 }
 
@@ -563,6 +600,14 @@ div.buttons button.create:hover {
 
 .qualificationReset:active, .qualificationSubmit:active {
   transform: scale(0.9);
+}
+
+.qualificationConfirm {
+  color: var(--secondary-color);
+  font-size: var(--text2);
+  font-weight: var(--font-bold);
+  text-align: center;
+  max-width: 30%;
 }
 
 /* Estilos infoBar */
@@ -751,10 +796,9 @@ div.buttons button.create:hover {
   }
 
   .qualificationBarChild {    
-    display: flex;    
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;   
+    display: flex; 
+    flex-direction: column;   
+    align-items: center;     
   }
 
   .qualificationButtons {
@@ -766,8 +810,20 @@ div.buttons button.create:hover {
     
   }
 
-  
-  
+  .qualificationButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;    
+    width: 100%;
+    margin: 3% 0;
+    
+  }
+
+  .qualificationReset, .qualificationSubmit {
+    width: 60%;
+    margin: 1% 0;
+  }
   
   
 }
@@ -818,9 +874,15 @@ div.buttons button.create:hover {
     justify-content: center;      
   }
 
+  .qualificationBarTitle {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+  }
+
   .starsMap {
-    display: flex;
-    margin: 2% 0;
+    display: flex;    
     width: 70%;
     justify-content: space-evenly;
   }
@@ -833,6 +895,7 @@ div.buttons button.create:hover {
 
   .qualificationButtons {    
     margin-top: 0;
+    justify-items: center;
     
   }
 }

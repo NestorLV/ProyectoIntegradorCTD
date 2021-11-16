@@ -10,13 +10,13 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
     const baseUrlProductosRecomendados = `${baseUrl}products/get/recommended`;
     const baseUrlPorCategoria = `${baseUrl}products/get/category/${category}`;
     const baseUrlPorCiudad = `${baseUrl}products/get/city/${city}`;
-    const baseUrlFavourite = `${baseUrl}products/all`;
+    const baseUrlFavourite = `${baseUrl}users/getFavorites`;
     //const baseUrlPorFecha = `http://localhost:8080/products/date`;
     //const baseUrlPorCiudadYFecha = `http://localhost:8080/products/search/date/${search}`;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-    const limitCardPerPage = 4;
+    const limitCardPerPage = 8;
     const [numberPage, setNumberPage] = useState(1);
     const [titulo, setTitulo] = useState("Recomendaciones");
 
@@ -56,7 +56,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                     setLoading(false);
                 });
         } else if (favourite) {
-            axios.get(baseUrlFavourite)
+            axios.post(baseUrlFavourite,{email: sessionStorage.getItem("email")})
                 .then(response => {
                     setData(response.data);
                     setLoading(false);
@@ -70,10 +70,15 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
             setErrorMessage("Error");
             setLoading(false);
         }
+        
 
     }, [category, clickBusqueda, favourite]);
 
-    const dataLimited = () => { return data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage); };
+    const handleFavorite = (e) => {
+
+    }
+
+    const dataLimited = () => data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage); 
     const indexPages = () => {
         let pages = [];
         let cant = data.length % limitCardPerPage === 0 ? data.length / limitCardPerPage : Math.floor(data.length / limitCardPerPage) + 1
@@ -97,6 +102,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                 <div className={`${Styles.cardsBlock} ${StylesApp.delimiterChild}`}>
                     <h2>{titulo}</h2>
                     <div className={Styles.cardsBox}>
+                    {console.log(data,"dataCARDS")}
                         {dataLimited().map((e, index) =>
                             <Card image={e.images.length > 0 ? e.images[0].url : ""}
                                 cardCategory={e.category.title}
@@ -112,6 +118,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                                 latitude={e.latitude}
                                 longitude={e.longitude}
                                 address={e.address}
+                                favorite={e.favourite}
                             />
                         )}
                     </div>
