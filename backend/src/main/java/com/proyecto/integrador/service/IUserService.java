@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IUserService {
     List<UserDTO> findAll() throws FindByIdException;
-    UserDTO save(UserDTO user) throws FindByIdException;
+    UserDTO save(UserDTO user) throws FindByIdException, BadRequestException;
     UserDTO findById(Integer idUsers) throws FindByIdException;
     void deleteById(Integer idUsers) throws FindByIdException;
     UserDTO update(UserDTO user) throws FindByIdException;

@@ -6,11 +6,16 @@ import com.proyecto.integrador.DTO.UserDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Product;
+import com.proyecto.integrador.persistence.entity.Role;
 import com.proyecto.integrador.persistence.entity.User;
 import com.proyecto.integrador.persistence.repository.IUserRepository;
 import com.proyecto.integrador.service.IUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,6 +29,9 @@ public class UserServiceImpl implements IUserService {
     IUserRepository userRepository;
     @Autowired
     ProductServiceImpl productService;
+    @Autowired
+    RoleServiceImpl roleService;
+
 
     @Override
     public List<UserDTO> findAll() throws FindByIdException {
@@ -37,10 +45,30 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserDTO save(UserDTO user) throws FindByIdException {
+    public UserDTO save(UserDTO userDTO) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar usuario");
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
+
+        User user = new User();
+        user.setName(userDTO.getName());
+        user.setSurname(userDTO.getSurname());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(encodedPassword);
+
+        //VER DE REEMPLAZAR EL IF POR UNA BUSQUEDA GENERICA QUE RETORNE UNA EXCEPCION SI NO ENCUENTRA EL ROL PARA HACERLO ESCALABLE ANTE LA EXISTENCIA DE MAS ROLES
+        //DEBERIA VALIDARSE DESDE EL FRONT END QUE EL ROL VENGA TODO EN MINUSCULA????
+
+        if(userDTO.getRole().getName().compareTo("admin")==0){
+            user.setRole(roleService.findByName("admin").toEntity());
+        }else if(userDTO.getRole().getName().compareTo("user")==0){
+            user.setRole(roleService.findByName("user").toEntity());
+        }else{
+            throw new BadRequestException("No existe el rol");
+        }
+
         logger.debug("Terminó la ejecución del método guardar usuario");
-        return userRepository.save(user.toEntity()).toDto();
+        return userRepository.save(userDTO.toEntity()).toDto();
     }
 
     @Override

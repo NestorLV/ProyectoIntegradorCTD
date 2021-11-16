@@ -30,7 +30,7 @@ public class UserController implements CRUDController <UserDTO> {
 
     @Operation(summary = "Add a new user")
     @PostMapping("/create")
-    public ResponseEntity<UserDTO> create(@RequestBody UserDTO user) throws FindByIdException{
+    public ResponseEntity<UserDTO> create(@RequestBody UserDTO user) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(userService.save(user));
     }
 
