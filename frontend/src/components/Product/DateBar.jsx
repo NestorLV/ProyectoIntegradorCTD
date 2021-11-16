@@ -19,7 +19,7 @@ function DateBar(props) {
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
-    const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021,11,8).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
+    const booksMade = [new Date(2021, 10, 30).toDateString(), new Date(2021, 10, 28).toDateString(), new Date(2021,11,8).toDateString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
     
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -52,7 +52,7 @@ function DateBar(props) {
         console.log(valueDate, "valueDate");
     };
 
-    function disableDates(e) { return booksMade.includes(e.toString())}
+    function disableDates(e) { return booksMade.includes(e.toDateString())}
 
     return (
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>

@@ -20,7 +20,7 @@ import { Modal } from 'react-responsive-modal';
 
 
 function Card({ image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
-    const [isLike, setLike] = useState(false);
+    const [isLike, setLike] = useState(favorite);
     const [mapIsOpen, setMapIsOpen] = useState(false)
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
     const [despliegue, setDespliegue] = useState(false)
@@ -29,7 +29,7 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
 
     useEffect(() => {setLike(favorite)}, [favorite])
 
-    const handleToggle = () => { setLike(!isLike); }
+    const handleToggle = () => { setLike(prevState=>!prevState); }
 
     const handleDespliegue = () => {
         setDespliegue(!despliegue);
@@ -72,8 +72,6 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
 
         <div className={Styles.cardBox}>
             <div className={Styles.cardImage}>
-                {console.log(favorite, "favorite")}
-                {console.log(isLike, "isLike")}
                 <svg className={Styles.iconHeart} onClick={loggued === "true" ? handleToggle : openModalFavourite} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path className={isLike ? Styles.heartColor2 : Styles.heartColor} id="heart" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" /></svg>
                 <Modal open={modalFavouriteIsOpen} onClose={closeModalFavourite} center>
                     <div className={Styles.modalFavourite}>
