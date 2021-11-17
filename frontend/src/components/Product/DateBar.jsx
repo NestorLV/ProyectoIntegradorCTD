@@ -23,7 +23,7 @@ function DateBar(props) {
     const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
     const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021, 11, 8).toString(), new Date(2021, 11, 15).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
     const [maxDate, setMaxDate] = useState("");
-    const [dinamicValue, setDinamicValue] = useState([]);
+    const [dinamicValue, setDinamicValue] = useState([startDate,endDate]);
 
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
