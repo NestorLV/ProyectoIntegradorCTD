@@ -88,6 +88,7 @@ function DateBar(props) {
 
     function handleDayBoxClose(newValue) {
         setDinamicValue(newValue);
+        setMaxDate("");
         handleDateChange(newValue);
     }
 
@@ -149,8 +150,6 @@ function DateBar(props) {
                                 {/* <button className={Styles.eraseButton} onClick={handleErase}>Borrar selección</button> */}
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
