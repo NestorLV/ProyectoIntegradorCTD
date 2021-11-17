@@ -15,7 +15,7 @@ export default function FormBooking(){
                     <input type="text" name="surname" id="surname" disabled></input>
                 </div>
                 <div>
-                <label for="email">Correo electrónico</label>
+                <label htmlFor="email">Correo electrónico</label>
                     <input type="email" name="email" id="email" disabled/>
                 </div>
                 <div>
