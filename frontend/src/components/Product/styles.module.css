@@ -465,7 +465,9 @@ div.buttons button.create:hover {
   color: white;
   background: #f0572d;
   transition: all 0.3s;
+  width: 100%;
 }
+
 
 .selectedDatesButton:hover {
   transform: scaleX(1.02);  
@@ -718,6 +720,7 @@ div.buttons button.create:hover {
   .contenedorCalendario > div > div > div {
     justify-content: center;
   }
+
 }
 
 @media all and (max-width: 1150px) {
@@ -742,8 +745,12 @@ div.buttons button.create:hover {
     flex-direction: row;
   }
   .contenedorReserva p,
-  .contenedorReserva button {
+  .contenedorReserva a {
     width: 50%;
+  }
+
+  .contenedorReserva button {
+    width: 100%;
   }
 
   .qualificationBarChild h2 {    
@@ -844,7 +851,7 @@ div.buttons button.create:hover {
     flex-direction: column;
   }
 
-  .contenedorReserva p, .contenedorReserva button {
+  .contenedorReserva p, .contenedorReserva a {
     width: 100%;
   }
 

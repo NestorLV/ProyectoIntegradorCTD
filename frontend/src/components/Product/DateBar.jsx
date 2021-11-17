@@ -11,6 +11,9 @@ import { makeStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 /* const { format } = require("date-fns"); */
+import { Link } from "react-router-dom";
+import Booking from "../booking/Booking";
+import { Route } from "react-router";
 
 
 function DateBar(props) {
@@ -19,7 +22,7 @@ function DateBar(props) {
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
-    const booksMade = [new Date(2021, 10, 30).toDateString(), new Date(2021, 10, 28).toDateString(), new Date(2021,11,8).toDateString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
+    const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021,11,8).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
     
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -45,14 +48,13 @@ function DateBar(props) {
     const classes = useStyles();
 
     const handleChange = (event) => {
-        event.preventDefault();
         /*  String Date  - aaaa,mm,dd  */
         sessionStorage.setItem("startDate", startDate.toDateString());
         sessionStorage.setItem("endDate", endDate.toDateString());
         console.log(valueDate, "valueDate");
     };
 
-    function disableDates(e) { return booksMade.includes(e.toDateString())}
+    function disableDates(e) { return booksMade.includes(e.toString())}
 
     return (
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>
@@ -65,6 +67,7 @@ function DateBar(props) {
                             <LocalizationProvider dateAdapter={AdapterDateFns} >
                                 <StaticDateRangePicker
                                     className={classes.root}
+                                    clearIcon={null}
                                     displayStaticWrapperAs={size}
                                     calendars={window.innerWidth > 414 ? 2 : 1}
                                     minDate={new Date()}
@@ -87,8 +90,12 @@ function DateBar(props) {
                     <div className={Styles.contenedorReservaBox}>
                         <div className={Styles.contenedorReserva}>
                             <p className={Styles.negrita}>Agregá tus fechas de viaje para tener precios exactos</p>
-                            <button className={Styles.selectedDatesButton} onClick={handleChange}>Iniciar reserva</button>
+                            <Link to={`/product/${props.id}/reserva`} >
+                               <button className={Styles.selectedDatesButton} onClick={handleChange}> Iniciar reserva</button>
+                            </Link>
                         </div>
+
+                          
                     </div>
                 </div>
             </div>
