@@ -11,6 +11,9 @@ import { makeStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 /* const { format } = require("date-fns"); */
+import { Link } from "react-router-dom";
+import Booking from "../booking/Booking";
+import { Route } from "react-router";
 
 
 function DateBar(props) {
@@ -55,10 +58,13 @@ function DateBar(props) {
     const classes = useStyles();
 
     const handleChange = (event) => {
-        event.preventDefault();
         /*  String Date  - aaaa,mm,dd  */
-        sessionStorage.setItem("startDate", startDate.toDateString());
-        sessionStorage.setItem("endDate", endDate.toDateString());
+        if(startDate.getTime() >= new Date().setHours(0,0,0,0)){
+            sessionStorage.setItem("startDate", startDate.toDateString());
+            sessionStorage.setItem("endDate", endDate.toDateString());
+            console.log(valueDate, "valueDate");
+        }
+       
     };
 
     function handleDateChange(newValue) {
@@ -106,8 +112,12 @@ function DateBar(props) {
                     <div className={Styles.contenedorReservaBox}>
                         <div className={Styles.contenedorReserva}>
                             <p className={Styles.negrita}>Agregá tus fechas de viaje para tener precios exactos</p>
-                            <button className={Styles.selectedDatesButton} onClick={handleChange}>Iniciar reserva</button>
+                            <Link to={`/product/${props.id}/reserva`} >
+                               <button className={Styles.selectedDatesButton} onClick={handleChange}> Iniciar reserva</button>
+                            </Link>
                         </div>
+
+                          
                     </div>
                 </div>
             </div>

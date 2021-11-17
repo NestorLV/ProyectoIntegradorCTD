@@ -11,7 +11,8 @@ function Map(props) {
   const divStyle = { background: `white`, padding: 15 }
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyDoTLld8oN8wZm0avj07nwEv0FXqdfiaOE" loadingElement={<p>Cargando</p>}>
+    /*<LoadScript googleMapsApiKey="AIzaSyDoTLld8oN8wZm0avj07nwEv0FXqdfiaOE" loadingElement={<p>Cargando</p>}>*/ 
+    <LoadScript googleMapsApiKey="AIzaSyD6n6RMOFrebn6b3rWMi5B_xnAWXDmnr4k" loadingElement={<p>Cargando</p>}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={zoom} onClick={() => setVisiblePopUp(false)}>
         { /* Child components, such as markers, info windows, etc. */}
         <Marker position={{ lat: latitude, lng: longitude }} onClick={() => setVisiblePopUp(!visiblePopUp)} />

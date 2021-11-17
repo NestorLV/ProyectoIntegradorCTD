@@ -78,7 +78,7 @@ function Product(props) {
                         <ImageBar images={prod.images} viewerIsOpen={viewerIsOpen}  setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
                         <DescriptionBar city={prod.city} description={prod.description} />
                         <FeaturesBar features={prod.features} />
-                        <Datebar valueDate={valueDate} setValueDate={setValueDate} />
+                        <Datebar valueDate={valueDate} setValueDate={setValueDate} id={id}/>
                         {props.latitude !== null || props.longitude !== null ?
                             <MapBar city={prod.city} latitude={prod.latitude} longitude={prod.longitude} name={prod.name} address={prod.address} />
                             : null}
