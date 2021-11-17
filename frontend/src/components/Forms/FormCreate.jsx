@@ -120,7 +120,7 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
         let tipo = document.getElementById(event);
         console.log(event);
         
-        if(tipo.type == "password"){
+        if(tipo.type === "password"){
             tipo.type = "text";
         }else {
             tipo.type = "password";
@@ -149,13 +149,13 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
                 <div className={`${styles.inputLabel} ${!password.valido?styles.inputError:null}`}>
                     <label for="password">Contraseña</label>
                     <input type="password" name="password" id="password" value = {password.campo} onKeyUp={validarPassword} onChange = {handleChangePassword}/>
-                    <img src={hidePassword} className={`${styles.hidePassword} ${styles.password}`} onClick={()=>mostrarContrasena("password")}/>
+                    <img src={hidePassword} alt="icon hide password" className={`${styles.hidePassword} ${styles.password}`} onClick={()=>mostrarContrasena("password")}/>
                 </div>
               
                 <div className = {`${styles.inputLabel} ${styles.confirmPassword} ${!confirmPassword.valido?styles.inputError:null}`}>
                     <label for="confirm-password">Confirmar contraseña</label>
                     <input type="password" name="confirm-password" id="confirm-password" value = {confirmPassword.campo} onKeyUp={validarConfirmPassword} onChange = {handleChangeConfirmPassword}/>
-                    <img src={hidePassword} className={`${styles.hidePassword} ${styles.confirm}`} onClick={()=>mostrarContrasena("confirm-password")}/>
+                    <img src={hidePassword} alt="icon hide password" className={`${styles.hidePassword} ${styles.confirm}`} onClick={()=>mostrarContrasena("confirm-password")}/>
                 </div>
                
                 {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}

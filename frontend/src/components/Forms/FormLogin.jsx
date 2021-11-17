@@ -59,7 +59,7 @@ export default function FormLogin( { setActiveLogin, setActiveCreate, setLog } )
     function mostrarContrasena(){
         let tipo = document.getElementById("password");
         
-        if(tipo.type == "password"){
+        if(tipo.type === "password"){
             tipo.type = "text";
         }else{
             tipo.type = "password";
@@ -79,7 +79,7 @@ export default function FormLogin( { setActiveLogin, setActiveCreate, setLog } )
                 <div className={`${styles.inputLabel} ${!password.valido?styles.inputError:null}`}>
                     <label for="password">Contraseña</label>
                     <input type="password" name="password" id="password" value = {password.campo} onKeyUp={validarPassword} onChange = {handleChangePassword} />
-                    <img src={hidePassword} className={`${styles.hidePassword} ${styles.passLogin}`} onClick={mostrarContrasena}/>
+                    <img src={hidePassword} alt="icon hide password" className={`${styles.hidePassword} ${styles.passLogin}`} onClick={mostrarContrasena}/>
                 </div>
                 
                 {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}
