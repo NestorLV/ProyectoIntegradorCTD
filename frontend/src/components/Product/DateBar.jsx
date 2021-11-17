@@ -25,6 +25,7 @@ function DateBar(props) {
     const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
     const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021, 11, 8).toString(), new Date(2021, 11, 15).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
     const [maxDate, setMaxDate] = useState("");
+    const [dinamicValue, setDinamicValue] = useState([]);
 
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -57,22 +58,21 @@ function DateBar(props) {
     });
     const classes = useStyles();
 
-    const handleChange = (event) => {
+    const handleChange = () => {
         /*  String Date  - aaaa,mm,dd  */
         if (startDate.getTime() >= new Date().setHours(0, 0, 0, 0)) {
-
             sessionStorage.setItem("startDate", startDate.toDateString());
             sessionStorage.setItem("endDate", endDate.toDateString());
             console.log(valueDate, "valueDate");
         }
-
     };
 
-    const handleErase = () => {
+    /* const handleErase = () => {
         sessionStorage.removeItem("startDate")
         sessionStorage.removeItem("endDate")
         window.location.reload()
-    }
+    } */
+
     function handleDateChange(newValue) {
         setValueDate(newValue);
         if (newValue[0] != null) {
@@ -81,14 +81,38 @@ function DateBar(props) {
                 newValue[0].setHours(0, 0, 0, 0) < element
             )));
         }
+        setDinamicValue(newValue);
     }
 
     function disableDates(e) { return booksMade.includes(e.toString()) }
 
+    function handleDayBoxClose(newValue) {
+        setDinamicValue(newValue);
+        handleDateChange(newValue);
+    }
+
     return (
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>
             <div className={`${Styles.dateBarChild} ${StylesApp.delimiterChild}`}>
-                <h2>Fechas Disponibles</h2>
+                <div className={Styles.dateBarTitleBox}>
+                    <h2>Fechas Disponibles</h2>
+                    <div className={Styles.dateBarDayContainer}>
+                        {dinamicValue[0] != null ?
+                            <div className={Styles.dateBarDayBox}>
+                                Desde: {dinamicValue[0].toLocaleDateString()}
+                                <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
+                            </div>
+                            : null}
+                        {dinamicValue[1] != null ?
+                            <div className={Styles.dateBarDayBox}>
+                                Hasta: {dinamicValue[1].toLocaleDateString()}
+                                <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>
+                            </div>
+                            : null}
+                    </div>
+
+                </div>
+
                 <div className={Styles.contenedorInterno}>
                     <div className={Styles.contenedorCalendario}>
                         <ThemeProvider theme={theme} >
@@ -122,7 +146,7 @@ function DateBar(props) {
                                 <Link to={`/product/${props.id}/reserva`} >
                                     <button className={Styles.selectedDatesButton} onClick={handleChange}> Iniciar reserva</button>
                                 </Link>
-                                <button className={Styles.eraseButton} onClick={handleErase}>Borrar selección</button>
+                                {/* <button className={Styles.eraseButton} onClick={handleErase}>Borrar selección</button> */}
                             </div>
                         </div>
 
