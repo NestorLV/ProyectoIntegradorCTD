@@ -15,7 +15,7 @@ export default function Booking(props) {
 
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-    const [valueDate, setValueDate] = useState([sessionStorage.getItem("startDate")!=null?sessionStorage.getItem("startDate"):null, sessionStorage.getItem("endDate")!=null?sessionStorage.getItem("endDate"):null]);
+    const [valueDate, setValueDate] = useState([sessionStorage.getItem("startDate") != null ? sessionStorage.getItem("startDate") : null, sessionStorage.getItem("endDate") != null ? sessionStorage.getItem("endDate") : null]);
 
     let { id } = useParams();
     console.log("id", useParams())
@@ -61,17 +61,19 @@ export default function Booking(props) {
         return (
             <>
                 <section className={`${Styles.booking} ${StylesApp.delimiter}`}>
-                    <div className={`${Styles.dateBarChild} ${StylesApp.delimiterChild}`}>
+                    <div className={`${Styles.bookingChild} ${StylesApp.delimiterChild}`}>
                         {loading ? <Spinner /> : (
                             <>
                                 <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
-                                <div className={Styles.containerLeft}>
-                                    <FormBooking />
-                                    <CalendarBar/>
-                                    <TimeBar />
-                                </div>
-                                <div className={Styles.containerRight}>
-                                    <DetailBar/>
+                                <div className={Styles.container}>
+                                    <div>
+                                        <FormBooking />
+                                        <CalendarBar />
+                                        <TimeBar />
+                                    </div>
+                                    <div>
+                                        <DetailBar />
+                                    </div>
                                 </div>
                             </>
                         )}

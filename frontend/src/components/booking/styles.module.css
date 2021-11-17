@@ -21,7 +21,21 @@
   cursor: pointer;
   width: 25px;
 }
+/* Estilos container */
 
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.container> div:first-child{
+  width: 66%
+}
+
+.container> div:last-child{
+  width: 33%
+}
 /* Estilos FormBooking */
 .containerForm{
     display: flex;
