@@ -2,7 +2,8 @@ import styles from "./styles.module.css";
 import React, { useState } from "react";
 import ValidCredentials from "../../credentials/ValidCredentials";
 import { Link } from "react-router-dom";
-import hidePassword from "./icons/hidePassword.png"
+import hidePassword from "./icons/hidePassword.png";
+import axios from "axios";
 
 
 function FormCreate( { setActiveCreate, setActiveLogin } ) {

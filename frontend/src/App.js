@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Booking from "./components/booking/Booking.jsx";
 import './App.module.css';
+import Succeed from "./components/booking/Succeed.jsx";
 
 function App() {
   const [log, setLog] = useState(sessionStorage.getItem("log") === "true" ? true : false)
@@ -60,7 +61,8 @@ function App() {
           <Route exact path="/login"  component={() => !log? <FormLogin setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />                  
           <Route exact path="/create" component={() => !log? <FormCreate setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />
           <Route exact path={"/product/:id"} component={Product}/>   
-          <Route exact path={"/product/:id/reserva"} component={Booking}/>           
+          <Route exact path={"/product/:id/reserva"} component={Booking}/>      
+          <Route exact path={"/product/:id/reserva/exito"} component={Succeed}/>  
           <Route path="*"> <NotFound /> </Route>
            
         </Switch>
