@@ -318,6 +318,13 @@ font-size: 10pt;
     .barraIzq{
         width: 100%;
     }
+
+    .container{
+        flex-direction: column;
+    }
+    .container>div:first-child    {
+        width: 100%;
+    }
 }
 
 @media all and (max-width: 415px){

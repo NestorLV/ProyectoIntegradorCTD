@@ -7,9 +7,9 @@ import StylesApp from "../../App.module.css";
 import TitleBar from "../Product/TitleBar"
 import Spinner from "../spinner/Spinner";
 import InfoBar from "../Product/InfoBar";
-import CalendarBar from "./calendarBar";
+import CalendarBar from "./CalendarBar";
 import ArrivalTimeBar from "./ArrivalTimeBar";
-import DetailBar from "./detailBar";
+import DetailBar from "./DetailBar";
 
 export default function Booking(props) {
 
