@@ -1,9 +1,10 @@
 import Styles from "./styles.module.css"
 
+
 export default function FormBooking(){
     return(
-        <>
-            <h3>Completá tus datos</h3>
+        <div className={Styles.formBooking}>
+            <h2>Completá tus datos</h2>
             <form>
                 <div>
                     <label>Nombre</label>
@@ -22,6 +23,6 @@ export default function FormBooking(){
                     <input type="text" name="surname" id="surname" required></input>
                 </div>
             </form>
-        </>
+        </div>
     )
 }

@@ -66,9 +66,7 @@ export default function Booking(props) {
                     </div>
                 </section>
                 <InfoBar health={prod.health} rules={prod.rules} politics={prod.politics} />
-
             </>
-
         )
     }
 }

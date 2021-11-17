@@ -1,75 +1,87 @@
 /* Estilos de titleBar */
 
 .titleBar {
-    background-color: var(--tertiary-color);
-    color: white;
-  }
-  
-  .titleBar .titleBarChild {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 60px;
-    padding-left: clamp(20px, 3.9%, 40px);
-    padding-right: clamp(20px, 3.9%, 40px);
-  }
-  .titleBarChild div p {
-    text-transform: uppercase;
-  }
-  
-  .titleBarChild .iconLocation {
-    cursor: pointer;
-    width: 25px;
-  }
-  
-  
+  background-color: var(--tertiary-color);
+  color: white;
+}
+
+.titleBar .titleBarChild {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+  padding-left: clamp(20px, 3.9%, 40px);
+  padding-right: clamp(20px, 3.9%, 40px);
+}
+.titleBarChild div p {
+  text-transform: uppercase;
+}
+
+.titleBarChild .iconLocation {
+  cursor: pointer;
+  width: 25px;
+}
+
+/* Estilos infoBar */
+.formBooking > h2 {
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  font-weight: var(--font-bold);
+  margin-bottom: 10px;
+  width: 100%;
+}
+.formBooking form {
+  background-color: white;
+  padding: 10px;
+  width: 100%;
+}
+
 /* Estilos infoBar */
 
 .infoBar {
-    background-color: white;
-    padding: 20px 0;
-  }
-  .infoBarChild {
-    padding-left: clamp(20px, 3.9%, 40px);
-    padding-right: clamp(20px, 3.9%, 40px);
-    color: var(--tertiary-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .infoBarChild h2 {
-    color: var(--secondary-color);
-    font-size: var(--heading2);
-    font-weight: var(--font-bold);
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 30px;
-    width: 100%;
-  }
-  
-  .info {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  
-  .info div {
-    width: clamp(236.2px, 30vw, 420px);
-  }
-  
-  .info div h3 {
-    color: var(--secondary-color);
-    font-size: var(--heading3);
-    font-weight: var(--font-bold);
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    width: 100%;
-  }
-  
-  .info div h3,
-  .info div p {
-    padding: 10px 0;
-  }
-  
+  background-color: white;
+  padding: 20px 0;
+}
+.infoBarChild {
+  padding-left: clamp(20px, 3.9%, 40px);
+  padding-right: clamp(20px, 3.9%, 40px);
+  color: var(--tertiary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.infoBarChild h2 {
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  font-weight: var(--font-bold);
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.info div {
+  width: clamp(236.2px, 30vw, 420px);
+}
+
+.info div h3 {
+  color: var(--secondary-color);
+  font-size: var(--heading3);
+  font-weight: var(--font-bold);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.info div h3,
+.info div p {
+  padding: 10px 0;
+}
