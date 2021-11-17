@@ -12,8 +12,6 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 /* const { format } = require("date-fns"); */
 import { Link } from "react-router-dom";
-import Booking from "../booking/Booking";
-import { Route } from "react-router";
 
 
 function DateBar(props) {
