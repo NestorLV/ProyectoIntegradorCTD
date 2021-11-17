@@ -1,7 +1,5 @@
 import Styles from "./styles.module.css"
 
-import StylesApp from "../../App.module.css"
-
 export default function FormBooking() {
     return (
         <div className={`${Styles.containerForm}`}>

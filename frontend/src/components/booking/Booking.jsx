@@ -7,6 +7,7 @@ import StylesApp from "../../App.module.css";
 import TitleBar from "../Product/TitleBar"
 import Spinner from "../spinner/Spinner";
 import InfoBar from "../Product/InfoBar";
+import ArrivalTimeBar from "./ArrivalTimeBar";
 
 export default function Booking(props) {
 
@@ -61,6 +62,7 @@ export default function Booking(props) {
                             <>
                                 <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
                                 <FormBooking />
+                                <ArrivalTimeBar/>
                             </>
                         )}
                     </div>
