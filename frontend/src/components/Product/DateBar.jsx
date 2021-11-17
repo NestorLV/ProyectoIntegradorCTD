@@ -22,8 +22,8 @@ function DateBar(props) {
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
-    const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021,11,8).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
-    
+    const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021, 11, 8).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
+
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
     const theme = createTheme({
@@ -49,15 +49,23 @@ function DateBar(props) {
 
     const handleChange = (event) => {
         /*  String Date  - aaaa,mm,dd  */
-        if(startDate.getTime() >= new Date().setHours(0,0,0,0)){
+        if (startDate.getTime() >= new Date().setHours(0, 0, 0, 0)) {
+
             sessionStorage.setItem("startDate", startDate.toDateString());
             sessionStorage.setItem("endDate", endDate.toDateString());
             console.log(valueDate, "valueDate");
         }
-       
+
     };
 
-    function disableDates(e) { return booksMade.includes(e.toString())}
+    const handleErase = () => {
+
+        sessionStorage.removeItem("startDate")
+        sessionStorage.removeItem("endDate")
+        window.location.reload()
+    }
+
+    function disableDates(e) { return booksMade.includes(e.toString()) }
 
     return (
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>
@@ -92,12 +100,15 @@ function DateBar(props) {
                     <div className={Styles.contenedorReservaBox}>
                         <div className={Styles.contenedorReserva}>
                             <p className={Styles.negrita}>Agregá tus fechas de viaje para tener precios exactos</p>
-                            <Link to={`/product/${props.id}/reserva`} >
-                               <button className={Styles.selectedDatesButton} onClick={handleChange}> Iniciar reserva</button>
-                            </Link>
+                            <div className={Styles.buttonsDateBar}>
+                                <Link to={`/product/${props.id}/reserva`} >
+                                    <button className={Styles.selectedDatesButton} onClick={handleChange}> Iniciar reserva</button>
+                                </Link>
+                                <button className={Styles.eraseButton} onClick={handleErase}>Borrar selección</button>
+                            </div>
                         </div>
 
-                          
+
                     </div>
                 </div>
             </div>
