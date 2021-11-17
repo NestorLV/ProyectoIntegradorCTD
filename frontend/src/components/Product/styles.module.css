@@ -191,8 +191,6 @@
   transform: scale(0.9);
 }
 
-
-
 .imageBar .slider {
   display: none;
   position: relative;
@@ -320,11 +318,13 @@ div.buttons button.create:hover {
   background-color: white;
   padding: 20px 0;
 }
+
 .descripcionBarChild {
   padding-left: clamp(20px, 3.9%, 40px);
   padding-right: clamp(20px, 3.9%, 40px);
   color: var(--tertiary-color);
 }
+
 .descripcionBarChild h2 {
   color: var(--secondary-color);
   font-size: var(--heading2);
@@ -400,7 +400,6 @@ div.buttons button.create:hover {
   padding-right: clamp(20px, 3.9%, 40px);
 }
 
-
 .contenedorInterno {
   display: flex;
   justify-content: space-between;
@@ -471,13 +470,6 @@ div.buttons button.create:hover {
   width: 100%;
 }
 
-.eraseButton{
-  font-size: 8pt;
-  font-weight: var(--font-bold);
-  width: 40%;
-  align-self: center;
-}
-
 .selectedDatesButton:hover {
   transform: scaleX(1.02);  
 }
@@ -529,8 +521,6 @@ div.buttons button.create:hover {
 .dateBarTitleBoxClose:hover {
   cursor: pointer;
 }
-
-
 
 /* Estilos del map Bar  */
 
@@ -642,8 +632,7 @@ div.buttons button.create:hover {
   padding: 0.4rem 3.5rem;
   color: white;
   background: #f0572d;
-  transition: all 0.3s;
-  
+  transition: all 0.3s;  
 }
 
 .qualificationReset {

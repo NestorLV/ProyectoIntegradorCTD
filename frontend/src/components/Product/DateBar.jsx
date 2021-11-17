@@ -14,8 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
 
-function DateBar(props) {
-    /* const [value, setValue] = useState([null, null]); */
+function DateBar(props) {    
     const { valueDate, setValueDate } = props;
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
@@ -23,7 +22,7 @@ function DateBar(props) {
     const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
     const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021, 11, 8).toString(), new Date(2021, 11, 15).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
     const [maxDate, setMaxDate] = useState("");
-    const [dinamicValue, setDinamicValue] = useState([startDate,endDate]);
+    const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate")!=null?startDate:null, sessionStorage.getItem("endDate")!=null?endDate:null]);
 
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -60,16 +59,9 @@ function DateBar(props) {
         /*  String Date  - aaaa,mm,dd  */
         if (startDate.getTime() >= new Date().setHours(0, 0, 0, 0)) {
             sessionStorage.setItem("startDate", startDate.toDateString());
-            sessionStorage.setItem("endDate", endDate.toDateString());
-            console.log(valueDate, "valueDate");
-        }
+            sessionStorage.setItem("endDate", endDate.toDateString());           
+        } 
     };
-
-    /* const handleErase = () => {
-        sessionStorage.removeItem("startDate")
-        sessionStorage.removeItem("endDate")
-        window.location.reload()
-    } */
 
     function handleDateChange(newValue) {
         setValueDate(newValue);
@@ -96,13 +88,13 @@ function DateBar(props) {
                 <div className={Styles.dateBarTitleBox}>
                     <h2>Fechas Disponibles</h2>
                     <div className={Styles.dateBarDayContainer}>
-                        {dinamicValue[0] != null ?
+                        {dinamicValue[0] != null && dinamicValue[0] != ""?
                             <div className={Styles.dateBarDayBox}>
                                 Desde: {dinamicValue[0].toLocaleDateString()}
                                 <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
                             </div>
                             : null}
-                        {dinamicValue[1] != null ?
+                        {dinamicValue[1] != null && dinamicValue[0] != ""?
                             <div className={Styles.dateBarDayBox}>
                                 Hasta: {dinamicValue[1].toLocaleDateString()}
                                 <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>
@@ -144,8 +136,7 @@ function DateBar(props) {
                             <div className={Styles.buttonsDateBar}>
                                 <Link to={`/product/${props.id}/reserva`} >
                                     <button className={Styles.selectedDatesButton} onClick={handleChange}> Iniciar reserva</button>
-                                </Link>
-                                {/* <button className={Styles.eraseButton} onClick={handleErase}>Borrar selección</button> */}
+                                </Link>                                
                             </div>
                         </div>
                     </div>
