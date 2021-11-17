@@ -62,7 +62,6 @@ function App() {
           <Route exact path="/create" component={() => !log? <FormCreate setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />
           <Route exact path={"/product/:id"} component={Product}/>   
           <Route exact path={"/product/:id/reserva"} component={Booking}/>      
-          <Route exact path={"/product/:id/reserva/exito"} component={Succeed}/>  
           <Route path="*"> <NotFound /> </Route>
            
         </Switch>
