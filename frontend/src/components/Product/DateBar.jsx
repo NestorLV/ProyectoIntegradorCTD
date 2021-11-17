@@ -22,7 +22,9 @@ function DateBar(props) {
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
-    const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021, 11, 8).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
+    const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
+    const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021, 11, 8).toString(), new Date(2021, 11, 15).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
+    const [maxDate, setMaxDate] = useState("");
 
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -31,6 +33,14 @@ function DateBar(props) {
             primary: {
                 main: "#F0572D",
             },
+            text: {
+                disabled: "rgba(0,0,0,0.38)"
+            }
+        },
+        typography: {
+            fontWeightRegular: 700,
+            fontWeightMedium: 700,
+            fontWeightLight: 700,
         },
     });
 
@@ -59,10 +69,18 @@ function DateBar(props) {
     };
 
     const handleErase = () => {
-
         sessionStorage.removeItem("startDate")
         sessionStorage.removeItem("endDate")
         window.location.reload()
+    }
+    function handleDateChange(newValue) {
+        setValueDate(newValue);
+        if (newValue[0] != null) {
+            let sortBooksMadeDate = booksMadeDate.sort((a, b) => a - b);
+            setMaxDate(new Date(sortBooksMadeDate.find(element =>
+                newValue[0].setHours(0, 0, 0, 0) < element
+            )));
+        }
     }
 
     function disableDates(e) { return booksMade.includes(e.toString()) }
@@ -71,7 +89,6 @@ function DateBar(props) {
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>
             <div className={`${Styles.dateBarChild} ${StylesApp.delimiterChild}`}>
                 <h2>Fechas Disponibles</h2>
-                {console.log(booksMade, "booksMade")}
                 <div className={Styles.contenedorInterno}>
                     <div className={Styles.contenedorCalendario}>
                         <ThemeProvider theme={theme} >
@@ -81,8 +98,9 @@ function DateBar(props) {
                                     displayStaticWrapperAs={size}
                                     calendars={window.innerWidth > 414 ? 2 : 1}
                                     minDate={new Date()}
+                                    maxDate={maxDate}
                                     value={valueDate}
-                                    onChange={(newValue) => setValueDate(newValue)}
+                                    onChange={(newValue) => handleDateChange(newValue)}
                                     showToolbar={false}
                                     hintText="Dates Disabled"
                                     shouldDisableDate={disableDates}
