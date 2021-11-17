@@ -5,6 +5,7 @@ import com.proyecto.integrador.DTO.ScoreDTO;
 import com.proyecto.integrador.DTO.UserDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
+import com.proyecto.integrador.exceptions.UnauthorizedAccessException;
 import com.proyecto.integrador.service.IScoreService;
 import com.proyecto.integrador.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,6 +22,16 @@ public class UserController implements CRUDController <UserDTO> {
 
     @Autowired
     IUserService userService;
+
+    @GetMapping("/")
+    public String home() {
+        return "<h1> Bienvenid@ a la clínica odontológica </h1>";
+    }
+
+    @GetMapping("/403")
+    public void forbidden() throws UnauthorizedAccessException {
+        throw new UnauthorizedAccessException("No tiene permisos para acceder a este recurso", "User Role");
+    }
 
     @Operation(summary = "Find All Users")
     @GetMapping("/all")

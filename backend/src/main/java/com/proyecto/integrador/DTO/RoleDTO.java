@@ -1,20 +1,26 @@
 package com.proyecto.integrador.DTO;
 
 import com.proyecto.integrador.persistence.entity.Role;
+import com.proyecto.integrador.persistence.entity.User;
+import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 public class RoleDTO {
     private Integer id;
-    private String name;
+    private RolesTypes name;
+    private Set<UserDTO> users = new HashSet<>();
 
     public RoleDTO() {
     }
 
-    public RoleDTO(Integer id) {
-        this.id = id;
+    public RoleDTO(RolesTypes name) {
+        this.name = name;
     }
 
     public Role toEntity(){

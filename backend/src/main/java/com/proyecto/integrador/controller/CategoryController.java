@@ -5,6 +5,7 @@ import com.proyecto.integrador.service.ICategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -29,12 +30,14 @@ public class CategoryController implements CRUDController<CategoryDTO> {
     }
 
     @Operation(summary = "Add a new category")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO category) {
         return ResponseEntity.ok(categoryService.save(category));
     }
 
     @Operation(summary = "Update an existing category")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<CategoryDTO> updateById(@RequestBody CategoryDTO category) throws FindByIdException {
         return ResponseEntity.ok(categoryService.update(category));

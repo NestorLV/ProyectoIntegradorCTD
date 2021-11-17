@@ -3,6 +3,7 @@ package com.proyecto.integrador.service.impl;
 import com.proyecto.integrador.DTO.RoleDTO;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Role;
+import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import com.proyecto.integrador.persistence.repository.IRoleRepository;
 import com.proyecto.integrador.service.IRoleService;
 import org.apache.log4j.Logger;
@@ -32,7 +33,7 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public RoleDTO save(RoleDTO role) {
-        return null;
+        return roleRepository.save(role.toEntity()).toDto();
     }
 
     @Override
@@ -51,7 +52,8 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public RoleDTO findByName(String name) {
-        return roleRepository.findByName(name).toDto();
+    public RoleDTO findByName(RolesTypes name) {
+        return roleRepository.findByName(name).isPresent() ? roleRepository.findByName(name).get().toDto() : null;
     }
+
 }

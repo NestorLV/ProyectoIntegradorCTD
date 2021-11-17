@@ -1,11 +1,11 @@
 package com.proyecto.integrador.DTO;
-
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.proyecto.integrador.persistence.entity.Role;
 import com.proyecto.integrador.persistence.entity.User;
+import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +22,11 @@ public class UserDTO {
 
     public User toEntity(){
         User user = new User();
-        user.setId(id);
         user.setName(name);
         user.setSurname(surname);
         user.setEmail(email);
         user.setPassword(password);
-        user.setRole(new Role(role.getName()));
+        user.setRole(role.toEntity());
         return user;
     }
 }

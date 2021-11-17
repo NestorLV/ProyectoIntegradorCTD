@@ -2,12 +2,14 @@ package com.proyecto.integrador.service.impl;
 
 
 import com.proyecto.integrador.DTO.ProductDTO;
+import com.proyecto.integrador.DTO.RoleDTO;
 import com.proyecto.integrador.DTO.UserDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Product;
 import com.proyecto.integrador.persistence.entity.Role;
 import com.proyecto.integrador.persistence.entity.User;
+import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import com.proyecto.integrador.persistence.repository.IUserRepository;
 import com.proyecto.integrador.service.IUserService;
 import org.apache.log4j.Logger;
@@ -23,7 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserDetailsService, IUserService {
     private final Logger logger = Logger.getLogger(UserServiceImpl.class);
     @Autowired
     IUserRepository userRepository;
@@ -49,24 +51,8 @@ public class UserServiceImpl implements IUserService {
         logger.debug("Iniciando método guardar usuario");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
-
-        User user = new User();
-        user.setName(userDTO.getName());
-        user.setSurname(userDTO.getSurname());
-        user.setEmail(userDTO.getEmail());
-        user.setPassword(encodedPassword);
-
-        //VER DE REEMPLAZAR EL IF POR UNA BUSQUEDA GENERICA QUE RETORNE UNA EXCEPCION SI NO ENCUENTRA EL ROL PARA HACERLO ESCALABLE ANTE LA EXISTENCIA DE MAS ROLES
-        //DEBERIA VALIDARSE DESDE EL FRONT END QUE EL ROL VENGA TODO EN MINUSCULA????
-
-        if(userDTO.getRole().getName().compareTo("admin")==0){
-            user.setRole(roleService.findByName("admin").toEntity());
-        }else if(userDTO.getRole().getName().compareTo("user")==0){
-            user.setRole(roleService.findByName("user").toEntity());
-        }else{
-            throw new BadRequestException("No existe el rol");
-        }
-
+        userDTO.setPassword(encodedPassword);
+        userDTO.setRole(roleService.findByName(RolesTypes.USER));
         logger.debug("Terminó la ejecución del método guardar usuario");
         return userRepository.save(userDTO.toEntity()).toDto();
     }
@@ -111,12 +97,18 @@ public class UserServiceImpl implements IUserService {
     }
 
     public UserDTO findByEmail(String email) {
-        return userRepository.findByEmail(email).toDto();
+        User user = userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("El email no matchea con ningún usuario en la base de datos"));
+        return user.toDto();
     }
 
 
     public boolean isFavourite(ProductDTO productDTO) {
         return false;
         /*if (findByEmail()) --> Validar usuario y filtrar los favoritos del usuario */
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("El email no matchea con ningún usuario en la base de datos"));
     }
 }
