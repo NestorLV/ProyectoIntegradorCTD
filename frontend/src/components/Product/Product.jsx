@@ -52,8 +52,7 @@ function Product(props) {
             .get(`http://localhost:8080/products/get/${id}`)
             .then((response) => {
                 setProd(response.data);
-                setLoading(false);
-                console.log(response.data);
+                setLoading(false);                
             })
             .catch((error) => {
                 setErrorMessage("No es posible mostrar la página");
