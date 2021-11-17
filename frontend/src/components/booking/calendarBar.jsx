@@ -1,6 +1,6 @@
 
-function calendarBar(props) {
+function CalendarBar(props) {
  return (<></>)
 }
 
-export default calendarBar;
+export default CalendarBar;

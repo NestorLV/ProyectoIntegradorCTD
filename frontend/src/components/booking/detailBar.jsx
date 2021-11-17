@@ -1,9 +1,9 @@
 import Styles from "./styles.module.css"
 
-function detailBar(props) {
+function DetailBar(props) {
     return (<>
     
    </>)
 }
 
-export default detailBar;
+export default DetailBar;
