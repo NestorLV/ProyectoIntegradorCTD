@@ -49,9 +49,12 @@ function DateBar(props) {
 
     const handleChange = (event) => {
         /*  String Date  - aaaa,mm,dd  */
-        sessionStorage.setItem("startDate", startDate.toDateString());
-        sessionStorage.setItem("endDate", endDate.toDateString());
-        console.log(valueDate, "valueDate");
+        if(startDate.getTime() >= new Date().setHours(0,0,0,0)){
+            sessionStorage.setItem("startDate", startDate.toDateString());
+            sessionStorage.setItem("endDate", endDate.toDateString());
+            console.log(valueDate, "valueDate");
+        }
+       
     };
 
     function disableDates(e) { return booksMade.includes(e.toString())}
@@ -67,7 +70,6 @@ function DateBar(props) {
                             <LocalizationProvider dateAdapter={AdapterDateFns} >
                                 <StaticDateRangePicker
                                     className={classes.root}
-                                    clearIcon={null}
                                     displayStaticWrapperAs={size}
                                     calendars={window.innerWidth > 414 ? 2 : 1}
                                     minDate={new Date()}
