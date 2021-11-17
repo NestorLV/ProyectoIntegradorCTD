@@ -51,7 +51,7 @@ function App() {
   }  
 
   return ( 
-    < BrowserRouter >      
+    <BrowserRouter>      
       <LayoutPrincipal isLogged = {log} activeCreate ={activeCreate} activeLogin = {activeLogin} handleClean={handleClean} handleFavourite={handleFavourite}>
         <Switch>
           <Route exact path="/">
@@ -65,7 +65,7 @@ function App() {
            
         </Switch>
       </LayoutPrincipal>
-    </BrowserRouter >
+    </BrowserRouter>
   );
 }
 
