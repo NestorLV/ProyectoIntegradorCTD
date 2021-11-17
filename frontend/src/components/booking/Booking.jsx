@@ -7,12 +7,16 @@ import StylesApp from "../../App.module.css";
 import TitleBar from "../Product/TitleBar"
 import Spinner from "../spinner/Spinner";
 import InfoBar from "../Product/InfoBar";
+import CalendarBar from "./calendarBar";
 import ArrivalTimeBar from "./ArrivalTimeBar";
+import DetailBar from "./detailBar";
 
 export default function Booking(props) {
 
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    const [valueDate, setValueDate] = useState([sessionStorage.getItem("startDate") != null ? sessionStorage.getItem("startDate") : null, sessionStorage.getItem("endDate") != null ? sessionStorage.getItem("endDate") : null]);
+
     let { id } = useParams();
     console.log("id", useParams())
     const [prod, setProd] = useState({
@@ -57,12 +61,20 @@ export default function Booking(props) {
         return (
             <>
                 <section className={`${Styles.booking} ${StylesApp.delimiter}`}>
-                    <div className={`${Styles.dateBarChild} ${StylesApp.delimiterChild}`}>
+                    <div className={`${Styles.bookingChild} ${StylesApp.delimiterChild}`}>
                         {loading ? <Spinner /> : (
                             <>
                                 <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
-                                <FormBooking />
-                                <ArrivalTimeBar/>
+                                <div className={Styles.container}>
+                                    <div>
+                                        <FormBooking />
+                                        <CalendarBar />
+                                        <ArrivalTimeBar/>
+                                    </div>
+                                    <div>
+                                        <DetailBar />
+                                    </div>
+                                </div>
                             </>
                         )}
                     </div>
