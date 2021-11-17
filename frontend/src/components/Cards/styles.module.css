@@ -70,7 +70,7 @@ a:active {
   right: 10px;
   top: 10px;
   transition: all 0.3s;
-  width: 25px;
+  width: 26px;
 }
 
 .cardImage {
@@ -145,13 +145,15 @@ div.buttons button.create:hover {
 
 /* cambiar color del corazon */
 .heartColor {
-  fill: rgba(255, 255, 255, 0.459);
+  fill: rgba(0, 0, 0, 0.05);
   stroke: white;
-  stroke-width: 2px;
+  stroke-width: 3px;
+  filter: drop-shadow(4px 4px 1.5px rgba(0, 0, 0, 0.7));  
 }
 
 .heartColor2 {
   fill: red;
+  filter: drop-shadow(5px 3px 3px rgba(0, 0, 0, 0.7)); 
 }
 
 .cardImage .iconHeart:hover {
