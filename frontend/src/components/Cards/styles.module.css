@@ -81,6 +81,29 @@ a:active {
   z-index: 99;
 }
 
+/* cambiar color del corazon */
+.heartColor {
+  fill: rgba(0, 0, 0, 0.05);
+  stroke: white;
+  stroke-width: 3px;
+  filter: drop-shadow(4px 4px 1.5px rgba(0, 0, 0, 0.7));  
+}
+
+.heartColor2 {
+  fill: red;
+  filter: drop-shadow(5px 3px 3px rgba(0, 0, 0, 0.7));
+  stroke: red;
+  
+}
+
+.cardImage .iconHeart:hover {
+  transform: scale(1.1);
+}
+
+.cardImage .iconHeart:active {
+  transform: scale(0.8);
+}
+
 /*ESTILOS MODAL FAVOURITE*/
 
 .modalFavourite{
@@ -143,26 +166,7 @@ div.buttons button.create:hover {
   border: 2px solid  #ffd6c6;
 }
 
-/* cambiar color del corazon */
-.heartColor {
-  fill: rgba(0, 0, 0, 0.05);
-  stroke: white;
-  stroke-width: 3px;
-  filter: drop-shadow(4px 4px 1.5px rgba(0, 0, 0, 0.7));  
-}
 
-.heartColor2 {
-  fill: red;
-  filter: drop-shadow(5px 3px 3px rgba(0, 0, 0, 0.7)); 
-}
-
-.cardImage .iconHeart:hover {
-  transform: scale(1.1);
-}
-
-.cardImage .iconHeart:active {
-  transform: scale(0.8);
-}
 
 .cardInfo {
   align-items: flex-start;
