@@ -209,7 +209,7 @@ font-size: 10pt;
   padding: 10px 0;
 }
 
-/* Estilos DateBar */
+/* Estilos CalendarBar */
 
 .dateBar {
   padding: 20px 0;
@@ -236,22 +236,6 @@ font-size: 10pt;
 
 .contenedorCalendario>div{
   border-radius: 25px !important;
-}
-
-.contenedorReservaBox {
-  width: 33%;
-  min-width: 300px;
-  border-radius: 5px;  
-}
-
-.contenedorReserva {
-  border-radius: 6px;
-  color: white;
-  padding: 3%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  
-  min-height:160px;
 }
 
 .negrita {
@@ -293,13 +277,35 @@ font-size: 10pt;
   transform: scale(0.9);
 }
 
-/*Estilos calendarBar*/
-
 .dateBarTitleBox {
   display: flex;
   flex-direction: column;  
   align-items: flex-start;
   width: 100%;
+}
+
+.dateBarTitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;  
+  width: 100%
+}
+
+.dateBar svg {
+  width: 25px;
+  height: 25px;
+}
+
+.dateBarTitle svg path {
+  fill: midnightblue;  
+}
+
+.calendarInfo {
+  max-width:45%;
+  margin-left: 15px;
+  background-color:white;
+  border: 1px solid grey;
+  padding: 1px;
 }
 
 .dateBarDayContainer {
@@ -314,8 +320,8 @@ font-size: 10pt;
   color: var(--secondary-color);
   font-size: var(--heading2);
   font-weight: var(--font-bold);
-  margin: 15px 40px 10px 0;  
-  width: 100%;
+  margin: 10px 40px 10px 0;  
+  
 }
 
 .dateBarDayBox {
