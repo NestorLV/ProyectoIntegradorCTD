@@ -3,23 +3,15 @@ import Select from 'react-select';
 import CityOption from './CityOption';
 import vector from './img/Vector.png'
 import localizador from './img/localizador.png'
-import axios from "axios";
+import { AxiosGetTodasLasCiudades } from "../../axiosCollection/SearchBlock/axiosCollection";
 
 function SelectCity({handleCity}) {
-  const baseURL = "http://localhost:8080/cities/all";
+  
   const [data, setData] = useState([]);  
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    axios
-      .get(baseURL)
-      .then((response) => {
-        setData(response.data);        
-      })
-      .catch((error) => {
-        setErrorMessage(error);
-        console.log(errorMessage);
-      });
+    AxiosGetTodasLasCiudades(setData, setErrorMessage)
   }, []);
 
   const customStyles = {
