@@ -63,7 +63,6 @@ function App() {
           <Route exact path={"/product/:id"} component={Product}/>   
           <Route exact path={"/product/:id/reserva"} component={Booking}/>      
           <Route path="*"> <NotFound /> </Route>
-           
         </Switch>
       </LayoutPrincipal>
     </BrowserRouter>

@@ -6,7 +6,6 @@ import Styles from "./styles.module.css"
 import StylesApp from "../../App.module.css"
 import StylesLayout from "../styles.module.css"
 import MenuBurger from '../../components/MenuBurger/MenuBurger';
-import { HeaderWrapper } from '../../components/MenuBurger/HeaderStyles';
 import MenuButton from '../../components/MenuBurger/MenuButton';
 import { Link } from "react-router-dom";
 
@@ -29,7 +28,7 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
     }
 
     return (
-        <HeaderWrapper className={`${Styles.header} ${StylesApp.delimiter}`} >
+        <header className={`${Styles.header} ${StylesApp.delimiter}`} >
             <div className={showBurger === true ? `${Styles.headerTop} ${StylesLayout.opacity} ${StylesApp.delimiterChild}` : `${Styles.headerTop} ${StylesApp.delimiterChild}`}>
 
                 <Link to="/" className={Styles.home} onClick={handleHide}>
@@ -74,6 +73,6 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
                 <MenuButton show={showBurger} handleShow={handleShow} />
             </div>
             <MenuBurger show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={iniciales} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
-        </HeaderWrapper >
+        </header>
     )
 }

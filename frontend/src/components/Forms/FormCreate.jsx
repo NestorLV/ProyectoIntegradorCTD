@@ -15,6 +15,8 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
     const[error, setError] = useState("")
     const[formValido, setFormValido]=useState(false)
 
+    const baseUrl = "http://localhost:8080/"
+
     setActiveLogin(false)
     setActiveCreate(true)
 
@@ -97,6 +99,16 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
             setConfirmPassword({...confirmPassword, valido:false})
         }
     }
+
+    const data= {
+        "name":"Mar",
+        "surname":"Perez",
+        "email":"mar@dh.com",
+        "password":"hkjhkjh",
+        "role":{
+            "name":"USER"
+        }
+    }
        
     const sendData = (event) => {
         event.preventDefault();
@@ -110,6 +122,23 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
             email.valido && 
             password.valido && 
             confirmPassword.valido){
+
+            /*axios.post(baseUrl+"users/create",{
+                headers: {
+                    Authorization: 'Bearer ' + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE2MzcyMDM2MjIsImlhdCI6MTYzNzE4NTYyMn0.hPkhjYH273erUwqGiAXKgyCBkwMYFF1r5sEY_ar3ixbMG1Pii5TYXFhTsWS9h9KE5qg8urmwzASiB8NBK-Tm3A"
+                },
+                data
+             })
+            .then(response => {
+                setData(response.data);
+                setLoading(false);
+                setTitulo(`Favoritos`);
+            })
+            .catch(error => {
+                setErrorMessage(error.message);
+                setLoading(false);
+            });*/
+
             setFormValido(true)
             window.location.pathname = "/login"
          }else{
