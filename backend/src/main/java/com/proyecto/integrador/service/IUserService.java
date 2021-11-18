@@ -18,4 +18,5 @@ public interface IUserService {
     UserDTO update(UserDTO user) throws FindByIdException;
     List<ProductDTO> getFavorites(String email) throws BadRequestException, FindByIdException;
     UserDTO findByEmail(String email);
+    String validateLogIn(UserDTO userDTO) throws BadRequestException;
 }

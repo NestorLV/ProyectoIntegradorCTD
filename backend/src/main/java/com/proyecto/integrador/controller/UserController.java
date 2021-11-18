@@ -3,11 +3,13 @@ package com.proyecto.integrador.controller;
 import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.DTO.ScoreDTO;
 import com.proyecto.integrador.DTO.UserDTO;
+import com.proyecto.integrador.config.jwt.JwtResponse;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.exceptions.UnauthorizedAccessException;
 import com.proyecto.integrador.service.IScoreService;
 import com.proyecto.integrador.service.IUserService;
+import io.jsonwebtoken.Jwt;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +25,10 @@ public class UserController implements CRUDController <UserDTO> {
     @Autowired
     IUserService userService;
 
-    @GetMapping("/")
-    public String home() {
-        return "<h1> Bienvenid@ a la clínica odontológica </h1>";
-    }
-
-    @GetMapping("/403")
+/*    @GetMapping("/403")
     public void forbidden() throws UnauthorizedAccessException {
         throw new UnauthorizedAccessException("No tiene permisos para acceder a este recurso", "User Role");
-    }
+    }*/
 
     @Operation(summary = "Find All Users")
     @GetMapping("/all")
@@ -68,5 +65,12 @@ public class UserController implements CRUDController <UserDTO> {
     @PostMapping("/getFavorites")
     public ResponseEntity<List<ProductDTO>> getFavorites(@RequestBody String email) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(userService.getFavorites(email));
+    }
+
+    @Operation(summary = "User login")
+    @PostMapping("/login")
+    public ResponseEntity<JwtResponse> validateLogIn(@RequestBody UserDTO userDTO) throws BadRequestException {
+        String token = userService.validateLogIn(userDTO);
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 }

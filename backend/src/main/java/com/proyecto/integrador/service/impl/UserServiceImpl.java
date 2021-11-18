@@ -4,6 +4,10 @@ package com.proyecto.integrador.service.impl;
 import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.DTO.RoleDTO;
 import com.proyecto.integrador.DTO.UserDTO;
+import com.proyecto.integrador.config.jwt.JwtAuthenticationController;
+import com.proyecto.integrador.config.jwt.JwtRequest;
+import com.proyecto.integrador.config.jwt.JwtTokenUtil;
+import com.proyecto.integrador.config.jwt.JwtUserDetailsService;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Product;
@@ -19,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +38,10 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     ProductServiceImpl productService;
     @Autowired
     RoleServiceImpl roleService;
+    @Autowired
+    private JwtUserDetailsService userDetailsService;
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
 
     @Override
@@ -49,6 +58,9 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     @Override
     public UserDTO save(UserDTO userDTO) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar usuario");
+        if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
+            throw new BadRequestException("Ya hay un usuario creado con el email ingresado");
+        }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodedPassword);
@@ -101,7 +113,6 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         return user.toDto();
     }
 
-
     public boolean isFavourite(ProductDTO productDTO) {
         return false;
         /*if (findByEmail()) --> Validar usuario y filtrar los favoritos del usuario */
@@ -110,5 +121,15 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("El email no matchea con ningún usuario en la base de datos"));
+    }
+
+    // Agregar más validaciones y ver lo del UserDTO RequestBody
+    @Override
+    public String validateLogIn(UserDTO userDTO) throws BadRequestException {
+        if (userRepository.findByEmail(userDTO.getEmail()).isEmpty()) {
+            throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
+        }
+        final UserDetails userDetails = userDetailsService.loadUserByUsername("javainuse");
+        return jwtTokenUtil.generateToken(userDetails);
     }
 }

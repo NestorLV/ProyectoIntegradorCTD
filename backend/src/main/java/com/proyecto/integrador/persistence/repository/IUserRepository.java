@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Repository
-/*@Transactional*/
 public interface IUserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByEmail(String email);
 
