@@ -10,7 +10,7 @@ import Styles from "./styles.module.css";
 const { format } = require("date-fns");
 
 function Calendar(props) {
-  const [value, setValue] = useState([sessionStorage.getItem("startDate")!=null?sessionStorage.getItem("startDate"):null, sessionStorage.getItem("endDate")!=null?sessionStorage.getItem("endDate"):null]);
+  const [value, setValue] = useState([sessionStorage.getItem("startDate") != null ? sessionStorage.getItem("startDate") : null, sessionStorage.getItem("endDate") != null ? sessionStorage.getItem("endDate") : null]);
   const startDate = new Date(value[0]);
   const endDate = new Date(value[1]);
   const startDateToString = `${format(startDate, "dd")} de ${format(
@@ -23,10 +23,12 @@ function Calendar(props) {
   )} de ${format(endDate, "y")}`;
 
   const handleSelection = (event) => {
-    event.preventDefault();
-    props.handleSelected(`${startDateToString} - ${endDateToString}`);
-    sessionStorage.setItem("startDate",startDate.toDateString());
-    sessionStorage.setItem("endDate", endDate.toDateString());
+    event.preventDefault();    
+    if (endDate.setHours(0, 0, 0, 0) > startDate.setHours(0, 0, 0, 0)) {
+      props.handleSelected(`${startDateToString} - ${endDateToString}`);
+      sessionStorage.setItem("startDate", startDate.toDateString());
+      sessionStorage.setItem("endDate", endDate.toDateString());
+    }
   };
 
   const theme = createTheme({
@@ -37,7 +39,7 @@ function Calendar(props) {
     },
   });
 
-  
+
   return (
     <div className={props.calendarState}>
       <ThemeProvider theme={theme}>
