@@ -15,9 +15,9 @@ function CalendarBar(props) {
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
     const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
-    const booksMade = [new Date(2021, 10, 30).toString(), new Date(2021, 10, 28).toString(), new Date(2021, 11, 8).toString(), new Date(2021, 11, 15).toString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
-    const [maxDate, setMaxDate] = useState("");
-    const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate")!=null?startDate:null, sessionStorage.getItem("endDate")!=null?endDate:null]);
+    const booksMade = [new Date(2021, 10, 30).toDateString(), new Date(2021, 10, 28).toDateString(), new Date(2021, 11, 8).toDateString(), new Date(2021, 11, 15).toDateString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
+    const [maxDate, setMaxDate] = useState(null);
+    const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate") != null ? startDate : null, sessionStorage.getItem("endDate") != null ? endDate : null]);
 
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -64,18 +64,17 @@ function CalendarBar(props) {
         setValueDate(newValue);
         if (newValue[0] != null) {
             let sortBooksMadeDate = booksMadeDate.sort((a, b) => a - b);
-            setMaxDate(new Date(sortBooksMadeDate.find(element =>
-                newValue[0].setHours(0, 0, 0, 0) < element
-            )));
+            const validacion = sortBooksMadeDate.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
+            setMaxDate(validacion == undefined ? null : new Date(validacion))
         }
         setDinamicValue(newValue);
     }
 
-    function disableDates(e) { return booksMade.includes(e.toString()) }
+    function disableDates(e) { return booksMade.includes(e.toDateString()) }
 
     function handleDayBoxClose(newValue) {
         setDinamicValue(newValue);
-        setMaxDate("");
+        setMaxDate(null);
         handleDateChange(newValue);
     }
     return (
@@ -83,13 +82,13 @@ function CalendarBar(props) {
             <div className={Styles.dateBarTitleBox}>
                 <h2>Seleccioná tu fecha de reserva</h2>
                 <div className={Styles.dateBarDayContainer}>
-                    {dinamicValue[0] != null && dinamicValue[0] != ""?
+                    {dinamicValue[0] != null && dinamicValue[0] != "" ?
                         <div className={Styles.dateBarDayBox}>
                             Desde: {dinamicValue[0].toLocaleDateString()}
                             <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
                         </div>
                         : null}
-                    {dinamicValue[1] != null && dinamicValue[0] != ""?
+                    {dinamicValue[1] != null && dinamicValue[0] != "" ?
                         <div className={Styles.dateBarDayBox}>
                             Hasta: {dinamicValue[1].toLocaleDateString()}
                             <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>
