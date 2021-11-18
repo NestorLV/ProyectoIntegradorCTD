@@ -8,13 +8,17 @@
 .titleBar .titleBarChild {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   min-height: 60px;
   padding-left: clamp(20px, 3.9%, 40px);
   padding-right: clamp(20px, 3.9%, 40px);
 }
 .titleBarChild div p {
   text-transform: uppercase;
+}
+
+.titleBarTitles {
+  margin-left: 15px;
 }
 
 .titleBarChild .iconLocation {
