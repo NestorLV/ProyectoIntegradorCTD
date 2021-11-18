@@ -7,7 +7,7 @@ import StylesApp from "../../App.module.css";
 import TitleBar from "../Product/TitleBar"
 import Spinner from "../spinner/Spinner";
 import InfoBar from "../Product/InfoBar";
-import CalendarBar from "./CalendarBar";
+import CalendarBar from "./CalendarBar.jsx";
 import ArrivalTimeBar from "./ArrivalTimeBar";
 import DetailBar from "./DetailBar";
 

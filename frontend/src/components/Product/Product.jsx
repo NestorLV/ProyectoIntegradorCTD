@@ -8,10 +8,10 @@ import FeaturesBar from "./FeaturesBar";
 import Datebar from "./DateBar";
 import MapBar from "./MapBar";
 import InfoBar from "./InfoBar";
-import axios from "axios";
 import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
 import Spinner from "../spinner/Spinner";
+import {AxiosGetProductoPorId} from "../../axiosCollection/Product/axiosCollection"
 
 
 function Product(props) {
@@ -48,15 +48,7 @@ function Product(props) {
     });
 
     useEffect(() => {
-        axios
-            .get(`http://localhost:8080/products/get/${id}`)
-            .then((response) => {
-                setProd(response.data);
-                setLoading(false);                
-            })
-            .catch((error) => {
-                setErrorMessage("No es posible mostrar la página");
-            });
+        AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage)
     }, [id]);
 
     if (errorMessage && loading) {

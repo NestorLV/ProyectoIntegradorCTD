@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import StylesApp from "../../App.module.css";
 import Styles from "./styles.module.css";
 import axios from "axios";
+import { AxiosCalificarProducto } from "../../axiosCollection/Product/axiosCollection";
 
 export default function QualificationBar({ id }) {
     const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion') == null ? 0 : sessionStorage.getItem('calificacion'));
@@ -34,7 +35,8 @@ export default function QualificationBar({ id }) {
         setSubmit(true);
         sessionStorage.setItem('calificacion', starIndex.toString());
         setCalificacion_text(`Enviando puntuación...`);
-        axios
+        AxiosCalificarProducto(starIndex, id, setCalificacion_text, setErrorMessage)
+        /*axios
             .post("http://localhost:8080/products/scores/create", {
                 score: starIndex,
                 userEmail: sessionStorage.getItem('email'),
@@ -48,7 +50,7 @@ export default function QualificationBar({ id }) {
             })
             .catch((error) => {
                 setErrorMessage(error);
-            });
+            });*/
 
     }
 

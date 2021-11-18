@@ -2,17 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Styles from './styles.module.css';
 import StylesApp from "../../App.module.css"
 import Card from './Card.jsx';
-import axios from "axios";
 import arrow from "./img/arrow.svg";
+import { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos } from '../../axiosCollection/Cards/axiosCollection';
+
 
 export default function Cards({ category, city, search, clickBusqueda, favourite }) {
-    const baseUrl = "http://localhost:8080/"
-    const baseUrlProductosRecomendados = `${baseUrl}products/get/recommended`;
-    const baseUrlPorCategoria = `${baseUrl}products/get/category/${category}`;
-    const baseUrlPorCiudad = `${baseUrl}products/get/city/${city}`;
-    const baseUrlFavourite = `${baseUrl}users/getFavorites`;
-    //const baseUrlPorFecha = `http://localhost:8080/products/date`;
-    //const baseUrlPorCiudadYFecha = `http://localhost:8080/products/search/date/${search}`;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
@@ -22,50 +16,16 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
 
     useEffect(() => {
         if (category === "All" && search === false && favourite === false) {
-            axios.get(baseUrlProductosRecomendados)
-                .then(response => {
-                    setData(response.data);
-                    setLoading(false);
-                    setTitulo("Recomendaciones");
-
-                })
-                .catch(error => {
-                    setErrorMessage(error.message);
-                    setLoading(false);
-                });
+            AxiosGetProductosRecomendados(setData, setLoading, setTitulo, setErrorMessage)
+          
         } else if (category !== "All" && search === false && city === "" && favourite === false) {
-            axios.get(baseUrlPorCategoria)
-                .then(response => {
-                    setData(response.data);
-                    setLoading(false);
-                    setTitulo(`Resultados para ${category}`);
-                })
-                .catch(error => {
-                    setErrorMessage(error.message);
-                    setLoading(false);
-                });
+            AxiosGetProductosPorCategoria(setData, setLoading, setTitulo, setErrorMessage, category)
+            
         } else if (search && city !== "") {
-            axios.get(baseUrlPorCiudad)
-                .then(response => {
-                    setData(response.data);
-                    setLoading(false);
-                    setTitulo(`Resultados para ${response.data[0].city.name}`);
-                })
-                .catch(error => {
-                    setErrorMessage(error.message);
-                    setLoading(false);
-                });
+            AxiosGetProductosPorCiudad(setData, setLoading, setTitulo, setErrorMessage,city)
+            
         } else if (favourite) {
-            axios.post(baseUrlFavourite,{email: sessionStorage.getItem("email")})
-                .then(response => {
-                    setData(response.data);
-                    setLoading(false);
-                    setTitulo(`Favoritos`);
-                })
-                .catch(error => {
-                    setErrorMessage(error.message);
-                    setLoading(false);
-                });
+            AxiosGetProductosFavoritos(setData, setLoading, setTitulo, setErrorMessage)
         } else {
             setErrorMessage("Error");
             setLoading(false);
