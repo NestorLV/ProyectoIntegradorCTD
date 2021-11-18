@@ -3,18 +3,18 @@ import Styles from './styles.module.css';
 import iconStar from "./img/starOrange.png";
 import iconLocation from "./img/IconLocation.svg";
 import { Link } from "react-router-dom";
-import wifi from '../Product/icons/wifi.svg';
-import pool from '../Product/icons/pool.svg';
-import kitchen from '../Product/icons/kitchen.svg';
-import tv from '../Product/icons/tv.svg';
-import ac from '../Product/icons/ac.svg';
-import pet from '../Product/icons/pet.svg';
-import parking from '../Product/icons/parking.svg';
-import creditCard from '../Product/icons/creditCard.svg';
-import smoke from '../Product/icons/smoke.svg';
-import party from '../Product/icons/party.svg';
-import checkin from '../Product/icons/checkIn.svg';
-import noSmoke from '../Product/icons/noSmoke.svg';
+import wifi from './img/wifi.svg';
+import pool from './img/pool.svg';
+import kitchen from './img/kitchen.svg';
+import tv from './img/tv.svg';
+import ac from './img/ac.svg';
+import pet from './img/pet.svg';
+import parking from './img/parking.svg';
+import creditCard from './img/creditCard.svg';
+import smoke from './img/smoke.svg';
+import party from './img/party.svg';
+import checkin from './img/checkIn.svg';
+import noSmoke from './img/noSmoke.svg';
 import MapModal from './MapModal';
 import { Modal } from 'react-responsive-modal';
 
@@ -120,7 +120,7 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
                     <MapModal mapIsOpen={mapIsOpen} latitude={latitude} longitude={longitude} closeMapModal={closeMapModal} name={name} address={address} />
                 </div>
                 <div className={Styles.cardIcons}>
-                    {features.map((feature, index) => <img className={Styles.cardFeatures} key={index} src={icons[index]} alt={feature.title} />)}
+                    {features.map((feature) => <img className={Styles.cardFeatures} key={id} src={icons[feature.id -1]} alt={feature.title} />)}
                 </div>
                 <div className={Styles.cardDescription}>
                     <p className={despliegue ? Styles.desplegado : Styles.noDesplegado}>{description}</p>

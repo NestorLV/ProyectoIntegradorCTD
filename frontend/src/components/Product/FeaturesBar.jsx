@@ -13,7 +13,6 @@ import party from './icons/party.svg';
 import checkin from './icons/checkIn.svg';
 import noSmoke from './icons/noSmoke.svg';
 
-
 function FeaturesBar(props) {
     let icons = [wifi, pool, kitchen, tv, ac, pet, parking, creditCard, smoke, party, checkin, noSmoke];
     return (
@@ -21,7 +20,7 @@ function FeaturesBar(props) {
             <div className={`${Styles.featuresBarChild} ${StylesApp.delimiterChild}`}>
                 <h2>¿Qué ofrece este lugar?</h2>
                 <div className={Styles.icons}>
-                    {props.features.map((e, index) => <div className={Styles.featureBox} key={index}><img src={icons[index]} alt={e.title} /><p className={Styles.featureTitle}>{e.title}</p></div>)}                    
+                    {props.features.map((e) => <div className={Styles.featureBox} key={e.id}><img src={icons[e.id -1]} alt={e.title} /><p className={Styles.featureTitle}>{e.title}</p></div>)}                    
                 </div>
             </div>
         </div>

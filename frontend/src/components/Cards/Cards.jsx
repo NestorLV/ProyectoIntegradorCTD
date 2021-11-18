@@ -63,14 +63,14 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                     <h2>{titulo}</h2>
                     <div className={Styles.cardsBox}>
                     {console.log(data,"dataCARDS")}
-                        {dataLimited().map((e, index) =>
+                        {dataLimited().map((e) =>
                             <Card image={e.images.length > 0 ? e.images[0].url : ""}
                                 cardCategory={e.category.title}
                                 name={e.name}
                                 city={e.city.name}
                                 country={e.city.country}
                                 description={e.description}
-                                key={index}
+                                key={e.id}
                                 id={e.id}
                                 reference={e.reference}
                                 qualification={e.qualification}
