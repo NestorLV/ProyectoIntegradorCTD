@@ -4,9 +4,10 @@ import ValidCredentials from "../../credentials/ValidCredentials";
 import { Link } from "react-router-dom";
 import hidePassword from "./icons/hidePassword.png";
 import axios from "axios";
+import {Redirect } from "react-router-dom";
 
 
-function FormCreate( { setActiveCreate, setActiveLogin } ) {
+function FormCreate( { setActiveCreate, setActiveLogin, setLog } ) {
     const[name, setName] = useState({campo:"", valido:true});
     const[surname, setSurname] = useState({campo:"", valido:true});
     const[email, setEmail] = useState({campo:"", valido:true});
@@ -71,10 +72,10 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
             setEmail({...email, valido:false})
         }
         
-        if(email.campo === ValidCredentials.email) {
+        /*if(email.campo === ValidCredentials.email) {
             setError("El usuario ya existe.")
             setEmail({...email, valido:false})
-        }
+        }*/
     }
     
     const validarPassword = () => {
@@ -123,29 +124,58 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
             password.valido && 
             confirmPassword.valido){
 
-            /*axios.post(baseUrl+"users/create",{
-                headers: {
-                    Authorization: 'Bearer ' + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE2MzcyMDM2MjIsImlhdCI6MTYzNzE4NTYyMn0.hPkhjYH273erUwqGiAXKgyCBkwMYFF1r5sEY_ar3ixbMG1Pii5TYXFhTsWS9h9KE5qg8urmwzASiB8NBK-Tm3A"
-                },
-                data
-             })
-            .then(response => {
-                setData(response.data);
-                setLoading(false);
-                setTitulo(`Favoritos`);
-            })
-            .catch(error => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });*/
+                axios.post(baseUrl+"users/create",{
+                    "name":`${name.campo}`,
+                    "surname":`${surname.campo}`,
+                    "email":`${email.campo}`,
+                    "password":`${password.campo}`
+                 })
+                .then(response => {
+                    //setData(response.data);
+                    //setLoading(false);
+                    //setFormValido(true)
+                    //console.log(response, "1");
+                    return response;
+                })
+                .then(response => {
+                    axios.post(baseUrl+"users/login",{
+                        "email":`${response.data.email}`,
+                        "password":`${password.campo}`
+                    }).then(response =>{
+                        sessionStorage.setItem("token", `${response.data.token}`);
+                        sessionStorage.setItem("email", email.campo)
+                        sessionStorage.setItem("log", "true");
+                        setLog(true)
+                        setFormValido(true);
+                        <Redirect to="/" />
+                    })
+                    .catch(error=>{
+                        console.log(error);
+                    })
+                })
+                .catch(error => {
+                    //setErrorMessage(error.message);
+                    //setLoading(false);
+                    console.log(error.response.status);
+                    if(error.response.status===400){
+                        setError("El usuario ya existe")
+                        setEmail({valido:false})
+                        setFormValido(false)
+                        sessionStorage.setItem("log", "false");
+                        sessionStorage.removeItem("token")
+                    }
+                });
 
-            setFormValido(true)
-            window.location.pathname = "/login"
+            
+            //window.location.pathname = "/login"
          }else{
              setFormValido(false)
         }
     }
-
+console.log(
+    error
+);
+console.log(email);
     function mostrarContrasena(event){
         let tipo = document.getElementById(event);
         console.log(event);
@@ -189,7 +219,6 @@ function FormCreate( { setActiveCreate, setActiveLogin } ) {
                 </div>
                
                 {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}
-                
                 <div className={`${styles.inputLabel} ${styles.boton}`}>
                     <button type="submit">Crear cuenta</button>
                     <p>¿Ya tienes una cuenta?<Link to="/login"> Iniciar sesión</Link></p>
