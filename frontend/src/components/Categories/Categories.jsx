@@ -6,7 +6,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Spinner from "../spinner/Spinner";
 
-export default function Categories({handleCategory}) {
+export default function Categories({ handleCategory }) {
   const baseURL = "http://localhost:8080/categories/all";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,8 +24,8 @@ export default function Categories({handleCategory}) {
       });
   }, []);
 
-  if (errorMessage && loading) {
-    return (
+  return (
+    (errorMessage && loading) ?
       <div className={`${Styles.categoryContainer} ${StylesApp.delimiter}`}>
         <div className={`${Styles.categoryBlock} ${StylesApp.delimiterChild}`}>
           <h2 className={Styles.categoryBlock}>
@@ -33,11 +33,7 @@ export default function Categories({handleCategory}) {
           </h2>
         </div>
       </div>
-    );
-  }
-
-  return (
-    <>
+      :
       <div className={`${Styles.categoryContainer} ${StylesApp.delimiter}`}>
         <div className={`${Styles.categoryBlock} ${StylesApp.delimiterChild}`}>
           <h2>Buscar por tipo de alojamiento</h2>
@@ -46,22 +42,19 @@ export default function Categories({handleCategory}) {
             /* <p>Loading Data...</p> */
           ) : (
             <div className={Styles.categoryBox}>
-              {data.map((c) => (                
+              {data.map((c) => (
                 <Category
                   key={c.id}
                   title={c.title}
                   imageUrl={c.url}
-                  description={c.description}                                                                    
-                  category={c.title} 
-                  handleCategory={handleCategory}                
+                  description={c.description}
+                  category={c.title}
+                  handleCategory={handleCategory}
                 />
               ))}
             </div>
           )}
         </div>
       </div>
-    </>
   );
 }
-
-
