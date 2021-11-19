@@ -613,13 +613,11 @@
     padding: 0;
   }
 
-  @media all and (max-width: 1150px) {
-    .contenedorInterno {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
+  .contenedorInterno {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
   @media all and (max-width: 769px) {
@@ -672,7 +670,7 @@
     }
 
     .contenedorCalendario > div > div > div > div > div:nth-child(3) {
-      min-height: 230px !important;
+      min-height: 260px !important;
     }
   }
 
