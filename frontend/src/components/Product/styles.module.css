@@ -389,7 +389,7 @@ div.buttons button.create:hover {
   text-transform: uppercase;
 }
 
-.featuresBarChild div.featureBox img {
+.featureIcon {
   margin-right: 20px;
 }
 
