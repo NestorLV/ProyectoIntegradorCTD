@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './styles.module.css';
-import iconStar from "./img/starOrange.png";
 import iconLocation from "./img/IconLocation.svg";
 import { Link } from "react-router-dom";
 import wifi from './img/wifi.svg';
@@ -17,7 +16,8 @@ import checkin from './img/checkIn.svg';
 import noSmoke from './img/noSmoke.svg';
 import MapModal from './MapModal';
 import { Modal } from 'react-responsive-modal';
-
+import ScoreStar from '../Product/ScoreStar';
+import ScoreDescription from '../Product/ScoreDescription';
 
 function Card({ image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
     const [isLike, setLike] = useState(favorite);
@@ -38,24 +38,12 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
         } else {
             setTextoDespliegue("menos...");
         }
-    }
-
-    const scoreLetter = (valor) => {
-        if (valor >= 8 && valor <= 10) return "Excelente";
-        if (valor >= 6 && valor < 8) return "Muy Bueno";
-        if (valor >= 4 && valor < 6) return "Bueno";
-        if (valor >= 2 && valor < 4) return "Regular";
-        if (valor >= 0 && valor < 2) return "Malo";
-        else { return "Calificacion Invalida" }
-    }
-
-    let cantStar = Math.floor(qualification / 2);
+    }    
 
     const openModalFavourite = (() => { setModalFavouriteIsOpen(true) })
     const closeModalFavourite = () => {
         setModalFavouriteIsOpen(false);
     };
-
 
     const openMapModal = (() => {
         console.log("Entro en el modal", mapIsOpen);
@@ -69,7 +57,6 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
     let loggued = sessionStorage.getItem("log");
 
     return (
-
         <div className={Styles.cardBox}>
             <div className={Styles.cardImage}>
                 <svg className={Styles.iconHeart} onClick={loggued === "true" ? handleToggle : openModalFavourite} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 27 27"><path className={isLike ? Styles.heartColor2 : Styles.heartColor} id="heart" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" /></svg>
@@ -92,17 +79,12 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
                 </Modal>
                 <img className={Styles.image} src={image} alt="" />
             </div>
-
             <div className={Styles.cardInfo}>
                 <div className={Styles.cardHeaderBox}>
                     <div className={Styles.cardHeadline}>
                         <div className={Styles.cardCategory}>
                             <p>{cardCategory}</p>
-                            {cantStar >= 0 ? <img className={Styles.star} src={iconStar} alt="" /> : null}
-                            {cantStar >= 2 ? <img className={Styles.star} src={iconStar} alt="" /> : null}
-                            {cantStar >= 3 ? <img className={Styles.star} src={iconStar} alt="" /> : null}
-                            {cantStar >= 4 ? <img className={Styles.star} src={iconStar} alt="" /> : null}
-                            {cantStar >= 5 ? <img className={Styles.star} src={iconStar} alt="" /> : null}
+                            <ScoreStar qualification={qualification} starColor="#F0572D" />
                         </div>
                         <div className={Styles.cardName}>{name}</div>
                     </div>
@@ -110,7 +92,9 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
                         <div className={Styles.cardScoreNumber}>
                             <p>{Math.floor(qualification)}</p>
                         </div>
-                        <div className={Styles.cardScoreWords}>{scoreLetter(qualification)}</div>
+                        <div className={Styles.cardScoreWords}>
+                            <ScoreDescription qualification={qualification} />                            
+                        </div>
                     </div>
                 </div>
                 <div className={Styles.cardLocation}>
