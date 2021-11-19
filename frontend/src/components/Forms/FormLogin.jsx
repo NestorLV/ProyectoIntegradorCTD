@@ -63,15 +63,15 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
 
             <Redirect to="/" />
         })
-        .catch(error => {   
-            if (error.response.status === 400) {
-                setError("Por favor vuelva a intentarlo. Las credenciales son inválidas")
-                setEmail({ valido: false })
-                setFormValido(false)
-                sessionStorage.setItem("log", "false");
-                sessionStorage.removeItem("token")
-            }
-        })
+            .catch(error => {
+                if (error.response.status === 400) {
+                    setError("Por favor vuelva a intentarlo. Las credenciales son inválidas")
+                    setEmail({ valido: false })
+                    setFormValido(false)
+                    sessionStorage.setItem("log", "false");
+                    sessionStorage.removeItem("token")
+                }
+            })
     }
 
     function mostrarContrasena() {
@@ -87,7 +87,8 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
 
     return (
 
-        <div className={styles.container}>
+        <div className={styles.containerPrincipal}>
+        <div className={styles.containerForm}>
             <h3>Iniciar sesión</h3>
             <form className={`${styles.formFlex} ${styles.login}`} onSubmit={sendData}>
                 <div className={`${styles.inputLabel} ${!email.valido ? styles.inputError : null}`}>
@@ -96,8 +97,10 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
                 </div>
                 <div className={`${styles.inputLabel} ${!password.valido ? styles.inputError : null}`}>
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" value={password.campo} onChange={handleChangePassword} />
-                    <img src={hidePassword} alt="icon hide password" className={`${styles.hidePassword} ${styles.passLogin}`} onClick={mostrarContrasena} />
+                    <div className={styles.inputHidePassword}>
+                        <input type="password" name="password" id="password" value={password.campo} onChange={handleChangePassword} />
+                        <img src={hidePassword} alt="icon hide password" className={`${styles.hidePassword} ${styles.passLogin}`} onClick={mostrarContrasena} />
+                    </div>
                 </div>
 
                 {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}
@@ -106,6 +109,7 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
                     <p>¿Aún no tenés cuenta?<Link to="/create"> Registrate</Link></p>
                 </div>
             </form>
+        </div>
         </div>
     )
 }
