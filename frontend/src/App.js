@@ -58,7 +58,7 @@ function App() {
             <Home setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin} category= {category} handleCategory={handleCategory} search={search} handleSearch={handleSearch} city={city} handleCity={handleCity} clickBusqueda = {clickBusqueda} favourite= {favourite}/>
           </Route>
           <Route exact path="/login"  component={() => !log? <FormLogin setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />                  
-          <Route exact path="/create" component={() => !log? <FormCreate setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />
+          <Route exact path="/create" component={() => !log? <FormCreate setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />
           <Route exact path={"/product/:id"} component={Product}/>   
           <Route exact path={"/product/:id/reserva"} component={Booking}/>      
           <Route path="*"> <NotFound /> </Route>
