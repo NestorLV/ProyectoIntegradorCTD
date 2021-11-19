@@ -92,7 +92,7 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
                     <MapModal mapIsOpen={mapIsOpen} latitude={latitude} longitude={longitude} closeMapModal={closeMapModal} name={name} address={address} />
                 </div>
                 <div className={Styles.cardIcons}>
-                    {features.map((feature) => <div className={Styles.cardFeatures} key={id}>{Icons(feature.id - 1)}</div>)}
+                    {features.map((feature) => <div className={Styles.cardFeatures} key={id}>{Icons(feature.id - 1,"#31363F")}</div>)}
                 </div>
                 <div className={Styles.cardDescription}>
                     <p className={despliegue ? Styles.desplegado : Styles.noDesplegado}>{description}</p>
