@@ -21,144 +21,241 @@
   cursor: pointer;
   width: 25px;
 }
+
+/* Subtitlo completa tu datos */
+.bookingChild > h2 {
+  padding-left: clamp(20px, 3.9%, 40px);
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  font-weight: var(--font-bold);
+  margin-top: 30px;
+}
+
 /* Estilos container */
 
 .container {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 20px clamp(10px, 3.9%, 40px);
 }
 
-.container> div:first-child{
-  width: 66%
+.container > div:first-child {
+  width: 64%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.container> div:last-child{
-  width: 33%
+.container > div:last-child {
+  width: 32%;
 }
 /* Estilos FormBooking */
-.containerForm{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height:35vh;
-    max-height: 400px;
-    min-height: 270px;
-    width: 100%;
+.containerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .containerForm h3,
-.containerArrival h3{
-    color: var(--secondary-color);
-    font-size: var(--heading2);
+.containerArrival h3 {
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  padding: 20px 0 10px 0;
 }
 
-.containerForm form{
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 8px;
-    height: 28vh;
-    min-height: 200px;
-    max-height: 300px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.containerForm form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px 20px;
 }
 
-.block{
-    display: flex;
-    justify-content: space-evenly;
-    height: 40%;
-   width: 100%;
+.block {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
 }
 
-.labelInput{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 45%;
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 48%;
 }
 
-.labelInput label{
-    color: var(--secondary-color);
-    font-size: var(--text2);
-    font-weight: var(--font-medium);
+.labelInput label {
+  color: var(--secondary-color);
+  font-size: var(--text2);
+  font-weight: var(--font-medium);
 }
 
-.labelInput input{
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
-    opacity: 0.4;
-    padding: 15px;
-    border-radius: 5px;
-    border:none;
+.labelInput input {
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+  opacity: 0.4;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
 }
 
-.labelInput input:disabled{
-    background-color: #DFE4EA;
-    
+.labelInput input:disabled {
+  background-color: #dfe4ea;
 }
 
 /*Estilos ArrivalTimeBar*/
 
-.containerArrival{
-    display: flex;
-    flex-direction: column;
-    height: 20vh;
-    justify-content: space-evenly;
-    max-height: 250px;
-    min-height: 200px;
-    width: 100%;
+.containerArrival {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
-.containerArrival div{
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    height: 14vh;
-    justify-content: space-evenly;
-    max-height: 150px;
-    min-height: 100px;
-    padding: 0 15px;
-    
+.containerArrival div {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px 15px;
 }
 
-.containerArrival h4{
-    color: var(--secondary-color);
+.containerArrival h4 {
+  color: var(--secondary-color);
 }
 
-.containerArrival h4::before{
-    content: url("./icons/iconOk.svg");
-    margin-right: 4px;
-    vertical-align: -3px;
+.containerArrival h4::before {
+  content: url("./icons/iconOk.svg");
+  margin-right: 4px;
+  vertical-align: -3px;
 }
 
-.containerArrival form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 50%;
-    width: 50%;
+.containerArrival form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50%;
+  width: 50%;
 }
 
-.containerArrival label{
-    color: var(--secondary-color);
-font-size: 10pt;
+.containerArrival label {
+  color: var(--secondary-color);
+  font-size: 10pt;
 }
 
-.containerArrival select{
-    border:none;
-    background-color: white;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-    padding: 10px;
+.containerArrival select {
+  border: none;
+  background-color: white;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
 }
 
-.containerArrival option{
-    background-color: white;
-    color: var(--secondary-color);
+.containerArrival option {
+  background-color: white;
+  color: var(--secondary-color);
 }
 
+/* Estilos DetailBar */
+
+.detailBar {
+  background-color: white;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 20px 0;
+}
+
+.detailBar > div {
+  height: calc(100% - 30px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.detailBar > h2 {
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  font-weight: var(--font-bold);
+  padding: 0 clamp(10px, 3.9%, 40px) 20px clamp(10px, 3.9%, 40px);
+}
+
+.detailBar > div > img {
+  height: 350px;
+  object-fit: cover;
+}
+
+.detail {
+  padding: 20px clamp(10px, 3.9%, 40px);
+  font-size: var(--text1);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.detailProduct p:first-child {
+  font-size: var(--text1);
+  color: gray;
+  font-weight: var(--font-bold);
+}
+
+.detailProduct > h3 {
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  font-weight: var(--font-bold);
+}
+
+.detailBar .star {
+  width: 14px;
+}
+
+.detailProduct p img {
+  padding-right: 10px;
+}
+
+.detailCheck {
+  padding: 20px 0;
+}
+
+.detailCheck div {
+  border-top: 1px rgba(0, 0, 0, 0.12) solid;
+  border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailCheck div p {
+  font-size: var(--text1);
+}
+
+.detail button {
+  width: 100%;
+  background-color: var(--primary-color);
+  padding: 15px 0;
+  color: white;
+  font-weight: var(--font-bold);
+  border-radius: 10px;
+  border: none;
+  font-size: var(--text1);
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.detail button:hover {
+  transform: scale(1.05);
+}
+
+.detail button:active {
+  transform: scale(0.85);
+}
 /* Estilos infoBar */
 
 .infoBar {
@@ -224,7 +321,6 @@ font-size: 10pt;
 
 .contenedorCalendario {
   width: 100%;
-  min-width: 700px;
   background-color: white;
   box-shadow: 0 5px 5px grey;
   display: flex;
@@ -234,7 +330,7 @@ font-size: 10pt;
   border-radius: 25px;
 }
 
-.contenedorCalendario>div{
+.contenedorCalendario > div {
   border-radius: 25px !important;
 }
 
@@ -250,7 +346,7 @@ font-size: 10pt;
   display: block;
 }
 
-.buttonsDateBar{
+.buttonsDateBar {
   display: flex;
   flex-direction: column;
   min-height: 60px;
@@ -270,7 +366,7 @@ font-size: 10pt;
 }
 
 .selectedDatesButton:hover {
-  transform: scaleX(1.02);  
+  transform: scaleX(1.02);
 }
 
 .selectedDatesButton:active {
@@ -279,7 +375,7 @@ font-size: 10pt;
 
 .dateBarTitleBox {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   align-items: flex-start;
   width: 100%;
 }
@@ -287,8 +383,8 @@ font-size: 10pt;
 .dateBarTitle {
   display: flex;
   justify-content: flex-start;
-  align-items: center;  
-  width: 100%
+  align-items: center;
+  width: 100%;
 }
 
 .dateBar svg {
@@ -297,13 +393,13 @@ font-size: 10pt;
 }
 
 .dateBarTitle svg path {
-  fill: midnightblue;  
+  fill: midnightblue;
 }
 
 .calendarInfo {
-  max-width:45%;
+  max-width: 45%;
   margin-left: 15px;
-  background-color:white;
+  background-color: white;
   border: 1px solid grey;
   padding: 1px;
 }
@@ -313,15 +409,14 @@ font-size: 10pt;
   justify-content: flex-start;
   align-items: center;
   width: 60%;
-  min-width: 185px; 
+  min-width: 185px;
 }
 
 .dateBarTitleBox h2 {
   color: var(--secondary-color);
   font-size: var(--heading2);
   font-weight: var(--font-bold);
-  margin: 10px 40px 10px 0;  
-  
+  margin: 10px 40px 10px 0;
 }
 
 .dateBarDayBox {
@@ -347,14 +442,14 @@ font-size: 10pt;
 
 /*Estilos Succeed*/
 
-.containerPrincipalSucceed{
+.containerPrincipalSucceed {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 80px - 58px);
 }
 
-.containerSucceed{
+.containerSucceed {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -371,26 +466,26 @@ font-size: 10pt;
   width: 46vw;
 }
 
-.containerSucceed img{
+.containerSucceed img {
   width: 78px;
 }
 
-.containerSucceed h3{
+.containerSucceed h3 {
   color: var(--primary-color);
   font-size: 24px;
 }
 
-.containerSucceed p{
+.containerSucceed p {
   color: var(--secondary-color);
   font-size: 20px;
   font-weight: var(--font-bold);
 }
 
-.containerSucceed a{
+.containerSucceed a {
   width: 55%;
 }
 
-.containerSucceed a button{
+.containerSucceed a button {
   background-color: var(--primary-color);
   border: none;
   border-radius: 5px;
@@ -402,9 +497,9 @@ font-size: 10pt;
   width: 100%;
 }
 
-
-
 /*  media queries responsive */
+
+
 @media all and (min-width: 769px) {
   .contenedorCalendario > div > div > div > div {
     width: 50%;
@@ -421,7 +516,7 @@ font-size: 10pt;
     color: white;
     position: absolute;
     left: 10px;
-    transition:all 0.3s;
+    transition: all 0.3s;
     top: 150px;
     z-index: 1;
   }
@@ -430,20 +525,19 @@ font-size: 10pt;
     transform: scale(1.1);
   }
 
-  .contenedorCalendario > div > div  > div > div > div:first-child > button:last-child {
+  .contenedorCalendario > div > div > div > div > div:first-child > button:last-child {
     background-color: #f0572d;
     box-shadow: 0 3px 3px grey;
     color: white;
     position: absolute;
     right: 10px;
     top: 150px;
-    transition:all 0.3s;
+    transition: all 0.3s;
     z-index: 1;
   }
-  
 }
 
-@media all and (min-width:720px){
+@media all and (min-width: 720px) {
   .contenedorCalendario > div {
     width: 100%;
   }
@@ -453,87 +547,158 @@ font-size: 10pt;
   .contenedorCalendario > div > div > div {
     justify-content: center;
   }
+}
+
+@media all and (max-width: 1200px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px clamp(10px, 3.9%, 40px);
+  }
+
+  .container > div:first-child {
+    width: 100%;
+  }
+  
+  .container > div:last-child {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .detailBar > div {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 clamp(10px, 3.9%, 40px) 
+  }
+
+  .detailBar > div > img, .detail {
+    width: 49%;
+    height: 390px;
+  }
+
+  .detail {
+    padding: 0;
+    
+  }
 
 }
 
-/*MEDIA QUERIES*/
 
 @media all and (max-width: 769px) {
-    .barraIzq{
-        width: 100%;
-    }
+  .barraIzq {
+    width: 100%;
+  }
 
-    .container{
-        flex-direction: column;
-    }
-    .container>div:first-child    {
-        width: 100%;
-    }
+  .container {
+    flex-direction: column;
+  }
+  .container > div:first-child {
+    width: 100%;
+  }
 
-    .containerSucceed{
-      min-width: 370px;
-      padding: 10px;
-      width: 75vw;
-    }
+  .containerSucceed {
+    min-width: 370px;
+    padding: 10px;
+    width: 75vw;
+  }
 
-    .containerSucceed a{
-      width: 45%;
-    }
+  .containerSucceed a {
+    width: 45%;
+  }
 }
 
-@media all and (max-width: 415px){
-    .containerForm{
-        height: 65vh;
-        max-height: 450px;
-        min-height: 360px;
-    }
-    .containerForm h3{
-        font-size: var(--heading2);
-    }
-    .containerForm form{
-        max-height: 380px;
+@media all and (max-width: 680px) {
+  .detailBar > div {
+    flex-direction: column;
+  }
+  .detailBar > div > img {
+    width: 100%;
+    height: 250px;
+  }
+
+  .detailBar > div > img, .detail {
+    width: 100%;
+    height: 100%;
+  }
+
+  .contenedorCalendario > div > div > div {
+    flex-direction: column;
+  }
+  .contenedorCalendario > div > div {
+    height: 100%;
+  }
+
+  .contenedorCalendario > div > div > div >div:first-child {
+    border-right: none;
+  }
+
+  .contenedorCalendario > div > div > div >div> div:nth-child(3) {
+   min-height: 230px !important;
+  }
+}
+
+
+@media all and (max-width: 415px) {
+
+
+
+  .containerForm {
+    max-height: 450px;
+    min-height: 360px;
+  }
+  .containerForm h3 {
+    font-size: var(--heading2);
+  }
+  .containerForm form {
+    max-height: 380px;
     min-height: 320px;
     height: 55vh;
     padding: 15px;
-    }
-    .block{
-        flex-direction: column;
-        justify-content: space-around;
-        height: 50%;
-    }
+  }
+  .block {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50%;
+  }
 
-    .labelInput{
-        width: 100%;
-    }
+  .labelInput {
+    width: 100%;
+  }
 
-    .labelInput input{
-        padding: 12px;
-    }
+  .labelInput input {
+    padding: 12px;
+  }
 
-    .containerPrincipalSucceed{
-      height: calc(100vh - 93px - 58px);
-    }
+  .detail {
+    padding: 0;
+    height: 100%;
+  }
 
-    .containerSucceed{
-      height: 35vh;
-      min-height: 260px;
-      min-width: 300px;
-      padding: 25px 10px;
-    }
+  .containerPrincipalSucceed {
+    height: calc(100vh - 93px - 58px);
+  }
 
-    .containerSucceed h3{
-      font-size: 20px;
-    }
+  .containerSucceed {
+    height: 35vh;
+    min-height: 260px;
+    min-width: 300px;
+    padding: 25px 10px;
+  }
 
-    .containerSucceed p{
-      font-size: 16px;
-    }
+  .containerSucceed h3 {
+    font-size: 20px;
+  }
 
-    .containerSucceed a{
-      width: 68%;
-    }
+  .containerSucceed p {
+    font-size: 16px;
+  }
 
-    .containerSucceed a button{
-      padding: 10px;
-    }
+  .containerSucceed a {
+    width: 68%;
+  }
+
+  .containerSucceed a button {
+    padding: 10px;
+  }
 }

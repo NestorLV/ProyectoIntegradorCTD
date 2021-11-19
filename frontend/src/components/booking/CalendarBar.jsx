@@ -14,14 +14,12 @@ function CalendarBar(props) {
     const { valueDate, setValueDate } = props;
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
-    const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
     const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
     const booksMade = [new Date(2021, 10, 30).toDateString(), new Date(2021, 10, 28).toDateString(), new Date(2021, 11, 8).toDateString(), new Date(2021, 11, 15).toDateString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
     const [maxDate, setMaxDate] = useState(null);
     const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate") != null ? startDate : null, sessionStorage.getItem("endDate") != null ? endDate : null]);
     const [info, setInfo] = useState(false);
 
-    window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
     const theme = createTheme({
         palette: {
@@ -78,6 +76,7 @@ function CalendarBar(props) {
         setDinamicValue(newValue);
         setMaxDate(null);
         handleDateChange(newValue);
+        window.sessionStorage.clear();
     }
     return (
         <div className={`${Styles.dateBar}`}>
@@ -114,9 +113,8 @@ function CalendarBar(props) {
                         <LocalizationProvider dateAdapter={AdapterDateFns} >
                             <StaticDateRangePicker
                                 className={classes.root}
-                                displayStaticWrapperAs={size}
-                                calendars={window.innerWidth > 414 ? 2 : 1}
-                                minDate={new Date()}
+                                displayStaticWrapperAs="desktop"
+                               minDate={new Date()}
                                 maxDate={maxDate}
                                 value={valueDate}
                                 onChange={(newValue) => handleDateChange(newValue)}
