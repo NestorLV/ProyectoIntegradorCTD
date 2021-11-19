@@ -17,60 +17,53 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
     useEffect(() => {
         if (category === "All" && search === false && favourite === false) {
             AxiosGetProductosRecomendados(setData, setLoading, setTitulo, setErrorMessage)
-          
+
         } else if (category !== "All" && search === false && city === "" && favourite === false) {
             AxiosGetProductosPorCategoria(setData, setLoading, setTitulo, setErrorMessage, category)
-            
+
         } else if (search && city !== "") {
-            AxiosGetProductosPorCiudad(setData, setLoading, setTitulo, setErrorMessage,city)
-            
+            AxiosGetProductosPorCiudad(setData, setLoading, setTitulo, setErrorMessage, city)
+
         } else if (favourite) {
             AxiosGetProductosFavoritos(setData, setLoading, setTitulo, setErrorMessage)
         } else {
             setErrorMessage("Error");
             setLoading(false);
         }
-        
+
 
     }, [category, clickBusqueda, favourite]);
 
-    const handleFavorite = (e) => {
-
-    }
-
-    const dataLimited = () => data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage); 
+    const dataLimited = () => data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage);
     const indexPages = () => {
         let pages = [];
         let cant = data.length % limitCardPerPage === 0 ? data.length / limitCardPerPage : Math.floor(data.length / limitCardPerPage) + 1
-        for (let i = 0; i < cant; i++) { pages.push(<button onClick={() => setNumberPage(i + 1)} disabled={numberPage-1===i}>{i + 1}</button>) };
+        for (let i = 0; i < cant; i++) { pages.push(<button onClick={() => setNumberPage(i + 1)} disabled={numberPage - 1 === i}>{i + 1}</button>) };
         return pages
     };
 
-    if (errorMessage && loading) {
-        return (
+    return (
+        (errorMessage && loading) ?
             <div className={`${StylesApp.delimiter}`}>
                 <div className={`${Styles.cardsBlock} ${StylesApp.delimiterChild}`}>
                     <h2>Resultados</h2>
                     Resultados no disponibles - Falta la conexión con el Back
                 </div>
             </div>
-        );
-    }
-    else {
-        return (
+            :
             <div className={`${StylesApp.delimiter}`}>
                 <div className={`${Styles.cardsBlock} ${StylesApp.delimiterChild}`}>
                     <h2>{titulo}</h2>
                     <div className={Styles.cardsBox}>
-                    {console.log(data,"dataCARDS")}
-                        {dataLimited().map((e, index) =>
+                        {console.log(data, "dataCARDS")}
+                        {dataLimited().map((e) =>
                             <Card image={e.images.length > 0 ? e.images[0].url : ""}
                                 cardCategory={e.category.title}
                                 name={e.name}
                                 city={e.city.name}
                                 country={e.city.country}
                                 description={e.description}
-                                key={index}
+                                key={e.id}
                                 id={e.id}
                                 reference={e.reference}
                                 qualification={e.qualification}
@@ -89,8 +82,6 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                     </div>
                 </div>
             </div>
-        );
-    }
-
+    )
 }
 

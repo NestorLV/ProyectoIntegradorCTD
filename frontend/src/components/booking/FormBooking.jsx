@@ -3,7 +3,6 @@ import Styles from "./styles.module.css"
 export default function FormBooking() {
     return (
         <div className={`${Styles.containerForm}`}>
-            <h3>Completá tus datos</h3>
             <form>
                 <div className={Styles.block}>
                     <div className={Styles.labelInput}>

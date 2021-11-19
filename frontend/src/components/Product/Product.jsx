@@ -11,7 +11,7 @@ import InfoBar from "./InfoBar";
 import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
 import Spinner from "../spinner/Spinner";
-import {AxiosGetProductoPorId} from "../../axiosCollection/Product/axiosCollection"
+import { AxiosGetProductoPorId } from "../../axiosCollection/Product/axiosCollection"
 
 
 function Product(props) {
@@ -25,8 +25,8 @@ function Product(props) {
     const [errorMessage, setErrorMessage] = useState("");
 
     /*ESTADO PARA EL CALENDARIO */
-    const [valueDate, setValueDate] = useState([sessionStorage.getItem("startDate")!=null?sessionStorage.getItem("startDate"):null, sessionStorage.getItem("endDate")!=null?sessionStorage.getItem("endDate"):null]);
-   
+    const [valueDate, setValueDate] = useState([sessionStorage.getItem("startDate") != null ? sessionStorage.getItem("startDate") : null, sessionStorage.getItem("endDate") != null ? sessionStorage.getItem("endDate") : null]);
+
     let { id } = useParams();
     const [prod, setProd] = useState({
         id: id,
@@ -51,36 +51,33 @@ function Product(props) {
         AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage)
     }, [id]);
 
-    if (errorMessage && loading) {
-        return (
+
+    return (
+        (errorMessage && loading) ?
             <section className={StylesApp.delimiter}>
                 <h1>{errorMessage}</h1>
             </section>
-        );
-    } else {
-        return (
+            :
             <section>
-                {loading ? (
-                    /* <p className={StylesApp.delimiter}>Loading Data...</p> */
+                {loading ? (                    
                     <Spinner />
                 ) : (
                     <>
                         <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
                         <ScoreBar reference={prod.reference} city={prod.city} qualification={prod.qualification} />
-                        <ImageBar images={prod.images} viewerIsOpen={viewerIsOpen}  setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
+                        <ImageBar images={prod.images} viewerIsOpen={viewerIsOpen} setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
                         <DescriptionBar city={prod.city} description={prod.description} />
                         <FeaturesBar features={prod.features} />
-                        <Datebar valueDate={valueDate} setValueDate={setValueDate} id={id}/>
-                        {props.latitude !== null || props.longitude !== null ?
+                        <Datebar valueDate={valueDate} setValueDate={setValueDate} id={id} />
+                        {(props.latitude !== null || props.longitude !== null) &&
                             <MapBar city={prod.city} latitude={prod.latitude} longitude={prod.longitude} name={prod.name} address={prod.address} />
-                            : null}
-                        {sessionStorage.getItem("log")==="true"?<QualificationBar id={prod.id} />:null}
+                        }
+                        {(sessionStorage.getItem("log") === "true") && <QualificationBar id={prod.id} />}
                         <InfoBar health={prod.health} rules={prod.rules} politics={prod.politics} />
                     </>
                 )}
             </section>
-        );
-    }
+    )
 }
 
 export default Product;

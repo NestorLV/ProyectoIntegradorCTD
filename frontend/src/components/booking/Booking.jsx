@@ -48,9 +48,18 @@ export default function Booking(props) {
             .catch((error) => {
                 setErrorMessage("No es posible mostrar la página");
             });
-    }, [id]);
+    },[id]);
 
-    if (errorMessage && loading) {
+    const formatDate = (date) => {
+        if (date != null) {
+            const dateString = date.toString();
+            const arrayDate = dateString.split(" ");
+            return arrayDate[2] + "/" + arrayDate[1] + "/" + arrayDate[3];
+        }
+        else {return ""}
+    }
+  
+    if (errorMessage && loading) {                      
         return (
             <section className={StylesApp.delimiter}>
                 <h1>{errorMessage}</h1>
@@ -60,19 +69,21 @@ export default function Booking(props) {
 
         return (
             <>
+            {console.log("valueDate", valueDate)}
                 <section className={`${Styles.booking} ${StylesApp.delimiter}`}>
                     <div className={`${Styles.bookingChild} ${StylesApp.delimiterChild}`}>
                         {loading ? <Spinner /> : (
                             <>
                                 <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
+                                <h2>Completá tus datos</h2>
                                 <div className={Styles.container}>
                                     <div>
                                         <FormBooking />
-                                        <CalendarBar valueDate={valueDate} setValueDate={setValueDate}/>
-                                        <ArrivalTimeBar/>
+                                        <CalendarBar valueDate={valueDate} setValueDate={setValueDate} />
+                                        <ArrivalTimeBar />
                                     </div>
                                     <div>
-                                        <DetailBar />
+                                        <DetailBar image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} />
                                     </div>
                                 </div>
                             </>
