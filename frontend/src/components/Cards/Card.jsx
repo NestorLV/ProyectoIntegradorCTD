@@ -2,30 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Styles from './styles.module.css';
 import iconLocation from "./img/IconLocation.svg";
 import { Link } from "react-router-dom";
-import wifi from './img/wifi.svg';
-import pool from './img/pool.svg';
-import kitchen from './img/kitchen.svg';
-import tv from './img/tv.svg';
-import ac from './img/ac.svg';
-import pet from './img/pet.svg';
-import parking from './img/parking.svg';
-import creditCard from './img/creditCard.svg';
-import smoke from './img/smoke.svg';
-import party from './img/party.svg';
-import checkin from './img/checkIn.svg';
-import noSmoke from './img/noSmoke.svg';
 import MapModal from './MapModal';
 import { Modal } from 'react-responsive-modal';
 import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
+import Icons from "../Product/icons/Icons"
 
 function Card({ image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
     const [isLike, setLike] = useState(favorite);
     const [mapIsOpen, setMapIsOpen] = useState(false)
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
     const [despliegue, setDespliegue] = useState(false)
-    const [textoDespliegue, setTextoDespliegue] = useState("más...")
-    let icons = [wifi, pool, kitchen, tv, ac, pet, parking, creditCard, smoke, party, checkin, noSmoke];
+    const [textoDespliegue, setTextoDespliegue] = useState("más...")    
 
     useEffect(() => {setLike(favorite)}, [favorite])
 
@@ -104,7 +92,7 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
                     <MapModal mapIsOpen={mapIsOpen} latitude={latitude} longitude={longitude} closeMapModal={closeMapModal} name={name} address={address} />
                 </div>
                 <div className={Styles.cardIcons}>
-                    {features.map((feature) => <img className={Styles.cardFeatures} key={id} src={icons[feature.id -1]} alt={feature.title} />)}
+                    {features.map((feature) => <div className={Styles.cardFeatures} key={id}>{Icons(feature.id - 1)}</div>)}
                 </div>
                 <div className={Styles.cardDescription}>
                     <p className={despliegue ? Styles.desplegado : Styles.noDesplegado}>{description}</p>
