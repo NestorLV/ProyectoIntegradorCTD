@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Styles from "./styles.module.css";
+import StylesCalendar from "./stylesCalendar.module.css";
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
@@ -8,7 +8,6 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { makeStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import iconInfo from './icons/info-circle-solid.svg'
 
 function CalendarBar(props) {
     const { valueDate, setValueDate } = props;
@@ -19,7 +18,6 @@ function CalendarBar(props) {
     const [maxDate, setMaxDate] = useState(null);
     const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate") != null ? startDate : null, sessionStorage.getItem("endDate") != null ? endDate : null]);
     const [info, setInfo] = useState(false);
-
 
     const theme = createTheme({
         palette: {
@@ -51,14 +49,14 @@ function CalendarBar(props) {
     });
     const classes = useStyles();
 
-    const handleChange = () => {
-        /*  String Date  - aaaa,mm,dd  */
+    /* const handleChange = () => {
+        //String Date  - aaaa,mm,dd
         if (startDate.getTime() >= new Date().setHours(0, 0, 0, 0)) {
             sessionStorage.setItem("startDate", startDate.toDateString());
             sessionStorage.setItem("endDate", endDate.toDateString());
             console.log(valueDate, "valueDate");
         }
-    };
+    }; */
 
     function handleDateChange(newValue) {
         setValueDate(newValue);
@@ -78,45 +76,46 @@ function CalendarBar(props) {
         handleDateChange(newValue);
         window.sessionStorage.clear();
     }
+    
     return (
-        <div className={`${Styles.dateBar}`}>
-            <div className={Styles.dateBarTitleBox}>
-                <div className={Styles.dateBarTitle}>
+        <div className={`${StylesCalendar.dateBar}`}>
+            <div className={StylesCalendar.dateBarTitleBox}>
+                <div className={StylesCalendar.dateBarTitle}>
                     <h2>Seleccioná tu fecha de reserva</h2>
-                    <div className={Styles.infoBox}>
+                    <div className={StylesCalendar.infoBox}>
                         <svg onMouseOver={() => setInfo(true)}
                             onMouseOut={() => setInfo(false)}
                             aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z">
                             </path>
                         </svg>
-                        {info ? <p className={Styles.calendarInfo}>Seleccione las fechas de la reserva.  Para modificar o borrar la selección, elimine la etiqueta con la cruz.</p> : null}
+                        {info ? <p className={StylesCalendar.calendarInfo}>Seleccione las fechas de la reserva.  Para modificar o borrar la selección, elimine la etiqueta con la cruz.</p> : null}
                     </div>
                 </div>
-                <div className={Styles.dateBarDayContainer}>
+                <div className={StylesCalendar.dateBarDayContainer}>
                     {dinamicValue[0] != null && dinamicValue[0] != "" ?
-                        <div className={Styles.dateBarDayBox}>
+                        <div className={StylesCalendar.dateBarDayBox}>
                             Desde: {dinamicValue[0].toLocaleDateString()}
-                            <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
+                            <div className={StylesCalendar.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
                         </div>
                         : null}
                     {dinamicValue[1] != null && dinamicValue[0] != "" ?
-                        <div className={Styles.dateBarDayBox}>
+                        <div className={StylesCalendar.dateBarDayBox}>
                             Hasta: {dinamicValue[1].toLocaleDateString()}
-                            <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>
+                            <div className={StylesCalendar.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>
                         </div>
                         : null}
                 </div>
             </div>
 
-            <div className={Styles.contenedorInterno}>
-                <div className={Styles.contenedorCalendario}>
+            <div className={StylesCalendar.contenedorInterno}>
+                <div className={StylesCalendar.contenedorCalendario}>
                     <ThemeProvider theme={theme} >
                         <LocalizationProvider dateAdapter={AdapterDateFns} >
                             <StaticDateRangePicker
                                 className={classes.root}
                                 displayStaticWrapperAs="desktop"
-                               minDate={new Date()}
+                                minDate={new Date()}
                                 maxDate={maxDate}
                                 value={valueDate}
                                 onChange={(newValue) => handleDateChange(newValue)}
