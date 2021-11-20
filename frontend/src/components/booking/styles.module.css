@@ -23,6 +23,7 @@
 }
 
 /* Subtitlo completa tu datos */
+
 .bookingChild > h2 {
   padding-left: clamp(20px, 3.9%, 40px);
   color: var(--secondary-color);
@@ -117,7 +118,7 @@
   width: 100%;
 }
 
-.containerArrival div {
+.containerArrival>div {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -138,30 +139,13 @@
   vertical-align: -3px;
 }
 
-.containerArrival form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 50%;
-  width: 50%;
-}
-
 .containerArrival label {
   color: var(--secondary-color);
   font-size: 10pt;
   margin-bottom: 10px;
 }
-
-.containerArrival select {
-  border: none;
-  background-color: white;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-  padding: 10px;
-}
-
-.containerArrival option {
-  background-color: white;
-  color: var(--secondary-color);
+.selectContainer{
+  width:50%
 }
 
 /* Estilos DetailBar */
@@ -258,6 +242,7 @@
 .detail button:active {
   transform: scale(0.85);
 }
+
 /* Estilos infoBar */
 
 .infoBar {
@@ -306,153 +291,6 @@
 .info div h3,
 .info div p {
   padding: 10px 0;
-}
-
-/* Estilos CalendarBar */
-
-.dateBar {
-  padding: 20px 0;
-}
-
-.contenedorInterno {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.contenedorCalendario {
-  width: 100%;
-  min-width: 300px;
-  background-color: white;
-  box-shadow: 0 5px 5px grey;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  border-radius: 25px;
-}
-
-.contenedorCalendario > div {
-  border-radius: 25px !important;
-}
-
-.negrita {
-  text-align: center;
-  font-weight: bold;
-  font-size: 14px;
-  color: black;
-  padding: 10px 0 20px 0;
-}
-
-.visible {
-  display: block;
-}
-
-.buttonsDateBar {
-  display: flex;
-  flex-direction: column;
-  min-height: 60px;
-  justify-content: space-between;
-}
-
-.selectedDatesButton {
-  border: none;
-  border-radius: 5px;
-  font-size: 12pt;
-  font-weight: var(--font-bold);
-  padding: 0.4rem 3.5rem;
-  color: white;
-  background: #f0572d;
-  transition: all 0.3s;
-  width: 100%;
-}
-
-.selectedDatesButton:hover {
-  transform: scaleX(1.02);
-}
-
-.selectedDatesButton:active {
-  transform: scale(0.9);
-}
-
-.dateBarTitleBox {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.dateBarTitle {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-}
-
-.dateBar svg {
-  width: 25px;
-  height: 25px;
-}
-
-.dateBarTitle svg path {
-  fill: midnightblue;
-}
-
-.calendarInfo {
-  max-width: 45%;
-  fill: var(--secondary-color);
-}
-
-.calendarInfo {
-  max-width: 420px;
-  margin-left: 15px;
-  background-color: white;
-  border: 1px solid grey;
-  padding: 1px;
-  font-size: 10pt;
-  font-weight: bold;
-}
-
-.infoBox {
-  display: flex;
-  align-items: center;
-}
-
-.dateBarDayContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 60%;
-  min-width: 185px;
-}
-
-.dateBarTitleBox h2 {
-  color: var(--secondary-color);
-  font-size: var(--heading2);
-  font-weight: var(--font-bold);
-  margin: 20px 30px 20px 0;
-}
-
-.dateBarDayBox {
-  background-color: var(--primary-color);
-  box-shadow: 2px 2px 4px var(--secondary-color);
-  color: white;
-  margin: 0 10px 20px 0;
-  padding: 8px 20px;
-  font-size: 12pt;
-  font-weight: bold;
-}
-
-.dateBarTitleBoxClose {
-  position: relative;
-  display: inline;
-  left: 14px;
-  bottom: 9px;
-}
-
-.dateBarTitleBoxClose:hover {
-  cursor: pointer;
 }
 
 /*Estilos Succeed*/
@@ -514,75 +352,8 @@
 
 /*  media queries responsive */
 
-@media all and (min-width: 769px) {
-  .contenedorCalendario > div > div > div > div {
-    width: 50%;
-  }
+@media all and (max-width: 1200px) { 
 
-  .contenedorCalendario > div > div > div > div > div:first-child {
-    position: relative;
-    justify-content: center;
-  }
-
-  .contenedorCalendario
-    > div
-    > div
-    > div
-    > div
-    > div:first-child
-    > button:first-child {
-    background-color: #f0572d;
-    box-shadow: 0 3px 3px grey;
-    color: white;
-    position: absolute;
-    left: 10px;
-    transition: all 0.3s;
-    top: 150px;
-    z-index: 1;
-  }
-
-  .contenedorCalendario
-    > div
-    > div
-    > div
-    > div
-    > div:first-child
-    > button:hover {
-    transform: scale(1.1);
-  }
-
-  .contenedorCalendario
-    > div
-    > div
-    > div
-    > div
-    > div:first-child
-    > button:last-child {
-    background-color: #f0572d;
-    box-shadow: 0 3px 3px grey;
-    color: white;
-    position: absolute;
-    right: 10px;
-    top: 150px;
-    transition: all 0.3s;
-    z-index: 1;
-  }
-}
-
-@media all and (min-width: 720px) {
-  .contenedorCalendario > div {
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-@media all and (min-width: 415px) {
-  .contenedorCalendario > div > div > div {
-    justify-content: center;
-  }
-}
-
-@media all and (max-width: 1200px) {
   .container {
     display: flex;
     flex-direction: column;
@@ -613,13 +384,6 @@
 
   .detail {
     padding: 0;
-  }
-
-  .contenedorInterno {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
   }
 
   @media all and (max-width: 769px) {
@@ -678,6 +442,7 @@
     .containerArrival form {
       width: 100%;
     }
+    }    
   }
 
   @media all and (max-width: 415px) {
@@ -711,6 +476,10 @@
     .detail {
       padding: 0;
       height: 100%;
+    }
+
+    .selectContainer{
+      width:100%
     }
 
     .containerPrincipalSucceed {
