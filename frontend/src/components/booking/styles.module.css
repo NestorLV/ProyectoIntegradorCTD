@@ -117,7 +117,7 @@
   width: 100%;
 }
 
-.containerArrival div {
+.containerArrival>div {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -137,29 +137,12 @@
   vertical-align: -3px;
 }
 
-.containerArrival form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 50%;
-  width: 50%;
-}
-
 .containerArrival label {
   color: var(--secondary-color);
   font-size: 10pt;
 }
-
-.containerArrival select {
-  border: none;
-  background-color: white;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-  padding: 10px;
-}
-
-.containerArrival option {
-  background-color: white;
-  color: var(--secondary-color);
+.selectContainer{
+  width:50%
 }
 
 /* Estilos DetailBar */
@@ -565,6 +548,8 @@
     transition: all 0.3s;
     z-index: 1;
   }
+
+ 
 }
 
 @media all and (min-width: 720px) {
@@ -705,6 +690,10 @@
     .detail {
       padding: 0;
       height: 100%;
+    }
+
+    .selectContainer{
+      width:100%
     }
 
     .containerPrincipalSucceed {
