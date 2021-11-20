@@ -129,6 +129,7 @@
 
 .containerArrival h4 {
   color: var(--secondary-color);
+  margin-bottom: 10px;
 }
 
 .containerArrival h4::before {
@@ -148,6 +149,7 @@
 .containerArrival label {
   color: var(--secondary-color);
   font-size: 10pt;
+  margin-bottom: 10px;
 }
 
 .containerArrival select {
@@ -671,6 +673,10 @@
 
     .contenedorCalendario > div > div > div > div > div:nth-child(3) {
       min-height: 260px !important;
+    }
+
+    .containerArrival form {
+      width: 100%;
     }
   }
 
