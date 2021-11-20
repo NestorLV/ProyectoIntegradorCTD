@@ -3,8 +3,7 @@ import Styles from './styles.module.css';
 import StylesApp from "../../App.module.css"
 import Card from './Card.jsx';
 import arrow from "./img/arrow.svg";
-import { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos } from '../../axiosCollection/Cards/axiosCollection';
-
+import { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria } from '../../axiosCollection/Cards/axiosCollection';
 
 export default function Cards({ category, city, search, clickBusqueda, favourite }) {
     const [data, setData] = useState([]);
@@ -13,25 +12,28 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
     const limitCardPerPage = 8;
     const [numberPage, setNumberPage] = useState(1);
     const [titulo, setTitulo] = useState("Recomendaciones");
+    const startDate = sessionStorage.getItem("startDate") && new Date(sessionStorage.getItem("startDate"));
+    const endDate = sessionStorage.getItem("endDate") && new Date(sessionStorage.getItem("endDate"));
 
     useEffect(() => {
         if (category === "All" && search === false && favourite === false) {
             AxiosGetProductosRecomendados(setData, setLoading, setTitulo, setErrorMessage)
 
-        } else if (category !== "All" && search === false && city === "" && favourite === false) {
-            AxiosGetProductosPorCategoria(setData, setLoading, setTitulo, setErrorMessage, category)
-
-        } else if (search && city !== "") {
-            AxiosGetProductosPorCiudad(setData, setLoading, setTitulo, setErrorMessage, city)
-
-        } else if (favourite) {
-            AxiosGetProductosFavoritos(setData, setLoading, setTitulo, setErrorMessage)
+            /*  } else if (category !== "All" && search === false && city === "" && favourite === false) {
+                  AxiosGetProductosPorCategoria(setData, setLoading, setTitulo, setErrorMessage, category)
+      
+              } else if (search && city !== "") {
+                  AxiosGetProductosPorCiudad(setData, setLoading, setTitulo, setErrorMessage, city)
+      
+              } else if (favourite) {
+                  AxiosGetProductosFavoritos(setData, setLoading, setTitulo, setErrorMessage)
+              } else {
+                  setErrorMessage("Error");
+                  setLoading(false);
+              }*/
         } else {
-            setErrorMessage("Error");
-            setLoading(false);
+            AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitulo, setErrorMessage, city, startDate, endDate, category)
         }
-
-
     }, [category, clickBusqueda, favourite]);
 
     const dataLimited = () => data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage);
@@ -66,7 +68,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                                 key={e.id}
                                 id={e.id}
                                 reference={e.reference}
-                                qualification={e.qualification}
+                                qualification={e.qualification * 2}
                                 features={e.features}
                                 latitude={e.latitude}
                                 longitude={e.longitude}
