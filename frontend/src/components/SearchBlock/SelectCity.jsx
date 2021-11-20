@@ -104,7 +104,6 @@ function SelectCity({handleCity}) {
     singleValue: () => ({
       display: 'flex',
     }),
-
   }
 
   const options = data.map((city) => {
