@@ -462,7 +462,8 @@
   .block {
     flex-direction: column;
     justify-content: space-around;
-    height: 50%;
+    height: 50%;   
+    padding:  0;
   }
 
   .labelInput {

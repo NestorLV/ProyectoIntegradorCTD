@@ -24,6 +24,7 @@ export default function ArrivalTimeBar() {
             boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
             display:"flex",
             justifyContent:"space-between",
+           
         }),
 
         placeholder: () => ({
@@ -32,7 +33,14 @@ export default function ArrivalTimeBar() {
 
         valueContainer: () => ({
             display:"flex",
+            minWidth:"70%",
         }),
+        singleValue: () => ({
+            minWidth:"70%",
+            padding: "15px 10px",
+
+        }),
+
 
         option: () => ({
             color: "#31363F",
