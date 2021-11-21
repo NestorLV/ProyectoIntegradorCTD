@@ -65,7 +65,7 @@ function CalendarBar(props) {
         if (newValue[0] != null) {
             let sortBooksMadeDate = booksMadeDate.sort((a, b) => a - b);
             const validacion = sortBooksMadeDate.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
-            setMaxDate(validacion == undefined ? null : new Date(validacion))
+            setMaxDate(validacion === undefined ? null : new Date(validacion))
         }
         setDinamicValue(newValue);
     }
@@ -94,13 +94,13 @@ function CalendarBar(props) {
                     </div>
                 </div>
                 <div className={Styles.dateBarDayContainer}>
-                    {dinamicValue[0] != null && dinamicValue[0] != "" ?
+                    {dinamicValue[0] !== null && dinamicValue[0] != "" ?
                         <div className={Styles.dateBarDayBox}>
                             Desde: {dinamicValue[0].toLocaleDateString()}
                             <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
                         </div>
                         : null}
-                    {dinamicValue[1] != null && dinamicValue[0] != "" ?
+                    {dinamicValue[1] !== null && dinamicValue[0] != "" ?
                         <div className={Styles.dateBarDayBox}>
                             Hasta: {dinamicValue[1].toLocaleDateString()}
                             <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>

@@ -29,7 +29,7 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
                     </div>
                     <div className="text">
                         <h3 className="great">Hola,</h3>
-                        <h3 className="name">{ValidCredentials.nombre} {ValidCredentials.apellido}</h3>
+                        <h3 className="name">{sessionStorage.getItem("name")} {sessionStorage.getItem("surname")}</h3>
                     </div>
                 </div>
                 <p className={`textMenu ${hideObject}`}>MENÚ</p>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import StylesApp from "../../App.module.css";
 import Styles from "./styles.module.css";
-import axios from "axios";
 import { AxiosCalificarProducto } from "../../axiosCollection/Product/axiosCollection";
 
 export default function QualificationBar({ id }) {
