@@ -87,13 +87,15 @@
 }
 
 .calendarInfo {
-  max-width: 360px;
+  width: 300px;
   margin-left: 15px;
   background-color: white;
   border: 1px solid grey;
   padding: 1px;
   font-size: 10pt;
   font-weight: bold;
+  position: absolute;
+  left: 25px;
 }
 
 .infoBox {  
@@ -101,6 +103,7 @@
   align-items: center; 
   float: left;
   z-index: 99; 
+  position: relative;
 }
 
 .dateBarDayContainer {
@@ -144,13 +147,7 @@
     justify-content: center;
   }
 
-  .contenedorCalendario
-    > div
-    > div
-    > div
-    > div
-    > div:first-child
-    > button:first-child {
+  .contenedorCalendario > div > div > div > div > div:first-child > button:first-child {
     background-color: #f0572d;
     box-shadow: 0 3px 3px grey;
     color: white;
@@ -161,23 +158,11 @@
     z-index: 1;
   }
 
-  .contenedorCalendario
-    > div
-    > div
-    > div
-    > div
-    > div:first-child
-    > button:hover {
+  .contenedorCalendario > div > div > div > div > div:first-child > button:hover {
     transform: scale(1.1);
   }
 
-  .contenedorCalendario
-    > div
-    > div
-    > div
-    > div
-    > div:first-child
-    > button:last-child {
+  .contenedorCalendario > div > div > div > div > div:first-child > button:last-child {
     background-color: #f0572d;
     box-shadow: 0 3px 3px grey;
     color: white;
@@ -219,10 +204,10 @@
     align-items: flex-start;
   }
 
-  .calendarInfo {
+  /* .calendarInfo {
     min-width: 80%;
     max-width: 100%
-  } 
+  }  */
 
   .dateBar .dateBarTitleBox .dateBarTitle h2 {
     min-width: 100%;  
@@ -258,7 +243,6 @@
     display: flex;
     flex-direction: column;
   }
-
   
 }
 
