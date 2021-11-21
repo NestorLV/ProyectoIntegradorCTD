@@ -11,6 +11,7 @@ import CalendarBar from "./CalendarBar.jsx";
 import ArrivalTimeBar from "./ArrivalTimeBar";
 import DetailBar from "./DetailBar";
 
+
 export default function Booking(props) {
 
     const [loading, setLoading] = useState(true);
