@@ -72,6 +72,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  
 }
 
 .dateBarTitle h2 {
@@ -80,6 +81,7 @@
   font-weight: var(--font-bold);
   margin: 10px 10px 10px 0;  
   min-width: 400px;
+  position: relative;
 }
 
 .dateBarTitle svg path {
@@ -92,15 +94,16 @@
 }
 
 .calendarInfo {
-  width: 300px;
-  margin-left: 15px;
+  width: 400px;
   background-color: white;
   border: 1px solid grey;
   padding: 1px;
   font-size: 10pt;
   font-weight: bold;
   position: absolute;
-  left: 25px;
+  right: -420px;
+  top: 0;
+  z-index: 10;
 }
 
 
@@ -242,6 +245,22 @@
     display: flex;
     flex-direction: column;
   }
+
+  .calendarInfo {
+    width: 300px;
+    background-color: white;
+    border: 1px solid grey;
+    padding: 1px;
+    font-size: 10pt;
+    font-weight: bold;
+    position: absolute;
+    top: 40px;
+    right: 0;
+  }
   
+
+  @media all and (max-width: 520px) {   
+    
+  }
 }
 
