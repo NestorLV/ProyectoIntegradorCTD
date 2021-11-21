@@ -8,17 +8,21 @@ import StylesLayout from "../styles.module.css"
 import MenuBurger from '../../components/MenuBurger/MenuBurger';
 import MenuButton from '../../components/MenuBurger/MenuButton';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 export default function Header({ activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
 
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
-    const iniciales = `${ValidCredentials.nombre.slice(0, 1).toUpperCase()}${ValidCredentials.apellido.slice(0, 1).toUpperCase()}`
+    const baseUrl = "http://localhost:8080/"
 
     function handleLogOut() {
         sessionStorage.setItem("log", "false")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
+        sessionStorage.removeItem("name")
+        sessionStorage.removeItem("surname")
+        sessionStorage.removeItem("iniciales")
     }
 
     function handleShow() {
@@ -27,6 +31,24 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
     function handleHide() {
         setShowBurger(false)
     }
+
+    
+    
+        if(sessionStorage.getItem("log")){
+            axios.get(baseUrl + `users/getByEmail/${sessionStorage.getItem("email")}`, {
+            headers:{
+                Authorization:`Bearer ${sessionStorage.getItem("token")}`
+            },
+            }).then(response => {
+                console.log(response);
+              
+            })
+            .catch(error => {
+                console.log(error.response);
+            })
+        
+        }
+   
 
     return (
         <header className={`${Styles.header} ${StylesApp.delimiter}`} >
@@ -59,11 +81,11 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
                 </div>
                 <div className={showUserName}>
                     <div className={Styles.logoName}>
-                        <p>{iniciales}</p>
+                        <p>{sessionStorage.getItem("iniciales")}</p>
                     </div>
                     <div className={Styles.text}>
                         <h3 className={Styles.great}>Hola,</h3>
-                        <h3 className={Styles.name}>{ValidCredentials.nombre} {ValidCredentials.apellido}</h3>
+                        <h3 className={Styles.name}>{sessionStorage.getItem("name")} {sessionStorage.getItem("surname")}</h3>
                         <h4 className={Styles.seeFavourite}onClick={handleFavourite}>Ver favoritos</h4>
                     </div>
                     <div>
@@ -73,7 +95,7 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
                 </div>
                 <MenuButton show={showBurger} handleShow={handleShow} />
             </div>
-            <MenuBurger show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={iniciales} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
+            <MenuBurger show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={sessionStorage.getItem("iniciales")} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
         </header>
     )
 }

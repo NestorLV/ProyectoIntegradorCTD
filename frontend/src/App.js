@@ -18,6 +18,9 @@ function App() {
   const [city,setCity] = useState("");
   const [clickBusqueda, setClickBusqueda] = useState(false);
   const [favourite, setFavourite] = useState(false);
+  const [iniciales, setIniciales] = useState("");
+  const [userName, setUserName] =useState("");
+  const [userSurname, setUserSurname] = useState("")
 
   const handleCategory = (c) => {           
     setSearch(false);
@@ -52,13 +55,13 @@ function App() {
 
   return ( 
     <BrowserRouter>      
-      <LayoutPrincipal isLogged = {log} activeCreate ={activeCreate} activeLogin = {activeLogin} handleClean={handleClean} handleFavourite={handleFavourite}>
+      <LayoutPrincipal iniciales={iniciales} userName={userName} userSurname={userSurname} isLogged = {log} activeCreate ={activeCreate} activeLogin = {activeLogin} handleClean={handleClean} handleFavourite={handleFavourite}>
         <Switch>
           <Route exact path="/">
             <Home setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin} category= {category} handleCategory={handleCategory} search={search} handleSearch={handleSearch} city={city} handleCity={handleCity} clickBusqueda = {clickBusqueda} favourite= {favourite}/>
           </Route>
           <Route exact path="/login"  component={() => !log? <FormLogin setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />                  
-          <Route exact path="/create" component={() => !log? <FormCreate setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />
+          <Route exact path="/create" component={() => !log? <FormCreate setIniciales={setIniciales} setUserName={setUserName} setUserSurname={setUserSurname} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />
           <Route exact path={"/product/:id"} component={Product}/>   
           <Route exact path={"/product/:id/reserva"} component={Booking}/>      
           <Route path="*"> <NotFound /> </Route>

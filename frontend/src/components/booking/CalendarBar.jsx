@@ -63,7 +63,7 @@ function CalendarBar(props) {
         if (newValue[0] != null) {
             let sortBooksMadeDate = booksMadeDate.sort((a, b) => a - b);
             const validacion = sortBooksMadeDate.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
-            setMaxDate(validacion == undefined ? null : new Date(validacion))
+            setMaxDate(validacion === undefined ? null : new Date(validacion))
         }
         setDinamicValue(newValue);
     }

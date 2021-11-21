@@ -4,7 +4,7 @@ import ValidCredentials from "../../credentials/ValidCredentials";
 import { Link } from "react-router-dom";
 import hidePassword from "./icons/hidePassword.png";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import {AxiosCreate} from "../../axiosCollection/Forms/AxiosForms"
 
 
 function FormCreate({ setActiveCreate, setActiveLogin, setLog }) {
@@ -101,16 +101,6 @@ function FormCreate({ setActiveCreate, setActiveLogin, setLog }) {
         }
     }
 
-    const data = {
-        "name": "Mar",
-        "surname": "Perez",
-        "email": "mar@dh.com",
-        "password": "hkjhkjh",
-        "role": {
-            "name": "USER"
-        }
-    }
-
     const sendData = (event) => {
         event.preventDefault();
         validarName()
@@ -124,50 +114,8 @@ function FormCreate({ setActiveCreate, setActiveLogin, setLog }) {
             password.valido &&
             confirmPassword.valido) {
 
-            axios.post(baseUrl + "users/create", {
-                "name": `${name.campo}`,
-                "surname": `${surname.campo}`,
-                "email": `${email.campo}`,
-                "password": `${password.campo}`
-            })
-                .then(response => {
-                    //setData(response.data);
-                    //setLoading(false);
-                    //setFormValido(true)
-                    //console.log(response, "1");
-                    return response;
-                })
-                .then(response => {
-                    axios.post(baseUrl + "users/login", {
-                        "email": `${response.data.email}`,
-                        "password": `${password.campo}`
-                    }).then(response => {
-                        sessionStorage.setItem("token", `${response.data.token}`);
-                        sessionStorage.setItem("email", email.campo)
-                        sessionStorage.setItem("log", "true");
-                        setLog(true)
-                        setFormValido(true);
-                        <Redirect to="/" />
-                    })
-                        .catch(error => {
-                            console.log(error);
-                        })
-                })
-                .catch(error => {
-                    //setErrorMessage(error.message);
-                    //setLoading(false);
-                    console.log(error.response.status);
-                    if (error.response.status === 400) {
-                        setError("El usuario ya existe")
-                        setEmail({ valido: false })
-                        setFormValido(false)
-                        sessionStorage.setItem("log", "false");
-                        sessionStorage.removeItem("token")
-                    }
-                });
+            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail)
 
-
-            //window.location.pathname = "/login"
         } else {
             setFormValido(false)
         }
