@@ -474,4 +474,11 @@ VALUES (8,4);
 INSERT INTO `proyecto_integrador`.`featurePerProduct` (idFeature,idProduct)
 VALUES (11,11);
 
-INSERT INTO `proyecto_integrador`.`user` (`idUser`, `userEmail`, `userName`) VALUES ('1', 'grupo1@digital.com', 'grupo1');
+INSERT INTO `proyecto_integrador`.`role`(name)
+VALUES (1);
+
+INSERT INTO `proyecto_integrador`.`user` (`userName`, `userSurname`,`userEmail`, `password`) VALUES ('grupo','uno', 'grupo1@digital.com', 'grupouno');
+
+SELECT * FROM user;
+
+DELETE FROM user WHERE id=3
