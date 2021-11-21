@@ -3,7 +3,7 @@ import Styles from './styles.module.css';
 import StylesApp from "../../App.module.css"
 import Card from './Card.jsx';
 import arrow from "./img/arrow.svg";
-import { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria } from '../../axiosCollection/Cards/axiosCollection';
+import { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria } from '../../axiosCollection/Cards/AxiosCards';
 
 export default function Cards({ category, city, search, clickBusqueda, favourite }) {
     const [data, setData] = useState([]);
