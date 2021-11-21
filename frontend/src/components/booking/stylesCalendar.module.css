@@ -86,6 +86,11 @@
   fill: var(--secondary-color); 
 }
 
+.infoBox {  
+  display: inline-block;
+  padding-left: 5px;
+}
+
 .calendarInfo {
   width: 300px;
   margin-left: 15px;
@@ -98,13 +103,7 @@
   left: 25px;
 }
 
-.infoBox {  
-  display: flex;
-  align-items: center; 
-  float: left;
-  z-index: 99; 
-  position: relative;
-}
+
 
 .dateBarDayContainer {
   display: flex;
@@ -217,10 +216,10 @@
     margin: 2px 2px 2px 2px;
   } 
 
-  .dateBarTitle svg, .calendarInfo {
+  /* .dateBarTitle svg, .calendarInfo {
     margin: 10px;
   }  
-
+ */
 }    
 
 @media all and (max-width: 680px) {   
