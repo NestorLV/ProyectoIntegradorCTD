@@ -5,6 +5,7 @@ import com.proyecto.integrador.service.ICityService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,18 +31,21 @@ public class CityController implements CRUDController<CityDTO>{
     }
 
     @Operation(summary = "Add a new city", description = "Creates a new city")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<CityDTO> create(@RequestBody CityDTO city) {
         return ResponseEntity.ok(cityService.save(city));
     }
 
     @Operation(summary = "Update an existing city", description = "Updates some information of an exiting city")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<CityDTO> updateById(@RequestBody CityDTO city) throws FindByIdException {
         return ResponseEntity.ok(cityService.update(city));
     }
 
     @Operation(summary = "Delete a city by ID", description = "Delete a city by id")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws FindByIdException {
         cityService.deleteById(id);

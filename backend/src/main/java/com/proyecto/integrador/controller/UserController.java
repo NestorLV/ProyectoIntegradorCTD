@@ -25,11 +25,6 @@ public class UserController implements CRUDController <UserDTO> {
     @Autowired
     IUserService userService;
 
-/*    @GetMapping("/403")
-    public void forbidden() throws UnauthorizedAccessException {
-        throw new UnauthorizedAccessException("No tiene permisos para acceder a este recurso", "User Role");
-    }*/
-
     @Operation(summary = "Find All Users")
     @GetMapping("/all")
     public ResponseEntity<List<UserDTO>> getAll() throws FindByIdException{

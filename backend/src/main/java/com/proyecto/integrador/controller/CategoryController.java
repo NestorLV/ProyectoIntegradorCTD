@@ -44,6 +44,7 @@ public class CategoryController implements CRUDController<CategoryDTO> {
     }
 
     @Operation(summary = "Delete a category")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws FindByIdException {
         categoryService.deleteById(id);
