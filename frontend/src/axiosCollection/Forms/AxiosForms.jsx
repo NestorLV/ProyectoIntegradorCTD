@@ -7,8 +7,8 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         "password": `${password}`
     }).then(response => {
         sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("name", response.data.name);
-        sessionStorage.setItem("surname", response.data.surname);
+        sessionStorage.setItem("name", `${response.data.name.charAt(0).toUpperCase()}${response.data.name.slice(1)}`);
+        sessionStorage.setItem("surname", `${response.data.surname.charAt(0).toUpperCase()}${response.data.surname.slice(1)}`);
         sessionStorage.setItem("email", email);
         sessionStorage.setItem("iniciales",`${response.data.name.slice(0, 1).toUpperCase()}${response.data.surname.slice(0, 1).toUpperCase()}`)
         sessionStorage.setItem("log", "true");

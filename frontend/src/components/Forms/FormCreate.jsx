@@ -96,7 +96,7 @@ function FormCreate({ setActiveCreate, setActiveLogin, setLog }) {
 
     const validarConfirmPassword = () => {
         if (confirmPassword.campo.length === 0) {
-            setConfirmPassword({ ...confirmPassword, valido: false, error: "La contraseña es obligatoria"})
+            setConfirmPassword({ ...confirmPassword, valido: false, error: "El campo es obligatoria"})
         } else if ((password.campo) !== (confirmPassword.campo)) {
             setConfirmPassword({ ...confirmPassword, valido: false, error:"Las contraseñas deben ser iguales"})
         }else{
