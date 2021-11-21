@@ -7,6 +7,7 @@ import com.proyecto.integrador.service.IProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,18 +33,21 @@ public class ProductController implements CRUDController<ProductDTO> {
     }
 
     @Operation(summary = "Add a new product")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO product) throws FindByIdException {
         return ResponseEntity.ok(productService.save(product));
     }
 
     @Operation(summary = "Update an existing product")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<ProductDTO> updateById(@RequestBody ProductDTO product) throws FindByIdException {
         return ResponseEntity.ok(productService.update(product));
     }
 
     @Operation(summary = "Delete a product")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws FindByIdException {
         productService.deleteById(id);
