@@ -6,6 +6,7 @@
 
 .containerPrincipal{
  display: flex;
+ height: calc(100vh - 80px - 58px);
  justify-content: center;
   width: 100%;
 }
@@ -15,7 +16,7 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 80px - 58px);
+ 
   justify-content: center;
   top: 0;
   width: 35%;
@@ -42,10 +43,14 @@
 }
 
 .fullName {
-  align-items: center;
   display: flex;
-  justify-content: space-around;
+flex-direction: column;
   width: 100%;
+}
+
+.containerFullname{
+  display: flex;
+ justify-content: space-around;
 }
 
 .inputLabel label {
@@ -55,24 +60,23 @@
 }
 
 .inputLabel {
-  height: 65px;
   justify-content: space-between;  
 }
 
-.inputLabel input,
+input,
 .boton button {
-  border: 0;
+  border:none;
   border-radius: 5px;
   box-shadow: 1px 1px 2px 2px #d1cfcf;
   height: 40px;
   width: 34vw;
 }
 
-.inputLabel input{
+input{
   padding-left: 10px;
 }
 
-.inputText input[type="text"]{
+input[type="text"]{
   width: 16.5vw;
 }
 
@@ -81,19 +85,21 @@ form ul {
 }
 
 .errorContainer{
-  height: 2.5rem;
+  height: 1rem;
   font-size: 12px;
+ 
 }
 
 .error {
   color: red;
+  font-size: 8pt;
   font-weight: bold;
   text-align: right;
   width: 34vw;
 }
 
 .boton button,
-.inputLabel p {
+.boton p {
   align-self: center;
   width: 206px;
 }
@@ -115,9 +121,9 @@ form ul {
   color: #4285f4;
 }
 
-.inputError input{
+.inputError{
   background-color: #FFE1E1;
-  border: solid 1px red;
+  border: solid 2px red;
 }
 
 .inputHidePassword{
@@ -166,32 +172,45 @@ form ul {
 
 
 @media all and (max-width: 769px) {
-  .containerForm{
+  .containerPrincipal{
     height: calc(100vh - 99px - 58px);
+  }
+  .containerForm{
+   
     width:50%;
   }
 
-  .inputLabel input,
+  input,
   .boton button,
-  .inputLabel input[type="text"],
-  .error {
-    width: 45vw;
+  .error,
+  input[type=text] {
+    width: 48vw;
   }
 
   .formFlex{
-    height:60vh;
+    height:55vh;
+    min-height: 400px;
   }
 
-  .fullName {
+  .containerFullname {
     flex-direction: column;
+  }
+
+  .fullName{
+    align-items: center;
   }
 
   .apellido{
     margin-top: 5px;
   }
 
+  .error{
+    width:45vw;
+  }
+
   .login{
     height:38vh;
+    min-height: 300px;
   } 
 
   .confirm{
@@ -206,19 +225,19 @@ form ul {
 
 @media all and (max-width: 415px) {
   .containerForm {
-    height: calc(95vh - 93px - 58px);    
+    height: calc(100vh - 93px - 58px);    
     justify-content: space-evenly;
     width: 75%;
   }
 
   .containerForm h3 {
     margin:0;
-    padding-bottom: 25px;
+   
   }
   
-  .inputLabel input,
+  input,
   .boton button,
-  .inputLabel input[type="text"],
+  input[type="text"],
   .error{
     width: 72vw;
   }
@@ -230,5 +249,10 @@ form ul {
   .passLogin{
     bottom: 36.6vh;
   }
-  
+  .formFlex{
+    height: 59vh;
+  }
+  .login{
+    height:40vh
+  }
 }

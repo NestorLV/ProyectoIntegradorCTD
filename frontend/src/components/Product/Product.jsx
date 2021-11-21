@@ -11,7 +11,7 @@ import InfoBar from "./InfoBar";
 import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
 import Spinner from "../spinner/Spinner";
-import { AxiosGetProductoPorId } from "../../axiosCollection/Product/axiosCollection"
+import { AxiosGetProductoPorId } from "../../axiosCollection/Product/AxiosProduct"
 
 
 function Product(props) {

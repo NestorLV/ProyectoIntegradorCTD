@@ -1,12 +1,11 @@
 import axios from "axios";
 const baseUrl = "http://localhost:8080/"
 
-function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail){
+function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setLoading){
     axios.post(baseUrl + "users/login", {
         "email": `${email}`,
         "password": `${password}`
     }).then(response => {
-        setFormValido(true);
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("name", response.data.name);
         sessionStorage.setItem("surname", response.data.surname);
@@ -15,10 +14,12 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail){
         sessionStorage.setItem("log", "true");
         setLog(true);
         setFormValido(true);
+        setLoading(false);      
     })
     .catch(error => {
+        console.log(error);
         if (error.response.status !== 200) {
-            setError("Lamentablemente no ha podido iniciar sesión. Por favor intente más tarde")
+            setError("Las credenciales son inválidas")
             setEmail({ valido: false })
             setFormValido(false)
             sessionStorage.setItem("log", "false");
@@ -27,7 +28,7 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail){
     })
 }
 
-function AxiosCreate(name, surname, email, password, setFormValido, setLog, setError, setEmail){
+function AxiosCreate(name, surname, email, password, setFormValido, setLog, setError, setEmail, setLoading){
     axios.post(baseUrl + "users/create", {
         "name": `${name}`,
         "surname": `${surname}`,
@@ -42,7 +43,7 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
         return response;
     })
     .then(response => {
-        AxiosLogin(email, password, setFormValido, setLog, setError, setEmail)
+        AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setLoading)
     })
     .catch(error => {
         //setErrorMessage(error.message);

@@ -2,13 +2,16 @@ import styles from "./styles.module.css"
 import { Link } from "react-router-dom"
 import { useState } from "react";
 import hidePassword from "./icons/hidePassword.png"
-import {AxiosLogin} from "../../axiosCollection/Forms/AxiosForms"
+import { AxiosLogin } from "../../axiosCollection/Forms/AxiosForms"
+import Spinner from "../spinner/Spinner";
 
 export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
     const [email, setEmail] = useState({ campo: "", valido: true });
     const [password, setPassword] = useState({ campo: "", valido: true });
     const [error, setError] = useState("")
     const [formValido, setFormValido] = useState(false)
+    const [loading, setLoading] = useState(true);
+   
 
     const baseUrl = "http://localhost:8080/"
 
@@ -48,8 +51,8 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
         //validarEmail();
         //validarPassword();
 
-        AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail)
-      
+        AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail, setLoading)
+
     }
 
     function mostrarContrasena() {
@@ -65,28 +68,30 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
 
     return (
         <div className={styles.containerPrincipal}>
-            <div className={styles.containerForm}>
-                <h3>Iniciar sesión</h3>
-                <form className={`${styles.formFlex} ${styles.login}`} onSubmit={sendData}>
-                    <div className={`${styles.inputLabel} ${!email.valido ? styles.inputError : null}`}>
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" name="email" id="email" value={email.campo} onChange={handleChangeEmail} />
-                    </div>
-                    <div className={`${styles.inputLabel} ${!password.valido ? styles.inputError : null}`}>
-                        <label for="password">Contraseña</label>
-                        <div className={styles.inputHidePassword}>
-                            <input type="password" name="password" id="password" value={password.campo} onChange={handleChangePassword} />
-                            <img src={hidePassword} alt="icon hide password" className={`${styles.hidePassword} ${styles.passLogin}`} onClick={mostrarContrasena} />
-                        </div>
-                    </div>
+           
 
-                    {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}
-                    <div className={`${styles.inputLabel} ${styles.boton}`}>
-                        <button type="submit">Ingresar</button>
-                        <p>¿Aún no tenés cuenta?<Link to="/create"> Registrate</Link></p>
-                    </div>
-                </form>
-            </div>
+                <div className={styles.containerForm}>
+                    <h3>Iniciar sesión</h3>
+                    <form className={`${styles.formFlex} ${styles.login}`} onSubmit={sendData}>
+                        <div className={`${styles.inputLabel} `}>
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" name="email" id="email" value={email.campo} className={!email.valido ? styles.inputError : null} onChange={handleChangeEmail} />
+                        </div>
+                        <div className={`${styles.inputLabel} `}>
+                            <label for="password">Contraseña</label>
+                            <div className={styles.inputHidePassword}>
+                                <input type="password" name="password" id="password" value={password.campo} className={!password.valido ? styles.inputError : null} onChange={handleChangePassword} />
+                                <img src={hidePassword} alt="icon hide password" className={`${styles.hidePassword} ${styles.passLogin}`} onClick={mostrarContrasena} />
+                            </div>
+                        </div>
+
+                        {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}
+                        <div className={`${styles.inputLabel} ${styles.boton}`}>
+                            <button type="submit">Ingresar</button>
+                            <p>¿Aún no tenés cuenta?<Link to="/create"> Registrate</Link></p>
+                        </div>
+                    </form>
+                </div>
         </div>
     )
 }
