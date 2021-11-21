@@ -1,9 +1,7 @@
 import styles from "./styles.module.css";
 import React, { useEffect, useState } from "react";
-import ValidCredentials from "../../credentials/ValidCredentials";
 import { Link } from "react-router-dom";
 import hidePassword from "./icons/hidePassword.png";
-import axios from "axios";
 import { AxiosCreate } from "../../axiosCollection/Forms/AxiosForms"
 
 

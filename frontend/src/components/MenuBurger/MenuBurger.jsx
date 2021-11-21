@@ -5,7 +5,6 @@ import logoLinkedIn from "./img/IconLinkedIn.png";
 import logoTwitter from "./img/IconTw.png";
 import logoIg from "./img/IconIg.png";
 import line from "./img/Line.png";
-import ValidCredentials from "../../credentials/ValidCredentials";
 import { MenuBurgerWrapper } from "./MenuBurgerWrapped.jsx";
 import Share from '../../components/Product/Share';
 import iconSocial from "./img/icon-share.svg"

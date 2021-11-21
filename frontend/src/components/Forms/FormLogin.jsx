@@ -3,14 +3,14 @@ import { Link } from "react-router-dom"
 import { useState } from "react";
 import hidePassword from "./icons/hidePassword.png"
 import { AxiosLogin } from "../../axiosCollection/Forms/AxiosForms"
-import Spinner from "../spinner/Spinner";
 
-export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
+
+export default function FormLogin({ setLoading, setActiveLogin, setActiveCreate, setLog }) {
     const [email, setEmail] = useState({ campo: "", valido: true });
     const [password, setPassword] = useState({ campo: "", valido: true });
     const [error, setError] = useState("")
     const [formValido, setFormValido] = useState(false)
-    const [loading, setLoading] = useState(true);
+   
    
 
     const baseUrl = "http://localhost:8080/"
@@ -48,11 +48,8 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
 
     const sendData = (event) => {
         event.preventDefault();
-        //validarEmail();
-        //validarPassword();
-
+        setLoading(true)
         AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail, setLoading)
-
     }
 
     function mostrarContrasena() {
@@ -63,7 +60,6 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
         } else {
             tipo.type = "password";
         }
-
     }
 
     return (

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ValidCredentials from '../../credentials/ValidCredentials';
 import logo from "./img/logoWguest.jpg";
 import Styles from "./styles.module.css"
 import StylesApp from "../../App.module.css"
@@ -10,13 +9,14 @@ import MenuButton from '../../components/MenuBurger/MenuButton';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
-export default function Header({ activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
+export default function Header({ setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
 
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
     const baseUrl = "http://localhost:8080/"
 
     function handleLogOut() {
+        setLoading(true)
         sessionStorage.setItem("log", "false")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
