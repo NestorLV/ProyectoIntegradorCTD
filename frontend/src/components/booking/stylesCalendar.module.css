@@ -140,9 +140,7 @@
 /*  media queries responsive */
 
 @media all and (min-width: 1080px) {
-  .contenedorCalendario > div > div > div > div {
-    width: 50%;
-  }
+  
 
   .contenedorCalendario > div > div > div > div > div:first-child {
     position: relative;
@@ -154,7 +152,7 @@
     box-shadow: 0 3px 3px grey;
     color: white;
     position: absolute;
-    left: 10px;
+    left: clamp(-30px,-8%,-45px);
     transition: all 0.3s;
     top: 150px;
     z-index: 1;
@@ -169,7 +167,7 @@
     box-shadow: 0 3px 3px grey;
     color: white;
     position: absolute;
-    right: 10px;
+    right: clamp(-30px,-8%,-45px);
     top: 150px;
     transition: all 0.3s;
     z-index: 1;
@@ -178,17 +176,23 @@
  
 }
 
-@media all and (min-width: 700px) {
+@media all and (min-width: 720px) {
   .contenedorCalendario > div {
     justify-content: center;
     width: 100%;
+  }
+  .contenedorCalendario > div > div > div > div {
+    width: 46%;
+    
+  }
+  .contenedorCalendario > div > div > div > div > div, .contenedorCalendario > div > div > div > div > div:last-child > div> div  {
+    justify-content: space-between;
   }
 }
 
 @media all and (min-width: 415px) {
   .contenedorCalendario > div > div > div {
-    justify-content: center;
-  }  
+    justify-content: center;  }  
 } 
 
 @media all and (max-width: 1200px) {
@@ -205,11 +209,6 @@
     flex-direction: column;
     align-items: flex-start;
   }
-
-  /* .calendarInfo {
-    min-width: 80%;
-    max-width: 100%
-  }  */
 
   .dateBar .dateBarTitleBox .dateBarTitle h2 {
     min-width: 100%;  
@@ -258,9 +257,5 @@
     right: 0;
   }
   
-
-  @media all and (max-width: 520px) {   
-    
-  }
 }
 

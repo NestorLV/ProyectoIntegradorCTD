@@ -198,6 +198,7 @@ min-width: 80px;
 .cardCategory p,
 .iconLocation {
   margin-right: 4px;
+  width: min-content;
 }
 
 .cardName {
