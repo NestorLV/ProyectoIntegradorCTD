@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -43,6 +44,12 @@ public class UserController implements CRUDController <UserDTO> {
         return ResponseEntity.ok(userService.findById(idUser));
     }
 
+    @Operation(summary = "Find user by email", description = "Returns a single user")
+    @GetMapping("/getByEmail/{email}")
+    public ResponseEntity<UserDTO> getByEmail(@PathVariable String email){
+        return ResponseEntity.ok(userService.findByEmail(email));
+    }
+
     @Operation(summary = "Update an existing user")
     @PutMapping("/update")
     public ResponseEntity<UserDTO> updateById(@RequestBody UserDTO user) throws FindByIdException{
@@ -64,8 +71,8 @@ public class UserController implements CRUDController <UserDTO> {
 
     @Operation(summary = "User login")
     @PostMapping("/login")
-    public ResponseEntity<JwtResponse> validateLogIn(@RequestBody UserDTO userDTO) throws BadRequestException {
-        String token = userService.validateLogIn(userDTO);
-        return ResponseEntity.ok(new JwtResponse(token));
+    public ResponseEntity<?> validateLogIn(@RequestBody UserDTO userDTO) throws BadRequestException {
+        Map datos = userService.validateLogIn(userDTO);
+        return ResponseEntity.ok(datos);
     }
 }

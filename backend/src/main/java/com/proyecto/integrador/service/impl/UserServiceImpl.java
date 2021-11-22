@@ -2,16 +2,11 @@ package com.proyecto.integrador.service.impl;
 
 
 import com.proyecto.integrador.DTO.ProductDTO;
-import com.proyecto.integrador.DTO.RoleDTO;
 import com.proyecto.integrador.DTO.UserDTO;
-import com.proyecto.integrador.config.jwt.JwtAuthenticationController;
-import com.proyecto.integrador.config.jwt.JwtRequest;
 import com.proyecto.integrador.config.jwt.JwtTokenUtil;
 import com.proyecto.integrador.config.jwt.JwtUserDetailsService;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
-import com.proyecto.integrador.persistence.entity.Product;
-import com.proyecto.integrador.persistence.entity.Role;
 import com.proyecto.integrador.persistence.entity.User;
 import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import com.proyecto.integrador.persistence.repository.IUserRepository;
@@ -23,11 +18,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserDetailsService, IUserService {
@@ -125,11 +117,16 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
     // Agregar más validaciones y ver lo del UserDTO RequestBody
     @Override
-    public String validateLogIn(UserDTO userDTO) throws BadRequestException {
-        if (userRepository.findByEmail(userDTO.getEmail()).isEmpty()) {
+    public Map<String, String> validateLogIn(UserDTO userDTO) throws BadRequestException {
+        Map<String, String> datos = new HashMap<>();
+        Optional<User> user= userRepository.findByEmail(userDTO.getEmail());
+        if (user.isEmpty()) {
             throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername("javainuse");
-        return jwtTokenUtil.generateToken(userDetails);
+        datos.put("name",user.get().getName());
+        datos.put("surname", user.get().getSurname());
+        datos.put("token", jwtTokenUtil.generateToken(userDetails));
+        return datos;
     }
 }
