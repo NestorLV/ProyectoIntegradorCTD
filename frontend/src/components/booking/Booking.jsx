@@ -17,7 +17,8 @@ export default function Booking(props) {
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     const [valueDate, setValueDate] = useState([sessionStorage.getItem("startDate") != null ? sessionStorage.getItem("startDate") : null, sessionStorage.getItem("endDate") != null ? sessionStorage.getItem("endDate") : null]);
-
+    const [arrivalSchedule, setArrivalSchedule] = useState("")
+    
     let { id } = useParams();
     console.log("id", useParams())
     const [prod, setProd] = useState({
@@ -59,7 +60,7 @@ export default function Booking(props) {
         }
         else {return ""}
     }
-  
+
     if (errorMessage && loading) {                      
         return (
             <section className={StylesApp.delimiter}>
@@ -81,10 +82,10 @@ export default function Booking(props) {
                                     <div>
                                         <FormBooking />
                                         <CalendarBar valueDate={valueDate} setValueDate={setValueDate} />
-                                        <ArrivalTimeBar />
+                                        <ArrivalTimeBar setArrivalSchedule={setArrivalSchedule}/>
                                     </div>
                                     <div>
-                                        <DetailBar image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification*2} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} />
+                                        <DetailBar image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification*2} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} arrivalSchedule={arrivalSchedule}/>
                                     </div>
                                 </div>
                             </>

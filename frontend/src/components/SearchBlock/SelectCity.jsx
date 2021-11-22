@@ -120,7 +120,7 @@ function SelectCity({handleCity}) {
       options={options}      
       isSearchable
       isClearable
-      getOptionValue={(option) => `${option.value}:`      
+      getOptionValue={(option) => `${option.value}:` 
       }
     />
   );

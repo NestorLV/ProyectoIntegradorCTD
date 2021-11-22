@@ -1,8 +1,18 @@
 import Styles from "./styles.module.css"
 import Select from "react-select"
+import TimeOption from "./TimeOption"
 
-export default function ArrivalTimeBar() {
-    const options = [
+export default function ArrivalTimeBar({setArrivalSchedule}) {
+    const times= ["10:00 AM", "11:00 AM","12:00 AM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM","10:00 PM"]
+
+    const options = times.map((time) => {
+        return {
+          value: `${time}`,
+          label: <TimeOption setArrivalSchedule={setArrivalSchedule} time={time} />,
+        };
+      })
+
+    /*const options = [
         { value: "10:00 AM", label: "10:00 AM" },
         { value: "11:00 AM", label: "11:00 AM" },
         { value: "12:00 AM", label: "12:00 AM" },
@@ -16,7 +26,7 @@ export default function ArrivalTimeBar() {
         { value: "08:00 PM", label: "08:00 PM" },
         { value: "09:00 PM", label: "09:00 PM" },
         { value: "10:00 PM", label: "10:00 PM" }
-    ]
+    ]*/
 
     const customStyles = {
         control: () => ({
@@ -49,9 +59,7 @@ export default function ArrivalTimeBar() {
         option: () => ({
             color: "#31363F",
             fontWeight: 700,
-            padding: "2px 15px",
-            paddingRight: "calc(100% - 85.46px)",
-            textAlignLast: "justify",
+            padding: "2px 15px",           
             ':hover': {
                 color: '#F0572D',
                 cursor: 'pointer',
@@ -74,7 +82,6 @@ export default function ArrivalTimeBar() {
         }),
     }
 
-
     return (
         <div className={Styles.containerArrival}>
             <h3>Tu horario de llegada</h3>
@@ -82,7 +89,12 @@ export default function ArrivalTimeBar() {
                 <h4>Tu habitación va a estar lista para el check-in entre las 10:00 AM y las 11:00 PM</h4>
                 <label>Indicá tu horario estimado de llegada</label>
                 <div className={Styles.selectContainer}>
-                    <Select options={options} placeholder="Seleccionar hora" styles={customStyles} />
+                    <Select 
+                        options={options} 
+                        placeholder="Seleccionar hora" 
+                        styles={customStyles} 
+                        getOptionValue={(option) => option.value}
+                    />
                 </div>
             </div>
         </div>

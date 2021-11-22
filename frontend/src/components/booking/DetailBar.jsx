@@ -1,11 +1,30 @@
 import Styles from "./styles.module.css"
 import iconLocation from "../Cards/img/IconLocation.svg";
 import ScoreStar from "../Product/ScoreStar";
+import axios from "axios";
 
 function DetailBar(props) {
-    const { image, category, name, city, country, reference, qualification, checkin, checkout } = props;
-
+    const { image, category, name, city, country, reference, qualification, checkin, checkout, arrivalSchedule } = props;
+    const baseUrl="http://localhost:8080/";
     let cantStar = Math.floor(qualification / 2);
+
+    const handleBooking = () => {
+        /*axios
+        .post(baseUrl + "products/scores/create", {
+            "arrivalSchedule": arrivalSchedule,
+            
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                setCalificacion_text(`Se envió correctamente la puntuación de: ${starIndex}`);
+            }
+    
+        })
+        .catch((error) => {
+            setErrorMessage(error);
+        });*/
+        console.log(arrivalSchedule);
+    }
 
     return (
         <div className={Styles.detailBar}>
@@ -33,7 +52,7 @@ function DetailBar(props) {
                         </div>
 
                     </div>
-                    <button>Confirmar Reserva</button>
+                    <button onClick={handleBooking} >Confirmar Reserva</button>
                 </div>
             </div>
 

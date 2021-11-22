@@ -82,7 +82,7 @@ input{
   padding-left: 10px;
 }
 
-input[type=text]{
+.containerFullname input[type=text]{
   width: 16.5vw;
   max-width: 255px;
 }
@@ -94,7 +94,8 @@ form ul {
 .errorContainer{
   height: 1rem;
   font-size: 12px;
- 
+  max-width: 520px;
+  width: 34vw;
 }
 
 .error {
@@ -102,7 +103,7 @@ form ul {
   font-size: 8pt;
   font-weight: bold;
   text-align: right;
-  width: 34vw;
+  
 }
 
 .boton button,

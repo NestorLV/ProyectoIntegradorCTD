@@ -5,21 +5,21 @@ export default function FormBooking() {
         <div className={`${Styles.containerForm}`}>
             <form>
                 <div className={Styles.block}>
-                    <div className={Styles.labelInput}>
+                    <div className={Styles.labelInputBooking}>
                         <label htmlFor="name">Nombre</label>
-                        <input type="text" name="name" id="name"></input>
+                        <input type="text" name="name" id="name" required></input>
                     </div>
-                    <div className={Styles.labelInput}>
+                    <div className={Styles.labelInputBooking}>
                         <label htmlFor="surname">Apellido</label>
-                        <input type="text" name="surname" id="surname" ></input>
+                        <input type="text" name="surname" id="surname" required></input>
                     </div>
                 </div>
                 <div className={Styles.block}>
-                    <div className={Styles.labelInput}>
+                    <div className={Styles.labelInputBooking}>
                         <label htmlFor="email">Correo electrónico</label>
-                        <input type="email" name="email" id="email"/>
+                        <input type="email" name="email" id="email" required/>
                     </div>
-                    <div className={Styles.labelInput}>
+                    <div className={Styles.labelInputBooking}>
                         <label htmlFor="city">Ciudad</label>
                         <input type="text" name="city" id="city" required></input>
                     </div>
