@@ -44,6 +44,7 @@
 
 .fullName {
   display: flex;
+  align-items: center;
 flex-direction: column;
   width: 100%;
 }
@@ -59,8 +60,11 @@ flex-direction: column;
   font-weight: var(--font-medium);
 }
 
-.inputLabel {
+.inputLabel,
+.containerFullname {
   justify-content: space-between;  
+  width: 34vw;
+  max-width: 520px;
 }
 
 input,
@@ -69,15 +73,16 @@ input,
   border-radius: 5px;
   box-shadow: 1px 1px 2px 2px #d1cfcf;
   height: 40px;
-  width: 34vw;
+  width: 100%;
 }
 
 input{
   padding-left: 10px;
 }
 
-input[type="text"]{
+input[type=text]{
   width: 16.5vw;
+  max-width: 255px;
 }
 
 form ul {
@@ -152,6 +157,7 @@ form ul {
 
 
 /* media queries */
+
 @media all and (min-height: 900px) {
   .passLogin{
     bottom: 50%;

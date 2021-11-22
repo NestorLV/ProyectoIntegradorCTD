@@ -143,7 +143,7 @@ function FormCreate({ setActiveCreate, setActiveLogin, setLog }) {
                                 <label for="name">Nombre</label>
                                 <input type="text" name="name" id="name" value={name.campo} className={!name.valido ? styles.inputError : null} onKeyUp={validarName} onChange={handleChangeName} />
                             </div>
-                            <div className={`${styles.inputLabel} ${styles.apellido} `}>
+                            <div className={`${styles.apellido} `}>
                                 <label for="surname">Apellido</label>
                                 <input type="text" name="surname" id="surname" onKeyUp={validarSurname} value={surname.campo} className={!surname.valido ? styles.inputError : null} onKeyUp={validarSurname} onChange={handleChangeSurname} />
                             </div>

@@ -30,25 +30,7 @@ export default function Header({ setLoading, activeCreate, activeLogin, isLogged
     }
     function handleHide() {
         setShowBurger(false)
-    }
-
-    
-    
-        if(sessionStorage.getItem("log")){
-            axios.get(baseUrl + `users/getByEmail/${sessionStorage.getItem("email")}`, {
-            headers:{
-                Authorization:`Bearer ${sessionStorage.getItem("token")}`
-            },
-            }).then(response => {
-                console.log(response);
-              
-            })
-            .catch(error => {
-                console.log(error.response);
-            })
-        
-        }
-   
+    }   
 
     return (
         <header className={`${Styles.header} ${StylesApp.delimiter}`} >
