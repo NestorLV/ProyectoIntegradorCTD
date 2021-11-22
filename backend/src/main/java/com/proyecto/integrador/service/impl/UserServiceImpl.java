@@ -119,11 +119,18 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     @Override
     public Map<String, String> validateLogIn(UserDTO userDTO) throws BadRequestException {
         Map<String, String> datos = new HashMap<>();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Optional<User> user= userRepository.findByEmail(userDTO.getEmail());
+
         if (user.isEmpty()) {
             throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
         }
+        if(!passwordEncoder.matches(userDTO.getPassword(), user.get().getPassword())){
+            throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
+        }
+
         final UserDetails userDetails = userDetailsService.loadUserByUsername("javainuse");
+        datos.put("id", user.get().getId().toString());
         datos.put("name",user.get().getName());
         datos.put("surname", user.get().getSurname());
         datos.put("token", jwtTokenUtil.generateToken(userDetails));
