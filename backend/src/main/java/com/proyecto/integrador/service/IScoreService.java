@@ -17,5 +17,5 @@ public interface IScoreService {
     void deleteById(Integer idScores) throws FindByIdException;
     ScoreDTO update(ScoreDTO scores) throws FindByIdException;
     Set<ScoreDTO> findAllByIdProduct(Integer idProduct)throws FindByIdException;
-    Integer average(Integer idProduct);
+    Double average(Integer idProduct);
 }

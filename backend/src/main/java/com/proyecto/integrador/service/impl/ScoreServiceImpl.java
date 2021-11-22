@@ -28,11 +28,11 @@ public class ScoreServiceImpl implements IScoreService {
     @Autowired
     ProductServiceImpl productService;
 
-    public Integer average(Integer idProduct) {
+    public Double average(Integer idProduct) {
         logger.debug("Iniciando método promedio de todas las puntuaciones");
 
         List<Score> scores = scoresRepository.findByProductId(idProduct);
-        int totalScore = 0;
+        Double totalScore = 0.0;
         if(scores != null && scores.size()!=0) {
             for (Score score : scores) {
                 totalScore += score.getScore();
@@ -40,7 +40,7 @@ public class ScoreServiceImpl implements IScoreService {
 
             return (totalScore / scores.size());
         }else{
-            return 0;
+            return 0.0;
         }
     }
     @Override
