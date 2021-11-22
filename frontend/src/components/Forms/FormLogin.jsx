@@ -5,9 +5,10 @@ import hidePassword from "./icons/hidePassword.png"
 import { AxiosLogin } from "../../axiosCollection/Forms/AxiosForms"
 import { style } from "@mui/system";
 import IconError from "./icons/iconError.svg"
+import { Redirect } from "react-router";
 
 
-export default function FormLogin({ bookingWithoutLogin, setLoading, setActiveLogin, setActiveCreate, setLog }) {
+export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoading, setActiveLogin, setActiveCreate, setLog }) {
     const [email, setEmail] = useState({ campo: "", valido: true });
     const [password, setPassword] = useState({ campo: "", valido: true });
     const [error, setError] = useState("")
@@ -48,10 +49,13 @@ export default function FormLogin({ bookingWithoutLogin, setLoading, setActiveLo
         }
     }*/
 
+    console.log(lastLocation);
+
     const sendData = (event) => {
         event.preventDefault();
         setLoading(true)
-        AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail, setLoading)
+        AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail, setLoading, lastLocation)
+        
     }
 
     function mostrarContrasena() {

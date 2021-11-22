@@ -1,7 +1,8 @@
 import axios from "axios";
+import { Redirect } from "react-router";
 const baseUrl = "http://localhost:8080/"
 
-function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setLoading){
+function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setLoading, lastLocation){
     axios.post(baseUrl + "users/login", {
         "email": `${email}`,
         "password": `${password}`
@@ -14,7 +15,10 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         sessionStorage.setItem("log", "true");
         setLog(true);
         setFormValido(true);
-        setLoading(false);      
+        setLoading(false);   
+        <Redirect to={`${lastLocation}`}/>
+        
+           
     })
     .catch(error => {
         console.log(error);

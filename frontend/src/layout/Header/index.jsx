@@ -8,7 +8,7 @@ import MenuBurger from '../../components/MenuBurger/MenuBurger';
 import MenuButton from '../../components/MenuBurger/MenuButton';
 import { Link } from "react-router-dom";
 
-export default function Header({ setBookingWithoutLogin, setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
+export default function Header({ setLastLocation, setBookingWithoutLogin, setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
 
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
@@ -19,6 +19,7 @@ export default function Header({ setBookingWithoutLogin, setLoading, activeCreat
         sessionStorage.setItem("log", "false")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
+        setLastLocation(window.location.pathname)
     }
 
     function handleShow() {

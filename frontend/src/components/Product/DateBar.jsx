@@ -74,7 +74,7 @@ function DateBar(props) {
             sessionStorage.setItem("startDate", startDate.toDateString());
             sessionStorage.setItem("endDate", endDate.toDateString());
         }
-
+        props.setLastLocation(window.location.pathname)
         props.setBookingWithoutLogin(true)
     };
 

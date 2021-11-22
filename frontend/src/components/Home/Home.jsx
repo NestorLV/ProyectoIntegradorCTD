@@ -22,7 +22,7 @@ export default function Home(props) {
         <>
           <SearchBlock handleSearch={props.handleSearch} handleCity={props.handleCity} />
           <Categories category={props.category} handleCategory={props.handleCategory} />
-          <Cards category={props.category} search={props.search} city={props.city} clickBusqueda={props.clickBusqueda} favourite={props.favourite} />
+          <Cards setLastLocation={props.setLastLocation} category={props.category} search={props.search} city={props.city} clickBusqueda={props.clickBusqueda} favourite={props.favourite} />
         </>
       )}
     </>

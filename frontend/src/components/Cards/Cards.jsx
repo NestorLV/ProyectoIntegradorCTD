@@ -5,7 +5,7 @@ import Card from './Card.jsx';
 import arrow from "./img/arrow.svg";
 import { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria } from '../../axiosCollection/Cards/AxiosCards';
 
-export default function Cards({ category, city, search, clickBusqueda, favourite }) {
+export default function Cards({ setLastLocation, category, city, search, clickBusqueda, favourite }) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
@@ -59,7 +59,7 @@ export default function Cards({ category, city, search, clickBusqueda, favourite
                     <div className={Styles.cardsBox}>
                         {console.log(data, "dataCARDS")}
                         {dataLimited().map((e) =>
-                            <Card image={e.images.length > 0 ? e.images[0].url : ""}
+                            <Card setLastLocation={setLastLocation} image={e.images.length > 0 ? e.images[0].url : ""}
                                 cardCategory={e.category.title}
                                 name={e.name}
                                 city={e.city.name}
