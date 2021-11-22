@@ -151,8 +151,8 @@ public class ProductServiceImpl implements IProductService {
                     resultDTO.setAddress(item[5].toString());
                     resultDTO.setQualification(Double.parseDouble(item[6].toString()));
                     resultDTO.setFavourite((Boolean) item[7]);
-                    resultDTO.setCategory(categoryService.findById(productId));
-                    resultDTO.setCity(cityService.findById(productId));
+                    resultDTO.setCategory(categoryService.findById((Integer) item[8]));
+                    resultDTO.setCity(cityService.findById(cityId));
                     resultDTO.setRules((String) item[10]);
                     resultDTO.setHealth((String) item[11]);
                     resultDTO.setPolitics((String) item[12]);

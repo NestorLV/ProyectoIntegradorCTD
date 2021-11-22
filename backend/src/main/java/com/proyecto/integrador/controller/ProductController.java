@@ -74,7 +74,7 @@ public class ProductController implements CRUDController<ProductDTO> {
     }
 
     @Operation(summary = "Find by city and date range")
-    @GetMapping("/get/filter")
+    @PostMapping("/get/filter")
     public ResponseEntity<List<ProductDTO>> getCityDateRange(@RequestBody FilterDTO filterDTO)
             throws BadRequestException, FindByIdException {
             if(validate(filterDTO)){

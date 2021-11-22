@@ -22,14 +22,14 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             " p.qualification, p.favourite,p.idCategory,p.idCity, p.rules, p.health, p.politics " +
             " from product p " +
             "JOIN city c ON c.idCity = p.idCity " +
-            "JOIN reservation r ON r.idProduct = p.idProduct " +
+            "LEFT JOIN reservation r ON r.idProduct = p.idProduct " +
             "where p.idCity = ?1";
 
     String RESERVATION_QUERY_BY_DATES = "select p.idProduct, p.name, p.description, p.latitude, p.longitude, p.address," +
             " p.qualification, p.favourite,p.idCategory,p.idCity, p.rules, p.health, p.politics " +
             " from product p " +
             " JOIN city c ON c.idCity = p.idCity " +
-            " JOIN reservation r ON r.idProduct = p.idProduct " +
+            " LEFT JOIN reservation r ON r.idProduct = p.idProduct " +
             "AND (" +
             "(r.endDate < ?1 AND r.startDate < ?2) OR" +
             "(r.endDate > ?1 AND r.startDate > ?2)" +
@@ -40,7 +40,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             " p.qualification, p.favourite,p.idCategory,p.idCity, p.rules, p.health, p.politics " +
             " from product p " +
             "JOIN city c ON c.idCity = p.idCity " +
-            "JOIN reservation r ON r.idProduct = p.idProduct " +
+            "LEFT JOIN reservation r ON r.idProduct = p.idProduct " +
             "where p.idCity = ?1 "+
             "AND ( " +
             "(r.endDate < ?2 AND r.startDate< ?3) OR " +
