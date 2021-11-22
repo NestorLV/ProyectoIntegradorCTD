@@ -9,7 +9,7 @@ import MenuButton from '../../components/MenuBurger/MenuButton';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
-export default function Header({ setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
+export default function Header({ setBookingWithoutLogin, setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
 
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
@@ -20,9 +20,6 @@ export default function Header({ setLoading, activeCreate, activeLogin, isLogged
         sessionStorage.setItem("log", "false")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
-        sessionStorage.removeItem("name")
-        sessionStorage.removeItem("surname")
-        sessionStorage.removeItem("iniciales")
     }
 
     function handleShow() {
@@ -31,6 +28,12 @@ export default function Header({ setLoading, activeCreate, activeLogin, isLogged
     function handleHide() {
         setShowBurger(false)
     }   
+
+    function handleError(){
+        setBookingWithoutLogin(false)
+    }
+
+   
 
     return (
         <header className={`${Styles.header} ${StylesApp.delimiter}`} >
@@ -53,7 +56,7 @@ export default function Header({ setLoading, activeCreate, activeLogin, isLogged
                     </Link>
 
                     <Link to="/login">
-                        <button className={activeLogin ? Styles.hideButton : null} >
+                        <button className={activeLogin ? Styles.hideButton : null} onClick={handleError} >
                             Iniciar Sesión
                         </button>
                     </Link>

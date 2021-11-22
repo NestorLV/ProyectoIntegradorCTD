@@ -8,7 +8,7 @@ export default function LayoutPrincipal(props) {
 
     return (
         <div className={showBurger === true ? Styles.opacity : null}>            
-                <Header setLoading={props.setLoading} activeCreate={props.activeCreate} activeLogin={props.activeLogin} isLogged={props.isLogged} showBurger={showBurger} setShowBurger={setShowBurger} handleClean={props.handleClean} handleFavourite={props.handleFavourite}/>
+                <Header setBookingWithoutLogin={props.setBookingWithoutLogin} setLoading={props.setLoading} activeCreate={props.activeCreate} activeLogin={props.activeLogin} isLogged={props.isLogged} showBurger={showBurger} setShowBurger={setShowBurger} handleClean={props.handleClean} handleFavourite={props.handleFavourite}/>
                 <main >
                     {props.children}
                 </main>

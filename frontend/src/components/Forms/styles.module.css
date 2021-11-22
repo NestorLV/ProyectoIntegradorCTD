@@ -6,8 +6,9 @@
 
 .containerPrincipal{
  display: flex;
- height: calc(100vh - 80px - 58px);
+ align-items: center;
  justify-content: center;
+ height: calc(100vh - 80px - 58px);
   width: 100%;
 }
 
@@ -16,8 +17,8 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
- 
-  justify-content: center;
+ height:75%;
+  justify-content: space-evenly;
   top: 0;
   width: 35%;
 }
@@ -61,7 +62,8 @@ flex-direction: column;
 }
 
 .inputLabel,
-.containerFullname {
+.containerFullname,
+.errorLogin {
   justify-content: space-between;  
   width: 34vw;
   max-width: 520px;
@@ -155,6 +157,26 @@ form ul {
   bottom: 44.5vh;
 }
 
+.errorLogin{
+  background-color:rgba(255,0,0,.1);
+  border-radius: 8px;
+  color: #B00020;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px;
+  
+}
+.errorLogin div{
+  padding-left: 10px;
+}
+
+.hide{
+  display: none;
+}
+
 
 /* media queries */
 
@@ -189,8 +211,10 @@ form ul {
   input,
   .boton button,
   .error,
-  input[type=text] {
-    width: 48vw;
+  input[type=text] ,
+  .inputLabel,
+  .errorLogin{
+    width: 100%;
   }
 
   .formFlex{
@@ -245,7 +269,7 @@ form ul {
   .boton button,
   input[type="text"],
   .error{
-    width: 72vw;
+    width: 100%;
   }
 
   .confirm{

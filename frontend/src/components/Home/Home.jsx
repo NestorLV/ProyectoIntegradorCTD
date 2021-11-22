@@ -8,6 +8,12 @@ export default function Home(props) {
   props.setActiveCreate(false)
   props.setActiveLogin(false)
 
+  if(sessionStorage.getItem("log")==="false" ){
+    sessionStorage.removeItem("iniciales")
+    sessionStorage.removeItem("name")
+    sessionStorage.removeItem("surname")
+  }
+
   return (
     <>
       {props.loading ? (
