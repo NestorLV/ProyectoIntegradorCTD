@@ -4,13 +4,13 @@ import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.nio.file.AccessDeniedException;
 import java.util.Date;
 
 
@@ -40,4 +40,9 @@ public class GlobalException extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("No tiene permisos para acceder a este recurso");
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public final ResponseEntity<ErrorMessage> handleAccessDeniedException() {
+        ErrorMessage errorDetails = new ErrorMessage("No tiene permisos para acceder a este recurso");
+        return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
+    }
 }

@@ -6,6 +6,7 @@ import com.proyecto.integrador.service.IImageService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,18 +32,21 @@ public class ImageController implements CRUDController<ImageDTO> {
     }
 
     @Operation(summary = "Add a new image", description = "Creates a new image")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ImageDTO> create(@RequestBody ImageDTO image) throws FindByIdException {
         return ResponseEntity.ok(imageService.save(image));
     }
 
     @Operation(summary = "Update an existing image", description = "Updates some information of an exiting image")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<ImageDTO> updateById(@RequestBody ImageDTO image) throws FindByIdException {
         return ResponseEntity.ok(imageService.update(image));
     }
 
     @Operation(summary = "Delete a image by ID", description = "Delete a image by id")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws FindByIdException {
         imageService.deleteById(id);

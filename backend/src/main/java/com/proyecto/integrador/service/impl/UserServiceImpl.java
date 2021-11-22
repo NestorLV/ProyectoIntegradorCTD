@@ -2,12 +2,11 @@ package com.proyecto.integrador.service.impl;
 
 
 import com.proyecto.integrador.DTO.ProductDTO;
-import com.proyecto.integrador.DTO.RoleDTO;
 import com.proyecto.integrador.DTO.UserDTO;
+import com.proyecto.integrador.config.jwt.JwtTokenUtil;
+import com.proyecto.integrador.config.jwt.JwtUserDetailsService;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
-import com.proyecto.integrador.persistence.entity.Product;
-import com.proyecto.integrador.persistence.entity.Role;
 import com.proyecto.integrador.persistence.entity.User;
 import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import com.proyecto.integrador.persistence.repository.IUserRepository;
@@ -20,9 +19,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserDetailsService, IUserService {
@@ -33,6 +30,10 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     ProductServiceImpl productService;
     @Autowired
     RoleServiceImpl roleService;
+    @Autowired
+    private JwtUserDetailsService userDetailsService;
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
 
     @Override
@@ -49,6 +50,9 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     @Override
     public UserDTO save(UserDTO userDTO) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar usuario");
+        if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
+            throw new BadRequestException("Ya hay un usuario creado con el email ingresado");
+        }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodedPassword);
@@ -101,7 +105,6 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         return user.toDto();
     }
 
-
     public boolean isFavourite(ProductDTO productDTO) {
         return false;
         /*if (findByEmail()) --> Validar usuario y filtrar los favoritos del usuario */
@@ -110,5 +113,27 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("El email no matchea con ningún usuario en la base de datos"));
+    }
+
+    // Agregar más validaciones y ver lo del UserDTO RequestBody
+    @Override
+    public Map<String, String> validateLogIn(UserDTO userDTO) throws BadRequestException {
+        Map<String, String> datos = new HashMap<>();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        Optional<User> user= userRepository.findByEmail(userDTO.getEmail());
+
+        if (user.isEmpty()) {
+            throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
+        }
+        if(!passwordEncoder.matches(userDTO.getPassword(), user.get().getPassword())){
+            throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
+        }
+
+        final UserDetails userDetails = userDetailsService.loadUserByUsername("javainuse");
+        datos.put("id", user.get().getId().toString());
+        datos.put("name",user.get().getName());
+        datos.put("surname", user.get().getSurname());
+        datos.put("token", jwtTokenUtil.generateToken(userDetails));
+        return datos;
     }
 }
