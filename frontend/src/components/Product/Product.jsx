@@ -65,7 +65,7 @@ function Product(props) {
                     <>
                         <TitleBar category={prod.category.title} name={prod.name} goBack={props.goBack} />
                         <ScoreBar reference={prod.reference} city={prod.city} qualification={prod.qualification} />
-                        <ImageBar images={prod.images} viewerIsOpen={viewerIsOpen} setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
+                        <ImageBar setBookingWithoutLogin={props.setBookingWithoutLogin} images={prod.images} viewerIsOpen={viewerIsOpen} setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
                         <DescriptionBar city={prod.city} description={prod.description} />
                         <FeaturesBar features={prod.features} />
                         <Datebar setBookingWithoutLogin={props.setBookingWithoutLogin} valueDate={valueDate} setValueDate={setValueDate} id={id} />

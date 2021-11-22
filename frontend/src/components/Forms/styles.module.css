@@ -267,11 +267,16 @@ form ul {
   
   input,
   .boton button,
-  input[type="text"],
   .error{
     width: 100%;
   }
 
+  input[type=text]{
+    max-width: 320px;
+  }
+  .containerFullname{
+    width: 100%;
+  }
   .confirm{
     bottom:31.7%
   }

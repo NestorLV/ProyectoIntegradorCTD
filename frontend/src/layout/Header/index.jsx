@@ -7,7 +7,6 @@ import StylesLayout from "../styles.module.css"
 import MenuBurger from '../../components/MenuBurger/MenuBurger';
 import MenuButton from '../../components/MenuBurger/MenuButton';
 import { Link } from "react-router-dom";
-import axios from 'axios';
 
 export default function Header({ setBookingWithoutLogin, setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
 
@@ -27,9 +26,10 @@ export default function Header({ setBookingWithoutLogin, setLoading, activeCreat
     }
     function handleHide() {
         setShowBurger(false)
+        setBookingWithoutLogin(false)
     }   
 
-    function handleError(){
+    function handleErrorLogin(){
         setBookingWithoutLogin(false)
     }
 
@@ -56,7 +56,7 @@ export default function Header({ setBookingWithoutLogin, setLoading, activeCreat
                     </Link>
 
                     <Link to="/login">
-                        <button className={activeLogin ? Styles.hideButton : null} onClick={handleError} >
+                        <button className={activeLogin ? Styles.hideButton : null} onClick={handleErrorLogin} >
                             Iniciar Sesión
                         </button>
                     </Link>

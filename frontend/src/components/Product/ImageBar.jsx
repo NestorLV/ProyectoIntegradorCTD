@@ -29,6 +29,11 @@ function ImageBar(props) {
     const handleToggle = (e) => {
         setLike(!isLike);
     }
+
+    function handleErrorLogin(){
+        props.setBookingWithoutLogin(false)
+    }
+
     let placeShareCall = "producto"
 
     let loggued = sessionStorage.getItem("log");
@@ -45,7 +50,7 @@ function ImageBar(props) {
                             <p>Para agregar favoritos, ingresa a tu cuenta</p>
                             <div className={Styles.buttons}>
                                 <Link to="/login">
-                                    <button  className={Styles.login}>
+                                    <button  className={Styles.login} onClick={handleErrorLogin}>
                                         Iniciar Sesión
                                     </button>
                                 </Link>
