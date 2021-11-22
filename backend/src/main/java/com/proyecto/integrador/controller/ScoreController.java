@@ -53,7 +53,7 @@ public class ScoreController implements CRUDController <ScoreDTO> {
 
     @Operation(summary = "Average", description = "Returns average score")
     @GetMapping("/average")
-    public ResponseEntity<Integer> getAverage(@PathVariable Integer idProduct) {
+    public ResponseEntity<Double> getAverage(@PathVariable Integer idProduct) {
         return ResponseEntity.ok(scoresService.average(idProduct));
     }
 }
