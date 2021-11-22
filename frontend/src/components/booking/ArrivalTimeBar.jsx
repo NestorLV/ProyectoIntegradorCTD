@@ -41,6 +41,10 @@ export default function ArrivalTimeBar() {
 
         }),
 
+        input: () => ({
+            opacity:0,
+            width:0
+        }),
 
         option: () => ({
             color: "#31363F",
