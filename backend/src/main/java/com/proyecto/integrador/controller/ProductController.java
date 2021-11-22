@@ -1,5 +1,6 @@
 package com.proyecto.integrador.controller;
 
+import com.proyecto.integrador.DTO.FilterDTO;
 import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
@@ -68,4 +69,30 @@ public class ProductController implements CRUDController<ProductDTO> {
         return ResponseEntity.ok(productService.findRecommendations());
     }
 
+    @Operation(summary = "Find by city and date range")
+    @GetMapping("/get/filter")
+    public ResponseEntity<List<ProductDTO>> getCityDateRange(@RequestBody FilterDTO filterDTO)
+            throws BadRequestException, FindByIdException {
+            if(validate(filterDTO)){
+                return ResponseEntity.ok(productService.findCityDateRange(filterDTO));
+        }
+
+        return null;
+    }
+
+    public Boolean validate(FilterDTO filterDTO){
+        if((filterDTO.getCityId() == null) &&
+                (filterDTO.getStartDate() == null &&filterDTO.getEndDate() == null)){
+                if(filterDTO.getCityId()==null&&(filterDTO.getStartDate()==null||filterDTO.getEndDate()==null)){
+                    return false;
+                }
+            return false;
+        }else {
+            return true;
+        }
+    }
+    /*@GetMapping("/get/test")
+    public List<ReservationResultDTO> test(){
+        return productService.test();
+    }*/
 }

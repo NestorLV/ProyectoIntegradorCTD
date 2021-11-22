@@ -46,6 +46,8 @@ public class Feature {
         this.type = type;
     }
 
+
+
     public FeatureDTO toDto() {
         FeatureDTO featureDTO = new FeatureDTO();
         featureDTO.setId(id);

@@ -55,6 +55,9 @@ public class Product {
     @ManyToMany(targetEntity = Feature.class, mappedBy = "products", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
     private Set<Feature> features = new HashSet<>();
 
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    private Set<Reservation> reservations= new HashSet<>();
+
     public Product() {
     }
 

@@ -6,21 +6,23 @@ import com.proyecto.integrador.persistence.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
+
 @Getter
 @Setter
-
 public class ReservationDTO {
     private Integer id;
     private String arrivalSchedule;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
     private Integer productId;
     private Integer userId;
 
     public ReservationDTO() {
     }
 
-    public ReservationDTO(String arrivalSchedule, String startDate, String endDate, Integer productId, Integer userId) {
+    public ReservationDTO(String arrivalSchedule, Date startDate, Date endDate, Integer productId, Integer userId) {
         this.arrivalSchedule = arrivalSchedule;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -28,7 +30,7 @@ public class ReservationDTO {
         this.userId = userId;
     }
 
-    public ReservationDTO(Integer id, String arrivalSchedule, String startDate, String endDate, Integer productId, Integer userId) {
+    public ReservationDTO(Integer id, String arrivalSchedule, Date startDate, Date endDate, Integer productId, Integer userId) {
         this.id = id;
         this.arrivalSchedule = arrivalSchedule;
         this.startDate = startDate;

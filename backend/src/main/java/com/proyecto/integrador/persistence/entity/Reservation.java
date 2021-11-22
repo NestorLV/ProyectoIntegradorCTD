@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -20,10 +21,12 @@ public class Reservation {
     private Integer id;
     @Column(name="arrivalSchedule", nullable = false)
     private String arrivalSchedule;
-    @Column(name="startDate", nullable = false, length = 2000)
-    private String startDate;
+    @Column(name="startDate", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
     @Column(name="endDate", nullable = false)
-    private String endDate;
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
     @ManyToOne
     @JoinColumn(name = "idProduct", nullable = false)
     private Product product;
@@ -34,7 +37,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Integer id, String arrivalSchedule, String startDate, String endDate, Product product, User user) {
+    public Reservation(Integer id, String arrivalSchedule, Date startDate, Date endDate, Product product, User user) {
         this.id = id;
         this.arrivalSchedule = arrivalSchedule;
         this.startDate = startDate;

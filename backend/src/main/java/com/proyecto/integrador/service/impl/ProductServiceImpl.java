@@ -1,13 +1,12 @@
 package com.proyecto.integrador.service.impl;
 
-import com.proyecto.integrador.DTO.ProductDTO;
-import com.proyecto.integrador.persistence.entity.Category;
-import com.proyecto.integrador.persistence.entity.City;
-import com.proyecto.integrador.persistence.entity.Product;
+import com.proyecto.integrador.DTO.*;
+import com.proyecto.integrador.persistence.entity.*;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.repository.IProductRepository;
 import com.proyecto.integrador.service.IProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,9 +37,11 @@ public class ProductServiceImpl implements IProductService {
         productDto.setFavourite(userService.isFavourite(productDto));
         productDto.setCategory(categoryService.findById(product.getCategory().getId()));
         productDto.setCity(cityService.findById(product.getCity().getId()));
+
         productDto.setQualification(scoreService.average(product.getId()));
         productDto.setImages(imageService.findByProductId(product.getId()));
         productDto.setFeatures(featureService.findByProduct(product));
+
         return productDto;
     }
 
@@ -129,7 +130,39 @@ public class ProductServiceImpl implements IProductService {
         logger.debug("Terminó la ejecución del método buscar productos por ciudad");
         return productsByCity;
     }
+    public List<ProductDTO> findCityDateRange(FilterDTO filterDTO) throws FindByIdException {
+        logger.debug("Iniciando método buscar productos por ciudad y dos fechas");
+        return findDateRange(filterDTO.getCityId(),filterDTO.getStartDate(),filterDTO.getEndDate());
+    }
 
+    public List<ProductDTO> findDateRange (Integer cityId, Date startDate, Date endDate) throws FindByIdException {
+        List<ProductDTO> products = new ArrayList<>();
+                    List<Object[]> byCityDateRange = productRepository.queryBuilder(cityId, startDate, endDate);
+
+            if(byCityDateRange != null && byCityDateRange.size() > 0) {
+                for(Object[] item : byCityDateRange) {
+                    Integer productId = (Integer) item[0];
+                    ProductDTO resultDTO = new ProductDTO();
+                    resultDTO.setId(productId);
+                    resultDTO.setName(item[1].toString());
+                    resultDTO.setDescription(item[2].toString());
+                    resultDTO.setLatitude((Double) item[3]);
+                    resultDTO.setLongitude((Double) item[4]);
+                    resultDTO.setAddress(item[5].toString());
+                    resultDTO.setQualification(Double.parseDouble(item[6].toString()));
+                    resultDTO.setFavourite((Boolean) item[7]);
+                    resultDTO.setCategory(categoryService.findById(productId));
+                    resultDTO.setCity(cityService.findById(productId));
+                    resultDTO.setRules((String) item[10]);
+                    resultDTO.setHealth((String) item[11]);
+                    resultDTO.setPolitics((String) item[12]);
+                    resultDTO.setImages(imageService.findByProductId(productId));
+                    resultDTO.setFeatures(featureService.findByProduct(new Product(productId)));
+                    products.add(resultDTO);
+                }
+            }
+               return products;
+    }
     // Revisar si se puede mejorar este método
     public List<ProductDTO> findRecommendations() throws FindByIdException {
         List<ProductDTO> recommendedProducts = new ArrayList<>();
