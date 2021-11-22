@@ -7,9 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -49,11 +47,11 @@ public class Product {
     @JoinColumn(name = "idCity", nullable = false)
     private City city;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private Set<Image> images = new HashSet<>();
+    private List<Image> images = new ArrayList<>();
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private  Set<Score> scores = new HashSet<>();
     @ManyToMany(targetEntity = Feature.class, mappedBy = "products", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
-    private Set<Feature> features = new HashSet<>();
+    private List<Feature> features = new ArrayList<>();
 
     public Product() {
     }
