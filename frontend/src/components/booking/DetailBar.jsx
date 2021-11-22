@@ -8,28 +8,6 @@ function DetailBar(props) {
     const baseUrl="http://localhost:8080/";
     let cantStar = Math.floor(qualification / 2);
 
-    const handleBooking = () => {
-        axios
-        .post(baseUrl + "reservations/create", {
-            arrivalSchedule: arrivalSchedule,
-            startDate:checkin,
-            endDate:checkout, 
-            idProduct:id,
-            idUser:sessionStorage.getItem("id")
-        },{
-            headers:{
-                Authorization:`Bearer ${sessionStorage.getItem("token")}`
-            }
-        })
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-        
-    }
-
     return (
         <div className={Styles.detailBar}>
             <h2>Detalle de la Reserva</h2>
@@ -56,7 +34,7 @@ function DetailBar(props) {
                         </div>
 
                     </div>
-                    <button onClick={handleBooking} >Confirmar Reserva</button>
+                    <button >Confirmar Reserva</button>
                 </div>
             </div>
 

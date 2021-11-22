@@ -61,6 +61,8 @@ export default function Booking(props) {
         else {return ""}
     }
 
+    console.log(formatDate(valueDate[0]));
+
     if (errorMessage && loading) {                      
         return (
             <section className={StylesApp.delimiter}>

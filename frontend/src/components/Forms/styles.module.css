@@ -212,7 +212,8 @@ form ul {
   input,
   .boton button,
   .error,
-  input[type=text] ,
+  .containerFullname,
+  .containerFullname input[type=text],
   .inputLabel,
   .errorLogin{
     width: 100%;
@@ -225,6 +226,10 @@ form ul {
 
   .containerFullname {
     flex-direction: column;
+  }
+
+  .containerFullname input[type=text]{
+    max-width: 100%;
   }
 
   .fullName{

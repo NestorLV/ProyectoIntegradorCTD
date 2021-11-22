@@ -108,7 +108,7 @@ input {
   width: 100%;
 }
 
-.labelInput input:disabled {
+.labelInputBooking input:disabled {
   background-color: #dfe4ea;
 }
 
@@ -475,11 +475,11 @@ input {
     padding:  0;
   }
 
-  .labelInput {
+  .labelInputBooking {
     width: 100%;
   }
 
-  .labelInput input {
+  .labelInputBooking input {
     padding: 12px;
   }
 
