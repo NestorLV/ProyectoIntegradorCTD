@@ -2,29 +2,30 @@ import axios from "axios";
 import { Redirect } from "react-router";
 const baseUrl = "http://localhost:8080/"
 
-function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setLoading, lastLocation){
+function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation){
     axios.post(baseUrl + "users/login", {
         "email": `${email}`,
         "password": `${password}`
     }).then(response => {
-        sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("name", `${response.data.name.charAt(0).toUpperCase()}${response.data.name.slice(1)}`);
         sessionStorage.setItem("surname", `${response.data.surname.charAt(0).toUpperCase()}${response.data.surname.slice(1)}`);
-        sessionStorage.setItem("email", email);
         sessionStorage.setItem("iniciales",`${response.data.name.slice(0, 1).toUpperCase()}${response.data.surname.slice(0, 1).toUpperCase()}`)
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("id", response.data.id);
+        sessionStorage.setItem("email", email);
         sessionStorage.setItem("log", "true");
-        setLog(true);
+        setEmail({ valido: true })
+        setPassword({ valido: true })
         setFormValido(true);
-        setLoading(false);   
-        <Redirect to={`${lastLocation}`}/>
-        
-           
+        setLoading(false); 
+        setLog(true);
     })
     .catch(error => {
         console.log(error);
         if (error.response.status !== 200) {
             setError("Las credenciales son inválidas")
-            setEmail({ valido: false })
+            setEmail({ campo:email, valido: false })
+            setPassword({ campo:password, valido: false })
             setFormValido(false)
             sessionStorage.setItem("log", "false");
             sessionStorage.removeItem("token")
@@ -32,28 +33,19 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
     })
 }
 
-function AxiosCreate(name, surname, email, password, setFormValido, setLog, setError, setEmail, setLoading){
+function AxiosCreate(name, surname, email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation){
     axios.post(baseUrl + "users/create", {
         "name": `${name}`,
         "surname": `${surname}`,
         "email": `${email}`,
         "password": `${password}`
     })
-    .then(response => {
-        //setData(response.data);
-        //setLoading(false);
-        //setFormValido(true)
-        console.log(response, "1");                 
-        return response;
-    })
-    .then(response => {
-        AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setLoading)
+    .then(response => {       
+        AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
     })
     .catch(error => {
-        //setErrorMessage(error.message);
-        //setLoading(false);
         if (error.response.status !== 200) {
-            setError("Lamentablemente no ha podido registrarse. Por favor intente más tarde")
+            setError("El usuario ya existe.")
             setEmail({ valido: false })
             setFormValido(false)
             sessionStorage.setItem("log", "false");

@@ -5,14 +5,14 @@ import hidePassword from "./icons/hidePassword.png";
 import { AxiosCreate } from "../../axiosCollection/Forms/AxiosForms"
 
 
-function FormCreate({ setActiveCreate, setActiveLogin, setLog }) {
+function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog }) {
     const [name, setName] = useState({ campo: "", valido: true });
     const [surname, setSurname] = useState({ campo: "", valido: true});
     const [errorFullname, setErrorFullname] = useState({error:""})
     const [email, setEmail] = useState({ campo: "", valido: true, error:"" });
     const [password, setPassword] = useState({ campo: "", valido: true , error:""});
     const [confirmPassword, setConfirmPassword] = useState({ campo: "", valido: true , error:""});
-    const [error, setError] = useState([])
+    const [error, setError] = useState("")
     const [formValido, setFormValido] = useState(false)
 
     const [loading, setLoading] = useState(true);
@@ -101,7 +101,7 @@ function FormCreate({ setActiveCreate, setActiveLogin, setLog }) {
             setConfirmPassword({ ...confirmPassword, valido: true, error:"" })
         }
     }
-
+console.log(name);
 
     const sendData = (event) => {
         event.preventDefault();
@@ -113,7 +113,7 @@ function FormCreate({ setActiveCreate, setActiveLogin, setLog }) {
 
         if (name.campo && surname.campo && email.campo && password.campo && confirmPassword.campo &&
             name.valido && surname.valido && email.valido && password.valido && confirmPassword.valido) {
-            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail, setLoading)
+            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
         }
         else {
             setFormValido(false)

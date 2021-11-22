@@ -85,7 +85,7 @@ export default function Booking(props) {
                                         <ArrivalTimeBar setArrivalSchedule={setArrivalSchedule}/>
                                     </div>
                                     <div>
-                                        <DetailBar image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification*2} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} arrivalSchedule={arrivalSchedule}/>
+                                        <DetailBar id={id} image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification*2} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} arrivalSchedule={arrivalSchedule}/>
                                     </div>
                                 </div>
                             </>

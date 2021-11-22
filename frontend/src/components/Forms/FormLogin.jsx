@@ -9,8 +9,8 @@ import { Redirect } from "react-router";
 
 
 export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoading, setActiveLogin, setActiveCreate, setLog }) {
-    const [email, setEmail] = useState({ campo: "", valido: true });
-    const [password, setPassword] = useState({ campo: "", valido: true });
+    const [email, setEmail] = useState({ campo: "", valido: true , error:""});
+    const [password, setPassword] = useState({ campo: "", valido: true , error:""});
     const [error, setError] = useState("")
     const [formValido, setFormValido] = useState(false)
 
@@ -30,34 +30,38 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
         setPassword({ ...password, campo: event.target.value })
     }
 
-    /*VALIDACIONES 
-    const validarEmail = () => {
-        setEmail({...email, valido:true})
-        setError("")
-        if((email.campo)!== ValidCredentials.email){
-            setError("Por favor vuelva a intentarlo. Las credenciales son inválidas")
-            setEmail({...email, valido:false})
+    
+    const validarEmailNulo=()=>{
+        if(!email.campo){
+            setEmail({...email, valido:false, error:"El email no puede estar vacío."})
+        }else{
+            setEmail({...email, valido:true, error:""})
+        }
+    }
+    const validarPasswordNulo=()=>{
+        if(!password.campo){
+            setPassword({...password, valido:false, error:"La contraseña no puede estar vacía."})
+        }else{
+            setPassword({...password, valido:true, error:""})
         }
     }
 
-    const validarPassword = () => {
-        setPassword({...password, valido:true})
-        setError("")
-        if((password.campo)!== ValidCredentials.password){
-            setError("Por favor vuelva a intentarlo. Las credenciales son inválidas")
-            setPassword({...password, valido:false})
-        }
-    }*/
 
-    console.log(lastLocation);
 
     const sendData = (event) => {
         event.preventDefault();
-        setLoading(true)
-        AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail, setLoading, lastLocation)
+        validarEmailNulo()
+        validarPasswordNulo()
+        
+        if(password.campo && email.campo
+            && password.valido && email.valido){
+            AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail,setPassword, setLoading, lastLocation)
+        }     
         
     }
-
+    console.log("se renderiza");
+console.log(email);
+console.log(password);
     function mostrarContrasena() {
         let tipo = document.getElementById("password");
 
@@ -82,14 +86,16 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
                 <form className={`${styles.formFlex} ${styles.login}`} onSubmit={sendData}>
                     <div className={`${styles.inputLabel} `}>
                         <label for="email">Correo electrónico</label>
-                        <input type="email" name="email" id="email" value={email.campo} className={!email.valido ? styles.inputError : null} onChange={handleChangeEmail} />
+                        <input type="email" name="email" id="email" value={email.campo} className={!email.valido ? styles.inputError : null} onChange={handleChangeEmail} onKeyUp={validarEmailNulo}/>
+                        <div className={styles.errorContainer}><p className={styles.error}>{email.error}</p></div>
                     </div>
                     <div className={`${styles.inputLabel} `}>
                         <label for="password">Contraseña</label>
                         <div className={styles.inputHidePassword}>
-                            <input type="password" name="password" id="password" value={password.campo} className={!password.valido ? styles.inputError : null} onChange={handleChangePassword} />
+                            <input type="password" name="password" id="password" value={password.campo} className={!password.valido ? styles.inputError : null} onChange={handleChangePassword} onKeyUp={validarPasswordNulo}/>
                             <img src={hidePassword} alt="icon hide password" className={`${styles.hidePassword} ${styles.passLogin}`} onClick={mostrarContrasena} />
                         </div>
+                        <div className={styles.errorContainer}><p className={styles.error}>{password.error}</p></div>
                     </div>
 
                     {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}

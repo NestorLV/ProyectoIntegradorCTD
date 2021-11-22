@@ -17,6 +17,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     function handleLogOut() {
         setLoading(true)
         sessionStorage.setItem("log", "false")
+        sessionStorage.removeItem("id")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
         setLastLocation(window.location.pathname)
