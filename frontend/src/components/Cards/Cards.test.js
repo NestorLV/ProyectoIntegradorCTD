@@ -49,6 +49,17 @@ let props = { image: "test", cardCategory: "test", name: "test", city: "test", c
         wrapper = shallow(<Card {...props6} />);
         expect(wrapper).toMatchSnapshot();
     });
+
+    it("Deberia mostrarse el componente al hacer click para desplegar el texto", ()=>{
+        wrapper.find("div.cardDescription span").simulate("click")
+        expect(wrapper).toMatchSnapshot();
+    })
+
+    it("Deberia mostrarse el componente al hacer click para mostrar el mapa", ()=>{
+        wrapper.find("div.cardLocation span").simulate("click")
+        expect(wrapper).toMatchSnapshot();
+    })
+
 });
 
 describe('Pruebas en Cards', () => {   

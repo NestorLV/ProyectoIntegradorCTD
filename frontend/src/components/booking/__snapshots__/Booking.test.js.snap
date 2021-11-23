@@ -461,7 +461,7 @@ exports[`Probando el componente <CalendarBar/> Deberia mostrar <CalendarBar/> co
             displayStaticWrapperAs="desktop"
             hintText="Dates Disabled"
             maxDate={null}
-            minDate={2021-11-23T14:02:58.917Z}
+            minDate={2021-11-23T15:32:12.087Z}
             onChange={[Function]}
             renderInput={[Function]}
             shouldDisableDate={[Function]}
