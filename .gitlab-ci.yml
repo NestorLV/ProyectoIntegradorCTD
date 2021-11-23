@@ -1,0 +1,15 @@
+image: ubuntu:latest
+stages:
+- init
+- deploy
+before_script:
+- apt update && apt-get install -qqy openssh-client
+- echo "$SSHKEY" > sshkey
+- chmod 400 sshkey
+deploy:
+stage: deploy
+script:
+- ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ./sshkey ec2-user@$EC2_IP
+sudo chmod -R 777 /var/www/html
+- scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ./sshkey ./index.html
+ec2-user@$EC2_IP:/var/www/html/index.html
