@@ -610,6 +610,368 @@ exports[`Probando el componente <CarouselModal/> Deberia mostrar <CarouselModal/
 </Portal>
 `;
 
+exports[`Probando el componente <DateBar/> Deberia mostrar <DateBar/> correctamente 1`] = `
+<div
+  className="dateBar delimiter"
+>
+  <div
+    className="dateBarChild delimiterChild"
+  >
+    <div
+      className="dateBarTitleBox"
+    >
+      <h2>
+        Fechas Disponibles
+      </h2>
+      <div
+        className="dateBarDayContainer"
+      />
+    </div>
+    <div
+      className="contenedorInterno"
+    >
+      <div
+        className="contenedorCalendario"
+      >
+        <ThemeProvider
+          theme={
+            Object {
+              "breakpoints": Object {
+                "between": [Function],
+                "down": [Function],
+                "keys": Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ],
+                "only": [Function],
+                "unit": "px",
+                "up": [Function],
+                "values": Object {
+                  "lg": 1200,
+                  "md": 900,
+                  "sm": 600,
+                  "xl": 1536,
+                  "xs": 0,
+                },
+              },
+              "components": Object {},
+              "direction": "ltr",
+              "mixins": Object {
+                "toolbar": Object {
+                  "@media (min-width:0px) and (orientation: landscape)": Object {
+                    "minHeight": 48,
+                  },
+                  "@media (min-width:600px)": Object {
+                    "minHeight": 64,
+                  },
+                  "minHeight": 56,
+                },
+              },
+              "palette": Object {
+                "action": Object {
+                  "activatedOpacity": 0.12,
+                  "active": "rgba(0, 0, 0, 0.54)",
+                  "disabled": "rgba(0, 0, 0, 0.26)",
+                  "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                  "disabledOpacity": 0.38,
+                  "focus": "rgba(0, 0, 0, 0.12)",
+                  "focusOpacity": 0.12,
+                  "hover": "rgba(0, 0, 0, 0.04)",
+                  "hoverOpacity": 0.04,
+                  "selected": "rgba(0, 0, 0, 0.08)",
+                  "selectedOpacity": 0.08,
+                },
+                "augmentColor": [Function],
+                "background": Object {
+                  "default": "#fff",
+                  "paper": "#fff",
+                },
+                "common": Object {
+                  "black": "#000",
+                  "white": "#fff",
+                },
+                "contrastThreshold": 3,
+                "divider": "rgba(0, 0, 0, 0.12)",
+                "error": Object {
+                  "contrastText": "#fff",
+                  "dark": "#c62828",
+                  "light": "#ef5350",
+                  "main": "#d32f2f",
+                },
+                "getContrastText": [Function],
+                "grey": Object {
+                  "100": "#f5f5f5",
+                  "200": "#eeeeee",
+                  "300": "#e0e0e0",
+                  "400": "#bdbdbd",
+                  "50": "#fafafa",
+                  "500": "#9e9e9e",
+                  "600": "#757575",
+                  "700": "#616161",
+                  "800": "#424242",
+                  "900": "#212121",
+                  "A100": "#f5f5f5",
+                  "A200": "#eeeeee",
+                  "A400": "#bdbdbd",
+                  "A700": "#616161",
+                },
+                "info": Object {
+                  "contrastText": "#fff",
+                  "dark": "#01579b",
+                  "light": "#03a9f4",
+                  "main": "#0288d1",
+                },
+                "mode": "light",
+                "primary": Object {
+                  "contrastText": "#fff",
+                  "dark": "rgb(168, 60, 31)",
+                  "light": "rgb(243, 120, 87)",
+                  "main": "#F0572D",
+                },
+                "secondary": Object {
+                  "contrastText": "#fff",
+                  "dark": "#7b1fa2",
+                  "light": "#ba68c8",
+                  "main": "#9c27b0",
+                },
+                "success": Object {
+                  "contrastText": "#fff",
+                  "dark": "#1b5e20",
+                  "light": "#4caf50",
+                  "main": "#2e7d32",
+                },
+                "text": Object {
+                  "disabled": "rgba(0,0,0,0.38)",
+                  "primary": "rgba(0, 0, 0, 0.87)",
+                  "secondary": "rgba(0, 0, 0, 0.6)",
+                },
+                "tonalOffset": 0.2,
+                "warning": Object {
+                  "contrastText": "#fff",
+                  "dark": "#e65100",
+                  "light": "#ff9800",
+                  "main": "#ED6C02",
+                },
+              },
+              "shadows": Array [
+                "none",
+                "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+                "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)",
+                "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
+                "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)",
+                "0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12)",
+                "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)",
+                "0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)",
+                "0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)",
+                "0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)",
+                "0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)",
+                "0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12)",
+                "0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12)",
+                "0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12)",
+                "0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12)",
+                "0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12)",
+                "0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12)",
+                "0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12)",
+                "0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12)",
+                "0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12)",
+                "0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12)",
+                "0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12)",
+                "0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12)",
+                "0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)",
+                "0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)",
+              ],
+              "shape": Object {
+                "borderRadius": 4,
+              },
+              "spacing": [Function],
+              "transitions": Object {
+                "create": [Function],
+                "duration": Object {
+                  "complex": 375,
+                  "enteringScreen": 225,
+                  "leavingScreen": 195,
+                  "short": 250,
+                  "shorter": 200,
+                  "shortest": 150,
+                  "standard": 300,
+                },
+                "easing": Object {
+                  "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
+                  "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
+                  "easeOut": "cubic-bezier(0.0, 0, 0.2, 1)",
+                  "sharp": "cubic-bezier(0.4, 0, 0.6, 1)",
+                },
+                "getAutoHeightDuration": [Function],
+              },
+              "typography": Object {
+                "body1": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "1rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.00938em",
+                  "lineHeight": 1.5,
+                },
+                "body2": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "0.875rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.01071em",
+                  "lineHeight": 1.43,
+                },
+                "button": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "0.875rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.02857em",
+                  "lineHeight": 1.75,
+                  "textTransform": "uppercase",
+                },
+                "caption": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "0.75rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.03333em",
+                  "lineHeight": 1.66,
+                },
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": 14,
+                "fontWeightBold": 700,
+                "fontWeightLight": 700,
+                "fontWeightMedium": 700,
+                "fontWeightRegular": 700,
+                "h1": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "6rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "-0.01562em",
+                  "lineHeight": 1.167,
+                },
+                "h2": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "3.75rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "-0.00833em",
+                  "lineHeight": 1.2,
+                },
+                "h3": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "3rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0em",
+                  "lineHeight": 1.167,
+                },
+                "h4": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "2.125rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.00735em",
+                  "lineHeight": 1.235,
+                },
+                "h5": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "1.5rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0em",
+                  "lineHeight": 1.334,
+                },
+                "h6": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "1.25rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.0075em",
+                  "lineHeight": 1.6,
+                },
+                "htmlFontSize": 16,
+                "overline": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "0.75rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.08333em",
+                  "lineHeight": 2.66,
+                  "textTransform": "uppercase",
+                },
+                "pxToRem": [Function],
+                "subtitle1": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "1rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.00938em",
+                  "lineHeight": 1.75,
+                },
+                "subtitle2": Object {
+                  "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                  "fontSize": "0.875rem",
+                  "fontWeight": 700,
+                  "letterSpacing": "0.00714em",
+                  "lineHeight": 1.57,
+                },
+              },
+              "zIndex": Object {
+                "appBar": 1100,
+                "drawer": 1200,
+                "mobileStepper": 1000,
+                "modal": 1300,
+                "snackbar": 1400,
+                "speedDial": 1050,
+                "tooltip": 1500,
+              },
+            }
+          }
+        >
+          <LocalizationProvider
+            dateAdapter={[Function]}
+          >
+            <ForwardRef(StaticDateRangePicker)
+              calendars={2}
+              className="makeStyles-root-1"
+              displayStaticWrapperAs="desktop"
+              hintText="Dates Disabled"
+              maxDate={null}
+              minDate={2021-11-23T14:02:59.110Z}
+              onChange={[Function]}
+              renderInput={[Function]}
+              shouldDisableDate={[Function]}
+              showToolbar={false}
+              value={Array []}
+            />
+          </LocalizationProvider>
+        </ThemeProvider>
+      </div>
+      <div
+        className="contenedorReservaBox"
+      >
+        <div
+          className="contenedorReserva"
+        >
+          <p
+            className="negrita"
+          >
+            Agregá tus fechas de viaje para tener precios exactos
+          </p>
+          <div
+            className="buttonsDateBar"
+          >
+            <Link
+              to={[Function]}
+            >
+              <button
+                className="selectedDatesButton"
+                onClick={[Function]}
+              >
+                 Iniciar reserva
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Probando el componente <DescriptionBar/> Deberia mostrar <DescriptionBar/> correctamente 1`] = `
 <div
   className="descripcionBar delimiter"
@@ -643,12 +1005,25 @@ exports[`Probando el componente <FeaturesBar/> Deberia mostrar <FeaturesBar/> co
     >
       <div
         className="featureBox"
-        key="0"
+        key="1"
       >
-        <img
-          alt="wifi"
-          src="wifi.svg"
-        />
+        <div
+          className="featureIcon"
+        >
+          <svg
+            fill="none"
+            height="18"
+            viewBox="0 0 22 18"
+            width="22"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.8 18L14.4 13.2C13.4 12.45 12.15 12 10.8 12C9.45 12 8.2 12.45 7.2 13.2L10.8 18ZM10.8 0C6.75 0 3.01 1.34 0 3.6L1.8 6C4.3 4.12 7.42 3 10.8 3C14.18 3 17.3 4.12 19.8 6L21.6 3.6C18.59 1.34 14.85 0 10.8 0ZM10.8 6C8.1 6 5.61 6.89 3.6 8.4L5.4 10.8C6.9 9.67 8.77 9 10.8 9C12.83 9 14.7 9.67 16.2 10.8L18 8.4C15.99 6.89 13.5 6 10.8 6Z"
+              fill="#F0572D"
+            />
+          </svg>
+           
+        </div>
         <p
           className="featureTitle"
         >
@@ -657,12 +1032,33 @@ exports[`Probando el componente <FeaturesBar/> Deberia mostrar <FeaturesBar/> co
       </div>
       <div
         className="featureBox"
-        key="1"
+        key="2"
       >
-        <img
-          alt="pool"
-          src="pool.svg"
-        />
+        <div
+          className="featureIcon"
+        >
+          <svg
+            fill="none"
+            height="14"
+            viewBox="0 0 28 14"
+            width="28"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.5488 6.67458C22.0044 6.84495 23.3223 5.80301 23.4926 4.34727C23.6628 2.89195 22.621 1.57394 21.1653 1.40368C19.7098 1.23331 18.3918 2.27526 18.2219 3.73087C18.0512 5.18649 19.0934 6.50432 20.5488 6.67458Z"
+              fill="#F0572D"
+            />
+            <path
+              d="M8.99224 4.51667L12.9392 3.72848L13.788 5.0935L10.7129 8.01757C11.1877 8.13756 11.6438 8.31616 12.0677 8.54981C12.271 8.66188 12.4615 8.79133 12.6457 8.9164C12.9425 9.11795 13.2217 9.31192 13.4985 9.38791C13.7174 9.448 14.0042 9.45143 14.0224 9.45249C14.4122 9.44912 14.7557 9.34066 15.1063 9.11209C16.0181 8.51758 17.1372 7.90172 18.5252 7.84075C18.6276 7.83625 18.7311 7.83395 18.8329 7.83395C19.2782 7.83395 19.7135 7.87771 20.1299 7.96251C19.8443 7.5065 14.7554 1.33978 14.7554 1.33978L14.6213 1.17934C14.2929 0.78903 13.7433 0.625751 13.2366 0.811444L8.44427 2.5692C7.98223 2.73815 7.69937 3.22309 7.79861 3.72044C7.90837 4.26983 8.44279 4.62631 8.99224 4.51667Z"
+              fill="#F0572D"
+            />
+            <path
+              d="M26.438 10.6477C25.7847 10.9407 25.2978 11.0601 24.7569 11.0601C24.5439 11.0601 24.3236 11.0411 24.0832 11.0017C23.2825 10.8589 22.7118 10.3966 22.1598 9.94945C21.8204 9.67446 21.4997 9.41467 21.1288 9.22341C20.4575 8.87539 19.6501 8.69153 18.7934 8.69153C18.7045 8.69153 18.6141 8.6936 18.5247 8.69756C17.3532 8.74895 16.4034 9.27013 15.5512 9.82567C15.0513 10.1518 14.4583 10.3082 13.9202 10.3082C13.7579 10.3082 13.4275 10.2726 13.2132 10.2108C12.8017 10.0921 12.449 9.85246 12.1078 9.62088C11.9326 9.50178 11.7671 9.38941 11.5998 9.29722C10.8837 8.90241 10.0568 8.69372 9.20853 8.69372H9.19132C8.00372 8.69762 6.92966 9.06185 6.0854 9.74678C4.9098 10.7009 4.13397 10.9689 3.9128 11.0067C3.9128 11.0067 3.72728 11.0552 3.32893 11.0552C2.56581 11.0552 1.92807 10.8052 1.28796 10.5269C0.838279 10.3313 0.414497 10.2191 0 10.1864C0.0803683 10.2328 0.157307 10.2813 0.231939 10.3325C0.556842 10.559 0.824263 10.8343 1.08275 11.1006C1.22114 11.243 1.35177 11.3776 1.49057 11.5053C2.03399 12.0052 3.15554 12.5961 4.4464 12.5961C5.10141 12.5961 5.73519 12.4537 6.32994 12.1727C6.50493 12.09 6.6753 11.9915 6.85562 11.8874C7.15479 11.7147 7.46556 11.5407 7.80992 11.4247C8.24447 11.2783 8.91899 11.3268 8.91899 11.3268C9.61836 11.3715 10.1421 11.7019 10.5202 11.9848C11.6722 12.8466 12.7591 13.2532 13.9407 13.2647L14.0009 13.2651C14.814 13.2651 15.5578 13.1084 16.2119 12.7994C16.5166 12.6553 16.8067 12.4435 17.1139 12.219C17.6909 11.7976 18.2876 11.3617 19.056 11.3315C19.1017 11.3297 19.1482 11.3287 19.1954 11.3287C19.6161 11.3287 20.2497 11.4018 20.8785 11.7501C21.6354 12.1707 22.5511 12.6005 23.6076 12.6005C23.7611 12.6005 23.9178 12.5916 24.0733 12.574C25.0458 12.4639 25.8678 12.1054 26.5165 11.5083C26.6556 11.3803 26.7865 11.2453 26.9251 11.1025C27.2208 10.7979 27.5264 10.4829 27.9125 10.2437C27.9415 10.2257 27.9706 10.2082 28 10.1913C27.5333 10.2328 27.039 10.3783 26.438 10.6477Z"
+              fill="#F0572D"
+            />
+          </svg>
+           
+        </div>
         <p
           className="featureTitle"
         >
@@ -910,7 +1306,7 @@ exports[`Probando el componente <InfoBar/> Deberia mostrar <InfoBar/> correctame
 
 exports[`Probando el componente <Map/> Deberia mostrar <Map> correctamente 1`] = `
 <LoadScript
-  googleMapsApiKey="AIzaSyDoTLld8oN8wZm0avj07nwEv0FXqdfiaOE"
+  googleMapsApiKey="AIzaSyD6n6RMOFrebn6b3rWMi5B_xnAWXDmnr4k"
   id="script-loader"
   loadingElement={
     <p>
@@ -980,101 +1376,105 @@ exports[`Probando el componente <QualificationBar/> Deberia mostrar <Qualificati
   <div
     className="qualificationBarChild delimiterChild"
   >
-    <h2>
-      Califica este alojamiento: 
-    </h2>
     <div
-      className="starsMap"
+      className="qualificationBarTitle"
     >
+      <h2>
+        Califica este alojamiento: 
+      </h2>
       <div
-        className="starBox"
-        key="0"
-        onClick={null}
+        className="starsMap"
       >
-        <svg
-          fill="none"
-          index={0}
+        <div
+          className="starBox"
           key="0"
-          viewBox="0 0 15 17"
-          xmlns="http://www.w3.org/2000/svg"
+          onClick={[Function]}
         >
-          <path
-            className="star"
-            d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-          />
-        </svg>
-      </div>
-      <div
-        className="starBox"
-        key="1"
-        onClick={null}
-      >
-        <svg
-          fill="none"
-          index={1}
+          <svg
+            fill="none"
+            index={0}
+            key="0"
+            viewBox="0 0 15 17"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="star"
+              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+            />
+          </svg>
+        </div>
+        <div
+          className="starBox"
           key="1"
-          viewBox="0 0 15 17"
-          xmlns="http://www.w3.org/2000/svg"
+          onClick={[Function]}
         >
-          <path
-            className="star"
-            d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-          />
-        </svg>
-      </div>
-      <div
-        className="starBox"
-        key="2"
-        onClick={null}
-      >
-        <svg
-          fill="none"
-          index={2}
+          <svg
+            fill="none"
+            index={1}
+            key="1"
+            viewBox="0 0 15 17"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="star"
+              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+            />
+          </svg>
+        </div>
+        <div
+          className="starBox"
           key="2"
-          viewBox="0 0 15 17"
-          xmlns="http://www.w3.org/2000/svg"
+          onClick={[Function]}
         >
-          <path
-            className="star"
-            d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-          />
-        </svg>
-      </div>
-      <div
-        className="starBox"
-        key="3"
-        onClick={null}
-      >
-        <svg
-          fill="none"
-          index={3}
+          <svg
+            fill="none"
+            index={2}
+            key="2"
+            viewBox="0 0 15 17"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="star"
+              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+            />
+          </svg>
+        </div>
+        <div
+          className="starBox"
           key="3"
-          viewBox="0 0 15 17"
-          xmlns="http://www.w3.org/2000/svg"
+          onClick={[Function]}
         >
-          <path
-            className="star"
-            d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-          />
-        </svg>
-      </div>
-      <div
-        className="starBox"
-        key="4"
-        onClick={null}
-      >
-        <svg
-          fill="none"
-          index={4}
+          <svg
+            fill="none"
+            index={3}
+            key="3"
+            viewBox="0 0 15 17"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="star"
+              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+            />
+          </svg>
+        </div>
+        <div
+          className="starBox"
           key="4"
-          viewBox="0 0 15 17"
-          xmlns="http://www.w3.org/2000/svg"
+          onClick={[Function]}
         >
-          <path
-            className="star"
-            d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-          />
-        </svg>
+          <svg
+            fill="none"
+            index={4}
+            key="4"
+            viewBox="0 0 15 17"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="star"
+              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+            />
+          </svg>
+        </div>
       </div>
     </div>
     <div
@@ -1088,10 +1488,15 @@ exports[`Probando el componente <QualificationBar/> Deberia mostrar <Qualificati
       </button>
       <button
         className="qualificationSubmit"
-        onClick={[Function]}
+        onClick={null}
       >
          Enviar     
       </button>
+      <div
+        className="qualificationConfirm"
+      >
+        Puntuación: 
+      </div>
     </div>
   </div>
 </div>
@@ -1129,25 +1534,13 @@ exports[`Probando el componente <ScoreBar/> Deberia mostrar <ScoreBar/> correcta
       <div
         className="calificacionLetra"
       >
-        <p>
-          Malo
-        </p>
-        <div
-          className="calificacionEstrellas"
-        >
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-        </div>
+        <ScoreDescription
+          qualification={1.1}
+        />
+        <ScoreStar
+          qualification={1.1}
+          starColor="#1DBEB4"
+        />
       </div>
       <p
         className="calificacionEntero"
@@ -1191,37 +1584,13 @@ exports[`Probando el componente <ScoreBar/> Deberia mostrar <ScoreBar/> correcta
       <div
         className="calificacionLetra"
       >
-        <p>
-          Regular
-        </p>
-        <div
-          className="calificacionEstrellas"
-        >
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-        </div>
+        <ScoreDescription
+          qualification={3.1}
+        />
+        <ScoreStar
+          qualification={3.1}
+          starColor="#1DBEB4"
+        />
       </div>
       <p
         className="calificacionEntero"
@@ -1265,49 +1634,13 @@ exports[`Probando el componente <ScoreBar/> Deberia mostrar <ScoreBar/> correcta
       <div
         className="calificacionLetra"
       >
-        <p>
-          Bueno
-        </p>
-        <div
-          className="calificacionEstrellas"
-        >
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-        </div>
+        <ScoreDescription
+          qualification={5.1}
+        />
+        <ScoreStar
+          qualification={5.1}
+          starColor="#1DBEB4"
+        />
       </div>
       <p
         className="calificacionEntero"
@@ -1351,61 +1684,13 @@ exports[`Probando el componente <ScoreBar/> Deberia mostrar <ScoreBar/> correcta
       <div
         className="calificacionLetra"
       >
-        <p>
-          Muy Bueno
-        </p>
-        <div
-          className="calificacionEstrellas"
-        >
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-        </div>
+        <ScoreDescription
+          qualification={6.1}
+        />
+        <ScoreStar
+          qualification={6.1}
+          starColor="#1DBEB4"
+        />
       </div>
       <p
         className="calificacionEntero"
@@ -1449,73 +1734,13 @@ exports[`Probando el componente <ScoreBar/> Deberia mostrar <ScoreBar/> correcta
       <div
         className="calificacionLetra"
       >
-        <p>
-          Excelente
-        </p>
-        <div
-          className="calificacionEstrellas"
-        >
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-          <svg
-            fill="none"
-            height="13"
-            viewBox="0 0 15 13"
-            width="15"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
-              fill="#1DBEB4"
-            />
-          </svg>
-        </div>
+        <ScoreDescription
+          qualification={9.1}
+        />
+        <ScoreStar
+          qualification={9.1}
+          starColor="#1DBEB4"
+        />
       </div>
       <p
         className="calificacionEntero"
@@ -1527,6 +1752,329 @@ exports[`Probando el componente <ScoreBar/> Deberia mostrar <ScoreBar/> correcta
 </div>
 `;
 
+exports[`Probando el componente <ScoreDescription/> Deberia mostrar <ScoreDescription/> con un mensaje de calificacion invalida al ingresar una calificacion de 11 1`] = `
+<p>
+  Calificacion Invalida
+</p>
+`;
+
+exports[`Probando el componente <ScoreDescription/> Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 1 1`] = `
+<p>
+  Malo
+</p>
+`;
+
+exports[`Probando el componente <ScoreDescription/> Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 3 1`] = `
+<p>
+  Regular
+</p>
+`;
+
+exports[`Probando el componente <ScoreDescription/> Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 5 1`] = `
+<p>
+  Bueno
+</p>
+`;
+
+exports[`Probando el componente <ScoreDescription/> Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 7 1`] = `
+<p>
+  Muy Bueno
+</p>
+`;
+
+exports[`Probando el componente <ScoreDescription/> Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 9 1`] = `
+<p>
+  Excelente
+</p>
+`;
+
+exports[`Probando el componente <ScoreStar/> Deberia mostrar <ScoreStar/> correctamente con una calificaion de 1 1`] = `
+<div
+  className="calificacionEstrellas"
+>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+     
+    <path
+      d="m 7.27778,0 v 9.67376 0 0 0 0 L 3.00001,12.6631 4.63397,7.82624 0.3562,4.83688 h 5.28762 z"
+    />
+     
+  </svg>
+</div>
+`;
+
+exports[`Probando el componente <ScoreStar/> Deberia mostrar <ScoreStar/> correctamente con una calificaion de 3 1`] = `
+<div
+  className="calificacionEstrellas"
+>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+     
+    <path
+      d="m 7.27778,0 v 9.67376 0 0 0 0 L 3.00001,12.6631 4.63397,7.82624 0.3562,4.83688 h 5.28762 z"
+    />
+     
+  </svg>
+</div>
+`;
+
+exports[`Probando el componente <ScoreStar/> Deberia mostrar <ScoreStar/> correctamente con una calificaion de 5 1`] = `
+<div
+  className="calificacionEstrellas"
+>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+     
+    <path
+      d="m 7.27778,0 v 9.67376 0 0 0 0 L 3.00001,12.6631 4.63397,7.82624 0.3562,4.83688 h 5.28762 z"
+    />
+     
+  </svg>
+</div>
+`;
+
+exports[`Probando el componente <ScoreStar/> Deberia mostrar <ScoreStar/> correctamente con una calificaion de 7 1`] = `
+<div
+  className="calificacionEstrellas"
+>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+     
+    <path
+      d="m 7.27778,0 v 9.67376 0 0 0 0 L 3.00001,12.6631 4.63397,7.82624 0.3562,4.83688 h 5.28762 z"
+    />
+     
+  </svg>
+</div>
+`;
+
+exports[`Probando el componente <ScoreStar/> Deberia mostrar <ScoreStar/> correctamente con una calificaion de 9 1`] = `
+<div
+  className="calificacionEstrellas"
+>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+     
+    <path
+      d="m 7.27778,0 v 9.67376 0 0 0 0 L 3.00001,12.6631 4.63397,7.82624 0.3562,4.83688 h 5.28762 z"
+    />
+     
+  </svg>
+</div>
+`;
+
+exports[`Probando el componente <ScoreStar/> Deberia mostrar <ScoreStar/> correctamente con una calificaion de 10 1`] = `
+<div
+  className="calificacionEstrellas"
+>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+  <svg
+    fill="none"
+    height="13"
+    viewBox="0 0 15 13"
+    width="15"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+       
+    <path
+      d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
+    />
+  </svg>
+</div>
+`;
+
 exports[`Probando el componente <Titlebar/> Deberia mostrar <TitleBar/> correctamente 1`] = `
 <div
   className="titleBar delimiter"
@@ -1535,19 +2083,21 @@ exports[`Probando el componente <Titlebar/> Deberia mostrar <TitleBar/> correcta
     className="titleBarChild delimiterChild"
   >
     <div>
+      <img
+        alt="IconLocation"
+        className="iconLocation"
+        src="iconBack.svg"
+      />
+    </div>
+    <div
+      className="titleBarTitles"
+    >
       <p>
         <Component />
       </p>
       <h2>
         nombreHotel
       </h2>
-    </div>
-    <div>
-      <img
-        alt="IconLocation"
-        className="iconLocation"
-        src="iconBack.svg"
-      />
     </div>
   </div>
 </div>

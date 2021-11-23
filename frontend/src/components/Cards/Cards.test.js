@@ -5,7 +5,7 @@ import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createSerializer } from 'enzyme-to-json';
 import Card from './Card';
-import Cards from './index';
+import Cards from './Cards';
 import MapModal from "./MapModal";
 
 Enzyme.configure({ adapter: new Adapter() });

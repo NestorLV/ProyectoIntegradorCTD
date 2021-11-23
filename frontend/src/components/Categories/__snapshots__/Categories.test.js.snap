@@ -10,9 +10,13 @@ exports[`<Categories /> Deberia mostrar <Categories/> correctamente 1`] = `
     <h2>
       Buscar por tipo de alojamiento
     </h2>
-    <p>
-      Loading Data...
-    </p>
+    <div
+      className="spinnerContainer"
+    >
+      <div
+        className="spinner"
+      />
+    </div>
   </div>
 </div>
 `;

@@ -34,7 +34,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
       className="iconHeart"
       height="24"
       onClick={[Function]}
-      viewBox="0 0 24 24"
+      viewBox="0 0 27 27"
       width="24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -100,10 +100,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
           <p>
             test
           </p>
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
+          <ScoreStar
+            qualification={1}
+            starColor="#F0572D"
           />
         </div>
         <div
@@ -125,7 +124,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
         <div
           className="cardScoreWords"
         >
-          Malo
+          <ScoreDescription
+            qualification={1}
+          />
         </div>
       </div>
     </div>
@@ -173,6 +174,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
     <Link
       className="link"
       key="1"
+      onClick={[Function]}
       to="/product/1"
     >
       <button
@@ -196,7 +198,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
       className="iconHeart"
       height="24"
       onClick={[Function]}
-      viewBox="0 0 24 24"
+      viewBox="0 0 27 27"
       width="24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -262,10 +264,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
           <p>
             test
           </p>
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
+          <ScoreStar
+            qualification={3}
+            starColor="#F0572D"
           />
         </div>
         <div
@@ -287,7 +288,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
         <div
           className="cardScoreWords"
         >
-          Regular
+          <ScoreDescription
+            qualification={3}
+          />
         </div>
       </div>
     </div>
@@ -335,6 +338,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
     <Link
       className="link"
       key="1"
+      onClick={[Function]}
       to="/product/1"
     >
       <button
@@ -358,7 +362,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
       className="iconHeart"
       height="24"
       onClick={[Function]}
-      viewBox="0 0 24 24"
+      viewBox="0 0 27 27"
       width="24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -424,15 +428,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
           <p>
             test
           </p>
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
+          <ScoreStar
+            qualification={5}
+            starColor="#F0572D"
           />
         </div>
         <div
@@ -454,7 +452,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
         <div
           className="cardScoreWords"
         >
-          Bueno
+          <ScoreDescription
+            qualification={5}
+          />
         </div>
       </div>
     </div>
@@ -502,6 +502,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
     <Link
       className="link"
       key="1"
+      onClick={[Function]}
       to="/product/1"
     >
       <button
@@ -525,7 +526,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
       className="iconHeart"
       height="24"
       onClick={[Function]}
-      viewBox="0 0 24 24"
+      viewBox="0 0 27 27"
       width="24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -591,20 +592,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
           <p>
             test
           </p>
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
+          <ScoreStar
+            qualification={7}
+            starColor="#F0572D"
           />
         </div>
         <div
@@ -626,7 +616,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
         <div
           className="cardScoreWords"
         >
-          Muy Bueno
+          <ScoreDescription
+            qualification={7}
+          />
         </div>
       </div>
     </div>
@@ -674,6 +666,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
     <Link
       className="link"
       key="1"
+      onClick={[Function]}
       to="/product/1"
     >
       <button
@@ -697,7 +690,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
       className="iconHeart"
       height="24"
       onClick={[Function]}
-      viewBox="0 0 24 24"
+      viewBox="0 0 27 27"
       width="24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -763,30 +756,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
           <p>
             test
           </p>
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
+          <ScoreStar
+            qualification={10}
+            starColor="#F0572D"
           />
         </div>
         <div
@@ -808,7 +780,9 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
         <div
           className="cardScoreWords"
         >
-          Excelente
+          <ScoreDescription
+            qualification={10}
+          />
         </div>
       </div>
     </div>
@@ -856,6 +830,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
     <Link
       className="link"
       key="1"
+      onClick={[Function]}
       to="/product/1"
     >
       <button
@@ -879,7 +854,7 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
       className="iconHeart"
       height="24"
       onClick={[Function]}
-      viewBox="0 0 24 24"
+      viewBox="0 0 27 27"
       width="24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -945,30 +920,9 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
           <p>
             test
           </p>
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
-          />
-          <img
-            alt=""
-            className="star"
-            src="starOrange.png"
+          <ScoreStar
+            qualification={12}
+            starColor="#F0572D"
           />
         </div>
         <div
@@ -990,7 +944,9 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
         <div
           className="cardScoreWords"
         >
-          Calificacion Invalida
+          <ScoreDescription
+            qualification={12}
+          />
         </div>
       </div>
     </div>
@@ -1038,6 +994,7 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
     <Link
       className="link"
       key="1"
+      onClick={[Function]}
       to="/product/1"
     >
       <button

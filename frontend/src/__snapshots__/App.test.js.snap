@@ -5,7 +5,13 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
   <LayoutPrincipal
     handleClean={[Function]}
     handleFavourite={[Function]}
+    iniciales=""
     isLogged={false}
+    setBookingWithoutLogin={[Function]}
+    setLastLocation={[Function]}
+    setLoading={[Function]}
+    userName=""
+    userSurname=""
   >
     <Switch>
       <Route
@@ -20,9 +26,11 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
           handleCategory={[Function]}
           handleCity={[Function]}
           handleSearch={[Function]}
+          loading={false}
           search={false}
           setActiveCreate={[Function]}
           setActiveLogin={[Function]}
+          setLastLocation={[Function]}
         />
       </Route>
       <Route
@@ -36,8 +44,14 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
         path="/create"
       />
       <Route
-        component={[Function]}
+        exact={true}
         path="/product/:id"
+        render={[Function]}
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/product/:id/reserva"
       />
       <Route
         path="*"

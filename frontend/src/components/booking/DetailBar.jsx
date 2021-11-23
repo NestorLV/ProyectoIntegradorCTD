@@ -62,7 +62,6 @@ function DetailBar(props) {
         }else{
             setErrorBooking("Por favor complete todos los campos.")
         }
-      
     }
 
     return (
