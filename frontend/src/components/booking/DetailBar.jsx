@@ -1,12 +1,69 @@
 import Styles from "./styles.module.css"
 import iconLocation from "../Cards/img/IconLocation.svg";
 import ScoreStar from "../Product/ScoreStar";
-import axios from "axios";
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import Succeed from "./Succeed"
+import { useState } from "react";
+import {AxiosCrearReserva} from "../../axiosCollection/Booking/AxiosBooking"
 
 function DetailBar(props) {
-    const { id, image, category, name, city, country, reference, qualification, checkin, checkout, arrivalSchedule } = props;
-    const baseUrl="http://localhost:8080/";
+    const {nameUser, surnameUser, emailUser, cityUser, setErrorBooking, id, image, category, name, city, country, reference, qualification, checkin, checkout, arrivalSchedule } = props;
+    
     let cantStar = Math.floor(qualification / 2);
+    const [modalSucceedIsOpen, setModalSucceedIsOpen] = useState(false)
+
+    const formatDate=(date)=>{
+        const arrayDate= date.split("/")
+        let mes;
+        switch (arrayDate[1]) {
+            case "Jan":mes="01"
+                break;
+            case "Feb":mes="02"
+                break;
+            case "Mar":mes="03"
+                break;
+            case "Apr":mes="04"
+                break;
+            case "May":mes="05"
+                break;
+            case "Jun":mes="06"
+                break;
+            case "Jul":mes="07"
+                break;
+            case "Aug":mes="08"
+                break;
+            case "Sep":mes="09"
+                break;
+            case "Oct":mes="10"
+                break;
+            case "Nov":mes="11"
+                break;
+            case "Dec":mes="12"
+                break;
+            default:
+                break;
+        }
+
+        return arrayDate[2] + "-" + mes + "-" + arrayDate[0]
+    }
+
+    const openModalSucceed = (() => { 
+        setModalSucceedIsOpen(true) 
+    })
+
+    const closeModalSucceed = () => {
+        setModalSucceedIsOpen(false);
+    };
+
+    const handleBooking = () => {
+        if(checkin && checkout && arrivalSchedule && nameUser && surnameUser && emailUser && cityUser){
+            AxiosCrearReserva(arrivalSchedule, formatDate, checkin, checkout, id, openModalSucceed, setErrorBooking)
+        }else{
+            setErrorBooking("Por favor complete todos los campos.")
+        }
+      
+    }
 
     return (
         <div className={Styles.detailBar}>
@@ -34,13 +91,12 @@ function DetailBar(props) {
                         </div>
 
                     </div>
-                    <button >Confirmar Reserva</button>
+                    <button onClick={handleBooking} >Confirmar Reserva</button>
+                    <Modal open={modalSucceedIsOpen} onClose={closeModalSucceed} center>
+                        <Succeed/>
+                    </Modal>
                 </div>
             </div>
-
-
-
-
         </div>
     )
 }

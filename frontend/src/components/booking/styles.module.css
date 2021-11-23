@@ -112,6 +112,12 @@ input {
   background-color: #dfe4ea;
 }
 
+.containerErrorBooking{
+  color: red;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
 /*Estilos ArrivalTimeBar*/
 
 .containerArrival {
@@ -303,13 +309,6 @@ input {
 }
 
 /*Estilos Succeed*/
-
-.containerPrincipalSucceed {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 80px - 58px);
-}
 
 .containerSucceed {
   background-color: white;

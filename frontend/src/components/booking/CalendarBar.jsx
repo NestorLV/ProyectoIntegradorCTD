@@ -74,7 +74,12 @@ function CalendarBar(props) {
         setDinamicValue(newValue);
         setMaxDate(null);
         handleDateChange(newValue);
-        window.sessionStorage.clear();
+        if(!newValue[0]){
+            window.sessionStorage.removeItem("startDate");
+        }else if(!newValue[1]){
+            window.sessionStorage.removeItem("endDate");
+        }
+       
     }
 
     return (

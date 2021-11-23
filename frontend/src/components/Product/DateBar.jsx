@@ -94,6 +94,11 @@ function DateBar(props) {
         setDinamicValue(newValue);
         setMaxDate(null);
         handleDateChange(newValue);
+        if(!newValue[0]){
+            window.sessionStorage.removeItem("startDate");
+        }else if(!newValue[1]){
+            window.sessionStorage.removeItem("endDate");
+        }
     }
 
     return (
