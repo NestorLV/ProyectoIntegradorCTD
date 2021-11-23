@@ -4,7 +4,6 @@ import "@testing-library/jest-dom";
 import MenuBurger from "./MenuBurger"
 import MenuButton from "./MenuButton";
 import { MenuBurgerWrapper } from "./MenuBurgerWrapped";
-import { HeaderWrapper } from "./HeaderStyles";
 
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
@@ -65,18 +64,6 @@ describe("Probando el componente <MenuBurgerWrapper", ()=>{
 
     it("Deberia mostrar <MenuBurgerWrapper/> correctamente", () => {
         expect(menuBurgerWrapper).toMatchSnapshot();
-    });
-
-})
-
-describe("Probando el componente <HeaderWrapper", ()=>{
-    let headerWrapper; 
-    beforeEach(() => {
-        headerWrapper = shallow(<HeaderWrapper />)
-    });
-
-    it("Deberia mostrar <HeaderWrapper/> correctamente", () => {
-        expect(headerWrapper).toMatchSnapshot();
     });
 
 })

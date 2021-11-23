@@ -84,29 +84,38 @@
   padding: 10px 0;
 }
 
-.labelInput {
+.labelInputBooking {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 48%;
 }
 
-.labelInput label {
+.labelInputBooking label {
   color: var(--secondary-color);
   font-size: var(--text2);
   font-weight: var(--font-medium);
 }
 
-.labelInput input {
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
-  opacity: 0.4;
-  padding: 15px;
-  border-radius: 5px;
+input {
   border: none;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+  color: var(--tertiary-color);
+  font-size: var(--text2);
+  font-weight: 500;
+  padding: 15px;
+  width: 100%;
 }
 
-.labelInput input:disabled {
+.labelInputBooking input:disabled {
   background-color: #dfe4ea;
+}
+
+.containerErrorBooking{
+  color: red;
+  font-size: 12pt;
+  font-weight: bold;
 }
 
 /*Estilos ArrivalTimeBar*/
@@ -130,6 +139,7 @@
 
 .containerArrival h4 {
   color: var(--secondary-color);
+  margin-bottom: 10px;
 }
 
 .containerArrival h4::before {
@@ -141,9 +151,16 @@
 .containerArrival label {
   color: var(--secondary-color);
   font-size: 10pt;
+  margin-bottom: 10px;
 }
 .selectContainer{
   width:50%
+}
+
+.timeOption{
+  padding-right: calc(100% - 70.46px);
+  text-align-last: justify;
+  
 }
 
 /* Estilos DetailBar */
@@ -293,13 +310,6 @@
 
 /*Estilos Succeed*/
 
-.containerPrincipalSucceed {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 80px - 58px);
-}
-
 .containerSucceed {
   background-color: white;
   border-radius: 8px;
@@ -383,108 +393,128 @@
   .detail {
     padding: 0;
   }
+}
 
-  @media all and (max-width: 769px) {
-    .barraIzq {
-      width: 100%;
-    }
-
-    .container {
-      flex-direction: column;
-    }
-    .container > div:first-child {
-      width: 100%;
-    }
-
-    .containerSucceed {
-      min-width: 370px;
-      padding: 10px;
-      width: 75vw;
-    }
-
-    .containerSucceed a {
-      width: 45%;
-    }
+@media all and (max-width: 769px) {
+  .barraIzq {
+    width: 100%;
   }
 
-  @media all and (max-width: 680px) {
-    .detailBar > div {
-      flex-direction: column;
-    }
-    .detailBar > div > img {
-      width: 100%;
-      height: 250px;
-    }
-
-    .detailBar > div > img,
-    .detail {
-      width: 100%;
-      height: 100%;
-    }    
+  .container {
+    flex-direction: column;
+  }
+  .container > div:first-child {
+     width: 100%;
   }
 
-  @media all and (max-width: 415px) {
-    .containerForm {
-      max-height: 450px;
-      min-height: 360px;
-    }
-    .containerForm h3 {
-      font-size: var(--heading2);
-    }
-    .containerForm form {
-      max-height: 380px;
-      min-height: 320px;
-      height: 55vh;
-      padding: 15px;
-    }
-    .block {
-      flex-direction: column;
-      justify-content: space-around;
-      height: 50%;
-    }
+  .containerSucceed {
+    min-width: 370px;
+    padding: 10px;
+    width: 75vw;
+  }
 
-    .labelInput {
-      width: 100%;
-    }
+  .containerSucceed a {
+    width: 45%;
+  }
+}
 
-    .labelInput input {
-      padding: 12px;
-    }
+@media all and (max-width: 680px) {
+  .detailBar > div {
+    flex-direction: column;
+  }
+  .detailBar > div > img {
+    width: 100%;
+    height: 250px;
+  }
 
-    .detail {
-      padding: 0;
-      height: 100%;
-    }
+  .detailBar > div > img,
+  .detail {
+    width: 100%;
+    height: 100%;
+  }
 
-    .selectContainer{
-      width:100%
-    }
+  .contenedorCalendario > div > div > div {
+    flex-direction: column;
+  }
+  .contenedorCalendario > div > div {
+    height: 100%;
+  }
 
-    .containerPrincipalSucceed {
-      height: calc(100vh - 93px - 58px);
-    }
+  .contenedorCalendario > div > div > div > div:first-child {
+    border-right: none;
+  }
 
-    .containerSucceed {
-      height: 35vh;
-      min-height: 260px;
-      min-width: 300px;
-      padding: 25px 10px;
-    }
+  .contenedorCalendario > div > div > div > div > div:nth-child(3) {
+    min-height: 260px !important;
+  }
 
-    .containerSucceed h3 {
-      font-size: 20px;
-    }
+  .containerArrival form {
+    width: 100%;
+  } 
+}
 
-    .containerSucceed p {
-      font-size: 16px;
-    }
+@media all and (max-width: 415px) {
+  .containerForm {
+    max-height: 450px;
+    min-height: 360px;
+  }
+  .containerForm h3 {
+    font-size: var(--heading2);
+  }
+  .containerForm form {
+    max-height: 380px;
+    min-height: 320px;
+    height: 55vh;
+    padding: 15px;
+  }
+  .block {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50%;   
+    padding:  0;
+  }
 
-    .containerSucceed a {
-      width: 68%;
-    }
+  .labelInputBooking {
+    width: 100%;
+  }
 
-    .containerSucceed a button {
-      padding: 10px;
-    }
+  .labelInputBooking input {
+    padding: 12px;
+  }
+
+  .detail {
+    padding: 0;
+    height: 100%;
+  }
+
+  .selectContainer{
+    width:100%
+  }
+
+  .containerPrincipalSucceed {
+    height: calc(100vh - 93px - 58px);
+  }
+
+  .containerSucceed {
+    height: 35vh;
+    min-height: 260px;
+    min-width: 300px;
+    padding: 25px 10px;
+  }
+
+  .containerSucceed h3 {
+    font-size: 20px;
+  }
+
+  .containerSucceed p {
+    font-size: 16px;
+  }
+
+  .containerSucceed a {
+    width: 68%;
+  }
+
+  .containerSucceed a button {
+    padding: 10px;
   }
 }

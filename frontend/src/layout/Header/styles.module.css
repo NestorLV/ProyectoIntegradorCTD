@@ -166,7 +166,26 @@ header.header {
     
     header.header{
       height: 99px;
-      padding: 5px 16px;
+      padding: 5px 4px;
+    }
+
+    div.user div.text h3 {
+font-size: 12pt;
+    }
+
+    div.user div.logoName p {
+      font-size: var(--heading4);
+    }
+
+    div.user div {
+      padding: 0 2px;
+    }
+
+    .headerTop{
+      padding-right: 0;
+    }
+    div.user div.text h4.seeFavourite {
+      font-size: 10pt;
     }
   }
   

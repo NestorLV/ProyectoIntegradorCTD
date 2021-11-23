@@ -18,6 +18,12 @@ function App() {
   const [city,setCity] = useState("");
   const [clickBusqueda, setClickBusqueda] = useState(false);
   const [favourite, setFavourite] = useState(false);
+  const [iniciales, setIniciales] = useState("");
+  const [userName, setUserName] =useState("");
+  const [userSurname, setUserSurname] = useState("")
+  const [loading, setLoading] = useState(false);
+  const [bookingWithoutLogin, setBookingWithoutLogin]= useState(false)
+  const [lastLocation, setLastLocation]=useState("")
 
   const handleCategory = (c) => {           
     setSearch(false);
@@ -50,16 +56,21 @@ function App() {
     setFavourite(false);  
   }  
 
+  const goBack=()=>{
+    window.history.back()
+  }
+  console.log(lastLocation);
+
   return ( 
     <BrowserRouter>      
-      <LayoutPrincipal isLogged = {log} activeCreate ={activeCreate} activeLogin = {activeLogin} handleClean={handleClean} handleFavourite={handleFavourite}>
+      <LayoutPrincipal setLastLocation={setLastLocation} setBookingWithoutLogin={setBookingWithoutLogin} setLoading={setLoading} iniciales={iniciales} userName={userName} userSurname={userSurname} isLogged = {log} activeCreate ={activeCreate} activeLogin = {activeLogin} handleClean={handleClean} handleFavourite={handleFavourite}>
         <Switch>
           <Route exact path="/">
-            <Home setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin} category= {category} handleCategory={handleCategory} search={search} handleSearch={handleSearch} city={city} handleCity={handleCity} clickBusqueda = {clickBusqueda} favourite= {favourite}/>
+            <Home loading={loading} setLastLocation={setLastLocation} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin} category= {category} handleCategory={handleCategory} search={search} handleSearch={handleSearch} city={city} handleCity={handleCity} clickBusqueda = {clickBusqueda} favourite= {favourite}/>
           </Route>
-          <Route exact path="/login"  component={() => !log? <FormLogin setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />                  
-          <Route exact path="/create" component={() => !log? <FormCreate setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to="/" />} />
-          <Route exact path={"/product/:id"} component={Product}/>   
+          <Route exact path="/login"  component={() => !log? <FormLogin lastLocation={lastLocation} bookingWithoutLogin={bookingWithoutLogin} setLoading={setLoading} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to={`${lastLocation}`}/>} />                  
+          <Route exact path="/create" component={() => !log? <FormCreate lastLocation={lastLocation} setIniciales={setIniciales} setUserName={setUserName} setUserSurname={setUserSurname} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to={`${lastLocation}`} />} />
+          <Route exact path={"/product/:id"} exact render={() => <Product setBookingWithoutLogin={setBookingWithoutLogin} goBack={goBack} setLastLocation={setLastLocation} lastLocation={lastLocation}/>} />   
           <Route exact path={"/product/:id/reserva"} component={Booking}/>      
           <Route path="*"> <NotFound /> </Route>
         </Switch>

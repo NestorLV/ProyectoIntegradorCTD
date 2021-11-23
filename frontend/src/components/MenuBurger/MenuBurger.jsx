@@ -5,7 +5,6 @@ import logoLinkedIn from "./img/IconLinkedIn.png";
 import logoTwitter from "./img/IconTw.png";
 import logoIg from "./img/IconIg.png";
 import line from "./img/Line.png";
-import ValidCredentials from "../../credentials/ValidCredentials";
 import { MenuBurgerWrapper } from "./MenuBurgerWrapped.jsx";
 import Share from '../../components/Product/Share';
 import iconSocial from "./img/icon-share.svg"
@@ -29,7 +28,7 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
                     </div>
                     <div className="text">
                         <h3 className="great">Hola,</h3>
-                        <h3 className="name">{ValidCredentials.nombre} {ValidCredentials.apellido}</h3>
+                        <h3 className="name">{sessionStorage.getItem("name")} {sessionStorage.getItem("surname")}</h3>
                     </div>
                 </div>
                 <p className={`textMenu ${hideObject}`}>MENÚ</p>

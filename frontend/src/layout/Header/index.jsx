@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ValidCredentials from '../../credentials/ValidCredentials';
 import logo from "./img/logoWguest.jpg";
 import Styles from "./styles.module.css"
 import StylesApp from "../../App.module.css"
@@ -9,16 +8,19 @@ import MenuBurger from '../../components/MenuBurger/MenuBurger';
 import MenuButton from '../../components/MenuBurger/MenuButton';
 import { Link } from "react-router-dom";
 
-export default function Header({ activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
+export default function Header({ setLastLocation, setBookingWithoutLogin, setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
 
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
-    const iniciales = `${ValidCredentials.nombre.slice(0, 1).toUpperCase()}${ValidCredentials.apellido.slice(0, 1).toUpperCase()}`
+    const baseUrl = "http://localhost:8080/"
 
     function handleLogOut() {
+        setLoading(true)
         sessionStorage.setItem("log", "false")
+        sessionStorage.removeItem("id")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
+        setLastLocation(window.location.pathname)
     }
 
     function handleShow() {
@@ -26,7 +28,14 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
     }
     function handleHide() {
         setShowBurger(false)
+        setBookingWithoutLogin(false)
+    }   
+
+    function handleErrorLogin(){
+        setBookingWithoutLogin(false)
     }
+
+   
 
     return (
         <header className={`${Styles.header} ${StylesApp.delimiter}`} >
@@ -49,7 +58,7 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
                     </Link>
 
                     <Link to="/login">
-                        <button className={activeLogin ? Styles.hideButton : null} >
+                        <button className={activeLogin ? Styles.hideButton : null} onClick={handleErrorLogin} >
                             Iniciar Sesión
                         </button>
                     </Link>
@@ -59,11 +68,11 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
                 </div>
                 <div className={showUserName}>
                     <div className={Styles.logoName}>
-                        <p>{iniciales}</p>
+                        <p>{sessionStorage.getItem("iniciales")}</p>
                     </div>
                     <div className={Styles.text}>
                         <h3 className={Styles.great}>Hola,</h3>
-                        <h3 className={Styles.name}>{ValidCredentials.nombre} {ValidCredentials.apellido}</h3>
+                        <h3 className={Styles.name}>{sessionStorage.getItem("name")} {sessionStorage.getItem("surname")}</h3>
                         <h4 className={Styles.seeFavourite}onClick={handleFavourite}>Ver favoritos</h4>
                     </div>
                     <div>
@@ -73,7 +82,7 @@ export default function Header({ activeCreate, activeLogin, isLogged, showBurger
                 </div>
                 <MenuButton show={showBurger} handleShow={handleShow} />
             </div>
-            <MenuBurger show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={iniciales} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
+            <MenuBurger show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={sessionStorage.getItem("iniciales")} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
         </header>
     )
 }

@@ -12,9 +12,10 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 /* const { format } = require("date-fns"); */
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router";
 
 
-function DateBar(props) {    
+function DateBar(props) {
     const { valueDate, setValueDate } = props;
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
@@ -22,7 +23,7 @@ function DateBar(props) {
     const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
     const booksMade = [new Date(2021, 10, 30).toDateString(), new Date(2021, 10, 28).toDateString(), new Date(2021, 11, 8).toDateString(), new Date(2021, 11, 15).toDateString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
     const [maxDate, setMaxDate] = useState(null);
-    const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate")!=null?startDate:null, sessionStorage.getItem("endDate")!=null?endDate:null]);
+    const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate") != null ? startDate : null, sessionStorage.getItem("endDate") != null ? endDate : null]);
 
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -55,12 +56,26 @@ function DateBar(props) {
     });
     const classes = useStyles();
 
+    const handlePath = () => {
+        let path = ""
+        if (sessionStorage.getItem("log") === "true") {
+            path = `/product/${props.id}/reserva`
+        } else {
+            path = "/login"
+        }
+        return path
+    }
+
+
+
     const handleChange = () => {
         /*  String Date  - aaaa,mm,dd  */
         if (startDate.getTime() >= new Date().setHours(0, 0, 0, 0)) {
             sessionStorage.setItem("startDate", startDate.toDateString());
-            sessionStorage.setItem("endDate", endDate.toDateString());           
-        } 
+            sessionStorage.setItem("endDate", endDate.toDateString());
+        }
+        props.setLastLocation(window.location.pathname)
+        props.setBookingWithoutLogin(true)
     };
 
     function handleDateChange(newValue) {
@@ -79,6 +94,11 @@ function DateBar(props) {
         setDinamicValue(newValue);
         setMaxDate(null);
         handleDateChange(newValue);
+        if(!newValue[0]){
+            window.sessionStorage.removeItem("startDate");
+        }else if(!newValue[1]){
+            window.sessionStorage.removeItem("endDate");
+        }
     }
 
     return (
@@ -93,7 +113,7 @@ function DateBar(props) {
                                 <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
                             </div>
                             : null}
-                        {dinamicValue[1] != null && dinamicValue[0] != ""?
+                        {dinamicValue[1] !== null && dinamicValue[0] != "" ?
                             <div className={Styles.dateBarDayBox}>
                                 Hasta: {dinamicValue[1].toLocaleDateString()}
                                 <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>
@@ -133,9 +153,9 @@ function DateBar(props) {
                         <div className={Styles.contenedorReserva}>
                             <p className={Styles.negrita}>Agregá tus fechas de viaje para tener precios exactos</p>
                             <div className={Styles.buttonsDateBar}>
-                                <Link to={`/product/${props.id}/reserva`} >
+                                <Link to={handlePath}>
                                     <button className={Styles.selectedDatesButton} onClick={handleChange}> Iniciar reserva</button>
-                                </Link>                                
+                                </Link>
                             </div>
                         </div>
                     </div>

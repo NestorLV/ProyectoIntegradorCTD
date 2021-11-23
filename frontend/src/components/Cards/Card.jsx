@@ -9,7 +9,7 @@ import ScoreDescription from '../Product/ScoreDescription';
 import Icons from "../Product/icons/Icons";
 import { AxiosLikeProducto, AxiosDislikeProducto } from '../../axiosCollection/Cards/axiosCollection';
 
-function Card({ image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
+function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
     const [isLike, setLike] = useState(favorite);
     const [mapIsOpen, setMapIsOpen] = useState(false)
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
@@ -48,6 +48,10 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
     };
 
     let loggued = sessionStorage.getItem("log");
+
+    function handleLastLocation(){
+        setLastLocation(`/product/${id}`)
+    }
 
     return (
         <div className={Styles.cardBox}>
@@ -105,7 +109,7 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
                     <p className={despliegue ? Styles.desplegado : Styles.noDesplegado}>{description}</p>
                     <span onClick={handleDespliegue}>{textoDespliegue}</span>
                 </div>
-                <Link to={`/product/${id}`} key={id} className={Styles.link}>
+                <Link to={`/product/${id}`} key={id} className={Styles.link} onClick={handleLastLocation}>
                     <button className={Styles.cardButton2}>Ver más</button>
                 </Link>
             </div>

@@ -5,7 +5,7 @@ import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createSerializer } from 'enzyme-to-json';
 import Card from './Card';
-import Cards from './index';
+import Cards from './Cards';
 import MapModal from "./MapModal";
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -49,6 +49,17 @@ let props = { image: "test", cardCategory: "test", name: "test", city: "test", c
         wrapper = shallow(<Card {...props6} />);
         expect(wrapper).toMatchSnapshot();
     });
+
+    it("Deberia mostrarse el componente al hacer click para desplegar el texto", ()=>{
+        wrapper.find("div.cardDescription span").simulate("click")
+        expect(wrapper).toMatchSnapshot();
+    })
+
+    it("Deberia mostrarse el componente al hacer click para mostrar el mapa", ()=>{
+        wrapper.find("div.cardLocation span").simulate("click")
+        expect(wrapper).toMatchSnapshot();
+    })
+
 });
 
 describe('Pruebas en Cards', () => {   

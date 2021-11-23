@@ -182,6 +182,12 @@ div.buttons button.create:hover {
   display: flex;
   font-size: var(--text3);
   text-transform: uppercase;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.cardCategory> div {
+min-width: 80px;
 }
 
 .cardCategory .star {
@@ -192,6 +198,7 @@ div.buttons button.create:hover {
 .cardCategory p,
 .iconLocation {
   margin-right: 4px;
+  width: min-content;
 }
 
 .cardName {
@@ -216,7 +223,7 @@ div.buttons button.create:hover {
 }
 
 .cardHeadline {
-  max-width: 70%;
+  max-width: 75%;
 }
 
 .cardScore {

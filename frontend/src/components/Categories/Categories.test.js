@@ -5,7 +5,7 @@ import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createSerializer } from 'enzyme-to-json';
 import Category from "./Category";
-import Categories from "./index";
+import Categories from "./Categories";
 
 
 Enzyme.configure({ adapter: new Adapter() });

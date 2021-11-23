@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StylesApp from "../../App.module.css";
 import Styles from "./styles.module.css";
-import { AxiosCalificarProducto } from "../../axiosCollection/Product/axiosCollection";
+import { AxiosCalificarProducto } from "../../axiosCollection/Product/AxiosProduct";
 
 export default function QualificationBar({ id }) {
     const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion') == null ? 0 : sessionStorage.getItem('calificacion'));

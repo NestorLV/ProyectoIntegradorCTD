@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctamente 1`] = `
-<styled.header
+<header
   className="header delimiter"
 >
   <div
@@ -42,6 +42,7 @@ exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctament
       >
         <button
           className={null}
+          onClick={[Function]}
         >
           Iniciar Sesión
         </button>
@@ -53,9 +54,7 @@ exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctament
       <div
         className="logoName"
       >
-        <p>
-          GU
-        </p>
+        <p />
       </div>
       <div
         className="text"
@@ -68,9 +67,7 @@ exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctament
         <h3
           className="name"
         >
-          Grupo
            
-          Uno
         </h3>
         <h4
           className="seeFavourite"
@@ -98,12 +95,10 @@ exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctament
     />
   </div>
   <MenuMobile
-    activeCreate={false}
-    activeLogin={false}
     handleFavourite={[MockFunction]}
     handleHide={[Function]}
     handleLogOut={[Function]}
-    iniciales="GU"
+    iniciales={null}
   />
-</styled.header>
+</header>
 `;

@@ -9,10 +9,11 @@ import ImageBar from "./ImageBar";
 import InfoBar from "./InfoBar";
 import Map from "./Map";
 import MapBar from "./MapBar";
-
 import Product from "./Product";
 import QualificationBar from "./QualificationBar";
 import ScoreBar from "./ScoreBar";
+import ScoreDescription from "./ScoreDescription";
+import ScoreStar from "./ScoreStar";
 import Share from "./Share";
 import TitleBar from "./TitleBar";
 import{ createMemoryHistory } from "history"
@@ -53,26 +54,22 @@ describe("Probando el componente <CarouselModal/>", () => {
     })
 })
 
+/
 describe("Probando el componente <DateBar/>", () => {
     let wrapper;
     let props ={
         valueDate:[],
-        setValueDate:jest.fn()
+        setValueDate:jest.fn(),
+        setLastLocation:jest.fn(),
+        setBookingWithoutLogin:jest.fn()
     }
     
     beforeEach(() => {
         wrapper = shallow(<DateBar {...props}/>)
     });
-
-    it("Deberia llamar a event.preventDefault cuando se hace click en el boton", ()=>{
-        const event = { preventDefault: () => {} }
-        jest.spyOn(event, 'preventDefault')
-        wrapper.find('button.selectedDatesButton').simulate('click', event)
-                
-        expect(event.preventDefault).toBeCalled()
-    })
-
-
+    it("Deberia mostrar <DateBar/> correctamente", () => {
+        expect(wrapper).toMatchSnapshot();
+    });
 })
 
 describe("Probando el componente <DescriptionBar/>", () => {
@@ -326,6 +323,119 @@ describe("Probando el componente <ScoreBar/>", () => {
 
 })
 
+describe("Probando el componente <ScoreDescription/>", () => {
+    let wrapper;
+
+    let props={
+        qualification:1
+    }
+    let props2={
+        qualification:3
+    }
+    let props3={
+        qualification:5
+    }
+    
+    let props4={
+        qualification:7
+    }
+
+    let props5={
+        qualification:9
+    }
+
+    let props6={
+        qualification:11
+    }
+
+    it("Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 1", () => {
+        wrapper = shallow(<ScoreDescription {...props}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 3", () => {
+        wrapper = shallow(<ScoreDescription {...props2}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+    
+    it("Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 5", () => {
+        wrapper = shallow(<ScoreDescription {...props3}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 7", () => {
+        wrapper = shallow(<ScoreDescription {...props4}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreDescription/> correctamente con una calificacion de 9", () => {
+        wrapper = shallow(<ScoreDescription {...props5}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreDescription/> con un mensaje de calificacion invalida al ingresar una calificacion de 11", () => {
+        wrapper = shallow(<ScoreDescription {...props6}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+
+})
+
+describe("Probando el componente <ScoreStar/>", () => {
+    let wrapper;
+    let props={
+        qualification:1
+    }
+    let props2={
+        qualification:3
+    }
+    let props3={
+        qualification:5
+    }
+    
+    let props4={
+        qualification:7
+    }
+
+    let props5={
+        qualification:9
+    }
+
+    let props6={
+        qualification:10
+    }
+
+    it("Deberia mostrar <ScoreStar/> correctamente con una calificaion de 1", () => {
+        wrapper = shallow(<ScoreStar {...props}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreStar/> correctamente con una calificaion de 3", () => {
+        wrapper = shallow(<ScoreStar {...props2}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreStar/> correctamente con una calificaion de 5", () => {
+        wrapper = shallow(<ScoreStar {...props3}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreStar/> correctamente con una calificaion de 7", () => {
+        wrapper = shallow(<ScoreStar {...props4}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreStar/> correctamente con una calificaion de 9", () => {
+        wrapper = shallow(<ScoreStar {...props5}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Deberia mostrar <ScoreStar/> correctamente con una calificaion de 10", () => {
+        wrapper = shallow(<ScoreStar {...props6}/>)
+        expect(wrapper).toMatchSnapshot();
+    });
+
+})
 
 describe("Probando el componente <Titlebar/>", () => {
     let wrapper;

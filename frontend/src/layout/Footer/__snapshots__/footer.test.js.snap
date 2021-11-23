@@ -2,7 +2,7 @@
 
 exports[`Probando el componente <Footer/> Deberia mostrar <Footer/> correctamente 1`] = `
 <footer
-  className="footer null delimiter"
+  className="footer delimiter"
 >
   <div
     className="delimiterChild delimiterChild "
@@ -17,6 +17,50 @@ exports[`Probando el componente <Footer/> Deberia mostrar <Footer/> correctament
     <div
       className="icons"
     >
+      <a
+        href="https://www.facebook.com/profile.php?id=100074545225635"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="iconsImg"
+          src="icon facebook.png"
+        />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/world-guest-2b195b225/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="iconsImg"
+          src="icon linkedin.png"
+        />
+      </a>
+      <a
+        href="https://twitter.com/WorldGuest2"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="iconsImg"
+          src="tweet.png"
+        />
+      </a>
+      <a
+        href="https://www.instagram.com/world_guest_booking/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="iconsImg"
+          src="icon ig.png"
+        />
+      </a>
       <img
         alt="iconSocial"
         className="iconsImg"
@@ -27,26 +71,6 @@ exports[`Probando el componente <Footer/> Deberia mostrar <Footer/> correctament
         placeShareCall="footer"
         setShareIsOpen={[Function]}
         shareIsOpen={false}
-      />
-      <img
-        alt=""
-        className="iconsImg"
-        src="icon facebook.png"
-      />
-      <img
-        alt=""
-        className="iconsImg"
-        src="icon linkedin.png"
-      />
-      <img
-        alt=""
-        className="iconsImg"
-        src="tweet.png"
-      />
-      <img
-        alt=""
-        className="iconsImg"
-        src="icon ig.png"
       />
     </div>
   </div>

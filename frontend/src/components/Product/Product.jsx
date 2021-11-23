@@ -11,7 +11,7 @@ import InfoBar from "./InfoBar";
 import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
 import Spinner from "../spinner/Spinner";
-import { AxiosGetProductoPorId } from "../../axiosCollection/Product/axiosCollection"
+import { AxiosGetProductoPorId } from "../../axiosCollection/Product/AxiosProduct"
 
 
 function Product(props) {
@@ -51,7 +51,7 @@ function Product(props) {
         AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage)
     }, [id]);
 
-
+    console.log(props.lastLocation);
     return (
         (errorMessage && loading) ?
             <section className={StylesApp.delimiter}>
@@ -63,12 +63,12 @@ function Product(props) {
                     <Spinner />
                 ) : (
                     <>
-                        <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
-                        <ScoreBar reference={prod.reference} city={prod.city} qualification={prod.qualification} />
-                        <ImageBar images={prod.images} viewerIsOpen={viewerIsOpen} setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
+                        <TitleBar category={prod.category.title} name={prod.name} goBack={props.goBack} />
+                        <ScoreBar reference={prod.reference} city={prod.city} qualification={prod.qualification*2} />
+                        <ImageBar setLastLocation={props.setLastLocation} setBookingWithoutLogin={props.setBookingWithoutLogin} images={prod.images} viewerIsOpen={viewerIsOpen} setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
                         <DescriptionBar city={prod.city} description={prod.description} />
                         <FeaturesBar features={prod.features} />
-                        <Datebar valueDate={valueDate} setValueDate={setValueDate} id={id} />
+                        <Datebar setLastLocation={props.setLastLocation} setBookingWithoutLogin={props.setBookingWithoutLogin} valueDate={valueDate} setValueDate={setValueDate} id={id} />
                         {(props.latitude !== null || props.longitude !== null) &&
                             <MapBar city={prod.city} latitude={prod.latitude} longitude={prod.longitude} name={prod.name} address={prod.address} />
                         }

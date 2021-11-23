@@ -140,7 +140,7 @@ exports[`Pruebas en <SelectCity /> Deberia mostrar <SelectCity/> correctamente 1
         ¿A dónde vamos?
       </div>
       <div
-        className=" css-14dclt2-Input"
+        className=" css-6j8wv5-Input"
         data-value=""
       >
         <input
