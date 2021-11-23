@@ -19,33 +19,40 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findFirst5ByOrderByQualificationDesc();
 
     String RESERVATION_QUERY_BY_CITY = "select p.idProduct, p.name, p.description, p.latitude, p.longitude, p.address, " +
-            " p.qualification, p.favourite,p.idCategory,p.idCity, p.rules, p.health, p.politics " +
-            " from product p " +
-            "JOIN city c ON c.idCity = p.idCity " +
-            "LEFT JOIN reservation r ON r.idProduct = p.idProduct " +
-            "where p.idCity = ?1";
-
-    String RESERVATION_QUERY_BY_DATES = "select p.idProduct, p.name, p.description, p.latitude, p.longitude, p.address," +
-            " p.qualification, p.favourite,p.idCategory,p.idCity, p.rules, p.health, p.politics " +
+            " p.qualification, p.favourite,p.reference,p.idCategory,p.idCity, p.rules, p.health, p.politics, " +
+            " r.idReservation " +
             " from product p " +
             " JOIN city c ON c.idCity = p.idCity " +
             " LEFT JOIN reservation r ON r.idProduct = p.idProduct " +
-            "AND (" +
-            "(r.endDate < ?1 AND r.startDate < ?2) OR" +
-            "(r.endDate > ?1 AND r.startDate > ?2)" +
-            ")";
-
-
-    String RESERVATION_QUERY = "select p.idProduct, p.name, p.description, p.latitude, p.longitude, p.address," +
-            " p.qualification, p.favourite,p.idCategory,p.idCity, p.rules, p.health, p.politics " +
-            " from product p " +
+            " where p.idCity = ?1 AND p.idProduct NOT IN(select p.idProduct from product p " +
             "JOIN city c ON c.idCity = p.idCity " +
-            "LEFT JOIN reservation r ON r.idProduct = p.idProduct " +
-            "where p.idCity = ?1 "+
-            "AND ( " +
-            "(r.endDate < ?2 AND r.startDate< ?3) OR " +
-            "(r.endDate > ?2 AND r.startDate > ?3) " +
-            ")";
+            "JOIN reservation r ON r.idProduct = p.idProduct )" ;
+
+    String RESERVATION_QUERY_BY_DATES = "select p.idProduct, p.name, p.description, p.latitude, p.longitude, p.address, " +
+            " p.qualification, p.favourite,p.reference,p.idCategory,p.idCity, p.rules, p.health, p.politics, " +
+            " r.idReservation " +
+            " from product p " +
+            " LEFT JOIN reservation r ON r.idProduct = p.idProduct " +
+            " AND ((r.endDate < ?2 AND r.startDate< ?1 " +
+            " OR (r.endDate > ?2 AND r.startDate > ?1 ))) " +
+            " where p.idProduct NOT IN(select p.idProduct from product p " +
+            "JOIN reservation r ON r.idProduct = p.idProduct " +
+            "where r.startDate >= ?1 AND r.endDate <= ?2) " ;
+
+
+
+    String RESERVATION_QUERY = "select p.idProduct, p.name, p.description, p.latitude, p.longitude, p.address, " +
+            " p.qualification, p.favourite,p.reference,p.idCategory,p.idCity, p.rules, p.health, p.politics, " +
+            " r.idReservation " +
+            " from product p " +
+            " JOIN city c ON c.idCity = p.idCity " +
+            " LEFT JOIN reservation r ON r.idProduct = p.idProduct " +
+            " AND ((r.endDate < ?3 AND r.startDate< ?2 " +
+            " OR (r.endDate > ?3 AND r.startDate > ?2))) " +
+            " where p.idCity = ?1 AND p.idProduct NOT IN(select p.idProduct from product p " +
+            "JOIN city c ON c.idCity = p.idCity " +
+            "JOIN reservation r ON r.idProduct = p.idProduct " +
+            "where p.idCity = ?1 AND (r.startDate >= ?2 AND r.endDate <= ?3))";
 
 
     @Query(value = RESERVATION_QUERY_BY_CITY, nativeQuery = true)
