@@ -90,18 +90,23 @@ public class ProductController implements CRUDController<ProductDTO> {
     @PostMapping("/get/filter")
     public ResponseEntity<List<ProductDTO>> getCityDateRange(@RequestBody FilterDTO filterDTO)
             throws BadRequestException, FindByIdException {
+        System.out.println("filterDTO" + filterDTO);
             if(validate(filterDTO)){
                 return ResponseEntity.ok(productService.findCityDateRange(filterDTO));
         }
-
         return null;
     }
 
+    @Operation(summary = "Find by city, date range and Category")
+    @PostMapping("/filters")
+    public ResponseEntity<List<ProductDTO>> filterCityDatesCategory(@RequestBody FilterDTO filterDTO) throws BadRequestException, FindByIdException {
+        return ResponseEntity.ok(productService.filterCityAndDates(filterDTO));
+    }
+
     public Boolean validate(FilterDTO filterDTO){
-        if((filterDTO.getCityId() == null) &&
-                (filterDTO.getStartDate() == null &&filterDTO.getEndDate() == null)){
-                if(filterDTO.getCityId()==null&&(filterDTO.getStartDate()==null||filterDTO.getEndDate()==null)){
-                    return false;
+        if((filterDTO.getCityId() == null) && (filterDTO.getStartDate() == null &&filterDTO.getEndDate() == null)){
+            if(filterDTO.getCityId()==null&&(filterDTO.getStartDate()==null||filterDTO.getEndDate()==null)){
+                return false;
                 }
             return false;
         }else {
@@ -113,3 +118,4 @@ public class ProductController implements CRUDController<ProductDTO> {
         return productService.test();
     }*/
 }
+ /*  */
