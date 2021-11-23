@@ -19,4 +19,7 @@ public interface IProductService extends IBookingService<ProductDTO> {
     List<ProductDTO> findRecommendations() throws FindByIdException;
     List<ProductDTO>findCityDateRange(FilterDTO filterDTO) throws FindByIdException;
     List<ProductDTO> findDateRange(Integer cityId, Date startDate, Date endDate) throws FindByIdException;
+
+    List<ProductDTO> findAllByDates(Date startDate, Date endDate) throws FindByIdException;
+    List<ProductDTO> filterCityAndDates(FilterDTO filterDTO) throws BadRequestException, FindByIdException;
 }

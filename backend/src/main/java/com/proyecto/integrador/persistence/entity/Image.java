@@ -33,8 +33,6 @@ public class Image {
         this.product = product;
     }
 
-
-
     public ImageDTO toDto() {
         ImageDTO imageDTO = new ImageDTO();
         imageDTO.setId(id);

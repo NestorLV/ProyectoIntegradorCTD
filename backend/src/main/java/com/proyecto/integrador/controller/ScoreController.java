@@ -56,4 +56,5 @@ public class ScoreController implements CRUDController <ScoreDTO> {
     public ResponseEntity<Double> getAverage(@PathVariable Integer idProduct) {
         return ResponseEntity.ok(scoresService.average(idProduct));
     }
+
 }

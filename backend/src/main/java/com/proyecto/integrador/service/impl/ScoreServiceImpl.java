@@ -104,4 +104,5 @@ public class ScoreServiceImpl implements IScoreService {
     public Set<ScoreDTO> findAllByIdProduct(Integer idProduct) {
         return scoresRepository.findByProductId(idProduct).stream().map(Score::toDto).collect(Collectors.toSet());
     }
+
 }

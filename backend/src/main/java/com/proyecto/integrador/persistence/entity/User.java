@@ -2,6 +2,7 @@ package com.proyecto.integrador.persistence.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.DTO.RoleDTO;
 import com.proyecto.integrador.DTO.UserDTO;
 import com.proyecto.integrador.persistence.entity.enums.RolesTypes;

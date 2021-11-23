@@ -96,8 +96,8 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     @Override
-    public List<ProductDTO> getFavorites(String email) throws FindByIdException {
-        return productService.findFavorites();
+    public List<ProductDTO> getFavorites(String email) throws FindByIdException, BadRequestException {
+        return productService.findFavorites(email);
     }
 
     public UserDTO findByEmail(String email) {

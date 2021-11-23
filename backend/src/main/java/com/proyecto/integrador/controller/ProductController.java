@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -65,6 +66,18 @@ public class ProductController implements CRUDController<ProductDTO> {
     @GetMapping("/get/city/{cityId}")
     public ResponseEntity<List<ProductDTO>> getAllByCity(@PathVariable Integer cityId) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(productService.findAllByCity(cityId));
+    }
+
+    @Operation(summary = "Find by dates")
+    @GetMapping("/get/dates/{startDate}/{endDate}")
+    public ResponseEntity<List<ProductDTO>> getAllByDates(@PathVariable Date startDate, @PathVariable Date endDate) throws FindByIdException, BadRequestException {
+        return ResponseEntity.ok(productService.findAllByDates(startDate,endDate));
+    }
+
+    @Operation(summary = "Find by city and date range")
+    @PostMapping("/filter")
+    public ResponseEntity<List<ProductDTO>> filterCityAndDates(@RequestBody FilterDTO filterDTO) throws BadRequestException, FindByIdException {
+            return ResponseEntity.ok(productService.filterCityAndDates(filterDTO));
     }
 
     @Operation(summary = "Find recommended products")

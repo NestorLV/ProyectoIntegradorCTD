@@ -9,9 +9,11 @@ import com.proyecto.integrador.service.IProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -31,6 +33,8 @@ public class ProductServiceImpl implements IProductService {
     ScoreServiceImpl scoreService;
     @Autowired
     UserServiceImpl userService;
+    @Autowired
+    ReservationServiceImpl reservationService;
 
     private ProductDTO loadDataIntoProductDTO(Product product) throws FindByIdException {
         ProductDTO productDto = product.toDto();
@@ -117,6 +121,52 @@ public class ProductServiceImpl implements IProductService {
         return productsByCategory;
     }
 
+    public List<ProductDTO> findAllByDates(Date startDate, Date endDate) throws FindByIdException {
+        logger.debug("Iniciando método buscar productos por fechas");
+        List<ReservationDTO> reservas = reservationService.findAll();
+        List<ReservationDTO> reservasOcupadas = reservas.stream().filter(r -> (startDate.equals(r.getStartDate()) || startDate.before(r.getStartDate()) && endDate.after(r.getStartDate())) || startDate.after(r.getStartDate()) && endDate.before(r.getEndDate())|| startDate.after(r.getStartDate()) && startDate.before(r.getEndDate())).collect(Collectors.toList());
+        List<Integer> productIds = new ArrayList<>();
+        for (ReservationDTO reservation : reservasOcupadas) {
+            productIds.add(reservation.getProductId());
+        }
+        List<ProductDTO> products = findAll();
+        if (productIds.size() == 0) {
+            return products;
+        }
+        List<ProductDTO> productosDisponibles = new ArrayList<>();
+        for (ProductDTO product : products) {
+            productIds.forEach(id -> {
+                if (!Objects.equals(id, product.getId())) {
+                    productosDisponibles.add(product);
+                }
+            });
+        }
+        logger.debug("Terminó la ejecución del método buscar productos por fechas");
+        return productosDisponibles;
+    }
+
+    public List<ProductDTO> filterCityAndDates(FilterDTO filterDto) throws BadRequestException, FindByIdException {
+        logger.debug("Iniciando método buscar productos por ciudad y fechas");
+        if (filterDto.getCityId() == null) {
+            return findAllByDates(filterDto.getStartDate(),filterDto.getEndDate());
+        } else if (filterDto.getStartDate() == null && filterDto.getEndDate() == null) {
+            return findAllByCity((filterDto.getCityId()));
+        } else {
+            List<ProductDTO> productsByCity = findAllByCity(filterDto.getCityId());
+            List<ProductDTO> productsByDates = findAllByDates(filterDto.getStartDate(),filterDto.getEndDate());
+            List<ProductDTO> productosDisponibles = new ArrayList<>();
+            for (ProductDTO product : productsByCity) {
+                productsByDates.forEach(p -> {
+                    if (p.equals(product)) {
+                        productosDisponibles.add(product);
+                    }
+                });
+            }
+            logger.debug("Terminó la ejecución del método buscar productos por ciudad y fechas");
+            return productosDisponibles;
+        }
+    }
+
     @Override
     public List<ProductDTO> findAllByCity(Integer cityId) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método buscar productos por ciudad");
@@ -177,13 +227,23 @@ public class ProductServiceImpl implements IProductService {
     }
 
     // A corregir lo de favoritos --> Que no se hardcodee
-    public List<ProductDTO> findFavorites() throws FindByIdException {
-        List<ProductDTO> recommendedFavorites = new ArrayList<>();
+    public List<ProductDTO> findFavorites(String email) throws FindByIdException, BadRequestException {
+        if (userService.findByEmail(email) == null) {
+            throw new BadRequestException("El usuario no está logueado");
+        }
+        UserDTO user = userService.findByEmail(email);
+
+        List<ProductDTO> favoriteProducts = new ArrayList<>();
+        for (ProductDTO product : user.getFavoriteProducts()) {
+            favoriteProducts.add(findById(product.getId()));
+        }
+        return favoriteProducts;
+/*        List<ProductDTO> recommendedFavorites = new ArrayList<>();
         for (Product product : productRepository.findFirst5ByOrderByQualificationDesc()) {
             product.setFavourite(true);
             recommendedFavorites.add(loadDataIntoProductDTO(product));
         }
-        return recommendedFavorites;
+        return recommendedFavorites;*/
     }
 
     public void updateQualification(Integer productId, double newQualification) throws FindByIdException {

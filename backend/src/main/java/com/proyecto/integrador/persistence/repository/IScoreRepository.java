@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface IScoreRepository extends JpaRepository<Score, Integer> {
     List<Score>findByProductId(Integer idProduct);
-
 }

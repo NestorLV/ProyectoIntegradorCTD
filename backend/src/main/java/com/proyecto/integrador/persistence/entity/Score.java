@@ -22,9 +22,8 @@ public class Score {
     private Integer idUser;
     @Column(name = "score")
     private Integer score;
-    // Revisar si esto tiene sentido que esté acá! Capaz no es necesario este atributo de fav acá porque ya está en producto
     @Column(name = "favourite")
-    private Boolean favourite = false;
+    private Boolean favourite;
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private Product product;
