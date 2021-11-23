@@ -68,7 +68,7 @@ function DateBar(props) {
         if (newValue[0] != null) {
             let sortBooksMadeDate = booksMadeDate.sort((a, b) => a - b);
             const validacion = sortBooksMadeDate.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
-            setMaxDate(validacion == undefined ? null : new Date(validacion))
+            setMaxDate(validacion === undefined ? null : new Date(validacion))
         }
         setDinamicValue(newValue);
     }
@@ -87,7 +87,7 @@ function DateBar(props) {
                 <div className={Styles.dateBarTitleBox}>
                     <h2>Fechas Disponibles</h2>
                     <div className={Styles.dateBarDayContainer}>
-                        {dinamicValue[0] != null && dinamicValue[0] != ""?
+                        {dinamicValue[0] !== null && dinamicValue[0] !== ""?
                             <div className={Styles.dateBarDayBox}>
                                 Desde: {dinamicValue[0].toLocaleDateString()}
                                 <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>

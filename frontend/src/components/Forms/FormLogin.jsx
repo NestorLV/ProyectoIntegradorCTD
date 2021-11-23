@@ -26,7 +26,7 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
         setPassword({ ...password, campo: event.target.value })
     }
 
-    /*VALIDACIONES 
+    /* //VALIDACIONES 
     const validarEmail = () => {
         setEmail({...email, valido:true})
         setError("")
@@ -43,15 +43,20 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
             setError("Por favor vuelva a intentarlo. Las credenciales son inválidas")
             setPassword({...password, valido:false})
         }
-    }*/
+    } */
 
     const sendData = (event) => {
         event.preventDefault();
-        //validarEmail();
-        //validarPassword();
+
+        /* validarEmail();
+        validarPassword();
+        sessionStorage.setItem("email", email.campo)
+        sessionStorage.setItem("log", "true");
+        setLog(true);
+        <Redirect to="/" /> */
 
 
-        axios.post(baseUrl + "users/login", {
+       axios.post(baseUrl + "users/login", {
             "email": `${email.campo}`,
             "password": `${password.campo}`
         }).then(response => {
@@ -72,7 +77,7 @@ export default function FormLogin({ setActiveLogin, setActiveCreate, setLog }) {
                     sessionStorage.removeItem("token")
                 }
             })
-    }
+    } 
 
     function mostrarContrasena() {
         let tipo = document.getElementById("password");

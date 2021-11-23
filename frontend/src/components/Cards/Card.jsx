@@ -6,7 +6,8 @@ import MapModal from './MapModal';
 import { Modal } from 'react-responsive-modal';
 import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
-import Icons from "../Product/icons/Icons"
+import Icons from "../Product/icons/Icons";
+import { AxiosLikeProducto, AxiosDislikeProducto } from '../../axiosCollection/Cards/axiosCollection';
 
 function Card({ image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
     const [isLike, setLike] = useState(favorite);
@@ -14,10 +15,14 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
     const [despliegue, setDespliegue] = useState(false)
     const [textoDespliegue, setTextoDespliegue] = useState("más...")    
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {setLike(favorite)}, [favorite])
 
-    const handleToggle = () => { setLike(prevState=>!prevState); }
+    const handleToggle = () => { 
+        /* isLike ? AxiosDislikeProducto(id, setLike, setErrorMessage) : AxiosLikeProducto(id, setLike, setErrorMessage);  */       
+        console.log(isLike);
+    }
 
     const handleDespliegue = () => {
         setDespliegue(!despliegue);
@@ -46,6 +51,8 @@ function Card({ image, cardCategory, name, city, country, description, id, refer
 
     return (
         <div className={Styles.cardBox}>
+            {console.log(favorite, "favorite")}
+            
             <div className={Styles.cardImage}>
                 <svg className={Styles.iconHeart} onClick={loggued === "true" ? handleToggle : openModalFavourite} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 27 27"><path className={isLike ? Styles.heartColor2 : Styles.heartColor} id="heart" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" /></svg>
                 <Modal open={modalFavouriteIsOpen} onClose={closeModalFavourite} center>

@@ -65,13 +65,34 @@ function AxiosGetProductosFavoritos(setData, setLoading, setTitulo, setErrorMess
         });
 }
 
-function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitulo, setErrorMessage, city, startDate, endDate, category) {
-    const baseUrlFiltros = city ? `${baseUrl}products/get/city/${city}` :
-    `${baseUrl}products/get/category/${category}` ;  // Cambiar por endpoint real
+function AxiosGetProductosFavoritosListado(setListadoFavoritos, setErrorMessage) {
+    /*NO FUNCIONA PORQUE FALTA LA LOGICA DEL JWT */
 
-    axios.get(baseUrlFiltros)
+    const baseUrlFavourite = `${baseUrl}users/getFavorites`;
+    sessionStorage.getItem("email") &&
+    axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
         .then(response => {
-            setData(response.data);
+            setListadoFavoritos(response.data);                      
+        })
+        .catch(error => {
+            setErrorMessage(error.message);            
+        });
+}
+
+function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitulo, setErrorMessage, city, startDate, endDate, category) {
+    const baseUrlFiltros =  `${baseUrl}products/filters`;     
+    
+    let startDateParse = startDate !== null && (new Date(startDate).getFullYear() + "-" + (new Date(startDate).getMonth() + 1) + "-" + new Date(startDate).getDate());
+    let endDateParse = endDate !== null && (new Date(endDate).getFullYear() + "-" + (new Date(endDate).getMonth() + 1) + "-" + new Date(endDate).getDate());
+
+    /* console.log(city, "city");
+    console.log(startDateParse, "startDateParse");
+    console.log(endDateParse, "endDateParse");
+    console.log(category, "category"); */
+
+    axios.post(baseUrlFiltros , { cityId: city, startDate: startDateParse , endDate: endDateParse, category: category } )
+        .then(response => {
+            setData(response.data);            
             setLoading(false);
 
             let titleCity = () => { return city && ` en ${response.data[0].city.name} ` };
@@ -81,13 +102,48 @@ function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitul
             let titleFecha = () => {
                 return (startDate) ?  `del ${startDate.toLocaleDateString()} al ${endDate.toLocaleDateString()} ` : "";
             };
+            
+            if(response.data === [] || response.data === null) {
+                setTitulo("No hay resultados disponibles para la búsqueda");
+            } else {
+                setTitulo(`Resultados ${titleCategory()} ${titleCity()} ${titleFecha()}`);
+            }        
 
-            setTitulo(`Resultados ${titleCategory()} ${titleCity()} ${titleFecha()}`);
         })
         .catch(error => {
             setErrorMessage(error.message);
             setLoading(false);
+            console.log(error.message, "soy el mensaje de error");
         });
 }
 
-export { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria }
+function AxiosLikeProducto(id, setLike, setErrorMessage) {
+    /*NO FUNCIONA PORQUE FALTA LA LOGICA DEL JWT */
+
+    const baseUrlFavourite = `${baseUrl}users/likeProduct/${id}`;
+    sessionStorage.getItem("email") &&
+    axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
+        .then(() => {            
+            setLike(true);
+        })
+        .catch(error => {
+            setErrorMessage(error.message);            
+        });
+}
+
+function AxiosDislikeProducto(id, setLike, setErrorMessage) {
+    /*NO FUNCIONA PORQUE FALTA LA LOGICA DEL JWT */
+
+    const baseUrlFavourite = `${baseUrl}users/dislikeProduct/${id}`;
+
+    sessionStorage.getItem("email") &&
+    axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
+        .then(() => {
+            setLike(false);            
+        })
+        .catch(error => {
+            setErrorMessage(error.message);            
+        });
+}
+
+export { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria,  AxiosGetProductosFavoritosListado, AxiosLikeProducto, AxiosDislikeProducto }
