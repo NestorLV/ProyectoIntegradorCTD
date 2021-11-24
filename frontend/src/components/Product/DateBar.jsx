@@ -21,12 +21,11 @@ function DateBar(props) {
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
-    const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
     const [maxDate, setMaxDate] = useState(null);
     const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate") != null ? startDate : null, sessionStorage.getItem("endDate") != null ? endDate : null]);
     const [reservas,setReservas] = useState([]);
     const [errorMessage,setErrorMessage] = useState(""); 
-    let reservasEnMs = reservas.map(reserva => new Date(reserva).setHours(0,0,0,0));
+    let reservasEnMs = () => reservas.map(reserva => new Date(reserva).setHours(0,0,0,0));
 
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -82,7 +81,7 @@ function DateBar(props) {
     function handleDateChange(newValue) {
         setValueDate(newValue);
         if (newValue[0] != null) {
-            let sortReservasEnMs = reservasEnMs.sort((a, b) => a - b);
+            let sortReservasEnMs = reservasEnMs().sort((a, b) => a - b);
             const validacion = sortReservasEnMs.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
             setMaxDate(validacion === undefined ? null : new Date(validacion))
         }
@@ -103,7 +102,7 @@ function DateBar(props) {
     }
 
     useEffect(() => {       
-        AxiosGetReservasPorProducto(props.id, setReservas, setErrorMessage)   
+        AxiosGetReservasPorProducto(props.id, setReservas, setErrorMessage)  
             
     }, []); 
 
