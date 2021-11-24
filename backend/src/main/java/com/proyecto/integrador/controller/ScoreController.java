@@ -38,6 +38,12 @@ public class ScoreController implements CRUDController <ScoreDTO> {
         return ResponseEntity.ok(scoresService.findById(id));
     }
 
+    @Operation(summary = "Find score by IDuser and product", description = "Returns a single score")
+    @GetMapping("/getByUserAndProduct/{email}/{idProduct}")
+    public ResponseEntity<ScoreDTO> getByUserAndProduct(@PathVariable String email, @PathVariable Integer idProduct) throws FindByIdException, BadRequestException {
+        return ResponseEntity.ok(scoresService.findByUserAndProduct(email, idProduct));
+    }
+
     @Operation(summary = "Update an existing score")
     @PutMapping("/update")
     public ResponseEntity<ScoreDTO> updateById(@RequestBody ScoreDTO scores) throws FindByIdException{

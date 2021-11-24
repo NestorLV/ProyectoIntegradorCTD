@@ -139,4 +139,34 @@ public class ScoreServiceImpl implements IScoreService {
         return scoresRepository.findByProductId(idProduct).stream().map(Score::toDto).collect(Collectors.toSet());
     }
 
+    @Override
+    public ScoreDTO findByUserAndProduct(String email, Integer idProduct) throws FindByIdException, BadRequestException {
+        logger.debug("Iniciando método obtener puntuacion por usuario y producto");
+        UserDTO user=userService.findByEmail(email);
+        if (user==null) {
+            throw new BadRequestException("El usuario no existe");
+        }
+
+        List<ScoreDTO> scores = findAll();
+        List<ScoreDTO> scoresByUser=new ArrayList<>();
+
+        for (ScoreDTO scoreDTO: scores){
+            if(scoreDTO.getUserEmail().equals(email)){
+                scoresByUser.add(scoreDTO);
+            }
+        }
+
+        ScoreDTO scoreDTOGuardado= null;
+        if(scoresByUser!=null){
+            for (ScoreDTO scoreDTO:scoresByUser) {
+                if(scoreDTO.getProductId()==idProduct){
+                    scoreDTOGuardado = scoreDTO;
+                }
+            }
+        }
+
+        return scoreDTOGuardado;
+    }
+
+
 }

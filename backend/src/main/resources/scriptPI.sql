@@ -481,4 +481,83 @@ VALUES (0);
 INSERT INTO `proyecto_integrador`.`role` (name)
 VALUES (1);
 
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-25','2021-12-19',3,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-30','2021-12-28',3,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2022-01-30','2022-01-20',3,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-18','2021-12-15',2,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2022-01-15','2022-01-10',2,1);
+
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-18','2021-12-15',1,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2022-01-15','2022-01-10',1,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-03','2021-12-01',4,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2022-01-03','2022-01-01',4,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-09','2021-12-07',5,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2022-01-15','2022-01-13',5,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-31','2021-12-30',6,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-11-30','2021-11-28',6,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-03','2021-11-30',7,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2022-01-02','2021-12-31',7,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-18','2021-12-15',8,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2022-01-15','2022-01-10',8,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-01','2021-11-28',9,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-15','2021-12-10',9,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-18','2021-12-15',10,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-01','2021-11-29',10,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-22','2021-12-20',11,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-03','2021-11-30',11,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-18','2021-12-15',12,1);
+
+INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
+VALUES ('10:00 AM','2021-12-25','2021-12-23',12,1);
+
+
+
 INSERT INTO `proyecto_integrador`.`user` (userEmail, userName, userSurname, password, idRole) VALUES ('grupo1@digital.com', 'grupo1', 'DH', '1234567', 1);
+
