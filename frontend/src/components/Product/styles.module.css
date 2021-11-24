@@ -215,6 +215,9 @@
   flex-direction: column;
   justify-content: center;
   height:22vh;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
   width:39vw;
 }
 
@@ -261,6 +264,11 @@ div.buttons button.login:hover {
   border: 2px solid  #b9411f;
 }
   
+div.buttons a:focus {
+  outline: none;
+}
+
+
 div.buttons button.create:hover {
   background-color: #ffd6c6;
   border: 2px solid  #ffd6c6;
