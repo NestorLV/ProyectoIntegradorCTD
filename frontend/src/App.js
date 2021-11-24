@@ -33,7 +33,7 @@ function App() {
   const handleSearch = (e) => {
     e.preventDefault();         
     setSearch(true);
-    setClickBusqueda(!clickBusqueda);
+    setClickBusqueda((prevState)=>!prevState);
   }
 
   const handleCity = (c) => {    
