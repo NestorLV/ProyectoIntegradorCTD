@@ -1,5 +1,6 @@
 /*COMPONENTE CARDS*/
 import axios from "axios";
+const { format } = require("date-fns");
 
 const baseUrl = "http://localhost:8080/"
 
@@ -83,9 +84,12 @@ function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitul
     
     const baseUrlFiltros = `${baseUrl}products/filters`;
 
-    let startDateParse = startDate !== null ? (new Date(startDate).getFullYear() + "-" + (new Date(startDate).getMonth() + 1) + "-" + new Date(startDate).getDate()) : null;
-    let endDateParse = endDate !== null ? (new Date(endDate).getFullYear() + "-" + (new Date(endDate).getMonth() + 1) + "-" + new Date(endDate).getDate()) : null;
+    let startDateParse = startDate !== null ? (new Date(startDate).getFullYear() + "-" + format(new Date(startDate),"MM") + "-" + format(new Date(startDate),"dd")) : null;
+    let endDateParse = endDate !== null ? (new Date(endDate).getFullYear() + "-" + format(new Date(endDate),"MM") + "-" + format(new Date(endDate),"dd")) : null;    
 
+
+    console.log(startDateParse,"Start Date Parse");
+    console.log(endDateParse,"end Date Parse");
     axios.post(baseUrlFiltros, { cityId: city, startDate: startDateParse, endDate: endDateParse, category: category })
         .then(response => {
             setData(response.data);
