@@ -12,7 +12,7 @@ function AxiosCrearReserva(arrivalSchedule, formatDate, checkin, checkout, id, o
         userId:sessionStorage.getItem("id")
     },{
         headers:{
-            Authorization:`${sessionStorage.getItem("token")}`
+            Authorization:`Bearer ${sessionStorage.getItem("token")}`
         }
     })
     .then((response) => {

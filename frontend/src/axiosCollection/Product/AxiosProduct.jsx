@@ -52,4 +52,34 @@ function AxiosGetReservasPorProducto(idProducto, setReservas, setErrorMessage){
     });
 }
 
-export {AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto}
+function AxiosGetPuntuacionDelProducto(email,idProduct, setStartIndex){
+    axios
+    .get(`http://localhost:8080/products/scores/getByUserAndProduct/${email}/${idProduct}`,{
+        headers:{
+            "Authorization":`Bearer ${sessionStorage.getItem("token")}`
+        }
+    })
+    .then((response) => {
+       setStartIndex(response.data.score);                 
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
+
+function AxiosResetPuntuacion(email,idProduct, setStartIndex){
+    axios
+    .put(`http://localhost:8080/products/scores/resetScore/${email}/${idProduct}`,{
+        headers:{
+            "Authorization":`Bearer ${sessionStorage.getItem("token")}`
+        }
+    })
+    .then((response) => {
+       setStartIndex(response.data.score);                 
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
+
+export {AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetPuntuacionDelProducto, AxiosResetPuntuacion}
