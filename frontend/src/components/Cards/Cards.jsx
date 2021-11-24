@@ -3,7 +3,7 @@ import Styles from './styles.module.css';
 import StylesApp from "../../App.module.css"
 import Card from './Card.jsx';
 import arrow from "./img/arrow.svg";
-import { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria, AxiosGetProductosFavoritosListado } from '../../axiosCollection/Cards/axiosCollection';
+import { AxiosGetProductosRecomendados, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria } from '../../axiosCollection/Cards/AxiosCards';
 
 export default function Cards({ setLastLocation, category, city, search, clickBusqueda, favourite }) {
     const [data, setData] = useState([]);
@@ -12,13 +12,12 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
     const limitCardPerPage = 8;
     const [numberPage, setNumberPage] = useState(1);
     const [titulo, setTitulo] = useState("Recomendaciones");
-    const startDate = (new Date(sessionStorage.getItem("startDate")).setHours(0,0,0,0) >= new Date().setHours(0,0,0,0)) && new Date(sessionStorage.getItem("startDate"));
-    const endDate = (new Date(sessionStorage.getItem("endDate")).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)) && new Date(sessionStorage.getItem("endDate"));
+    const startDate = (new Date(sessionStorage.getItem("startDate")).setHours(0,0,0,0) >= new Date().setHours(0,0,0,0)) ? new Date(sessionStorage.getItem("startDate")) : null ;
+    const endDate = (new Date(sessionStorage.getItem("endDate")).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)) ? new Date(sessionStorage.getItem("endDate"))  : null;
     const [listadoFavoritos, setListadoFavoritos] = useState([]);
 
-    /* useEffect(() => { */
-        
-        /* }, []); */
+    console.log(startDate, "startDate de Cards inicial")
+    console.log(endDate, "endDate de Cards inicial")    
 
     useEffect(() => {
         /* AxiosGetProductosFavoritosListado(setListadoFavoritos, setErrorMessage);
@@ -33,9 +32,7 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
             setErrorMessage("Error");
             setLoading(false);
         }
-    }, [category, clickBusqueda, favourite]);
-
-    
+    }, [category, clickBusqueda, favourite]);    
 
     const dataLimited = () => data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage);
     const indexPages = () => {
@@ -73,7 +70,7 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
                                 latitude={e.latitude}
                                 longitude={e.longitude}
                                 address={e.address}
-                                favorite={listadoFavoritos.find(pf => pf.id === e.id) ? true : false }
+                                favorite={/* listadoFavoritos.find(pf => pf.id === e.id) ? true :  */false }
                             />
                         )}
                     </div>

@@ -18,7 +18,7 @@ function AxiosGetProductosRecomendados(setData, setLoading, setTitulo, setErrorM
         })
 }
 
-function AxiosGetProductosPorCategoria(setData, setLoading, setTitulo, setErrorMessage, category) {
+/* function AxiosGetProductosPorCategoria(setData, setLoading, setTitulo, setErrorMessage, category) {
     const baseUrlPorCategoria = `${baseUrl}products/get/category/${category}`;
 
     axios.get(baseUrlPorCategoria)
@@ -31,9 +31,9 @@ function AxiosGetProductosPorCategoria(setData, setLoading, setTitulo, setErrorM
             setErrorMessage(error.message);
             setLoading(false);
         });
-}
+} */
 
-function AxiosGetProductosPorCiudad(setData, setLoading, setTitulo, setErrorMessage, city) {
+/* function AxiosGetProductosPorCiudad(setData, setLoading, setTitulo, setErrorMessage, city) {
     const baseUrlPorCiudad = `${baseUrl}products/get/city/${city}`;
 
     axios.get(baseUrlPorCiudad)
@@ -46,7 +46,7 @@ function AxiosGetProductosPorCiudad(setData, setLoading, setTitulo, setErrorMess
             setErrorMessage(error.message);
             setLoading(false);
         });
-}
+} */
 
 function AxiosGetProductosFavoritos(setData, setLoading, setTitulo, setErrorMessage) {
     /*NO FUNCIONA PORQUE FALTA LA LOGICA DEL JWT */
@@ -70,45 +70,41 @@ function AxiosGetProductosFavoritosListado(setListadoFavoritos, setErrorMessage)
 
     const baseUrlFavourite = `${baseUrl}users/getFavorites`;
     sessionStorage.getItem("email") &&
-    axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
-        .then(response => {
-            setListadoFavoritos(response.data);                      
-        })
-        .catch(error => {
-            setErrorMessage(error.message);            
-        });
+        axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
+            .then(response => {
+                setListadoFavoritos(response.data);
+            })
+            .catch(error => {
+                setErrorMessage(error.message);
+            });
 }
 
 function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitulo, setErrorMessage, city, startDate, endDate, category) {
-    const baseUrlFiltros =  `${baseUrl}products/filters`;     
     
-    let startDateParse = startDate !== null && (new Date(startDate).getFullYear() + "-" + (new Date(startDate).getMonth() + 1) + "-" + new Date(startDate).getDate());
-    let endDateParse = endDate !== null && (new Date(endDate).getFullYear() + "-" + (new Date(endDate).getMonth() + 1) + "-" + new Date(endDate).getDate());
+    const baseUrlFiltros = `${baseUrl}products/filters`;
 
-    /* console.log(city, "city");
-    console.log(startDateParse, "startDateParse");
-    console.log(endDateParse, "endDateParse");
-    console.log(category, "category"); */
+    let startDateParse = startDate !== null ? (new Date(startDate).getFullYear() + "-" + (new Date(startDate).getMonth() + 1) + "-" + new Date(startDate).getDate()) : null;
+    let endDateParse = endDate !== null ? (new Date(endDate).getFullYear() + "-" + (new Date(endDate).getMonth() + 1) + "-" + new Date(endDate).getDate()) : null;
 
-    axios.post(baseUrlFiltros , { cityId: city, startDate: startDateParse , endDate: endDateParse, category: category } )
+    axios.post(baseUrlFiltros, { cityId: city, startDate: startDateParse, endDate: endDateParse, category: category })
         .then(response => {
-            setData(response.data);            
+            setData(response.data);
             setLoading(false);
-
-            let titleCity = () => { return city && ` en ${response.data[0].city.name} ` };
+            return response.data;
+        })
+        .then(response => {
+            let titleCity = () => { return city && ` en ${response[0].city.name} ` };
             let titleCategory = () => {
                 return category === "All" ? ` para todas las categorías disponibles ` : ` para ${category} disponibles `;
             };
             let titleFecha = () => {
-                return (startDate) ?  `del ${startDate.toLocaleDateString()} al ${endDate.toLocaleDateString()} ` : "";
+                return (startDate) ? `del ${startDate.toLocaleDateString()} al ${endDate.toLocaleDateString()} ` : "";
             };
-            
-            if(response.data === [] || response.data === null) {
+            if (response.length === 0) {
                 setTitulo("No hay resultados disponibles para la búsqueda");
             } else {
                 setTitulo(`Resultados ${titleCategory()} ${titleCity()} ${titleFecha()}`);
-            }        
-
+            }          
         })
         .catch(error => {
             setErrorMessage(error.message);
@@ -122,13 +118,13 @@ function AxiosLikeProducto(id, setLike, setErrorMessage) {
 
     const baseUrlFavourite = `${baseUrl}users/likeProduct/${id}`;
     sessionStorage.getItem("email") &&
-    axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
-        .then(() => {            
-            setLike(true);
-        })
-        .catch(error => {
-            setErrorMessage(error.message);            
-        });
+        axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
+            .then(() => {
+                setLike(true);
+            })
+            .catch(error => {
+                setErrorMessage(error.message);
+            });
 }
 
 function AxiosDislikeProducto(id, setLike, setErrorMessage) {
@@ -137,13 +133,13 @@ function AxiosDislikeProducto(id, setLike, setErrorMessage) {
     const baseUrlFavourite = `${baseUrl}users/dislikeProduct/${id}`;
 
     sessionStorage.getItem("email") &&
-    axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
-        .then(() => {
-            setLike(false);            
-        })
-        .catch(error => {
-            setErrorMessage(error.message);            
-        });
+        axios.post(baseUrlFavourite, { email: sessionStorage.getItem("email") })
+            .then(() => {
+                setLike(false);
+            })
+            .catch(error => {
+                setErrorMessage(error.message);
+            });
 }
 
-export { AxiosGetProductosRecomendados, AxiosGetProductosPorCategoria, AxiosGetProductosPorCiudad, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria,  AxiosGetProductosFavoritosListado, AxiosLikeProducto, AxiosDislikeProducto }
+export { AxiosGetProductosRecomendados, /* AxiosGetProductosPorCategoria, */ /* AxiosGetProductosPorCiudad, */ AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria, AxiosGetProductosFavoritosListado, AxiosLikeProducto, AxiosDislikeProducto }
