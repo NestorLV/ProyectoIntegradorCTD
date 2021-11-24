@@ -1,6 +1,6 @@
 import Styles from "./styles.module.css"
 
-export default function FormBooking({errorBooking, name, setName, surname, setSurname, email, setEmail, city, setCity}) {
+export default function FormBooking({errorBookingForm, name, setName, surname, setSurname, email, setEmail, city, setCity}) {
 
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -41,7 +41,7 @@ export default function FormBooking({errorBooking, name, setName, surname, setSu
                         <input type="text" name="city" id="city" value={city} onChange={handleChangeCity} required></input>
                     </div>
                 </div>
-                <div className={Styles.containerErrorBooking}>{errorBooking?errorBooking:null}</div>
+                
             </form>
 
         </div>

@@ -12,11 +12,12 @@ function AxiosCrearReserva(arrivalSchedule, formatDate, checkin, checkout, id, o
         userId:sessionStorage.getItem("id")
     },{
         headers:{
-            Authorization:`Bearer ${sessionStorage.getItem("token")}`
+            Authorization:`${sessionStorage.getItem("token")}`
         }
     })
     .then((response) => {
         console.log(response);
+        setErrorBooking("")
         sessionStorage.removeItem("startDate")
         sessionStorage.removeItem("endDate")
         openModalSucceed()
