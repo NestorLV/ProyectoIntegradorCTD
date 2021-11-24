@@ -57,7 +57,7 @@ function App() {
   const goBack=()=>{
     window.history.back()
   }
-  console.log(lastLocation);
+  /* console.log(lastLocation); */
 
   return ( 
     <BrowserRouter>      

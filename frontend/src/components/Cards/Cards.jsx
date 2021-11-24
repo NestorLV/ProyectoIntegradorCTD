@@ -16,8 +16,8 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
     const endDate = (new Date(sessionStorage.getItem("endDate")).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)) ? new Date(sessionStorage.getItem("endDate"))  : null;
     const [listadoFavoritos, setListadoFavoritos] = useState([]);
 
-    console.log(startDate, "startDate de Cards inicial")
-    console.log(endDate, "endDate de Cards inicial")    
+    /* console.log(startDate, "startDate de Cards inicial")
+    console.log(endDate, "endDate de Cards inicial")   */  
 
     useEffect(() => {
         /* AxiosGetProductosFavoritosListado(setListadoFavoritos, setErrorMessage);
