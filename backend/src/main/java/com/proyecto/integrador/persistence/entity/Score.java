@@ -33,6 +33,7 @@ public class Score {
         scoreDTO.setIdScore(idScore);
         scoreDTO.setScore(score);
         scoreDTO.setProductId(product.getId());
+        scoreDTO.setFavourite(favourite);
         return scoreDTO;
     }
 }

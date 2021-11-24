@@ -228,7 +228,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     // A corregir lo de favoritos --> Que no se hardcodee
-    public List<ProductDTO> findFavorites(String email) throws FindByIdException, BadRequestException {
+    /*public List<ProductDTO> findFavorites(String email) throws FindByIdException, BadRequestException {
         if (userService.findByEmail(email) == null) {
             throw new BadRequestException("El usuario no está logueado");
         }
@@ -244,13 +244,14 @@ public class ProductServiceImpl implements IProductService {
             product.setFavourite(true);
             recommendedFavorites.add(loadDataIntoProductDTO(product));
         }
-        return recommendedFavorites;*/
-    }
+        return recommendedFavorites;
+    }*/
+
 
     public void updateQualification(Integer productId, double newQualification) throws FindByIdException {
         logger.debug("Iniciando método actualizar calificación de producto");
         if (!productRepository.existsById(productId)) {
-            throw new FindByIdException("No existe una producto con el id ingresado");
+            throw new FindByIdException("No existe un producto con el id ingresado");
         }
         Product product = productRepository.findById(productId).get();
         product.setQualification(newQualification);

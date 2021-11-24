@@ -2,11 +2,13 @@ package com.proyecto.integrador.service.impl;
 
 
 import com.proyecto.integrador.DTO.ProductDTO;
+import com.proyecto.integrador.DTO.ScoreDTO;
 import com.proyecto.integrador.DTO.UserDTO;
 import com.proyecto.integrador.config.jwt.JwtTokenUtil;
 import com.proyecto.integrador.config.jwt.JwtUserDetailsService;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
+import com.proyecto.integrador.persistence.entity.Score;
 import com.proyecto.integrador.persistence.entity.User;
 import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import com.proyecto.integrador.persistence.repository.IUserRepository;
@@ -30,6 +32,8 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     ProductServiceImpl productService;
     @Autowired
     RoleServiceImpl roleService;
+    @Autowired
+    ScoreServiceImpl scoreService;
     @Autowired
     private JwtUserDetailsService userDetailsService;
     @Autowired
@@ -97,8 +101,71 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
     @Override
     public List<ProductDTO> getFavorites(String email) throws FindByIdException, BadRequestException {
-        return productService.findFavorites(email);
+        UserDTO user = findByEmail(email);
+        if (user == null) {
+            throw new BadRequestException("El usuario no está logueado");
+        }
+
+        List<ScoreDTO> scores = scoreService.findAll();
+        List<ScoreDTO> scoresByUser=new ArrayList<>();
+
+        for (ScoreDTO score: scores){
+            if(score.getUserEmail().equals(email)){
+                scoresByUser.add(score);
+            }
+        }
+
+        List<ProductDTO> favouriteProducts= new ArrayList<>();
+
+        for (ScoreDTO score:scoresByUser){
+            if(score.getFavourite()){
+                favouriteProducts.add(productService.findById(score.getProductId()));
+            }
+        }
+
+        return favouriteProducts;
+
     }
+
+    @Override
+    public ScoreDTO saveFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException {
+        UserDTO user = findByEmail(email);
+        if (user == null) {
+            throw new BadRequestException("El usuario no está logueado");
+        }
+        ProductDTO product = productService.findById(idProduct);
+
+        if (product==null) {
+            throw new FindByIdException("No existe un producto con el id ingresado");
+        }
+        List<ScoreDTO> scores = scoreService.findAll();
+        List<ScoreDTO> scoresByUser=new ArrayList<>();
+
+        for (ScoreDTO score: scores){
+            if(score.getUserEmail().equals(email)){
+                scoresByUser.add(score);
+            }
+        }
+
+        ScoreDTO scoresByProductAndUser= null;
+        if(scoresByUser!= null){
+            for (ScoreDTO score:scoresByUser) {
+                if(score.getProductId()==idProduct){
+                    scoresByProductAndUser = score;
+                }
+            }
+        }
+
+        if(scoresByProductAndUser==null){
+            scoresByProductAndUser=scoreService.save(new ScoreDTO(email, idProduct, true));
+        }else{
+            scoresByProductAndUser.setFavourite(!scoresByProductAndUser.getFavourite());
+            scoreService.update(scoresByProductAndUser);
+        }
+
+        return scoresByProductAndUser;
+    }
+
 
     public UserDTO findByEmail(String email) {
         User user = userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("El email no matchea con ningún usuario en la base de datos"));

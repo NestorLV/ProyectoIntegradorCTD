@@ -1,14 +1,13 @@
 package com.proyecto.integrador.service.impl;
 
 
-import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.DTO.ScoreDTO;
+import com.proyecto.integrador.DTO.UserDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Score;
 import com.proyecto.integrador.persistence.repository.IScoreRepository;
 import com.proyecto.integrador.service.IScoreService;
-import com.proyecto.integrador.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.log4j.Logger;
@@ -29,15 +28,16 @@ public class ScoreServiceImpl implements IScoreService {
     ProductServiceImpl productService;
 
     public Double average(Integer idProduct) {
-        logger.debug("Iniciando método promedio de todas las puntuaciones");
+       logger.debug("Iniciando método promedio de todas las puntuaciones");
 
         List<Score> scores = scoresRepository.findByProductId(idProduct);
         Double totalScore = 0.0;
         if(scores != null && scores.size()!=0) {
             for (Score score : scores) {
-                totalScore += score.getScore();
+                if(score.getScore()!=null){
+                    totalScore += score.getScore();
+                }
             }
-
             return (totalScore / scores.size());
         }else{
             return 0.0;
@@ -48,7 +48,10 @@ public class ScoreServiceImpl implements IScoreService {
         logger.debug("Iniciando método buscar todas las puntuaciones");
         List<ScoreDTO> scoresList = new ArrayList<>();
         for (Score score: scoresRepository.findAll()) {
-            scoresList.add(score.toDto());
+            ScoreDTO scoreDTO =score.toDto();
+
+            scoreDTO.setUserEmail(userService.findById(score.getIdUser()).getEmail());
+            scoresList.add(scoreDTO);
         }
         logger.debug("Terminó la ejecución del método buscar todas las puntuaciones");
         return scoresList;
@@ -57,13 +60,41 @@ public class ScoreServiceImpl implements IScoreService {
     @Override
     public ScoreDTO save(ScoreDTO score) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar puntuación");
-        Score scoreEntity = score.toEntity();
-        scoreEntity.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
-        ScoreDTO scoreDTO = scoresRepository.save(scoreEntity).toDto();
-        scoreDTO.setUserEmail(userService.findByEmail(score.getUserEmail()).getEmail());
-        productService.updateQualification(score.getProductId(),average(score.getProductId()));
+
+        List<ScoreDTO> scores = findAll();
+        List<ScoreDTO> scoresByUser=new ArrayList<>();
+
+        for (ScoreDTO scoreDTO: scores){
+            if(scoreDTO.getUserEmail().equals(score.getUserEmail())){
+                scoresByUser.add(scoreDTO);
+            }
+        }
+
+        ScoreDTO scoreDTOGuardado= null;
+        if(scoresByUser!=null){
+            for (ScoreDTO scoreDTO:scoresByUser) {
+                if(score.getProductId()==scoreDTO.getProductId()){
+                    scoreDTOGuardado = scoreDTO;
+                }
+            }
+        }
+
+        if(scoreDTOGuardado==null){
+            Score scoreEntity = score.toEntity();
+            scoreEntity.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
+            scoreEntity.setFavourite(false);
+            scoreDTOGuardado = scoresRepository.save(scoreEntity).toDto();
+            scoreDTOGuardado.setUserEmail(userService.findByEmail(score.getUserEmail()).getEmail());
+            productService.updateQualification(score.getProductId(),average(score.getProductId()));
+        }else{
+            score.setFavourite(scoreDTOGuardado.getFavourite());
+            score.setIdScore(scoreDTOGuardado.getIdScore());
+            scoreDTOGuardado = update(score);
+            productService.updateQualification(score.getProductId(),average(score.getProductId()));
+        }
+
         logger.debug("Terminó la ejecución del método guardar puntuación");
-        return scoreDTO;
+        return scoreDTOGuardado;
     }
 
     @Override
@@ -96,8 +127,11 @@ public class ScoreServiceImpl implements IScoreService {
         Score score1 = scoresRepository.findById(score.getIdScore()).get();
         score1.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
         score1.setScore(score.getScore());
+        score1.setFavourite(score.getFavourite());
         logger.debug("Terminó la ejecución del método actualizar puntuación");
-        return scoresRepository.save(score1).toDto();
+        scoresRepository.save(score1);
+
+        return score;
     }
 
     @Override
