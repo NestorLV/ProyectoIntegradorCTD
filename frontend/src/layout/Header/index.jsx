@@ -12,7 +12,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
 
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
-    const baseUrl = "http://localhost:8080/"
+    /* const baseUrl = "http://localhost:8080/" */
 
     function handleLogOut() {
         setLoading(true)

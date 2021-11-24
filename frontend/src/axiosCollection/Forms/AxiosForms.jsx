@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Redirect } from "react-router";
 const baseUrl = "http://localhost:8080/"
 
 function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation){
@@ -41,6 +40,7 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
         "password": `${password}`
     })
     .then(response => {       
+        setLoading(false);
         AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
     })
     .catch(error => {

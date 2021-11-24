@@ -88,12 +88,12 @@ export default function Booking(props) {
                             <h2>Completá tus datos</h2>
                             <div className={Styles.container}>
                                 <div>
-                                    <FormBooking errorBooking={errorBooking} name={name} setName={setName} surname={surname} setSurname={setSurname} email={email} setEmail={setEmail} city={city} setCity={setCity} />
+                                    <FormBooking name={name} setName={setName} surname={surname} setSurname={setSurname} email={email} setEmail={setEmail} city={city} setCity={setCity} />
                                     <CalendarBar valueDate={valueDate} setValueDate={setValueDate} id={id} />
                                     <ArrivalTimeBar setArrivalSchedule={setArrivalSchedule} />
                                 </div>
                                 <div>
-                                    <DetailBar nameUser={name} surnameUser={surname} emailUser={email} cityUser={city} setErrorBooking={setErrorBooking} id={id} image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification * 2} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} arrivalSchedule={arrivalSchedule} />
+                                    <DetailBar nameUser={name} surnameUser={surname} emailUser={email} cityUser={city} setErrorBooking={setErrorBooking} errorBooking={errorBooking} id={id} image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification * 2} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} arrivalSchedule={arrivalSchedule} />
                                 </div>
                             </div>
                         </div>

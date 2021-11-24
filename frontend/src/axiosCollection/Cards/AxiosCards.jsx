@@ -41,8 +41,8 @@ function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitul
     let endDateParse = endDate !== null ? (new Date(endDate).getFullYear() + "-" + format(new Date(endDate), "MM") + "-" + format(new Date(endDate), "dd")) : null;
 
 
-    console.log(startDateParse, "Start Date Parse");
-    console.log(endDateParse, "end Date Parse");
+   /*  console.log(startDateParse,"Start Date Parse");
+    console.log(endDateParse,"end Date Parse"); */
     axios.post(baseUrlFiltros, { cityId: city, startDate: startDateParse, endDate: endDateParse, category: category })
         .then(response => {
             setData(response.data);

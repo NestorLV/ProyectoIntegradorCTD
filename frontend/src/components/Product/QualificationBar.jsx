@@ -4,6 +4,8 @@ import Styles from "./styles.module.css";
 import { AxiosCalificarProducto } from "../../axiosCollection/Product/AxiosProduct";
 
 export default function QualificationBar({ id }) {
+    /* eslint-disable no-unused-vars */
+
     const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion') == null ? 0 : sessionStorage.getItem('calificacion'));
     const [submit, setSubmit] = useState(false);
     const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex === 0 ? "" : starIndex}`);
@@ -32,25 +34,8 @@ export default function QualificationBar({ id }) {
 
     const handleSubmit = () => {
         setSubmit(true);
-        sessionStorage.setItem('calificacion', starIndex.toString());
         setCalificacion_text(`Enviando puntuación...`);
         AxiosCalificarProducto(starIndex, id, setCalificacion_text, setErrorMessage)
-        /*axios
-            .post("http://localhost:8080/products/scores/create", {
-                score: starIndex,
-                userEmail: sessionStorage.getItem('email'),
-                productId: id
-            })
-            .then((response) => {
-                if (response.status === 200) {
-                    setCalificacion_text(`Se envió correctamente la puntuación de: ${starIndex}`);
-                }
-
-            })
-            .catch((error) => {
-                setErrorMessage(error);
-            });*/
-
     }
 
     const handleReset = () => {
@@ -70,13 +55,15 @@ export default function QualificationBar({ id }) {
                         })}
                     </div>
                 </div>
-                    <div className={Styles.qualificationButtons}>
+                <div className={Styles.qualificationButtons}>
+                    <div className={Styles.containerButtons}>
                         <button className={Styles.qualificationReset} onClick={handleReset} > Resetear </button>
-                        <button className={Styles.qualificationSubmit} onClick={starIndex > 0 ? handleSubmit : null} > Enviar     </button>
-                        <div className={Styles.qualificationConfirm} >{calificacion_text}</div>
+                        <button className={Styles.qualificationSubmit} onClick={starIndex > 0 ? handleSubmit : null} > Enviar </button>
                     </div>
-
+                    <div className={Styles.qualificationConfirm} >{calificacion_text}</div>
                 </div>
+
             </div>
-            )
+        </div>
+    )
 }

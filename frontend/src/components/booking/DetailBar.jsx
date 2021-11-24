@@ -8,7 +8,8 @@ import { useState } from "react";
 import {AxiosCrearReserva} from "../../axiosCollection/Booking/AxiosBooking"
 
 function DetailBar(props) {
-    const {nameUser, surnameUser, emailUser, cityUser, setErrorBooking, id, image, category, name, city, country, reference, qualification, checkin, checkout, arrivalSchedule } = props;
+    /* eslint-disable no-unused-vars */
+    const {nameUser, surnameUser, emailUser, cityUser, setErrorBooking, errorBooking, id, image, category, name, city, country, reference, qualification, checkin, checkout, arrivalSchedule } = props;
     
     let cantStar = Math.floor(qualification / 2);
     const [modalSucceedIsOpen, setModalSucceedIsOpen] = useState(false)
@@ -59,7 +60,7 @@ function DetailBar(props) {
     const handleBooking = () => {
         if(checkin && checkout && arrivalSchedule && nameUser && surnameUser && emailUser && cityUser){
             AxiosCrearReserva(arrivalSchedule, formatDate, checkin, checkout, id, openModalSucceed, setErrorBooking)
-        }else{
+        }else {
             setErrorBooking("Por favor complete todos los campos.")
         }
     }
@@ -91,6 +92,7 @@ function DetailBar(props) {
 
                     </div>
                     <button onClick={handleBooking} >Confirmar Reserva</button>
+                    <div className={Styles.containerErrorBooking}>{errorBooking?errorBooking:null}</div>
                     <Modal open={modalSucceedIsOpen} onClose={closeModalSucceed} center>
                         <Succeed/>
                     </Modal>
