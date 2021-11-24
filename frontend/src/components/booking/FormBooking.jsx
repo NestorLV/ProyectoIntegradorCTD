@@ -37,7 +37,7 @@ export default function FormBooking({errorBooking, name, setName, surname, setSu
                         <input type="email" name="email" id="email" value={email} onChange={handleChangeEmail} required/>
                     </div>
                     <div className={Styles.labelInputBooking}>
-                        <label htmlFor="city">Ciudad</label>
+                        <label htmlFor="city">Ciudad de origen</label>
                         <input type="text" name="city" id="city" value={city} onChange={handleChangeCity} required></input>
                     </div>
                 </div>
