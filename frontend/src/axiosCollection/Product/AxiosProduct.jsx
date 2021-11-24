@@ -30,4 +30,26 @@ function AxiosCalificarProducto(starIndex, id, setCalificacion_text, setErrorMes
     });
 }
 
-export {AxiosGetProductoPorId, AxiosCalificarProducto}
+function AxiosGetReservasPorProducto(idProducto, setReservas, setErrorMessage){    
+    axios
+    .get(`http://localhost:8080/reservations/get/product/${idProducto}`)
+    .then((response) => {
+        let reservas = [];
+        (response.data).forEach(reserva => {            
+            let startDateReserva = new Date(reserva.startDate).setHours(0,0,0,0)+ 86400000;
+            let endDateReserva = new Date(reserva.endDate).setHours(0,0,0,0)+ 86400000;
+            let i = startDateReserva;
+            while(i <= endDateReserva ){
+                reservas.push(new Date(i).toDateString());
+                i+=86400000;
+            }
+        });    
+        setReservas(reservas);
+        console.log(reservas, "reservas");                    
+    })
+    .catch((error) => {
+        setErrorMessage("No es posible mostrar la página");
+    });
+}
+
+export {AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto}
