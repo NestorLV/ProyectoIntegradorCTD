@@ -1,3 +1,7 @@
+.booking {
+  flex-direction: column;
+}
+
 /* Estilos de titleBar */
 
 .titleBar {

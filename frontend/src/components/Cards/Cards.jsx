@@ -16,8 +16,8 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
     const endDate = (new Date(sessionStorage.getItem("endDate")).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)) ? new Date(sessionStorage.getItem("endDate"))  : null;
     const [listadoFavoritos, setListadoFavoritos] = useState([]);
 
-    console.log(startDate, "startDate de Cards inicial")
-    console.log(endDate, "endDate de Cards inicial")    
+    /* console.log(startDate, "startDate de Cards inicial")
+    console.log(endDate, "endDate de Cards inicial")   */  
 
     useEffect(() => {
         /* AxiosGetProductosFavoritosListado(setListadoFavoritos, setErrorMessage);
@@ -38,7 +38,7 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
     const indexPages = () => {
         let pages = [];
         let cant = data.length % limitCardPerPage === 0 ? data.length / limitCardPerPage : Math.floor(data.length / limitCardPerPage) + 1
-        for (let i = 0; i < cant; i++) { pages.push(<button onClick={() => setNumberPage(i + 1)} disabled={numberPage - 1 === i}>{i + 1}</button>) };
+        for (let i = 0; i < cant; i++) { pages.push(<button onClick={() => setNumberPage(i + 1)} disabled={numberPage - 1 === i}  key={i+1} >{i + 1}</button>) };
         return pages
     };
 

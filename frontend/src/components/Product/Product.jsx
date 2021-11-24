@@ -59,12 +59,12 @@ function Product(props) {
             </section>
             :
             <section>
-                {loading ? (                    
+                {loading ? (
                     <Spinner />
                 ) : (
                     <>
                         <TitleBar category={prod.category.title} name={prod.name} goBack={props.goBack} />
-                        <ScoreBar reference={prod.reference} city={prod.city} qualification={prod.qualification*2} />
+                        <ScoreBar reference={prod.reference} city={prod.city} qualification={prod.qualification * 2} />
                         <ImageBar setLastLocation={props.setLastLocation} setBookingWithoutLogin={props.setBookingWithoutLogin} images={prod.images} viewerIsOpen={viewerIsOpen} setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
                         <DescriptionBar city={prod.city} description={prod.description} />
                         <FeaturesBar features={prod.features} />

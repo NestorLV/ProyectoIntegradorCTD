@@ -33,7 +33,7 @@ function App() {
   const handleSearch = (e) => {
     e.preventDefault();         
     setSearch(true);
-    setClickBusqueda(!clickBusqueda);
+    setClickBusqueda((prevState)=>!prevState);
   }
 
   const handleCity = (c) => {    
@@ -57,7 +57,7 @@ function App() {
   const goBack=()=>{
     window.history.back()
   }
-  console.log(lastLocation);
+  /* console.log(lastLocation); */
 
   return ( 
     <BrowserRouter>      
