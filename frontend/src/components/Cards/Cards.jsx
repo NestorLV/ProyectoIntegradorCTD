@@ -5,7 +5,7 @@ import Card from './Card.jsx';
 import arrow from "./img/arrow.svg";
 import { AxiosGetProductosRecomendados, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria } from '../../axiosCollection/Cards/AxiosCards';
 
-export default function Cards({ setLastLocation, category, city, search, clickBusqueda, favourite }) {
+export default function Cards({ setLastLocation, category, city, search, clickBusqueda, favourite, clickSeeFavourites }) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
@@ -14,26 +14,25 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
     const [titulo, setTitulo] = useState("Recomendaciones");
     const startDate = (new Date(sessionStorage.getItem("startDate")).setHours(0,0,0,0) >= new Date().setHours(0,0,0,0)) ? new Date(sessionStorage.getItem("startDate")) : null ;
     const endDate = (new Date(sessionStorage.getItem("endDate")).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)) ? new Date(sessionStorage.getItem("endDate"))  : null;
-/*     const [listadoFavoritos, setListadoFavoritos] = useState([]);*/
- 
-    /* console.log(startDate, "startDate de Cards inicial")
-    console.log(endDate, "endDate de Cards inicial")   */  
+    const [listadoFavoritos, setListadoFavoritos] = useState([]);
 
     useEffect(() => {
-        /* AxiosGetProductosFavoritosListado(setListadoFavoritos, setErrorMessage);
-        console.log(listadoFavoritos, "listadoFavoritos"); */
+        AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage);
+        console.log(listadoFavoritos, "listadoFavoritos"); 
         if (category === "All" && search === false && favourite === false) {
             AxiosGetProductosRecomendados(setData, setLoading, setTitulo, setErrorMessage)          
         } else if (favourite === false) {
             AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitulo, setErrorMessage, city, startDate, endDate, category)
         } else if (favourite) {
-            AxiosGetProductosFavoritos(setData, setLoading, setTitulo, setErrorMessage)
+            AxiosGetProductosFavoritos(setData, setErrorMessage);
+            setListadoFavoritos(data);
+            setTitulo(`Favoritos`);
+            /* setData(listadoFavoritos); */
         } else {
             setErrorMessage("Error");
             setLoading(false);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [category, clickBusqueda, favourite]);    
+    }, [category, clickBusqueda, favourite, clickSeeFavourites]);    
 
     const dataLimited = () => data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage);
     const indexPages = () => {
@@ -71,7 +70,8 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
                                 latitude={e.latitude}
                                 longitude={e.longitude}
                                 address={e.address}
-                                favorite={/* listadoFavoritos.find(pf => pf.id === e.id) ? true :  */false }
+                                favorite={listadoFavoritos.find(pf => pf.id === e.id) ? true : false }
+                                
                             />
                         )}
                     </div>

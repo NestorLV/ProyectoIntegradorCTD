@@ -18,6 +18,7 @@ function App() {
   const [search, setSearch] = useState(false);
   const [city,setCity] = useState("");
   const [clickBusqueda, setClickBusqueda] = useState(false);
+  const [clickSeeFavourites, setClickSeeFavourites] = useState(false);
   const [favourite, setFavourite] = useState(false);
   const [iniciales, setIniciales] = useState("");
   const [userName, setUserName] =useState("");
@@ -41,10 +42,11 @@ function App() {
     setCity(c);       
   }
 
-  const handleFavourite = (e) => {
+  const handleFavourite = () => {
     setSearch(false);
     setCity("");
     setFavourite(true);
+    setClickSeeFavourites((prevState)=>!prevState);
   }
 
   const handleClean = () => {
@@ -65,7 +67,7 @@ function App() {
       <LayoutPrincipal setLastLocation={setLastLocation} setBookingWithoutLogin={setBookingWithoutLogin} setLoading={setLoading} iniciales={iniciales} userName={userName} userSurname={userSurname} isLogged = {log} activeCreate ={activeCreate} activeLogin = {activeLogin} handleClean={handleClean} handleFavourite={handleFavourite}>
         <Switch>
           <Route exact path="/">
-            <Home loading={loading} setLastLocation={setLastLocation} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin} category= {category} handleCategory={handleCategory} search={search} handleSearch={handleSearch} city={city} handleCity={handleCity} clickBusqueda = {clickBusqueda} favourite= {favourite}/>
+            <Home loading={loading} setLastLocation={setLastLocation} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin} category= {category} handleCategory={handleCategory} search={search} handleSearch={handleSearch} city={city} handleCity={handleCity} clickBusqueda = {clickBusqueda} favourite= {favourite} clickSeeFavourites = {clickSeeFavourites}/>
           </Route>
           <Route exact path="/login"  component={() => !log? <FormLogin lastLocation={lastLocation} bookingWithoutLogin={bookingWithoutLogin} setLoading={setLoading} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to={`${lastLocation}`}/>} />                  
           <Route exact path="/create" component={() => !log? <FormCreate lastLocation={lastLocation} setIniciales={setIniciales} setUserName={setUserName} setUserSurname={setUserSurname} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to={`${lastLocation}`} />} />
