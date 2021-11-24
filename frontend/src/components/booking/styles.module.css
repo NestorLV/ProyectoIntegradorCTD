@@ -116,6 +116,9 @@ input {
   color: red;
   font-size: 12pt;
   font-weight: bold;
+  height:4vh;
+  padding-top: 3px;
+  text-align: center;
 }
 
 /*Estilos ArrivalTimeBar*/
@@ -416,6 +419,11 @@ input {
   .containerSucceed a {
     width: 45%;
   }
+  .containerErrorBooking{
+    min-width: 300px;
+    font-size: 10pt;
+  }
+  
 }
 
 @media all and (max-width: 680px) {
@@ -451,6 +459,11 @@ input {
   .containerArrival form {
     width: 100%;
   } 
+
+  .containerErrorBooking{
+   
+    font-size: 12pt;
+  }
 }
 
 @media all and (max-width: 415px) {
@@ -516,5 +529,10 @@ input {
 
   .containerSucceed a button {
     padding: 10px;
+  }
+
+  .containerErrorBooking{
+    font-size: 10pt;
+    min-width: none;
   }
 }
