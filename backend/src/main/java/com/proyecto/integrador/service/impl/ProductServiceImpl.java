@@ -151,7 +151,7 @@ public class ProductServiceImpl implements IProductService {
         //Filtro sólo por categoría
         if (filterDto.getCityId() == null && filterDto.getStartDate() == null && filterDto.getEndDate() == null) {
             if(filterDto.getCategory().equals("All")) {
-                return findRecommendations();
+                return findAll();
             } else {
                 return findAllByCategory(filterDto.getCategory());
             }

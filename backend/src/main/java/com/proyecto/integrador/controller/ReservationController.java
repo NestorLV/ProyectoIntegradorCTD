@@ -4,12 +4,14 @@ package com.proyecto.integrador.controller;
 import com.proyecto.integrador.DTO.ReservationDTO;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.service.IReservationService;
+import com.proyecto.integrador.service.impl.ReservationServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -20,6 +22,8 @@ public class ReservationController implements CRUDController<ReservationDTO>{
 
     @Autowired
     IReservationService reservationService;
+    @Autowired
+    ReservationServiceImpl reservationServiceImpl;
 
     @Operation(summary = "Find All Reservations ", description = "Returns complete list of reservations")
     @GetMapping("/all")
@@ -51,4 +55,11 @@ public class ReservationController implements CRUDController<ReservationDTO>{
         reservationService.deleteById(id);
         return ResponseEntity.ok("Se eliminó la reserva con id: "+id);
     }
+
+    @Operation(summary = "Find reservation by ID of Product", description = "Returns all reservations by product")
+    @GetMapping("/get/product/{idProduct}")
+    public ResponseEntity<Set<ReservationDTO>> getByIdProduct(@PathVariable Integer idProduct) throws FindByIdException {
+        return ResponseEntity.ok(reservationServiceImpl.findByProductId(idProduct));
+    }
+
 }
