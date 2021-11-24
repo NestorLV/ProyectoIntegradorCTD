@@ -152,7 +152,7 @@
     box-shadow: 0 3px 3px grey;
     color: white;
     position: absolute;
-    left: clamp(-30px,-8%,-45px);
+    left: clamp(-20px,-8%,-45px);
     transition: all 0.3s;
     top: 150px;
     z-index: 1;
@@ -167,7 +167,7 @@
     box-shadow: 0 3px 3px grey;
     color: white;
     position: absolute;
-    right: clamp(-30px,-8%,-45px);
+    right: clamp(-20px,-8%,-45px);
     top: 150px;
     transition: all 0.3s;
     z-index: 1;
@@ -185,9 +185,9 @@
     width: 46%;
     
   }
-  .contenedorCalendario > div > div > div > div > div, .contenedorCalendario > div > div > div > div > div:last-child > div> div  {
+  /* .contenedorCalendario > div > div > div > div > div, .contenedorCalendario > div > div > div > div > div:last-child > div> div  {
     justify-content: space-between;
-  }
+  } */
 }
 
 @media all and (min-width: 415px) {

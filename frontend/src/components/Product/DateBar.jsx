@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Styles from "./styles.module.css"
 import StylesApp from "../../App.module.css";
 import * as React from 'react';
@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 /* const { format } = require("date-fns"); */
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
+import {AxiosGetReservasPorProducto} from "../../axiosCollection/Product/AxiosProduct"
 
 
 function DateBar(props) {
@@ -20,10 +21,11 @@ function DateBar(props) {
     const startDate = new Date(valueDate[0]);
     const endDate = new Date(valueDate[1]);
     const [size, setSize] = useState(`${window.innerWidth > 700 ? "desktop" : "mobile"}`);
-    const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
-    const booksMade = [new Date(2021, 10, 30).toDateString(), new Date(2021, 10, 28).toDateString(), new Date(2021, 11, 8).toDateString(), new Date(2021, 11, 15).toDateString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
     const [maxDate, setMaxDate] = useState(null);
     const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate") != null ? startDate : null, sessionStorage.getItem("endDate") != null ? endDate : null]);
+    const [reservas,setReservas] = useState([]);
+    const [errorMessage,setErrorMessage] = useState(""); 
+    let reservasEnMs = () => reservas.map(reserva => new Date(reserva).setHours(0,0,0,0));
 
     window.addEventListener('resize', () => { setSize(`${window.innerWidth > 700 ? "desktop" : "mobile"}`) });  // funcion para ajustar el tamaño del calendario de desktop a mobile
 
@@ -64,9 +66,7 @@ function DateBar(props) {
             path = "/login"
         }
         return path
-    }
-
-
+    }  
 
     const handleChange = () => {
         /*  String Date  - aaaa,mm,dd  */
@@ -81,14 +81,14 @@ function DateBar(props) {
     function handleDateChange(newValue) {
         setValueDate(newValue);
         if (newValue[0] != null) {
-            let sortBooksMadeDate = booksMadeDate.sort((a, b) => a - b);
-            const validacion = sortBooksMadeDate.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
+            let sortReservasEnMs = reservasEnMs().sort((a, b) => a - b);
+            const validacion = sortReservasEnMs.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
             setMaxDate(validacion === undefined ? null : new Date(validacion))
         }
         setDinamicValue(newValue);
     }
 
-    function disableDates(e) { return booksMade.includes(e.toDateString()) }
+    function disableDates(e) { return reservas.includes(e.toDateString()) }
 
     function handleDayBoxClose(newValue) {
         setDinamicValue(newValue);
@@ -101,13 +101,18 @@ function DateBar(props) {
         }
     }
 
+    useEffect(() => {       
+        AxiosGetReservasPorProducto(props.id, setReservas, setErrorMessage)  
+            
+    }, []); 
+
     return (
         <div className={`${Styles.dateBar} ${StylesApp.delimiter}`}>
             <div className={`${Styles.dateBarChild} ${StylesApp.delimiterChild}`}>
                 <div className={Styles.dateBarTitleBox}>
                     <h2>Fechas Disponibles</h2>
                     <div className={Styles.dateBarDayContainer}>
-                        {dinamicValue[0] !== null && dinamicValue[0] != "" ?
+                        {dinamicValue[0] !== null && dinamicValue[0] !== ""?
                             <div className={Styles.dateBarDayBox}>
                                 Desde: {dinamicValue[0].toLocaleDateString()}
                                 <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
@@ -132,7 +137,7 @@ function DateBar(props) {
                                     displayStaticWrapperAs={size}
                                     calendars={window.innerWidth > 414 ? 2 : 1}
                                     minDate={new Date()}
-                                    maxDate={maxDate}
+                                    maxDate={maxDate}                                   
                                     value={valueDate}
                                     onChange={(newValue) => handleDateChange(newValue)}
                                     showToolbar={false}

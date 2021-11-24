@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StylesCalendar from "./stylesCalendar.module.css";
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
@@ -8,16 +8,18 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { makeStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {AxiosGetReservasPorProducto} from "../../axiosCollection/Product/AxiosProduct"
 
 function CalendarBar(props) {
     const { valueDate, setValueDate } = props;
     const startDate = new Date(valueDate[0]);
-    const endDate = new Date(valueDate[1]);
-    const booksMadeDate = [new Date(2021, 10, 30).setHours(0, 0, 0, 0), new Date(2021, 10, 28).setHours(0, 0, 0, 0), new Date(2021, 11, 8).setHours(0, 0, 0, 0), new Date(2021, 11, 15).setHours(0, 0, 0, 0)]
-    const booksMade = [new Date(2021, 10, 30).toDateString(), new Date(2021, 10, 28).toDateString(), new Date(2021, 11, 8).toDateString(), new Date(2021, 11, 15).toDateString()] // arreglo de fecha reservadas,  ojo con los mes son de 0 a 11
+    const endDate = new Date(valueDate[1]);    
     const [maxDate, setMaxDate] = useState(null);
     const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate") != null ? startDate : null, sessionStorage.getItem("endDate") != null ? endDate : null]);
     const [info, setInfo] = useState(false);
+    const [reservas,setReservas] = useState([]);
+    const [errorMessage,setErrorMessage] = useState(""); 
+    let reservasEnMs = () => reservas.map(reserva => new Date(reserva).setHours(0,0,0,0));
 
     const theme = createTheme({
         palette: {
@@ -61,14 +63,14 @@ function CalendarBar(props) {
     function handleDateChange(newValue) {
         setValueDate(newValue);
         if (newValue[0] != null) {
-            let sortBooksMadeDate = booksMadeDate.sort((a, b) => a - b);
-            const validacion = sortBooksMadeDate.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
+            let sortReservasEnMs = reservasEnMs().sort((a, b) => a - b);
+            const validacion = sortReservasEnMs.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
             setMaxDate(validacion === undefined ? null : new Date(validacion))
         }
         setDinamicValue(newValue);
     }
 
-    function disableDates(e) { return booksMade.includes(e.toDateString()) }
+    function disableDates(e) { return reservas.includes(e.toDateString()) }
 
     function handleDayBoxClose(newValue) {
         setDinamicValue(newValue);
@@ -78,9 +80,12 @@ function CalendarBar(props) {
             window.sessionStorage.removeItem("startDate");
         }else if(!newValue[1]){
             window.sessionStorage.removeItem("endDate");
-        }
-       
+        }       
     }
+
+    useEffect(() => {       
+        AxiosGetReservasPorProducto(props.id, setReservas, setErrorMessage)             
+    }, []); 
 
     return (
         <div className={`${StylesCalendar.dateBar}`}>
@@ -99,13 +104,13 @@ function CalendarBar(props) {
                     </h2>
                 </div>
                 <div className={StylesCalendar.dateBarDayContainer}>
-                    {dinamicValue[0] != null && dinamicValue[0] != "" ?
+                    {dinamicValue[0] !== null && dinamicValue[0] !== "" ?
                         <div className={StylesCalendar.dateBarDayBox}>
                             Desde: {dinamicValue[0].toLocaleDateString()}
                             <div className={StylesCalendar.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
                         </div>
                         : null}
-                    {dinamicValue[1] != null && dinamicValue[0] != "" ?
+                    {dinamicValue[1] !== null && dinamicValue[0] !== "" ?
                         <div className={StylesCalendar.dateBarDayBox}>
                             Hasta: {dinamicValue[1].toLocaleDateString()}
                             <div className={StylesCalendar.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>

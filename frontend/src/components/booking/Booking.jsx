@@ -88,7 +88,7 @@ export default function Booking(props) {
                                 <div className={Styles.container}>
                                     <div>
                                         <FormBooking errorBooking={errorBooking} name={name} setName={setName} surname={surname} setSurname={setSurname} email={email} setEmail={setEmail} city={city} setCity={setCity}/>
-                                        <CalendarBar valueDate={valueDate} setValueDate={setValueDate} />
+                                        <CalendarBar valueDate={valueDate} setValueDate={setValueDate} id={id}/>
                                         <ArrivalTimeBar setArrivalSchedule={setArrivalSchedule}/>
                                     </div>
                                     <div>

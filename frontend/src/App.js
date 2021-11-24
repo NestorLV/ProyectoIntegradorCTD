@@ -25,9 +25,7 @@ function App() {
   const [bookingWithoutLogin, setBookingWithoutLogin]= useState(false)
   const [lastLocation, setLastLocation]=useState("")
 
-  const handleCategory = (c) => {           
-    setSearch(false);
-    setCity("");
+  const handleCategory = (c) => {       
     setFavourite(false);
     setCategory(c);           
   }
