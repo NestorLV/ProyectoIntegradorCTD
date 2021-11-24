@@ -3,9 +3,7 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
 import hidePassword from "./icons/hidePassword.png"
 import { AxiosLogin } from "../../axiosCollection/Forms/AxiosForms"
-/* import { style } from "@mui/system"; */
 import IconError from "./icons/iconError.svg"
-/* import { Redirect } from "react-router"; */
 
 export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoading, setActiveLogin, setActiveCreate, setLog }) {
     const [email, setEmail] = useState({ campo: "", valido: true, error: "" });
@@ -20,16 +18,10 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
-    const handleChangeEmail = (event) => {
-        setEmail({ ...email, campo: event.target.value })
-    }
+    const handleChangeEmail = (event) => {setEmail({ ...email, campo: event.target.value })}
 
-    const handleChangePassword = (event) => {
-        setPassword({ ...password, campo: event.target.value })
-    }
-
+    const handleChangePassword = (event) => {setPassword({ ...password, campo: event.target.value })}
 
     const validarEmailNulo = () => {
         if (!email.campo) {
@@ -46,35 +38,23 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
         }
     }
 
-
-
     const sendData = (event) => {
         event.preventDefault();
         validarEmailNulo()
         validarPasswordNulo()
-
-        if (password.campo && email.campo
-            && password.valido && email.valido) {
+        if (password.campo && email.campo&& password.valido && email.valido) {
             AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
         }
-
     }
     
     function mostrarContrasena() {
         let tipo = document.getElementById("password").getAttribute("type");
-
-        if (tipo === "password") {
-            tipo = "text";
-        } else {
-            tipo = "password";
-        }
+        if (tipo === "password") {tipo = "text";} 
+        else {tipo = "password";}
     }
-
-
 
     return (
         <div className={styles.containerPrincipal}>
-
             <div className={styles.containerForm}>
                 <div className={`${styles.errorLogin} ${!bookingWithoutLogin ? styles.hide : null}`}>
                     <img src={IconError} alt="icono de error" />

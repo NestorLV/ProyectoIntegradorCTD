@@ -53,7 +53,7 @@ function Product(props) {
         AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage)
     }, [id]);
 
-    console.log(props.lastLocation);
+    /* console.log(props.lastLocation); */
     return (
         (errorMessage && loading) ?
             <section className={StylesApp.delimiter}>

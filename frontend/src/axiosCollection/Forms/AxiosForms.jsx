@@ -13,11 +13,13 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         sessionStorage.setItem("id", response.data.id);
         sessionStorage.setItem("email", email);
         sessionStorage.setItem("log", "true");
-        setEmail({ valido: true })
-        setPassword({ valido: true })
+       /*  setEmail({ campo:email, valido: true })
+        setPassword({campo:password, valido: true }) */
         setFormValido(true);
         setLoading(false); 
         setLog(true);
+        
+       
     })
     .catch(error => {
         console.log(error);
