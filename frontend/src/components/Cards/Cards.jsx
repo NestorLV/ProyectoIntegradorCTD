@@ -38,7 +38,7 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
     const indexPages = () => {
         let pages = [];
         let cant = data.length % limitCardPerPage === 0 ? data.length / limitCardPerPage : Math.floor(data.length / limitCardPerPage) + 1
-        for (let i = 0; i < cant; i++) { pages.push(<button onClick={() => setNumberPage(i + 1)} disabled={numberPage - 1 === i}>{i + 1}</button>) };
+        for (let i = 0; i < cant; i++) { pages.push(<button onClick={() => setNumberPage(i + 1)} disabled={numberPage - 1 === i}  key={i+1} >{i + 1}</button>) };
         return pages
     };
 
