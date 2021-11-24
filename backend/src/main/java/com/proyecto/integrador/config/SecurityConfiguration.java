@@ -64,7 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cors().and()
                 // dont authenticate these requests
 
-                .authorizeRequests().antMatchers("/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login").permitAll()
+                .authorizeRequests().antMatchers("/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login","/email/**").permitAll()
                 // requests need to be authenticated
                 .antMatchers("/reservas**").authenticated().and().
                 // make sure we use stateless session; session won't be used to
