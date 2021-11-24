@@ -14,8 +14,8 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
     const [titulo, setTitulo] = useState("Recomendaciones");
     const startDate = (new Date(sessionStorage.getItem("startDate")).setHours(0,0,0,0) >= new Date().setHours(0,0,0,0)) ? new Date(sessionStorage.getItem("startDate")) : null ;
     const endDate = (new Date(sessionStorage.getItem("endDate")).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)) ? new Date(sessionStorage.getItem("endDate"))  : null;
-    const [listadoFavoritos, setListadoFavoritos] = useState([]);
-
+/*     const [listadoFavoritos, setListadoFavoritos] = useState([]);*/
+ 
     /* console.log(startDate, "startDate de Cards inicial")
     console.log(endDate, "endDate de Cards inicial")   */  
 
@@ -32,6 +32,7 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
             setErrorMessage("Error");
             setLoading(false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [category, clickBusqueda, favourite]);    
 
     const dataLimited = () => data.slice((numberPage - 1) * limitCardPerPage, numberPage * limitCardPerPage);

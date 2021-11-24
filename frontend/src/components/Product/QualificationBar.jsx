@@ -4,6 +4,8 @@ import Styles from "./styles.module.css";
 import { AxiosCalificarProducto } from "../../axiosCollection/Product/AxiosProduct";
 
 export default function QualificationBar({ id }) {
+    /* eslint-disable no-unused-vars */
+
     const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion') == null ? 0 : sessionStorage.getItem('calificacion'));
     const [submit, setSubmit] = useState(false);
     const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex === 0 ? "" : starIndex}`);

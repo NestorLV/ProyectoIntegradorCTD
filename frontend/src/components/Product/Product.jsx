@@ -15,6 +15,8 @@ import { AxiosGetProductoPorId } from "../../axiosCollection/Product/AxiosProduc
 
 
 function Product(props) {
+    /* eslint-disable no-unused-vars */
+
     /*ESTADOS PARA EL CAROUSEL */
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
