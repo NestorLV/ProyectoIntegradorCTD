@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Styles from "./styles.module.css"
 import StylesApp from "../../App.module.css";
 import * as React from 'react';
-/* import addDays from 'date-fns/addDays'; */
 import TextField from '@mui/material/TextField';
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -10,11 +9,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { makeStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-/* const { format } = require("date-fns"); */
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router";
 import {AxiosGetReservasPorProducto} from "../../axiosCollection/Product/AxiosProduct"
-
 
 function DateBar(props) {
     const { valueDate, setValueDate } = props;
@@ -24,6 +20,7 @@ function DateBar(props) {
     const [maxDate, setMaxDate] = useState(null);
     const [dinamicValue, setDinamicValue] = useState([sessionStorage.getItem("startDate") != null ? startDate : null, sessionStorage.getItem("endDate") != null ? endDate : null]);
     const [reservas,setReservas] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [errorMessage,setErrorMessage] = useState(""); 
     let reservasEnMs = () => reservas.map(reserva => new Date(reserva).setHours(0,0,0,0));
 
@@ -104,6 +101,7 @@ function DateBar(props) {
     useEffect(() => {       
         AxiosGetReservasPorProducto(props.id, setReservas, setErrorMessage)  
             
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); 
 
     return (
@@ -112,13 +110,13 @@ function DateBar(props) {
                 <div className={Styles.dateBarTitleBox}>
                     <h2>Fechas Disponibles</h2>
                     <div className={Styles.dateBarDayContainer}>
-                        {dinamicValue[0] !== null && dinamicValue[0] !== ""?
+                        {dinamicValue[0] !== null ?
                             <div className={Styles.dateBarDayBox}>
                                 Desde: {dinamicValue[0].toLocaleDateString()}
                                 <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([null, dinamicValue[1]])}>x</div>
                             </div>
                             : null}
-                        {dinamicValue[1] !== null && dinamicValue[0] != "" ?
+                        {dinamicValue[1] !== null ?
                             <div className={Styles.dateBarDayBox}>
                                 Hasta: {dinamicValue[1].toLocaleDateString()}
                                 <div className={Styles.dateBarTitleBoxClose} onClick={() => handleDayBoxClose([dinamicValue[0], null])}>x</div>

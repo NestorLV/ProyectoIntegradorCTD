@@ -14,7 +14,6 @@ function SearchForm({ handleSearch, handleCity }) {
       </div>
       {/*       <button onClick={(e) => {handleSearch(e)}} handleCity = {handleCity} className={`${Styles.buttonSearch} limitation`}>Buscar</button>*/}
       <button onClick={(e) => { handleSearch(e) }} className={`${Styles.buttonSearch} limitation`}>Buscar</button>
-
     </form>
   );
 }

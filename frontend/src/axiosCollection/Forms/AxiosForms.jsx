@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Redirect } from "react-router";
 const baseUrl = "http://localhost:8080/"
 
 function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation){
@@ -14,11 +13,13 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         sessionStorage.setItem("id", response.data.id);
         sessionStorage.setItem("email", email);
         sessionStorage.setItem("log", "true");
-        setEmail({ valido: true })
-        setPassword({ valido: true })
+       /*  setEmail({ campo:email, valido: true })
+        setPassword({campo:password, valido: true }) */
         setFormValido(true);
         setLoading(false); 
         setLog(true);
+        
+       
     })
     .catch(error => {
         console.log(error);
@@ -41,6 +42,7 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
         "password": `${password}`
     })
     .then(response => {       
+        setLoading(false);
         AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
     })
     .catch(error => {

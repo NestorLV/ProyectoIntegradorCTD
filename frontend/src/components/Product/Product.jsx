@@ -15,6 +15,8 @@ import { AxiosGetProductoPorId } from "../../axiosCollection/Product/AxiosProduc
 
 
 function Product(props) {
+    /* eslint-disable no-unused-vars */
+
     /*ESTADOS PARA EL CAROUSEL */
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
@@ -51,7 +53,7 @@ function Product(props) {
         AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage)
     }, [id]);
 
-    console.log(props.lastLocation);
+    /* console.log(props.lastLocation); */
     return (
         (errorMessage && loading) ?
             <section className={StylesApp.delimiter}>

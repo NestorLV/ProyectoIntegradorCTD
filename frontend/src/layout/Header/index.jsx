@@ -12,7 +12,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
 
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
-    const baseUrl = "http://localhost:8080/"
+    /* const baseUrl = "http://localhost:8080/" */
 
     function handleLogOut() {
         setLoading(true)
@@ -33,9 +33,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
 
     function handleErrorLogin(){
         setBookingWithoutLogin(false)
-    }
-
-   
+    }   
 
     return (
         <header className={`${Styles.header} ${StylesApp.delimiter}`} >
@@ -63,8 +61,6 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
                         </button>
                     </Link>
 
-
-
                 </div>
                 <div className={showUserName}>
                     <div className={Styles.logoName}>
@@ -73,7 +69,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
                     <div className={Styles.text}>
                         <h3 className={Styles.great}>Hola,</h3>
                         <h3 className={Styles.name}>{sessionStorage.getItem("name")} {sessionStorage.getItem("surname")}</h3>
-                        <h4 className={Styles.seeFavourite}onClick={handleFavourite}>Ver favoritos</h4>
+                        <h4 className={Styles.seeFavourite} onClick={handleFavourite}>Ver favoritos</h4>
                     </div>
                     <div>
                         <div className={Styles.close}><a href="/" onClick={handleLogOut}>X</a> </div>

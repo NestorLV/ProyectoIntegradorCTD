@@ -7,7 +7,7 @@ import { Modal } from 'react-responsive-modal';
 import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
 import Icons from "../Product/icons/Icons";
-import { AxiosLikeProducto, AxiosDislikeProducto } from '../../axiosCollection/Cards/AxiosCards';
+import { AxiosCreateFavourite } from '../../axiosCollection/Cards/AxiosCards';
 
 function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
     const [isLike, setLike] = useState(favorite);
@@ -16,13 +16,13 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     const [despliegue, setDespliegue] = useState(false)
     const [textoDespliegue, setTextoDespliegue] = useState("más...")    
     const [errorMessage, setErrorMessage] = useState("");
-
-    useEffect(() => {setLike(favorite)}, [favorite])
-
-    const handleToggle = () => { 
-        /* isLike ? AxiosDislikeProducto(id, setLike, setErrorMessage) : AxiosLikeProducto(id, setLike, setErrorMessage);  */       
-        console.log(isLike);
-    }
+    const [likear,setLikear] = useState(false);
+    
+    const handleToggle = () => {      
+        AxiosCreateFavourite(id, setLike, setErrorMessage)        
+        /* setLikear(prevState => !prevState); */
+         
+    } 
 
     const handleDespliegue = () => {
         setDespliegue(!despliegue);

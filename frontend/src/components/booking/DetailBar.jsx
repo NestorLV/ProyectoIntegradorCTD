@@ -8,6 +8,7 @@ import { useState } from "react";
 import {AxiosCrearReserva} from "../../axiosCollection/Booking/AxiosBooking"
 
 function DetailBar(props) {
+    /* eslint-disable no-unused-vars */
     const {nameUser, surnameUser, emailUser, cityUser, setErrorBooking, errorBooking, id, image, category, name, city, country, reference, qualification, checkin, checkout, arrivalSchedule } = props;
     
     let cantStar = Math.floor(qualification / 2);
