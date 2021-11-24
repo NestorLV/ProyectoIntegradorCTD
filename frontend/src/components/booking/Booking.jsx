@@ -19,11 +19,11 @@ export default function Booking(props) {
     const [valueDate, setValueDate] = useState([sessionStorage.getItem("startDate") != null ? sessionStorage.getItem("startDate") : null, sessionStorage.getItem("endDate") != null ? sessionStorage.getItem("endDate") : null]);
     const [arrivalSchedule, setArrivalSchedule] = useState("")
     const [name, setName] = useState(sessionStorage.getItem("name"))
-    const [surname,setSurname] = useState(sessionStorage.getItem("surname"))
+    const [surname, setSurname] = useState(sessionStorage.getItem("surname"))
     const [email, setEmail] = useState(sessionStorage.getItem("email"))
     const [city, setCity] = useState("")
     const [errorBooking, setErrorBooking] = useState("")
-    
+
     let { id } = useParams();
     console.log("id", useParams())
     const [prod, setProd] = useState({
@@ -55,7 +55,7 @@ export default function Booking(props) {
             .catch((error) => {
                 setErrorMessage("No es posible mostrar la página");
             });
-    },[id]);
+    }, [id]);
 
     const formatDate = (date) => {
         if (date != null) {
@@ -63,12 +63,12 @@ export default function Booking(props) {
             const arrayDate = dateString.split(" ");
             return arrayDate[2] + "/" + arrayDate[1] + "/" + arrayDate[3];
         }
-        else {return ""}
+        else { return "" }
     }
 
     console.log(formatDate(valueDate[0]));
 
-    if (errorMessage && loading) {                      
+    if (errorMessage && loading) {
         return (
             <section className={StylesApp.delimiter}>
                 <h1>{errorMessage}</h1>
@@ -78,28 +78,29 @@ export default function Booking(props) {
 
         return (
             <>
-            {console.log("valueDate", valueDate)}
+                {console.log("valueDate", valueDate)}
                 <section className={`${Styles.booking} ${StylesApp.delimiter}`}>
-                    <div className={`${Styles.bookingChild} ${StylesApp.delimiterChild}`}>
-                        {loading ? <Spinner /> : (
-                            <>
-                                <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
-                                <h2>Completá tus datos</h2>
-                                <div className={Styles.container}>
-                                    <div>
-                                        <FormBooking errorBooking={errorBooking} name={name} setName={setName} surname={surname} setSurname={setSurname} email={email} setEmail={setEmail} city={city} setCity={setCity}/>
-                                        <CalendarBar valueDate={valueDate} setValueDate={setValueDate} id={id}/>
-                                        <ArrivalTimeBar setArrivalSchedule={setArrivalSchedule}/>
-                                    </div>
-                                    <div>
-                                        <DetailBar nameUser={name} surnameUser={surname} emailUser={email} cityUser={city} setErrorBooking={setErrorBooking} id={id} image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification*2} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} arrivalSchedule={arrivalSchedule}/>
-                                    </div>
+                    {loading ? <Spinner /> : (<>
+                        <div className={`${Styles.bookingChild} ${StylesApp.delimiterChild}`}>
+
+
+                            <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
+                            <h2>Completá tus datos</h2>
+                            <div className={Styles.container}>
+                                <div>
+                                    <FormBooking errorBooking={errorBooking} name={name} setName={setName} surname={surname} setSurname={setSurname} email={email} setEmail={setEmail} city={city} setCity={setCity} />
+                                    <CalendarBar valueDate={valueDate} setValueDate={setValueDate} id={id} />
+                                    <ArrivalTimeBar setArrivalSchedule={setArrivalSchedule} />
                                 </div>
-                            </>
-                        )}
-                    </div>
+                                <div>
+                                    <DetailBar nameUser={name} surnameUser={surname} emailUser={email} cityUser={city} setErrorBooking={setErrorBooking} id={id} image={prod.images[0].url} category={prod.category.title} city={prod.city.name} country={prod.city.country} reference={prod.reference} qualification={prod.qualification * 2} name={prod.name} checkin={formatDate(valueDate[0])} checkout={formatDate(valueDate[1])} arrivalSchedule={arrivalSchedule} />
+                                </div>
+                            </div>
+                        </div>
+                        <InfoBar health={prod.health} rules={prod.rules} politics={prod.politics} />
+                    </>
+                    )}
                 </section>
-                <InfoBar health={prod.health} rules={prod.rules} politics={prod.politics} />
             </>
         )
     }
