@@ -164,6 +164,44 @@ public class ScoreServiceImpl implements IScoreService {
                 }
             }
         }
+        logger.debug("Terminó la ejecución del método obtener puntuacion por usuario y producto");
+
+        return scoreDTOGuardado;
+    }
+
+    @Override
+    public ScoreDTO resetScore(String email, Integer idProduct) throws FindByIdException, BadRequestException {
+        logger.debug("Iniciando método obtener puntuacion por usuario y producto");
+        UserDTO user=userService.findByEmail(email);
+        if (user==null) {
+            throw new BadRequestException("El usuario no existe");
+        }
+
+        List<ScoreDTO> scores = findAll();
+        List<ScoreDTO> scoresByUser = new ArrayList<>();
+
+        for (ScoreDTO scoreDTO: scores){
+            if(scoreDTO.getUserEmail().equals(email)){
+                scoresByUser.add(scoreDTO);
+            }
+        }
+
+        ScoreDTO scoreDTOGuardado= null;
+        if(scoresByUser!=null){
+            for (ScoreDTO scoreDTO:scoresByUser) {
+                if(scoreDTO.getProductId()==idProduct){
+                    scoreDTOGuardado = scoreDTO;
+                }
+            }
+        }
+
+        if(scoreDTOGuardado!=null){
+            scoreDTOGuardado.setScore(null);
+            scoreDTOGuardado.setFavourite(scoreDTOGuardado.getFavourite());
+            update(scoreDTOGuardado);
+        }
+
+        logger.debug("Terminó la ejecución del método reset score");
 
         return scoreDTOGuardado;
     }
