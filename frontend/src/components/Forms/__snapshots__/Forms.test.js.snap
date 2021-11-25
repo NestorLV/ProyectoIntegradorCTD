@@ -1,0 +1,304 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <FormCreate/> Deberia mostrar <FormCreate/> correctamente 1`] = `
+<div
+  className="containerPrincipal"
+>
+  <div
+    className="containerForm"
+  >
+    <h3>
+      Crear cuenta
+    </h3>
+    <form
+      className="formFlex"
+      onSubmit={[Function]}
+    >
+      <div
+        className="fullName"
+      >
+        <div
+          className="containerFullname"
+        >
+          <div
+            className="inputLabel "
+          >
+            <label
+              for="name"
+            >
+              Nombre
+            </label>
+            <input
+              className={null}
+              id="name"
+              name="name"
+              onChange={[Function]}
+              onKeyUp={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="apellido "
+          >
+            <label
+              for="surname"
+            >
+              Apellido
+            </label>
+            <input
+              className={null}
+              id="surname"
+              name="surname"
+              onChange={[Function]}
+              onKeyUp={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="errorContainer"
+        >
+          <p
+            className="error"
+          />
+        </div>
+      </div>
+      <div
+        className="inputLabel "
+      >
+        <label
+          for="email"
+        >
+          Correo electrónico
+        </label>
+        <input
+          className={null}
+          id="email"
+          name="email"
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          type="email"
+          value=""
+        />
+        <div
+          className="errorContainer"
+        >
+          <p
+            className="error"
+          />
+        </div>
+      </div>
+      <div
+        className="inputLabel "
+      >
+        <label
+          for="password"
+        >
+          Contraseña
+        </label>
+        <div
+          className="inputHidePassword"
+        >
+          <input
+            className={null}
+            id="password"
+            name="password"
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            type="password"
+            value=""
+          />
+          <img
+            alt="icon hide password"
+            className="hidePassword"
+            onClick={[Function]}
+            src="hidePassword.png"
+          />
+        </div>
+        <div
+          className="errorContainer"
+        >
+          <p
+            className="error"
+          />
+        </div>
+      </div>
+      <div
+        className="inputLabel confirmPassword "
+      >
+        <label
+          for="confirm-password"
+        >
+          Confirmar contraseña
+        </label>
+        <div
+          className="inputHidePassword"
+        >
+          <input
+            className={null}
+            id="confirm-password"
+            name="confirm-password"
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            type="password"
+            value=""
+          />
+          <img
+            alt="icon hide password"
+            className="hidePassword"
+            onClick={[Function]}
+            src="hidePassword.png"
+          />
+        </div>
+        <div
+          className="errorContainer"
+        >
+          <p
+            className="error"
+          />
+        </div>
+      </div>
+      <div
+        className="errorContainer"
+      >
+        <p
+          className="error"
+        />
+      </div>
+      <div
+        className="inputLabel boton"
+      >
+        <button
+          type="submit"
+        >
+          Crear cuenta
+        </button>
+        <p>
+          ¿Ya tienes una cuenta?
+          <Link
+            to="/login"
+          >
+             Iniciar sesión
+          </Link>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Probando el componente <FormLogin/> Deberia mostrar <FormLogin/> correctamente 1`] = `
+<div
+  className="containerPrincipal"
+>
+  <div
+    className="containerForm"
+  >
+    <div
+      className="errorLogin hide"
+    >
+      <img
+        alt="icono de error"
+        src="iconError.svg"
+      />
+      <div>
+        Para realizar una reserva, necesitas estar logueado
+      </div>
+    </div>
+    <h3>
+      Iniciar sesión
+    </h3>
+    <form
+      className="formFlex login"
+      onSubmit={[Function]}
+    >
+      <div
+        className="inputLabel "
+      >
+        <label
+          for="email"
+        >
+          Correo electrónico
+        </label>
+        <input
+          className={null}
+          id="email"
+          name="email"
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          type="email"
+          value=""
+        />
+        <div
+          className="errorContainer"
+        >
+          <p
+            className="error"
+          />
+        </div>
+      </div>
+      <div
+        className="inputLabel "
+      >
+        <label
+          for="password"
+        >
+          Contraseña
+        </label>
+        <div
+          className="inputHidePassword"
+        >
+          <input
+            className={null}
+            id="password"
+            name="password"
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            type="password"
+            value=""
+          />
+          <img
+            alt="icon hide password"
+            className="hidePassword passLogin"
+            onClick={[Function]}
+            src="hidePassword.png"
+          />
+        </div>
+        <div
+          className="errorContainer"
+        >
+          <p
+            className="error"
+          />
+        </div>
+      </div>
+      <div
+        className="errorContainer"
+      >
+        <p
+          className="error"
+        />
+      </div>
+      <div
+        className="inputLabel boton"
+      >
+        <button
+          type="submit"
+        >
+          Ingresar
+        </button>
+        <p>
+          ¿Aún no tenés cuenta?
+          <Link
+            to="/create"
+          >
+             Registrate
+          </Link>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+`;

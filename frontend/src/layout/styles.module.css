@@ -1,0 +1,14 @@
+.opacity{
+    height: 0;
+    
+}
+
+.opacity::after{
+    background:rgb(0,0,0, 0.3);
+    content:"";
+    height:100vh;
+    left:0;
+    position:fixed;
+    top: 0;
+    width:100%;
+}

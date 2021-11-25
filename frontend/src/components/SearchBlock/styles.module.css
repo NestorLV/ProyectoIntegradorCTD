@@ -1,0 +1,234 @@
+.container {
+  align-items: center;
+  background-color: var(--tertiary-color);
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 25px 0; 
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.subContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: clamp(10px, 3.9%, 40px);
+  padding-right: clamp(10px, 3.9%, 40px);
+  width: 100%;
+}
+
+.gridContainer {
+  background-color: var(--tertiary-color);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  max-height: 40px;
+  width: 100%;
+}
+
+form.gridContainer > div {
+  margin-right: 10px;
+}
+
+.container h1 {
+  color: #ffffff;
+  font-size: var(--heading1);
+  font-weight: var(--font-bold);
+  padding-bottom: 10px;
+}
+
+.date {
+  background-color: white;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+  color: var(--secondary-color);
+  font-size: var(--text2);
+  font-weight: var(--font-medium);
+  height: 100%;
+  overflow: hidden;
+  padding-left: 42px;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.iconSelectBox {
+  height: 40px;
+  max-width: 420px;
+  position: relative;
+  width: clamp(254px, 33vw, 420px);
+}
+
+.optionBox {
+  width: 100%;
+}
+
+.buttonSearch,
+.selectedDatesButton {
+  color: #ffffff;
+  background: var(--primary-color);
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  font-size: var(--button2);
+  font-weight: var(--font-bold);
+}
+
+.buttonSearch {
+  transition: all 0.3s;
+  width: clamp(124px, 18vw, 206px);
+}
+
+.buttonSearch:hover {
+  transform:scale(1.05);
+}
+
+.buttonSearch:active{
+  transform:scale(0.95);}
+
+.selectedDatesButton {
+  bottom: 5%;
+  font-size: var(--button1);
+  font-weight: var(--font-bold);
+  padding: 0.4rem 3.5rem;
+  position: absolute;
+  right: 3%;
+  text-align: right;
+}
+
+.calendarButton {
+  background-color: #ffffff;
+  border-radius: 5px;
+  height: 100%;
+  position: relative;
+}
+
+.calendarButton::before {
+  background: url("img/calendar.png") no-repeat;
+  content: "";
+  display: inline-block;
+  height: 25px;
+  left: 10px;
+  position: absolute;
+  top: 9px;
+  width: 24px;
+}
+
+.calendarButton > div {
+  position: absolute;
+  top: 120%;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  position: relative;
+  z-index: 2;
+}
+
+.visibleTablet {
+  position: absolute;
+  right: -50%;
+  top: 120%;
+  z-index: 100;
+}
+
+.cityContainer {
+  display: flex;
+  position: relative;
+}
+
+.cityName {
+  flex-direction: column;
+  position: relative;
+}
+
+.optionLocationIcon {
+  font-size: 20px;
+  left: -6%;
+  position: absolute;
+  top: 20%;
+}
+div.iconSelectBox > div > div:first-child {
+  border: 0px;
+}
+
+div.iconSelectBox > div:nth-child(2),
+div.iconSelectBox > div:nth-child(2) > div:first-child {
+  height: 100%;
+}
+
+.titleCity,
+.titleCountry {
+  font-size: var(--text2);
+  font-weight: 500;
+}
+
+.titleCountry {
+  color: var(--secondary-color);
+}
+
+@media all and (max-width:1200px) {
+  .calendarButton > div {
+    right: 0%;
+  }
+}
+
+@media all and (max-width: 769px) {
+  .container {
+    padding: 25px 0px;
+  }
+
+  .container h1 {
+    font-size: var(--heading2);
+  }
+
+  .cityIcon {
+    left: -17%;
+  }
+
+  .iconCityBar {
+    left: 4%;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .gridContainer {
+    flex-direction: column;
+    max-height: 100%;
+  }
+
+  .iconSelectBox {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  form.gridContainer > div {
+    height: 40px;
+  }
+
+  form.gridContainer > div:nth-child(2) {
+    margin: 10px 0;
+  }
+
+  .buttonSearch {
+    height: 40px;
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 415px) {
+  .containerCalendarSelectedDates {
+    background-color: white;
+    padding: 0 1rem 1rem 0;
+    text-align: right;
+    width: 100%;
+  }
+  .selectedDatesButton {
+    position: relative;
+  }
+}

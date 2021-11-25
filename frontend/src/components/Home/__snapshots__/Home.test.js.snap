@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <Home/> Deberia mostrar <Home/> correctamente 1`] = `
+<Fragment>
+  <SearchBlock />
+  <Categories />
+  <Cards />
+</Fragment>
+`;

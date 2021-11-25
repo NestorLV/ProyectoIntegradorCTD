@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <LayoutPrincipal/> Deberia mostrar <LayoutPrincipal/> correctamente 1`] = `
+<div
+  className={null}
+>
+  <Header
+    setShowBurger={[Function]}
+    showBurger={false}
+  />
+  <main />
+  <Footer
+    showBurger={false}
+  />
+</div>
+`;
