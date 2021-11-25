@@ -2,7 +2,8 @@ package com.proyecto.integrador.service.impl;
 
 
 import com.proyecto.integrador.DTO.ScoreDTO;
-import com.proyecto.integrador.DTO.UserDTO;
+import com.proyecto.integrador.DTO.UserRequestDTO;
+import com.proyecto.integrador.DTO.UserResponseDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Score;
@@ -142,7 +143,7 @@ public class ScoreServiceImpl implements IScoreService {
     @Override
     public ScoreDTO findByUserAndProduct(String email, Integer idProduct) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método obtener puntuacion por usuario y producto");
-        UserDTO user=userService.findByEmail(email);
+        UserResponseDTO user = userService.findByEmail(email);
         if (user==null) {
             throw new BadRequestException("El usuario no existe");
         }
@@ -172,7 +173,7 @@ public class ScoreServiceImpl implements IScoreService {
     @Override
     public ScoreDTO resetScore(String email, Integer idProduct) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método obtener puntuacion por usuario y producto");
-        UserDTO user=userService.findByEmail(email);
+        UserResponseDTO user=userService.findByEmail(email);
         if (user==null) {
             throw new BadRequestException("El usuario no existe");
         }

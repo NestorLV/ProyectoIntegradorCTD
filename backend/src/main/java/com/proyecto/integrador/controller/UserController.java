@@ -2,14 +2,12 @@ package com.proyecto.integrador.controller;
 
 import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.DTO.ScoreDTO;
-import com.proyecto.integrador.DTO.UserDTO;
-import com.proyecto.integrador.config.jwt.JwtResponse;
+import com.proyecto.integrador.DTO.UserRequestDTO;
+import com.proyecto.integrador.DTO.UserResponseDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.exceptions.UnauthorizedAccessException;
-import com.proyecto.integrador.service.IScoreService;
 import com.proyecto.integrador.service.IUserService;
-import io.jsonwebtoken.Jwt;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +19,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/users")
-public class UserController implements CRUDController <UserDTO> {
+public class UserController implements CRUDController <UserRequestDTO> {
 
     @Autowired
     IUserService userService;
@@ -33,30 +31,30 @@ public class UserController implements CRUDController <UserDTO> {
 
     @Operation(summary = "Find All Users")
     @GetMapping("/all")
-    public ResponseEntity<List<UserDTO>> getAll() throws FindByIdException{
+    public ResponseEntity<List<UserResponseDTO>> getAll() throws FindByIdException{
         return ResponseEntity.ok(userService.findAll());
     }
 
     @Operation(summary = "Add a new user")
     @PostMapping("/create")
-    public ResponseEntity<UserDTO> create(@RequestBody UserDTO user) throws FindByIdException, BadRequestException {
+    public ResponseEntity<UserResponseDTO> create(@RequestBody UserRequestDTO user) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(userService.save(user));
     }
 
     @Operation(summary = "Find user by ID", description = "Returns a single user")
     @GetMapping("/get/{id}")
-    public ResponseEntity<UserDTO> getById(@PathVariable Integer idUser) throws FindByIdException {
+    public ResponseEntity<UserResponseDTO> getById(@PathVariable Integer idUser) throws FindByIdException {
         return ResponseEntity.ok(userService.findById(idUser));
     }
 
     @Override
-    public ResponseEntity<?> updateById(UserDTO userDTO) throws FindByIdException, UnauthorizedAccessException {
+    public ResponseEntity<?> updateById(UserRequestDTO userRequestDTO) throws FindByIdException, UnauthorizedAccessException {
         return null;
     }
 
     @Operation(summary = "Find user by email", description = "Returns a single user")
     @GetMapping("/getByEmail/{email}")
-    public ResponseEntity<UserDTO> getByEmail(@PathVariable String email){
+    public ResponseEntity<UserResponseDTO> getByEmail(@PathVariable String email){
         return ResponseEntity.ok(userService.findByEmail(email));
     }
 
@@ -81,8 +79,8 @@ public class UserController implements CRUDController <UserDTO> {
 
     @Operation(summary = "User login")
     @PostMapping("/login")
-    public ResponseEntity<?> validateLogIn(@RequestBody UserDTO userDTO) throws BadRequestException {
-        Map datos = userService.validateLogIn(userDTO);
+    public ResponseEntity<?> validateLogIn(@RequestBody UserRequestDTO userRequestDTO) throws BadRequestException {
+        Map datos = userService.validateLogIn(userRequestDTO);
         return ResponseEntity.ok(datos);
     }
 

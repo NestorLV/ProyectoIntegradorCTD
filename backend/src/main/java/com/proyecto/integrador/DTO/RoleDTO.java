@@ -1,7 +1,6 @@
 package com.proyecto.integrador.DTO;
 
 import com.proyecto.integrador.persistence.entity.Role;
-import com.proyecto.integrador.persistence.entity.User;
 import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +13,7 @@ import java.util.Set;
 public class RoleDTO {
     private Integer id;
     private RolesTypes name;
-    private Set<UserDTO> users = new HashSet<>();
+    private Set<UserRequestDTO> users = new HashSet<>();
 
     public RoleDTO() {
     }

@@ -3,12 +3,12 @@ package com.proyecto.integrador.service.impl;
 
 import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.DTO.ScoreDTO;
-import com.proyecto.integrador.DTO.UserDTO;
+import com.proyecto.integrador.DTO.UserRequestDTO;
+import com.proyecto.integrador.DTO.UserResponseDTO;
 import com.proyecto.integrador.config.jwt.JwtTokenUtil;
 import com.proyecto.integrador.config.jwt.JwtUserDetailsService;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
-import com.proyecto.integrador.persistence.entity.Score;
 import com.proyecto.integrador.persistence.entity.User;
 import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import com.proyecto.integrador.persistence.repository.IUserRepository;
@@ -43,9 +43,9 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
 
     @Override
-    public List<UserDTO> findAll() throws FindByIdException {
+    public List<UserResponseDTO> findAll() throws FindByIdException {
         logger.debug("Iniciando método buscar todos los usuarios");
-        List<UserDTO> userList = new ArrayList<>();
+        List<UserResponseDTO> userList = new ArrayList<>();
         for (User user: userRepository.findAll()) {
             userList.add(user.toDto());
         }
@@ -54,16 +54,16 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     @Override
-    public UserDTO save(UserDTO userDTO) throws FindByIdException, BadRequestException {
+    public UserResponseDTO save(UserRequestDTO userRequestDTO) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar usuario");
-        if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
+        if (userRepository.findByEmail(userRequestDTO.getEmail()).isPresent()) {
             throw new BadRequestException("Ya hay un usuario creado con el email ingresado");
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
-        userDTO.setPassword(encodedPassword);
-        userDTO.setRole(roleService.findByName(RolesTypes.USER));
-        User newUser = userRepository.save(userDTO.toEntity());
+        String encodedPassword = passwordEncoder.encode(userRequestDTO.getPassword());
+        userRequestDTO.setPassword(encodedPassword);
+        userRequestDTO.setRole(roleService.findByName(RolesTypes.USER));
+        User newUser = userRepository.save(userRequestDTO.toEntity());
         emailSenderService.sendSimpleMessage(newUser.getEmail(),"Activa tu usuario","http://localhost:8080/users/activate/"+newUser.getEmail()+"/"+newUser.hashCode());
         logger.debug("Terminó la ejecución del método guardar usuario");
         return newUser.toDto();
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     @Override
-    public UserDTO findById(Integer idUsers) throws FindByIdException {
+    public UserResponseDTO findById(Integer idUsers) throws FindByIdException {
         logger.debug("Iniciando método buscar producto por ID");
         if (!userRepository.existsById(idUsers)) {
             throw new FindByIdException("No existe un usuario con el id ingresado");
@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     @Override
-    public UserDTO update(String email) throws FindByIdException {
+    public UserResponseDTO update(String email) throws FindByIdException {
         logger.debug("Iniciando método actualizar usuario");
         if (userRepository.findByEmail(email).isEmpty()) {
             throw new FindByIdException("No existe una usuario con el email ingresado");
@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
     @Override
     public List<ProductDTO> getFavorites(String email) throws FindByIdException, BadRequestException {
-        UserDTO user = findByEmail(email);
+        UserResponseDTO user = findByEmail(email);
         if (user == null) {
             throw new BadRequestException("El usuario no está logueado");
         }
@@ -143,7 +143,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
     @Override
     public ScoreDTO saveFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException {
-        UserDTO user = findByEmail(email);
+        UserResponseDTO user = findByEmail(email);
         if (user == null) {
             throw new BadRequestException("El usuario no está logueado");
         }
@@ -181,7 +181,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
 
-    public UserDTO findByEmail(String email) {
+    public UserResponseDTO findByEmail(String email) {
         User user = userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("El email no matchea con ningún usuario en la base de datos"));
         return user.toDto();
     }
@@ -198,15 +198,15 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
     // Agregar más validaciones y ver lo del UserDTO RequestBody
     @Override
-    public Map<String, String> validateLogIn(UserDTO userDTO) throws BadRequestException {
+    public Map<String, String> validateLogIn(UserRequestDTO userRequestDTO) throws BadRequestException {
         Map<String, String> datos = new HashMap<>();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        Optional<User> user= userRepository.findByEmail(userDTO.getEmail());
+        Optional<User> user= userRepository.findByEmail(userRequestDTO.getEmail());
 
         if (user.isEmpty()) {
             throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
         }
-        if(!passwordEncoder.matches(userDTO.getPassword(), user.get().getPassword())){
+        if(!passwordEncoder.matches(userRequestDTO.getPassword(), user.get().getPassword())){
             throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
         }
 

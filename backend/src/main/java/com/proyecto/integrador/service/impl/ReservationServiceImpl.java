@@ -10,10 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,8 +35,13 @@ public class ReservationServiceImpl implements IReservationService {
     @Override
     public ReservationDTO save(ReservationDTO reservationDTO) throws FindByIdException {
         logger.debug("Iniciando método guardar reserva");
+        Reservation reservationEntity = reservationDTO.toEntity();
+        reservationEntity.setStartDate(new Date(reservationDTO.getStartDate().getTime() + (1000 * 60 * 60 * 24)));
+        reservationEntity.setEndDate(new Date(reservationDTO.getEndDate().getTime() + (1000 * 60 * 60 * 24)));
+        Reservation reservation = reservationRepository.save(reservationEntity);
+        reservationDTO.setId(reservation.getId());
         logger.debug("Terminó la ejecución del método guardar reserva");
-        return Optional.of(reservationRepository.save(reservationDTO.toEntity())).get().toDto();
+        return reservationDTO;
     }
 
     @Override

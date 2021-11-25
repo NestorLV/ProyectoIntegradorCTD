@@ -1,9 +1,6 @@
 package com.proyecto.integrador.persistence.entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.proyecto.integrador.DTO.ProductDTO;
-import com.proyecto.integrador.DTO.RoleDTO;
-import com.proyecto.integrador.DTO.UserDTO;
-import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
+import com.proyecto.integrador.DTO.UserRequestDTO;
+import com.proyecto.integrador.DTO.UserResponseDTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -53,13 +49,14 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public UserDTO toDto(){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(id);
-        userDTO.setName(name);
-        userDTO.setSurname(surname);
-        userDTO.setEmail(email);
-        return userDTO;
+    public UserResponseDTO toDto(){
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+        userResponseDTO.setId(id);
+        userResponseDTO.setName(name);
+        userResponseDTO.setSurname(surname);
+        userResponseDTO.setEmail(email);
+        userResponseDTO.setActivation(activation);
+        return userResponseDTO;
     }
 
     @Override

@@ -11,13 +11,12 @@ import java.util.List;
 
 @Getter
 @Setter
-public class UserDTO {
+public class UserRequestDTO {
     private Integer id;
     private String name;
     private String surname;
     private String email;
     private String password;
-    private boolean activation;
     private RoleDTO role;
     private List<ProductDTO> favoriteProducts = new ArrayList<>();
 
@@ -28,7 +27,6 @@ public class UserDTO {
         user.setEmail(email);
         user.setPassword(password);
         user.setRole(role.toEntity());
-        user.setActivation(activation);
         return user;
     }
 }
