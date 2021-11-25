@@ -17,6 +17,7 @@ public class UserDTO {
     private String surname;
     private String email;
     private String password;
+    private boolean activation;
     private RoleDTO role;
     private List<ProductDTO> favoriteProducts = new ArrayList<>();
 
@@ -27,6 +28,7 @@ public class UserDTO {
         user.setEmail(email);
         user.setPassword(password);
         user.setRole(role.toEntity());
+        user.setActivation(activation);
         return user;
     }
 }

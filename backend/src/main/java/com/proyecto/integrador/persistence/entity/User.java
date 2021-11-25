@@ -1,6 +1,4 @@
 package com.proyecto.integrador.persistence.entity;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.DTO.RoleDTO;
@@ -33,18 +31,22 @@ public class User implements UserDetails {
     private String email;
     @Column(name = "password", nullable = false)
     private String password;
+    @Column(name = "activation", nullable = false)
+    private boolean activation;
+
     @ManyToOne
     @JoinColumn(name = "idRole", nullable = false)
     private Role role;
 
     public User() {}
 
-    public User(String name, String surname, String email, String password, Role role) {
+    public User(String name, String surname, String email, String password,boolean activation,Role role) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.activation= activation;
     }
 
     public User(Integer id) {

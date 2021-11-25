@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
     @Override
     public UserDTO update(UserDTO user) throws FindByIdException {
-        logger.debug("Iniciando método actualizar producto");
+        logger.debug("Iniciando método actualizar usuario");
         if (!userRepository.existsById(user.getId())) {
             throw new FindByIdException("No existe una usuario con el id ingresado");
         }
