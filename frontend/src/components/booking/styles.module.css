@@ -120,7 +120,7 @@ input {
   color: red;
   font-size: 12pt;
   font-weight: bold;
-  height:4vh;
+  height:1vh;
   padding-top: 3px;
   text-align: center;
 }
@@ -483,7 +483,6 @@ input {
     font-size: var(--heading2);
   }
   .containerForm form {
-    max-height: 380px;
     min-height: 320px;
     height: 55vh;
     padding: 15px;

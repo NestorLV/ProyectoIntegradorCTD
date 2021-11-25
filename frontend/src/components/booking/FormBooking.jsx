@@ -73,7 +73,7 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
         display: "block",
         minWidth: "100%",
-        height: '100px',
+        height: '44px',
         border: 'none', 
         marginTop: '15px',              
         
