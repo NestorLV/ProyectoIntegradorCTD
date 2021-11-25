@@ -49,6 +49,9 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    public User(String nombre, String apellido, String s, String password2, Role user) {
+    }
+
     public UserResponseDTO toDto(){
         UserResponseDTO userResponseDTO = new UserResponseDTO();
         userResponseDTO.setId(id);
