@@ -7,7 +7,7 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         "password": `${password}`
     }).then(response => {
         console.log(response.data);
-        if(response.data.activation){
+        if(response.data.activation=="true"){
             sessionStorage.setItem("name", `${response.data.name.charAt(0).toUpperCase()}${response.data.name.slice(1)}`);
             sessionStorage.setItem("surname", `${response.data.surname.charAt(0).toUpperCase()}${response.data.surname.slice(1)}`);
             sessionStorage.setItem("iniciales", `${response.data.name.slice(0, 1).toUpperCase()}${response.data.surname.slice(0, 1).toUpperCase()}`)
@@ -38,7 +38,7 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         })
 }
 
-function AxiosCreate(name, surname, email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation) {
+function AxiosCreate(name, surname, email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation,openModalConfirm) {
     axios.post(baseUrl + "users/create", {
         "name": `${name}`,
         "surname": `${surname}`,
@@ -47,7 +47,8 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
     })
     .then(response => {
         console.log(response);
-       
+        setLoading(false);
+        openModalConfirm(true);
     })
     .catch(error => {
         console.log(error.response);

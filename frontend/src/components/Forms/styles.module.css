@@ -200,7 +200,7 @@ form ul {
   text-decoration: black;
 }
 
-div button {
+.modalConfirm button {
   background-color: white;
   border-radius: 5px;
   border: 2px solid  var(--primary-color);
@@ -213,7 +213,7 @@ div button {
   transition: all 0.5s;
 }
 
-div button:hover {
+.modalConfirm button:hover {
   background-color: #cf411d;
   border: 2px solid  #b9411f;
   transform: scale(1.1);
