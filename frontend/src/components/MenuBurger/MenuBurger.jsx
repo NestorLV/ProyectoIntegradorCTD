@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logoFb from "./img/IconFb.png";
 import logoLinkedIn from "./img/IconLinkedIn.png";
@@ -14,9 +14,9 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
     const hideObject = (isLogged) ? "hide" : null; //Para esconder los botones cuando esta logueado
     const showObject = (isLogged) ? null : "hide"; //Para que se vea el avatar cuando se loguea
 
-    const [shareIsOpenFooter, setShareIsOpenFooter]= useState(false);
-    const openShareModal = (() => { setShareIsOpenFooter(true)});
-    let placeShareCall="footer"
+    const [shareIsOpenFooter, setShareIsOpenFooter] = useState(false);
+    const openShareModal = (() => { setShareIsOpenFooter(true) });
+    let placeShareCall = "footer"
 
     return (
         <MenuBurgerWrapper show={show} className="containerMobile">
@@ -35,7 +35,9 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
             </div>
             <div className="mobileBody">
                 <div onClick={handleHide} className={`menuFavoritos ${!isLogged ? "hide" : null} `}>
-                    <p onClick={handleFavourite}>Favoritos</p>
+                    <Link to="/">
+                        <p onClick={handleFavourite}>Favoritos</p>
+                    </Link>
                     <img src={line} alt="" />
                 </div>
                 <div className={`botones ${hideObject} ${(!activeLogin && activeCreate) ? "subir" : null}`}>
@@ -51,7 +53,7 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
                     <img className="iconsImgMobile" src={line} alt="" />
                 </div>
                 <div className="iconsMobile">
-                    <img src={iconSocial} alt="iconSocial" onClick={openShareModal} className= "iconSocial"/>
+                    <img src={iconSocial} alt="iconSocial" onClick={openShareModal} className="iconSocial" />
                     <Share shareIsOpen={shareIsOpenFooter} placeShareCall={placeShareCall} setShareIsOpen={setShareIsOpenFooter} />
                     <a href="https://www.facebook.com/profile.php?id=100074545225635" target="_blank" rel="noreferrer" ><img src={logoFb} alt="" /></a>
                     <a href="https://www.linkedin.com/in/world-guest-2b195b225/" target="_blank" rel="noreferrer" ><img src={logoLinkedIn} alt="" /></a>

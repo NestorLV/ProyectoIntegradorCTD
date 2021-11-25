@@ -12,7 +12,7 @@ import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
 import Spinner from "../spinner/Spinner";
 import { AxiosGetProductoPorId } from "../../axiosCollection/Product/AxiosProduct"
-import { AxiosGetProductosFavoritos } from "../../axiosCollection/Cards/AxiosCards"
+import { AxiosGetProductoFavorito} from "../../axiosCollection/Cards/AxiosCards"
 
 
 function Product(props) {
@@ -52,13 +52,22 @@ function Product(props) {
 
     useEffect(() => {
         AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage)
-    }, [id]);   
+    }, [id]);
+
+       
     
-    const [listadoFavoritos, setListadoFavoritos] = useState([]);  
+  
     
-    useEffect (() => {
+
+
+    /* useEffect (() => {
     AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage);
-    }, []) 
+    }, [])  */
+
+    /*  useEffect(() => {
+        let prodLike = AxiosGetProductoFavorito(setErrorMessage, props.id)
+        setLike(prodLike) 
+    }, []); */
     
    
     return (
@@ -74,7 +83,7 @@ function Product(props) {
                     <>
                         <TitleBar category={prod.category.title} name={prod.name} goBack={props.goBack} />
                         <ScoreBar reference={prod.reference} city={prod.city} qualification={prod.qualification * 2} />
-                        <ImageBar setLastLocation={props.setLastLocation} setBookingWithoutLogin={props.setBookingWithoutLogin} images={prod.images} viewerIsOpen={viewerIsOpen} setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} fav={listadoFavoritos.find(pf => pf.id === id) ? true : false}/>
+                        <ImageBar setLastLocation={props.setLastLocation} setBookingWithoutLogin={props.setBookingWithoutLogin} images={prod.images} viewerIsOpen={viewerIsOpen} setViewerIsOpen={setViewerIsOpen} setShareIsOpen={setShareIsOpen} setCurrentImage={setCurrentImage} id={prod.id} shareIsOpen={shareIsOpen} />
                         <DescriptionBar city={prod.city} description={prod.description} />
                         <FeaturesBar features={prod.features} />
                         <Datebar setLastLocation={props.setLastLocation} setBookingWithoutLogin={props.setBookingWithoutLogin} valueDate={valueDate} setValueDate={setValueDate} id={id} />

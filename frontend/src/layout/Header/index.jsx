@@ -29,11 +29,11 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     function handleHide() {
         setShowBurger(false)
         setBookingWithoutLogin(false)
-    }   
+    }
 
-    function handleErrorLogin(){
+    function handleErrorLogin() {
         setBookingWithoutLogin(false)
-    }   
+    }
 
     return (
         <header className={`${Styles.header} ${StylesApp.delimiter}`} >
@@ -69,7 +69,9 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
                     <div className={Styles.text}>
                         <h3 className={Styles.great}>Hola,</h3>
                         <h3 className={Styles.name}>{sessionStorage.getItem("name")} {sessionStorage.getItem("surname")}</h3>
-                        <h4 className={Styles.seeFavourite} onClick={handleFavourite}>Ver favoritos</h4>
+                        <Link to="/">
+                            <h4 className={Styles.seeFavourite} onClick={handleFavourite}>Ver favoritos</h4>
+                        </Link>
                     </div>
                     <div>
                         <div className={Styles.close}><a href="/" onClick={handleLogOut}>X</a> </div>

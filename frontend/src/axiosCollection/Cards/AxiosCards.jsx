@@ -33,17 +33,21 @@ function AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage) {
             });
 }
 
-function AxiosGetProductoFavorito(setErrorMessage, id) {
+function AxiosGetProductoFavorito(setErrorMessage, id,setLike) {
     let email = sessionStorage.getItem("email")
     const baseUrlFavourite = `${baseUrl}users/getfavourites/${email}`;
 
     sessionStorage.getItem("email") &&
         axios.get(baseUrlFavourite)
-            .then(response => {                
-                return response.data.find(pf => pf.id === id) ? true : false;
+            .then(response => {   
+                console.log(response.data, "soy el response de favoritos");
+                let flag=false;  
+                response.data.map((p)=>p.id===id?flag=true:null);     
+                setLike(flag)
             })
             .catch(error => {
                 setErrorMessage(error.message);
+                return false;
             });
 }
 
