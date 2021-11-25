@@ -48,9 +48,12 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
     }
     
     function mostrarContrasena() {
-        let tipo = document.getElementById("password").getAttribute("type");
-        if (tipo === "password") {tipo = "text";} 
-        else {tipo = "password";}
+        let tipo = document.getElementById("password");
+        if (tipo.type === "password") {
+            tipo.type = "text"
+        } else {
+            tipo.type = "password"
+        }
     }
 
     return (

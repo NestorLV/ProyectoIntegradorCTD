@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import hidePassword from "./icons/hidePassword.png";
 import { AxiosCreate } from "../../axiosCollection/Forms/AxiosForms"
 import Spinner from "../spinner/Spinner";
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
 
 
 function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, setIniciales, setUserName, setUserSurname }) {
@@ -15,16 +17,19 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
     const [confirmPassword, setConfirmPassword] = useState({ campo: "", valido: true, error: "" });
     const [error, setError] = useState("")
     const [formValido, setFormValido] = useState(false)
+    const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
 
 
     // @ts-ignore
     const [loading, setLoading] = useState(false);
 
     /* const baseUrl = "http://localhost:8080/" */
-    useEffect(() => {setActiveLogin(false)
+    useEffect(() => {
+        setActiveLogin(false)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        setActiveCreate(true)},[]);
-    
+        setActiveCreate(true)
+    }, []);
+
 
     const regEx = /^[a-zA-Z\s]{1,70}$/;
 
@@ -105,7 +110,6 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
             setConfirmPassword({ ...confirmPassword, valido: true, error: "" })
         }
     }
-    console.log(name);
 
     const sendData = (event) => {
         event.preventDefault();
@@ -118,24 +122,30 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
 
         if (name.campo && surname.campo && email.campo && password.campo && confirmPassword.campo &&
             name.valido && surname.valido && email.valido && password.valido && confirmPassword.valido) {
-            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
+            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation, openModalConfirm)
         }
         else {
             setFormValido(false)
         }
     }
     function mostrarContrasena(event) {
-        let tipo = document.getElementById(event).getAttribute("type");
-        
-        console.log(event);
+        let tipo = document.getElementById(event);
 
-        if (tipo === "password") {
-            tipo = "text";
+        if (tipo.type === "password") {
+            tipo.type = "text";
         } else {
-            tipo = "password";
+            tipo.type = "password";
         }
-
     }
+
+    const openModalConfirm = (() => {
+        setModalConfirmIsOpen(true)
+    })
+
+    const closeModalConfirm = () => {
+        setModalConfirmIsOpen(false);
+    };
+
 
     return (
 
@@ -187,6 +197,12 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
                             <button type="submit">Crear cuenta</button>
                             <p>¿Ya tienes una cuenta?<Link to="/login"> Iniciar sesión</Link></p>
                         </div>
+                        <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
+                            <div className={styles.modalConfirm}>
+                                <p>Se ha enviado un email de verificación.</p>
+                                <Link to="/login"><button>Login</button></Link>
+                            </div>
+                        </Modal>
                     </form>
                 </>)}
             </div>

@@ -2,8 +2,6 @@ import axios from "axios";
 
 const baseUrl = "http://localhost:8080/"
 
-const subjectMailConfirmBooking="Su reserva ha sido exitosa";
-
 
 function AxiosCrearReserva(arrivalSchedule, formatDate, checkin, checkout, id, openModalSucceed, setErrorBooking) {
     axios
