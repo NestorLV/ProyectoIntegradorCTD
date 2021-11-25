@@ -215,6 +215,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         datos.put("name",user.get().getName());
         datos.put("surname", user.get().getSurname());
         datos.put("token", jwtTokenUtil.generateToken(userDetails));
+        datos.put("activation", user.get().isActivation()?"true":"false");
         return datos;
     }
 }

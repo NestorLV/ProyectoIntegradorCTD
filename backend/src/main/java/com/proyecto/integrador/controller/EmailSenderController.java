@@ -21,7 +21,7 @@ public class EmailSenderController {
                                      @PathVariable String subject,
                                      @PathVariable String body) {
 
-        emailSenderService.sendSimpleMessage(email , subject.toString(), body.toString());
+        emailSenderService.sendSimpleMessage(email , subject, body);
         //logger.debug("Operación exitosa de creado de reserva");
         return ResponseEntity.ok("Email Enviado satisfactoriamente");
     }
