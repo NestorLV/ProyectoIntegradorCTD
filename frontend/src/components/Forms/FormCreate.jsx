@@ -122,7 +122,8 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
 
         if (name.campo && surname.campo && email.campo && password.campo && confirmPassword.campo &&
             name.valido && surname.valido && email.valido && password.valido && confirmPassword.valido) {
-            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation, openModalConfirm)
+            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
+            openModalConfirm()
         }
         else {
             setFormValido(false)

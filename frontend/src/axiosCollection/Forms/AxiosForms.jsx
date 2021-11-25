@@ -6,19 +6,23 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         "email": `${email}`,
         "password": `${password}`
     }).then(response => {
-        sessionStorage.setItem("name", `${response.data.name.charAt(0).toUpperCase()}${response.data.name.slice(1)}`);
-        sessionStorage.setItem("surname", `${response.data.surname.charAt(0).toUpperCase()}${response.data.surname.slice(1)}`);
-        sessionStorage.setItem("iniciales", `${response.data.name.slice(0, 1).toUpperCase()}${response.data.surname.slice(0, 1).toUpperCase()}`)
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("id", response.data.id);
-        sessionStorage.setItem("email", email);
-        sessionStorage.setItem("log", "true");
-        /*  setEmail({ campo:email, valido: true })
-         setPassword({campo:password, valido: true }) */
-        setFormValido(true);
-        setLoading(false);
-        setLog(true);
-
+        console.log(response.data);
+        if(response.data.activation){
+            sessionStorage.setItem("name", `${response.data.name.charAt(0).toUpperCase()}${response.data.name.slice(1)}`);
+            sessionStorage.setItem("surname", `${response.data.surname.charAt(0).toUpperCase()}${response.data.surname.slice(1)}`);
+            sessionStorage.setItem("iniciales", `${response.data.name.slice(0, 1).toUpperCase()}${response.data.surname.slice(0, 1).toUpperCase()}`)
+            sessionStorage.setItem("token", response.data.token);
+            sessionStorage.setItem("id", response.data.id);
+            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("log", "true");
+            /*  setEmail({ campo:email, valido: true })
+             setPassword({campo:password, valido: true }) */
+            setFormValido(true);
+            setLoading(false);
+            setLog(true);
+        }else{
+            setPassword({error: "El usuario no ha sido confirmado. Por favor revise su mail"})
+        }
 
     })
         .catch(error => {
@@ -34,7 +38,7 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         })
 }
 
-function AxiosCreate(name, surname, email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation, openModalConfirm) {
+function AxiosCreate(name, surname, email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation) {
     axios.post(baseUrl + "users/create", {
         "name": `${name}`,
         "surname": `${surname}`,
@@ -42,17 +46,8 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
         "password": `${password}`
     })
     .then(response => {
-       
         console.log(response);
-        //AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
-        axios.post(baseUrl + `email/verificacion/${response.data.email}/Confirmado/Su cuenta ha sido creada exitosamente.`)
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error.response);
-        })
-        openModalConfirm()
+       
     })
     .catch(error => {
         console.log(error.response);
