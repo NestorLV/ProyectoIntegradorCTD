@@ -125,6 +125,10 @@ input {
   text-align: center;
 }
 
+.observaciones {
+  margin: 8px 0px;
+}
+
 /*Estilos ArrivalTimeBar*/
 
 .containerArrival {

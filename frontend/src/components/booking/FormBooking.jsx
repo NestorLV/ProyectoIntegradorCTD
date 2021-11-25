@@ -16,12 +16,15 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
             borderRadius: "7px",
             boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-between", 
+            marginTop: "10px", 
+            marginBottom: "15px"          
 
         }),
 
         placeholder: () => ({
-            padding: "15px 10px"
+            padding: "15px 10px",
+            
         }),
 
         valueContainer: () => ({
@@ -36,7 +39,8 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
 
         input: () => ({
             opacity: 0,
-            width: 0
+            width: 0,
+            
         }),
 
         option: () => ({
@@ -50,7 +54,8 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         }),
 
         indicatorsContainer: () => ({
-            paddingTop: "15px"
+            paddingTop: "15px",
+            
         }),
 
         dropdownIndicator: () => ({
@@ -69,7 +74,8 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         display: "block",
         minWidth: "100%",
         height: '100px',
-        border: 'none'
+        border: 'none', 
+        marginTop: '15px',              
         
     }
     const handleChangeName = (event) => {
@@ -122,7 +128,7 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
                     />
                 </div>
                 <div>
-                    <label for="observaciones">Observaciones:</label>
+                    <label className={Styles.observaciones} for="observaciones">Observaciones:</label>
                     <textarea id="observaciones" name="observaciones" style={style}>
                     </textarea>
                 </div>
