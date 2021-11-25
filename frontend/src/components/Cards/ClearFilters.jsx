@@ -14,7 +14,7 @@ function ClearFilters({handleClean, setCategory, setCity, setTitulo, setStartDat
     
     return (
         <div className={`${Styles.clearFilterContainer}`}>
-            <button onClick={handleClick}>Limpiar filtros</button>
+            <button className={Styles.clearFilterButton} onClick={handleClick}>Limpiar filtros</button>
         </div>
     );
 }

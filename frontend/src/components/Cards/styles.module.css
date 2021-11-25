@@ -137,7 +137,7 @@ div.buttons {
   height: 10vh;
 }
 
-div.buttons button {
+div.buttons button, .clearFilterButton {
   background-color: white;
   border-radius: 5px;
   border: 2px solid  var(--primary-color);
@@ -473,13 +473,14 @@ min-width: 80px;
   .clearFilterContainer {
     margin-top: 10px;
   }
-  
+
   .cardsBlock>h2 {
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
   }
 }
+
 @media all and (max-width: 415px){
 .modalFavourite{
   width: 70vw;
