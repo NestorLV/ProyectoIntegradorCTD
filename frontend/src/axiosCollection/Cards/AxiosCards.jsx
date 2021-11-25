@@ -33,16 +33,28 @@ function AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage) {
             });
 }
 
+function AxiosGetProductoFavorito(setErrorMessage, id) {
+    let email = sessionStorage.getItem("email")
+    const baseUrlFavourite = `${baseUrl}users/getfavourites/${email}`;
+
+    sessionStorage.getItem("email") &&
+        axios.get(baseUrlFavourite)
+            .then(response => {                
+                return response.data.find(pf => pf.id === id) ? true : false;
+            })
+            .catch(error => {
+                setErrorMessage(error.message);
+            });
+}
+
 function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitulo, setErrorMessage, city, startDate, endDate, category) {
 
     const baseUrlFiltros = `${baseUrl}products/filters`;
 
     let startDateParse = startDate !== null ? (new Date(startDate).getFullYear() + "-" + format(new Date(startDate), "MM") + "-" + format(new Date(startDate), "dd")) : null;
+    
     let endDateParse = endDate !== null ? (new Date(endDate).getFullYear() + "-" + format(new Date(endDate), "MM") + "-" + format(new Date(endDate), "dd")) : null;
 
-
-   /*  console.log(startDateParse,"Start Date Parse");
-    console.log(endDateParse,"end Date Parse"); */
     axios.post(baseUrlFiltros, { cityId: city, startDate: startDateParse, endDate: endDateParse, category: category })
         .then(response => {
             setData(response.data);
@@ -86,4 +98,4 @@ function AxiosCreateFavourite(id, setLike, setErrorMessage) {
     }
 }
 
-export { AxiosGetProductosRecomendados, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria, AxiosCreateFavourite }
+export { AxiosGetProductosRecomendados, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria, AxiosCreateFavourite, AxiosGetProductoFavorito }

@@ -15,13 +15,10 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
     const [despliegue, setDespliegue] = useState(false)
     const [textoDespliegue, setTextoDespliegue] = useState("más...")    
-    const [errorMessage, setErrorMessage] = useState("");
-    const [likear,setLikear] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");    
     
     const handleToggle = () => {      
-        AxiosCreateFavourite(id, setLike, setErrorMessage)        
-        /* setLikear(prevState => !prevState); */
-         
+        AxiosCreateFavourite(id, setLike, setErrorMessage)           
     } 
 
     const handleDespliegue = () => {
