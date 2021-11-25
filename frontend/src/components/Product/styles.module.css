@@ -215,6 +215,9 @@
   flex-direction: column;
   justify-content: center;
   height:22vh;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
   width:39vw;
 }
 
@@ -261,6 +264,11 @@ div.buttons button.login:hover {
   border: 2px solid  #b9411f;
 }
   
+div.buttons a:focus {
+  outline: none;
+}
+
+
 div.buttons button.create:hover {
   background-color: #ffd6c6;
   border: 2px solid  #ffd6c6;
@@ -620,9 +628,16 @@ div.buttons button.create:hover {
 
 .qualificationButtons {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;    
   width: 50%;  
+}
+
+.containerButtons{
+  display: flex;
+  justify-content: space-evenly;
+  width:70%;
 }
 
 .qualificationReset, .qualificationSubmit {
@@ -654,7 +669,7 @@ div.buttons button.create:hover {
   font-size: var(--text2);
   font-weight: var(--font-bold);
   text-align: center;
-  max-width: 30%;
+  max-width: 70%;
 }
 
 /* Estilos infoBar */
@@ -752,6 +767,7 @@ div.buttons button.create:hover {
     background-color: white;
   }  
 
+ 
   
 }
 
@@ -816,6 +832,13 @@ justify-content: space-evenly;
   
   .qualificationBarChild h2 {    
     font-size: var(--heading3);    
+  }
+
+  .containerButtons{
+    width: 100%;
+  }
+  .qualificationConfirm{
+    max-width: 100%;
   }
 }
 
@@ -910,8 +933,14 @@ justify-content: space-evenly;
     width: 60%;
     margin: 1% 0;
   }
-  
-  
+  .qualificationConfirm{
+    max-width: 55%;
+  }
+  .containerButtons{
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+  }
 }
 
 @media all and (max-width: 415px) {
@@ -997,5 +1026,6 @@ justify-content: space-evenly;
   .buttonsDateBar{
     width: 90%;
   }
+  
   
 }

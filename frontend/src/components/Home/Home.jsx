@@ -2,11 +2,19 @@ import Categories from "../Categories/Categories.jsx";
 import SearchBlock from "../SearchBlock/SearchBlock";
 import Cards from "../Cards/Cards";
 import Spinner from "../spinner/Spinner";
+import { useEffect } from "react";
 
 export default function Home(props) {
 
-  props.setActiveCreate(false)
+  /* props.setActiveCreate(false)
   props.setActiveLogin(false)
+ */
+  useEffect(() => 
+  {
+    props.setActiveCreate(false)
+    props.setActiveLogin(false) 
+  }, [props])
+   
 
   if(sessionStorage.getItem("log")==="false" ){
     sessionStorage.removeItem("iniciales")
@@ -22,7 +30,7 @@ export default function Home(props) {
         <>
           <SearchBlock handleSearch={props.handleSearch} handleCity={props.handleCity} />
           <Categories category={props.category} handleCategory={props.handleCategory} />
-          <Cards setLastLocation={props.setLastLocation} category={props.category} search={props.search} city={props.city} clickBusqueda={props.clickBusqueda} favourite={props.favourite} />
+          <Cards setLastLocation={props.setLastLocation} category={props.category} search={props.search} city={props.city} clickBusqueda={props.clickBusqueda} favourite={props.favourite} clickSeeFavourites = {props.clickSeeFavourites} />
         </>
       )}
     </>

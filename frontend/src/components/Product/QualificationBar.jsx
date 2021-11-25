@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StylesApp from "../../App.module.css";
 import Styles from "./styles.module.css";
-import { AxiosCalificarProducto } from "../../axiosCollection/Product/AxiosProduct";
+import { AxiosCalificarProducto, AxiosGetPuntuacionDelProducto, AxiosResetPuntuacion } from "../../axiosCollection/Product/AxiosProduct";
 
 export default function QualificationBar({ id }) {
-    const [starIndex, setStarIndex] = useState(sessionStorage.getItem('calificacion') == null ? 0 : sessionStorage.getItem('calificacion'));
+    const [starIndex, setStarIndex] = useState();
     const [submit, setSubmit] = useState(false);
     const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex === 0 ? "" : starIndex}`);
     const [errorMessage, setErrorMessage] = useState("");
+    const [puntuacion, setPuntuacion] = useState();
 
     let stars = [];
 
     let star = (i) => <svg key={i} index={i} viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z" className={i >= starIndex ? Styles.star : Styles.starActive} /></svg>;
-
-    console.log(sessionStorage.getItem('email'))
+    
+    useEffect(()=>{
+        AxiosGetPuntuacionDelProducto(sessionStorage.getItem("email"), id, setStarIndex);
+        setCalificacion_text(`Seleccione puntuación`);
+    },[])
+    
 
     const renderStar = () => {
         for (let i = 0; i < 5; i++) {
@@ -32,32 +37,17 @@ export default function QualificationBar({ id }) {
 
     const handleSubmit = () => {
         setSubmit(true);
-        sessionStorage.setItem('calificacion', starIndex.toString());
         setCalificacion_text(`Enviando puntuación...`);
         AxiosCalificarProducto(starIndex, id, setCalificacion_text, setErrorMessage)
-        /*axios
-            .post("http://localhost:8080/products/scores/create", {
-                score: starIndex,
-                userEmail: sessionStorage.getItem('email'),
-                productId: id
-            })
-            .then((response) => {
-                if (response.status === 200) {
-                    setCalificacion_text(`Se envió correctamente la puntuación de: ${starIndex}`);
-                }
-
-            })
-            .catch((error) => {
-                setErrorMessage(error);
-            });*/
-
     }
 
     const handleReset = () => {
-        setStarIndex(0);
+        AxiosResetPuntuacion(sessionStorage.getItem("email"), id, setStarIndex)
         setSubmit(false);
         setCalificacion_text(`Seleccione puntuación`);
     }
+
+    console.log(puntuacion);
 
     return (
         <div className={`${Styles.qualificationBar} ${StylesApp.delimiter}`}>
@@ -70,13 +60,14 @@ export default function QualificationBar({ id }) {
                         })}
                     </div>
                 </div>
-                    <div className={Styles.qualificationButtons}>
+                <div className={Styles.qualificationButtons}>
+                    <div className={Styles.containerButtons}>
                         <button className={Styles.qualificationReset} onClick={handleReset} > Resetear </button>
-                        <button className={Styles.qualificationSubmit} onClick={starIndex > 0 ? handleSubmit : null} > Enviar     </button>
-                        <div className={Styles.qualificationConfirm} >{calificacion_text}</div>
+                        <button className={Styles.qualificationSubmit} onClick={starIndex > 0 ? handleSubmit : null} > Enviar </button>
                     </div>
-
+                    <div className={Styles.qualificationConfirm} >{calificacion_text}</div>
                 </div>
             </div>
-            )
+        </div>
+    )
 }

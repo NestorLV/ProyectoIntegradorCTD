@@ -7,22 +7,19 @@ import { Modal } from 'react-responsive-modal';
 import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
 import Icons from "../Product/icons/Icons";
-import { AxiosLikeProducto, AxiosDislikeProducto } from '../../axiosCollection/Cards/AxiosCards';
+import { AxiosCreateFavourite } from '../../axiosCollection/Cards/AxiosCards';
 
-function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite, key }) {
+function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
     const [isLike, setLike] = useState(favorite);
     const [mapIsOpen, setMapIsOpen] = useState(false)
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
     const [despliegue, setDespliegue] = useState(false)
     const [textoDespliegue, setTextoDespliegue] = useState("más...")    
-    const [errorMessage, setErrorMessage] = useState("");
-
-    useEffect(() => {setLike(favorite)}, [favorite])
-
-    const handleToggle = () => { 
-        /* isLike ? AxiosDislikeProducto(id, setLike, setErrorMessage) : AxiosLikeProducto(id, setLike, setErrorMessage);  */       
-        console.log(isLike);
-    }
+    const [errorMessage, setErrorMessage] = useState("");    
+    
+    const handleToggle = () => {      
+        AxiosCreateFavourite(id, setLike, setErrorMessage)           
+    } 
 
     const handleDespliegue = () => {
         setDespliegue(!despliegue);
@@ -54,7 +51,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     }
 
     return (
-        <div className={Styles.cardBox} key={key} >
+        <div className={Styles.cardBox} >
            {/*  {console.log(favorite, "favorite")} */}            
             <div className={Styles.cardImage}>
                 <svg className={Styles.iconHeart} onClick={loggued === "true" ? handleToggle : openModalFavourite} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 27 27"><path className={isLike ? Styles.heartColor2 : Styles.heartColor} id="heart" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" /></svg>
@@ -102,7 +99,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                     <MapModal mapIsOpen={mapIsOpen} latitude={latitude} longitude={longitude} closeMapModal={closeMapModal} name={name} address={address} />
                 </div>
                 <div className={Styles.cardIcons}>
-                    {features.map((feature) => <div className={Styles.cardFeatures} key={id}>{Icons(feature.id - 1,"#31363F")}</div>)}
+                    {features.map((feature,index) => <div className={Styles.cardFeatures} key={index}>{Icons(feature.id - 1,"#31363F")}</div>)}
                 </div>
                 <div className={Styles.cardDescription}>
                     <p className={despliegue ? Styles.desplegado : Styles.noDesplegado}>{description}</p>
