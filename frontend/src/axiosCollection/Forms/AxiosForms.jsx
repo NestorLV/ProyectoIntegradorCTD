@@ -51,6 +51,7 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
         openModalConfirm(true);
     })
     .catch(error => {
+        setLoading(false)
         console.log(error.response);
         if (error.response.status != 200) {
             setEmail({ valido: false, error: "El usuario ya existe."})
@@ -59,9 +60,6 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
             sessionStorage.removeItem("token")
         }
     })
-    .finally(
-        setLoading(false)
-    );
 }
 
 export { AxiosLogin, AxiosCreate }
