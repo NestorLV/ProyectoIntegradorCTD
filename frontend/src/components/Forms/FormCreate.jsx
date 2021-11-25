@@ -201,7 +201,7 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
                         <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
                             <div className={styles.modalConfirm}>
                                 <p>Se ha enviado un email de verificación.</p>
-                                <Link to="/login"><button>Login</button></Link>
+                                <Link to="/"><button>Continuar</button></Link>
                             </div>
                         </Modal>
                     </form>
