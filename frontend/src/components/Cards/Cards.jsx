@@ -17,8 +17,7 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
     const [listadoFavoritos, setListadoFavoritos] = useState([]);
 
     useEffect(() => {
-        AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage);
-        console.log(listadoFavoritos, "listadoFavoritos"); 
+        AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage);        
         if (category === "All" && search === false && favourite === false) {
             AxiosGetProductosRecomendados(setData, setLoading, setTitulo, setErrorMessage)          
         } else if (favourite === false) {
@@ -26,8 +25,7 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
         } else if (favourite) {
             AxiosGetProductosFavoritos(setData, setErrorMessage);
             setListadoFavoritos(data);
-            setTitulo(`Favoritos`);
-            /* setData(listadoFavoritos); */
+            setTitulo(`Favoritos`);            
         } else {
             setErrorMessage("Error");
             setLoading(false);
@@ -70,8 +68,8 @@ export default function Cards({ setLastLocation, category, city, search, clickBu
                                 latitude={e.latitude}
                                 longitude={e.longitude}
                                 address={e.address}
-                                favorite={listadoFavoritos.find(pf => pf.id === e.id) ? true : false }
-                                
+                                favorite={listadoFavoritos.find(pf => pf.id === e.id) ? true : false}                     
+                                                                
                             />
                         )}
                     </div>
