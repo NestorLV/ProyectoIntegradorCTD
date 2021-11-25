@@ -91,7 +91,7 @@ function DetailBar(props) {
                         </div>
 
                     </div>
-                    <button onClick={handleBooking} >Confirmar Reserva</button>
+                    <button onClick={handleBooking}>Confirmar Reserva</button>
                     <div className={Styles.containerErrorBooking}>{errorBooking?errorBooking:null}</div>
                     <Modal open={modalSucceedIsOpen} onClose={closeModalSucceed} center>
                         <Succeed/>
