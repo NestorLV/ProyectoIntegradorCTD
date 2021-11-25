@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Calendar from "./Calendar";
 import Styles from "./styles.module.css"
 
-function SelectDate() {
+function SelectDate({setStartDate, setEndDate, startDate, endDate}) {
   const [calendarState, calendarSetState] = useState(Styles.hidden);
   const [responsiveState, responsiveSetState] = useState("desktop");
 
@@ -22,7 +22,7 @@ function SelectDate() {
   return (
     <div className={Styles.calendarButton}>
       <button className={Styles.date} onClick={handleToggle}>{buttonState}</button>
-      <Calendar responsiveness={responsiveState} calendarState={calendarState} handleSelected={handleSelected} />
+      <Calendar responsiveness={responsiveState} calendarState={calendarState} handleSelected={handleSelected} setStartDate={setStartDate} setEndDate={setEndDate} startDate={startDate} endDate={endDate}/>
     </div>
   );
 }

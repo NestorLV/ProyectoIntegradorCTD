@@ -10,7 +10,7 @@ import Styles from "./styles.module.css";
 const { format } = require("date-fns");
 
 function Calendar(props) {
-  const [value, setValue] = useState([sessionStorage.getItem("startDate") != null ? sessionStorage.getItem("startDate") : null, sessionStorage.getItem("endDate") != null ? sessionStorage.getItem("endDate") : null]);
+  const [value, setValue] = useState([props.startDate != null ? props.startDate : null, props.endDate != null ? props.endDate : null]);
   const startDate = new Date(value[0]);
   const endDate = new Date(value[1]);
   const startDateToString = `${format(startDate, "dd")} de ${format(
@@ -28,6 +28,8 @@ function Calendar(props) {
       props.handleSelected(`${startDateToString} - ${endDateToString}`);
       sessionStorage.setItem("startDate", startDate.toDateString());
       sessionStorage.setItem("endDate", endDate.toDateString());
+      props.setStartDate(startDate.toDateString());
+      props.setEndDate(endDate.toDateString());
     }
   };
 

@@ -28,9 +28,9 @@ export default function Home(props) {
         <Spinner />
       ) : (
         <>
-          <SearchBlock handleSearch={props.handleSearch} handleCity={props.handleCity} />
+          <SearchBlock handleSearch={props.handleSearch} handleCity={props.handleCity} city={props.city} setStartDate={props.setStartDate} setEndDate={props.setEndDate} startDate={props.startDate} endDate={props.endDate} />
           <Categories category={props.category} handleCategory={props.handleCategory} />
-          <Cards setLastLocation={props.setLastLocation} category={props.category} search={props.search} city={props.city} clickBusqueda={props.clickBusqueda} favourite={props.favourite} clickSeeFavourites = {props.clickSeeFavourites} />
+          <Cards setLastLocation={props.setLastLocation} category={props.category} handleClean={props.handleClean} search={props.search} city={props.city} clickBusqueda={props.clickBusqueda} favourite={props.favourite} clickSeeFavourites = {props.clickSeeFavourites} setCategory={props.setCategory} setCity={props.setCity} setStartDate={props.setStartDate} setEndDate={props.setEndDate} propStartDate={props.startDate} propEndDate={props.endDate} setFavourite={props.setFavourite} setSearch={props.setSearch} />
         </>
       )}
     </>

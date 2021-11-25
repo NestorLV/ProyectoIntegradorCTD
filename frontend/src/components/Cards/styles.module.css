@@ -393,6 +393,13 @@ min-width: 80px;
   width: 40vw;
 }
 
+/*Estilos para el botón de limpiar filtros */
+
+.cardsBlock>h2 {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
 
 @media all and (max-width:1350px){
   .cardsBox{
@@ -461,6 +468,16 @@ min-width: 80px;
   .cardImage .image {
     top: -2px;
     z-index: 0;
+  }
+
+  .clearFilterContainer {
+    margin-top: 10px;
+  }
+  
+  .cardsBlock>h2 {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 @media all and (max-width: 415px){
