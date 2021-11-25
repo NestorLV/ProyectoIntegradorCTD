@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import hidePassword from "./icons/hidePassword.png";
 import { AxiosCreate } from "../../axiosCollection/Forms/AxiosForms"
@@ -21,9 +21,10 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
     const [loading, setLoading] = useState(false);
 
     /* const baseUrl = "http://localhost:8080/" */
-
-    setActiveLogin(false)
-    setActiveCreate(true)
+    useEffect(() => {setActiveLogin(false)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        setActiveCreate(true)},[]);
+    
 
     const regEx = /^[a-zA-Z\s]{1,70}$/;
 
