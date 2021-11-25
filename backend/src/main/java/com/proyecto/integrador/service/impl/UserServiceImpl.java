@@ -69,16 +69,17 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         return newUser.toDto();
     }
 
-    public String activateUser(String email, Integer hashCode) throws BadRequestException, FindByIdException {
-        String message = "El link es inválido, no se pudo activar el usuario";
+    public boolean activateUser(String email, Integer hashCode) throws BadRequestException, FindByIdException {
+        boolean response = false; /*"El link es inválido, no se pudo activar el usuario"*/;
         if (userRepository.findByEmail(email).isEmpty()) {
             throw new BadRequestException("El usuario no está logueado");
         }
         if (userRepository.findByEmail(email).hashCode() == hashCode) {
             update(email);
-            message = "El usuario con email " + email + " se activó correctamente";
+            response = true;
+           /* message = "El usuario con email " + email + " se activó correctamente";*/
         }
-        return message;
+        return response;
     }
 
     @Override

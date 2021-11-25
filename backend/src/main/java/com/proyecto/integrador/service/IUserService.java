@@ -21,5 +21,5 @@ public interface IUserService {
     ScoreDTO saveFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException;
     UserResponseDTO findByEmail(String email);
     Map<String, String> validateLogIn(UserRequestDTO userRequestDTO) throws BadRequestException;
-    String activateUser(String email, Integer hashCode) throws BadRequestException, FindByIdException;
+    boolean activateUser(String email, Integer hashCode) throws BadRequestException, FindByIdException;
 }
