@@ -130,12 +130,12 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
         }
     }
     function mostrarContrasena(event) {
-        let tipo = document.getElementById(event).getAttribute("type");
+        let tipo = document.getElementById(event);
 
-        if (tipo === "password") {
-            tipo = "text";
+        if (tipo.type === "password") {
+            tipo.type = "text";
         } else {
-            tipo = "password";
+            tipo.type = "password";
         }
     }
 
