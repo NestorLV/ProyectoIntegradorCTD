@@ -38,6 +38,8 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     private JwtUserDetailsService userDetailsService;
     @Autowired
     JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    EmailSenderService emailSenderService;
 
 
     @Override
@@ -61,8 +63,22 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodedPassword);
         userDTO.setRole(roleService.findByName(RolesTypes.USER));
+        User newUser = userRepository.save(userDTO.toEntity());
+        emailSenderService.sendSimpleMessage(newUser.getEmail(),"Activa tu usuario","http://localhost:8080/users/activate/"+newUser.getEmail()+"/"+newUser.hashCode());
         logger.debug("Terminó la ejecución del método guardar usuario");
-        return userRepository.save(userDTO.toEntity()).toDto();
+        return newUser.toDto();
+    }
+
+    public String activateUser(String email, Integer hashCode) throws BadRequestException, FindByIdException {
+        String message = "El link es inválido, no se pudo activar el usuario";
+        if (userRepository.findByEmail(email).isEmpty()) {
+            throw new BadRequestException("El usuario no está logueado");
+        }
+        if (userRepository.findByEmail(email).hashCode() == hashCode) {
+            update(email);
+            message = "El usuario con email " + email + " se activó correctamente";
+        }
+        return message;
     }
 
     @Override
@@ -86,17 +102,15 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     @Override
-    public UserDTO update(UserDTO user) throws FindByIdException {
+    public UserDTO update(String email) throws FindByIdException {
         logger.debug("Iniciando método actualizar usuario");
-        if (!userRepository.existsById(user.getId())) {
-            throw new FindByIdException("No existe una usuario con el id ingresado");
+        if (userRepository.findByEmail(email).isEmpty()) {
+            throw new FindByIdException("No existe una usuario con el email ingresado");
         }
-        User user1 = userRepository.findById(user.getId()).get();
-        user1.setId(user.getId());
-        user1.setName(user.getName());
-        user1.setEmail(user.getEmail());
+        User user = userRepository.findByEmail(email).get();
+        user.setActivation(true);
         logger.debug("Terminó la ejecución del método actualizar usuario");
-        return userRepository.save(user1).toDto();
+        return userRepository.save(user).toDto();
     }
 
     @Override

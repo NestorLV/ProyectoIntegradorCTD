@@ -15,9 +15,10 @@ public interface IUserService {
     UserDTO save(UserDTO user) throws FindByIdException, BadRequestException;
     UserDTO findById(Integer idUsers) throws FindByIdException;
     void deleteById(Integer idUsers) throws FindByIdException;
-    UserDTO update(UserDTO user) throws FindByIdException;
+    UserDTO update(String email) throws FindByIdException;
     List<ProductDTO> getFavorites(String email) throws BadRequestException, FindByIdException;
     ScoreDTO saveFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException;
     UserDTO findByEmail(String email);
     Map<String, String> validateLogIn(UserDTO userDTO) throws BadRequestException;
+    String activateUser(String email, Integer hashCode) throws BadRequestException, FindByIdException;
 }

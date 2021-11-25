@@ -26,6 +26,11 @@ public class UserController implements CRUDController <UserDTO> {
     @Autowired
     IUserService userService;
 
+    @GetMapping("/403")
+    public void forbidden() throws UnauthorizedAccessException {
+        throw new UnauthorizedAccessException("No tiene permisos para acceder a este recurso", "User Role");
+    }
+
     @Operation(summary = "Find All Users")
     @GetMapping("/all")
     public ResponseEntity<List<UserDTO>> getAll() throws FindByIdException{
@@ -44,16 +49,15 @@ public class UserController implements CRUDController <UserDTO> {
         return ResponseEntity.ok(userService.findById(idUser));
     }
 
+    @Override
+    public ResponseEntity<?> updateById(UserDTO userDTO) throws FindByIdException, UnauthorizedAccessException {
+        return null;
+    }
+
     @Operation(summary = "Find user by email", description = "Returns a single user")
     @GetMapping("/getByEmail/{email}")
     public ResponseEntity<UserDTO> getByEmail(@PathVariable String email){
         return ResponseEntity.ok(userService.findByEmail(email));
-    }
-
-    @Operation(summary = "Update an existing user")
-    @PutMapping("/update")
-    public ResponseEntity<UserDTO> updateById(@RequestBody UserDTO user) throws FindByIdException{
-        return ResponseEntity.ok(userService.update(user));
     }
 
     @Operation(summary = "Delete a user")
@@ -80,5 +84,11 @@ public class UserController implements CRUDController <UserDTO> {
     public ResponseEntity<?> validateLogIn(@RequestBody UserDTO userDTO) throws BadRequestException {
         Map datos = userService.validateLogIn(userDTO);
         return ResponseEntity.ok(datos);
+    }
+
+    @Operation(summary = "Activate user")
+    @GetMapping("/activate/{email}/{hashCode}")
+    public ResponseEntity<?> activateUser(@PathVariable String email, @PathVariable Integer hashCode) throws BadRequestException, FindByIdException {
+        return ResponseEntity.ok( userService.activateUser(email, hashCode));
     }
 }

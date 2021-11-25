@@ -1,6 +1,7 @@
 package com.proyecto.integrador.config;
 import com.proyecto.integrador.config.jwt.JwtAuthenticationEntryPoint;
 import com.proyecto.integrador.config.jwt.JwtRequestFilter;
+import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import com.proyecto.integrador.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -64,14 +65,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cors().and()
                 // dont authenticate these requests
 
-                .authorizeRequests().antMatchers("/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login","/email/**").permitAll()
+                .authorizeRequests().antMatchers("/users/activate/**", "/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login","/email/**").permitAll()
                 // requests need to be authenticated
-                .antMatchers("/reservas**").authenticated().and().
+                .antMatchers("/reservations/**").authenticated().
+                antMatchers("/categories/create","/cities/create","/products/create").hasAnyAuthority(RolesTypes.ADMIN.name()).and().
                 // make sure we use stateless session; session won't be used to
                 // store user's state.
                         exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        /*.exceptionHandling().accessDeniedPage("/users/403").and()*/
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+                exceptionHandling().accessDeniedPage("/users/403");
     }
 
     @Override
