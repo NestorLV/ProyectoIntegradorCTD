@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import hidePassword from "./icons/hidePassword.png"
 import { AxiosLogin } from "../../axiosCollection/Forms/AxiosForms"
 import IconError from "./icons/iconError.svg"
+import Spinner from "../spinner/Spinner";
 
 export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoading, setActiveLogin, setActiveCreate, setLog }) {
     const [email, setEmail] = useState({ campo: "", valido: true, error: "" });
     const [password, setPassword] = useState({ campo: "", valido: true, error: "" });
     const [error, setError] = useState("")
     const [formValido, setFormValido] = useState(false)
+
+
 
     /* const baseUrl = "http://localhost:8080/" */
     useEffect(() => {
@@ -19,9 +22,9 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
     }, []);
 
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
-    const handleChangeEmail = (event) => {setEmail({ ...email, campo: event.target.value })}
+    const handleChangeEmail = (event) => { setEmail({ ...email, campo: event.target.value }) }
 
-    const handleChangePassword = (event) => {setPassword({ ...password, campo: event.target.value })}
+    const handleChangePassword = (event) => { setPassword({ ...password, campo: event.target.value }) }
 
     const validarEmailNulo = () => {
         if (!email.campo) {
@@ -42,17 +45,17 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
         event.preventDefault();
         validarEmailNulo()
         validarPasswordNulo()
-        if (password.campo && email.campo&& password.valido && email.valido) {
+        if (password.campo && email.campo && password.valido && email.valido) {
             AxiosLogin(email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
         }
     }
-    
+
     function mostrarContrasena() {
-        let tipo = document.getElementById("password");
-        if (tipo.type === "password") {
-            tipo.type = "text"
+        let tipo = document.getElementById("password").getAttribute("type");
+        if (tipo=== "password") {
+            tipo = "text"
         } else {
-            tipo.type = "password"
+            tipo = "password"
         }
     }
 

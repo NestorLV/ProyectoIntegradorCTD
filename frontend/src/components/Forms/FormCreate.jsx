@@ -122,20 +122,20 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
 
         if (name.campo && surname.campo && email.campo && password.campo && confirmPassword.campo &&
             name.valido && surname.valido && email.valido && password.valido && confirmPassword.valido) {
-            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
-            openModalConfirm()
+            AxiosCreate(name.campo, surname.campo, email.campo, password.campo, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation,openModalConfirm)
+            setLoading(true);
         }
         else {
             setFormValido(false)
         }
     }
     function mostrarContrasena(event) {
-        let tipo = document.getElementById(event);
+        let tipo = document.getElementById(event).getAttribute("type");
 
-        if (tipo.type === "password") {
-            tipo.type = "text";
+        if (tipo === "password") {
+            tipo = "text";
         } else {
-            tipo.type = "password";
+            tipo = "password";
         }
     }
 
