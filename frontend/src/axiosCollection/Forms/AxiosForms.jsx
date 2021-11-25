@@ -42,7 +42,7 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
         "password": `${password}`
     })
     .then(response => {
-        setLoading(false);
+       
         console.log(response);
         //AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation)
         axios.post(baseUrl + `email/verificacion/${response.data.email}/Confirmado/Su cuenta ha sido creada exitosamente.`)
@@ -57,13 +57,15 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
     .catch(error => {
         console.log(error.response);
         if (error.response.status != 200) {
-            setError("El usuario ya existe.")
-            setEmail({ valido: false })
+            setEmail({ valido: false, error: "El usuario ya existe."})
             setFormValido(false)
             sessionStorage.setItem("log", "false");
             sessionStorage.removeItem("token")
         }
-    });
+    })
+    .finally(
+        setLoading(false)
+    );
 }
 
 export { AxiosLogin, AxiosCreate }
