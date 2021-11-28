@@ -60,6 +60,10 @@ function DetailBar(props) {
     const handleBooking = () => {
         if(checkin && checkout && arrivalSchedule && nameUser && surnameUser && emailUser && cityUser){
             AxiosCrearReserva(arrivalSchedule, formatDate, checkin, checkout, id, openModalSucceed, setErrorBooking)
+            if (checkin >= new Date().setHours(0, 0, 0, 0)) {
+                sessionStorage.setItem("startDate", checkin.toDateString());
+                sessionStorage.setItem("endDate", checkout.toDateString());
+            }
         }else {
             setErrorBooking("Por favor complete todos los campos.")
         }

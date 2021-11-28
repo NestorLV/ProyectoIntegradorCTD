@@ -62,14 +62,23 @@ function CalendarBar(props) {
         }
     }; */
 
+    
+
     function handleDateChange(newValue) {
         setValueDate(newValue);
         if (newValue[0] != null) {
             let sortReservasEnMs = reservasEnMs().sort((a, b) => a - b);
             const validacion = sortReservasEnMs.find(element => newValue[0].setHours(0, 0, 0, 0) < element)
             setMaxDate(validacion === undefined ? null : new Date(validacion))
+            sessionStorage.setItem("startDate", newValue[0].toDateString());
         }
+
+        if(newValue[1] != null){
+            sessionStorage.setItem("endDate", newValue[1].toDateString());
+        }
+       
         setDinamicValue(newValue);
+        
     }
 
     function disableDates(e) { return reservas.includes(e.toDateString()) }

@@ -21,7 +21,7 @@ function AxiosCrearReserva(arrivalSchedule, formatDate, checkin, checkout, id, o
             setErrorBooking("")
             openModalSucceed()
            
-            axios.post(baseUrl + `email/verificacion/${sessionStorage.getItem("email")}/Reservaconfirmada/Su reserva en el alojamiento entre los días ${sessionStorage.getItem("startDate")} y ${sessionStorage.getItem("endDate")} con check-in a las ${response.data.arrivalSchedule} ha sido realizada exitosamente. Muchas gracias.`)
+            axios.post(baseUrl + `email/verificacion/${sessionStorage.getItem("email")}/Reserva Confirmada/Su reserva en el alojamiento entre los días ${sessionStorage.getItem("startDate")} y ${sessionStorage.getItem("endDate")} con check-in a las ${response.data.arrivalSchedule} ha sido realizada exitosamente. Muchas gracias.`)
             .then((response) => {
                 console.log(response);
             })
