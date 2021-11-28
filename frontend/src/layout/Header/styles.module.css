@@ -8,9 +8,7 @@ header.header {
     position: fixed; 
     top:0;
     width: 100%;
-   z-index: 75;
-  
- 
+    z-index: 75;
   }
 
   .headerTop{
@@ -97,22 +95,19 @@ header.header {
 
   .containerHeader{
     position: relative;
-
   }
 
   .containerHeader>nav{
     background-color: white;
     border:solid 2px black;
-      border-top: none;
+    border-top: none;
     margin-right: clamp(10px, 3.9%, 40px);
     padding: 10px;
-    position: absolute;
+    position: fixed;
     right: calc((100vw - 1366px) / 2);
-    
     transition: all 1s;
     width: 210px;
-   z-index: 50;
-  
+    z-index: 50;
   }
 
   .containerHeader>nav a{
@@ -238,7 +233,7 @@ header.header {
     }
 
     div.user div.text h3 {
-font-size: 12pt;
+      font-size: 12pt;
     }
 
     div.user div.logoName p {
@@ -293,6 +288,5 @@ font-size: 12pt;
       background-color: var(--primary-color);
       border-radius: 5px;
       color: white;
-  
     }
   }
