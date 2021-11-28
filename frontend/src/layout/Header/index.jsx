@@ -7,6 +7,7 @@ import StylesLayout from "../styles.module.css"
 import MenuBurger from '../../components/MenuBurger/MenuBurger';
 import MenuButton from '../../components/MenuBurger/MenuButton';
 import { Link } from "react-router-dom";
+import line from "./img/Line.png"
 
 export default function Header({ setLastLocation, setBookingWithoutLogin, setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
 
@@ -15,12 +16,20 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     /* const baseUrl = "http://localhost:8080/" */
 
     function handleLogOut() {
+        document.querySelectorAll("nav")[1].classList.remove(`${Styles.openNav}`)
+        document.querySelectorAll("nav")[1].classList.add(`${Styles.closeNav}`)
         setLoading(true)
+
         sessionStorage.setItem("log", "false")
         sessionStorage.removeItem("id")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
         setLastLocation(window.location.pathname)
+    }
+
+    function handleFavouriteClick() {
+        handleFavourite()
+        handleShowNav()
     }
 
     function handleShow() {
@@ -29,58 +38,86 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     function handleHide() {
         setShowBurger(false)
         setBookingWithoutLogin(false)
+        handleShowNav()
     }
 
     function handleErrorLogin() {
         setBookingWithoutLogin(false)
     }
 
+    function handleShowNav() {
+       
+            document.querySelectorAll("nav")[1].classList.remove(`${Styles.closeNav}`)
+            document.querySelectorAll("nav")[1].classList.add(`${Styles.openNav}`)
+       
+    }
+    function handleCloseNav() {
+
+        document.querySelectorAll("nav")[1].classList.remove(`${Styles.openNav}`)
+        document.querySelectorAll("nav")[1].classList.add(`${Styles.closeNav}`)
+
+    }
+
+
     return (
-        <header className={`${Styles.header} ${StylesApp.delimiter}`} >
-            <div className={showBurger === true ? `${Styles.headerTop} ${StylesLayout.opacity} ${StylesApp.delimiterChild}` : `${Styles.headerTop} ${StylesApp.delimiterChild}`}>
-
-                <Link to="/" className={Styles.home} onClick={handleHide}>
-                    <div className={Styles.logo} onClick={handleClean}>
-                        <img src={logo} alt="logo" />
-                        <h3>Un mundo por descubrir</h3>
-                    </div>
-                </Link>
-
-
-                <div className={hideButtons}>
-
-                    <Link to="/create" >
-                        <button className={activeCreate ? Styles.hideButton : null} >
-                            Crear Cuenta
-                        </button>
+        <div className={Styles.containerHeader}>
+            <header className={`${Styles.header} ${StylesApp.delimiter}`} >
+                <div className={showBurger === true ? `${Styles.headerTop} ${StylesLayout.opacity} ${StylesApp.delimiterChild}` : `${Styles.headerTop} ${StylesApp.delimiterChild}`}>
+                    <Link to="/" className={Styles.home} onClick={handleHide}>
+                        <div className={Styles.logo} onClick={handleClean}>
+                            <img src={logo} alt="logo" />
+                            <h3>Un mundo por descubrir</h3>
+                        </div>
                     </Link>
-
-                    <Link to="/login">
-                        <button className={activeLogin ? Styles.hideButton : null} onClick={handleErrorLogin} >
-                            Iniciar Sesión
-                        </button>
-                    </Link>
-
-                </div>
-                <div className={showUserName}>
-                    <div className={Styles.logoName}>
-                        <p>{sessionStorage.getItem("iniciales")}</p>
-                    </div>
-                    <div className={Styles.text}>
-                        <h3 className={Styles.great}>Hola,</h3>
-                        <h3 className={Styles.name}>{sessionStorage.getItem("name")} {sessionStorage.getItem("surname")}</h3>
-                        <Link to="/">
-                            <h4 className={Styles.seeFavourite} onClick={handleFavourite}>Ver favoritos</h4>
+                    <div className={hideButtons}>
+                        <Link to="/create" >
+                            <button className={activeCreate ? Styles.hideButton : null} >
+                                Crear Cuenta
+                            </button>
+                        </Link>
+                        <Link to="/login">
+                            <button className={activeLogin ? Styles.hideButton : null} onClick={handleErrorLogin} >
+                                Iniciar Sesión
+                            </button>
                         </Link>
                     </div>
-                    <div>
-                        <div className={Styles.close}><a href="/" onClick={handleLogOut}>X</a> </div>
+                    <div className={showUserName} onMouseMove={handleShowNav} >
+                        <div>
+                            <div className={Styles.logoName}>
+                                <p>{sessionStorage.getItem("iniciales")}</p>
+                            </div>
+                            <div className={Styles.text}>
+                                <h3 className={Styles.great}>Hola,</h3>
+                                <h3 className={Styles.name}>{sessionStorage.getItem("name")} {sessionStorage.getItem("surname")}</h3>
+                            </div>
+                            <span className={Styles.arrow}></span>
+                        </div>
+
                     </div>
+                    <MenuButton show={showBurger} handleShow={handleShow} />
 
                 </div>
-                <MenuButton show={showBurger} handleShow={handleShow} />
-            </div>
-            <MenuBurger show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={sessionStorage.getItem("iniciales")} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
-        </header>
+
+                <MenuBurger show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={sessionStorage.getItem("iniciales")} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
+
+            </header>
+
+            <nav className={Styles.closeNav} onMouseLeave={handleCloseNav}>
+                <Link to="/">
+                    <h4 className={Styles.seeMyAccount} onClick={handleFavouriteClick}>Ver favoritos</h4>
+                </Link>
+                <img src={line} alt="" />
+                <Link to="/">
+                    <h4 className={Styles.seeMyAccount}>Mis reservas</h4>
+                </Link>
+                <img src={line} alt="" />
+                <h4 className={Styles.seeMyAccount}><a href="/" onClick={handleLogOut}>Cerrar sesión</a> </h4>
+
+            </nav>
+
+
+        </div >
+
+
     )
 }

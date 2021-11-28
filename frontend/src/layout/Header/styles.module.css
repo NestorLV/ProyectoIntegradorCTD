@@ -8,18 +8,20 @@ header.header {
     position: fixed; 
     top:0;
     width: 100%;
-    z-index: 100;
+   z-index: 75;
   
  
   }
 
   .headerTop{
     align-items: center;
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     padding-left: clamp(10px,3.9%,40px);
     padding-right: clamp(10px,3.9%,40px);
     width: 100%;
+    z-index: 100;
   }
   
   /* css contenedor logo  */
@@ -86,8 +88,64 @@ header.header {
   /*Clase para que se vea el usuario en el header cuando inicia sesion*/
   div.loggedIn {
     display: flex;
+    flex-direction: column;
+  }
+
+  div.loggedIn>div {
+    display: flex;
+  }
+
+  .containerHeader{
+    position: relative;
+
+  }
+
+  .containerHeader>nav{
+    background-color: white;
+    border:solid 2px black;
+      border-top: none;
+    margin-right: clamp(10px, 3.9%, 40px);
+    padding: 10px;
+    position: absolute;
+    right: calc((100vw - 1366px) / 2);
+    
+    transition: all 1s;
+    width: 210px;
+   z-index: 50;
+  
+  }
+
+  .containerHeader>nav a{
+    color:black;
+  }
+
+  .containerHeader>nav img{
+    width: 190px;
   }
   
+.openNav{
+  top:80px;
+  
+}
+
+.closeNav{
+  top: -120px;
+}
+
+.arrow{
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  content: '';
+  display: inline-block;
+  height: 9px;
+  position: relative;
+  transform: rotate(45deg);
+  width: 9px;
+  opacity: 50%;
+  margin: 16px 0 0 6px;
+  vertical-align: top;
+}
+
   div.user div {
     padding: 0 5px;
   }
@@ -120,11 +178,11 @@ header.header {
     color: var(--primary-color);
   }
 
-  div.user div.text h4.seeFavourite {
+  div.user div.text h4.seeMyAccount {
     z-index : 100;    
   }
 
-  div.user div.text h4.seeFavourite:hover {
+  div.user div.text h4.seeMyAccount:hover {
     cursor:pointer;
     color:var(--primary-color);   
   }
@@ -148,6 +206,16 @@ header.header {
 
   
   /* media queries */
+  @media all and (max-width: 1366px) {
+    .containerHeader>nav{
+      left: calc(100vw - 275px);
+      width: 223px;
+    }
+
+    .containerHeader>nav img{
+      width: 200px;
+    }
+  }
   
   @media all and (max-width: 769px) {
     /* Header */
@@ -181,11 +249,21 @@ font-size: 12pt;
       padding: 0 2px;
     }
 
-    .headerTop{
-      padding-right: 0;
-    }
-    div.user div.text h4.seeFavourite {
+    div.user div.text h4.seeMyAccount {
       font-size: 10pt;
+    }
+
+    .openNav{
+      top:99px;
+    } 
+    
+    .containerHeader>nav{
+      left: calc(100vw - 220px);
+      width: 175px;
+    }
+
+    .containerHeader>nav img{
+      width: 150px;
     }
   }
   

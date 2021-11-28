@@ -49,6 +49,7 @@ function App() {
     setCity("");
     setFavourite(true);
     setClickSeeFavourites((prevState)=>!prevState);
+    
   }
 
   const handleClean = () => {
