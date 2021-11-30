@@ -12,7 +12,7 @@ export const MenuBurgerWrapper = styled.nav`
   top: 0px;    
   transition: right 0.3s linear;
   width: 73vw;
-  
+  z-index:150;
   @media only screen and (min-width: 415px) {
     display:none;
   }
@@ -28,6 +28,7 @@ export const MenuBurgerWrapper = styled.nav`
   
   .close {
     color: white;
+    cursor:pointer;
     font-size: 24px;
     font-weight: var(--font-bold);
     padding:5px 10px;
@@ -166,6 +167,7 @@ export const MenuBurgerWrapper = styled.nav`
   }
 
   .menuFavoritos p{
+    color: var(--secondary-color);
     text-align: right;
   }
 
