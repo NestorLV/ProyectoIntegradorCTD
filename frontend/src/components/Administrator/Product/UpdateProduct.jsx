@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import StylesApp from "../../../App.module.css";
 import Spinner from "../../spinner/Spinner";
 
-function CreateProduct(props) {
-    const [loading, setLoading] = useState(false);
+function UpdateProduct(props) {
+    const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     
     return (
-       /*  (errorMessage && loading) ?
+        (errorMessage && loading) ?
             <section className={StylesApp.delimiter}>
                 <h1>{errorMessage}</h1>
             </section>
@@ -16,12 +16,12 @@ function CreateProduct(props) {
                 {loading ? (
                     <Spinner />
                 ) : (
-                    <> */
-                       <h1>Crear producto</h1>
-              /*       </>
+                    <>
+                       <h1>Modificar producto</h1>
+                    </>
                 )}
-            </section> */
+            </section>
     )
 }
 
-export default CreateProduct;
+export default UpdateProduct;
