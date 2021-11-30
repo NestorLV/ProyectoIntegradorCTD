@@ -61,7 +61,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
 
     return (
         <div className={Styles.containerHeader}>
-            <header className={`${Styles.header} ${StylesApp.delimiter}`} >
+            <header className={`${Styles.header} ${StylesApp.delimiter}`}>
                 <div className={showBurger === true ? `${Styles.headerTop} ${StylesLayout.opacity} ${StylesApp.delimiterChild}` : `${Styles.headerTop} ${StylesApp.delimiterChild}`}>
                     <Link to="/" className={Styles.home} onClick={handleHide}>
                         <div className={Styles.logo} onClick={handleClean}>
