@@ -148,7 +148,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
 
 }
 
-function AxiosModificarProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct) {
+function AxiosModificarProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct) {
 //Hay que reformular la parte de modificar las imagenes y features para que elimine las que ya no están, deje las que sí están y las imagenes que no están las cree
 
     /* axios
