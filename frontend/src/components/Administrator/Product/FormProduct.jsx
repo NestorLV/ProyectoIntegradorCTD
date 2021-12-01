@@ -71,7 +71,7 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
     }
 
     //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
-//qualification, reference,
+    //qualification, reference,
 
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
@@ -150,8 +150,9 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                         <h3>Cargar imágenes</h3>
                         <input type="text" name="images" id="images" />
                     </div>
-                    <button classname={Styles.buttonCreateProduct} type="submit">Crear</button>
-                    
+                    <div  >
+                        <button id={Styles.buttonCreateProduct} type="submit">Crear</button>
+                    </div>
                 </form>
             </div>
         </section>
