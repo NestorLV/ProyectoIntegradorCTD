@@ -8,7 +8,7 @@ header.header {
   position: fixed; 
   top:0;
   width: 100%;
-  z-index: 75;
+  z-index: 100;
 }
 
 .headerTop{
@@ -19,7 +19,7 @@ header.header {
   padding-left: clamp(10px,3.9%,40px);
   padding-right: clamp(10px,3.9%,40px);
   width: 100%;
-  z-index: 100;
+  z-index: 101;
 }
 
 /* css contenedor logo  */
@@ -97,35 +97,35 @@ div.loggedIn>div {
   position: relative;
 }
 
-.containerHeader>nav{
+/* .containerHeader>nav{
   background-color: white;
   border:solid 2px black;
   border-top: none;
   margin-right: clamp(10px, 3.9%, 40px);
   padding: 10px;
-  position: fixed;
+  position: absolute;
   right: calc((100vw - 1366px) / 2);
   transition: all 1s;
   width: 210px;
-  z-index: 50;    
+  z-index: 50;   
     
-}
+} */
 
-.containerHeader>nav a{
+/* .containerHeader>nav a{
   color:black;
 }
 
 .containerHeader>nav img{
   width: 190px;
-}
+} */
   
-.openNav{
+/* .openNav{
   top:80px;  
 }
 
 .closeNav{
-  top: -120px;  
-}
+  top: -180px;  
+} */
 
 .arrow{
   border-style: solid;
@@ -173,13 +173,15 @@ div.user div.text h3.name {
   color: var(--primary-color);
 }
 
-div.user div.text h4.seeMyAccount {    
-  z-index : 100;    
+div.user div.text h4.seeMyAccount {     
+  z-index : 50;    
+
 }
 
 div.user div.text h4.seeMyAccount:hover {
   cursor:pointer;
-  color:var(--primary-color);   
+  color:var(--primary-color);  
+  background-color:aquamarine; 
 }
 
 div.user div.close{
@@ -205,27 +207,63 @@ div.user div.close{
   color: var(--secondary-color);
 }
 
-.adminOptions {
+.headerOptions {
   background-color: white;
   border: solid 2px black;
   border-top: none;
   margin-right: clamp(10px, 3.9%, 40px);
-  padding: 10px;
-  position: fixed;
-  right: calc((100vw - 790px) / 2);  
-  top: 78px;
-  transition: all 1s;
-  width: 190px;
-  z-index: 50;  
+  padding: 0 10px;
+  position: fixed;   
+  z-index: 49;
+  display: flex;
+  flex-direction: column;  
+  animation: fadeIn 0.8s;
 }
 
-.adminOptions a{
+@keyframes fadeIn {
+  from {
+    top: 5%;
+    opacity: 20%;
+  }
+  to {
+    top: 11%;
+    opacity: 100%;
+  }
+}
+
+.adminOptions {     
+  right: 21.1%;  
+  top: 11%;  
+  width: 13%;   
+}
+
+.userOptions {
+  right: 0;  
+  top: 11%;  
+  width: 19.8%;  
+}
+
+.adminOptions a, .userOptions a{
   color:black;
 }
 
 .adminOptions img{
-  width: 167px;
+  width: 98%;  
 }
+
+.userOptions img{
+  width: 98%;  
+}
+
+.seeMyAccount {
+  padding:14px 0;  
+}
+
+.seeMyAccount:hover{
+  cursor: pointer;
+  background-color:#f0d7d1;    
+}
+
 /* css contenedor mobile  */
 
 div.mobile {
@@ -324,5 +362,9 @@ div.mobile {
     background-color: var(--primary-color);
     border-radius: 5px;
     color: white;
+  }
+
+  .optionsBox {
+    display: none;
   }
 }

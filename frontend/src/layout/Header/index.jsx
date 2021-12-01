@@ -12,6 +12,7 @@ import verticalLine from "./img/VerticalLine.png"
 export default function Header({ setLastLocation, setBookingWithoutLogin, setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
     const [admin, setAdmin] = useState(true);
     const [adminMenu, setAdminMenu] = useState(false);
+    const [userMenu,setUserMenu] = useState(false);
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
     const administration = isLogged ? Styles.optionsBox : Styles.hideButton;
@@ -41,7 +42,6 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     function handleHide() {
         setShowBurger(false)
         setBookingWithoutLogin(false)
-
     }
 
     function handleErrorLogin() {
@@ -49,25 +49,23 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     }
 
     function handleShowNav() {
-
-        document.querySelectorAll("nav")[1].classList.remove(`${Styles.closeNav}`)
-        document.querySelectorAll("nav")[1].classList.add(`${Styles.openNav}`)
-
+        setUserMenu(true);
+        setAdminMenu(false);
     }
+
     function handleCloseNav() {
-
-        document.querySelectorAll("nav")[1].classList.remove(`${Styles.openNav}`)
-        document.querySelectorAll("nav")[1].classList.add(`${Styles.closeNav}`)
-
-    }
+        setUserMenu(false);
+        setAdminMenu(false);     
+    }    
 
     let handleAdminMenu = () => {
-        setAdminMenu(prevState => !prevState);
+        setAdminMenu(true);
+        setUserMenu(false);
     }
 
     return (
         <div className={Styles.containerHeader}>
-            <header className={`${Styles.header} ${StylesApp.delimiter}`}>
+            <header className={`${Styles.header} ${StylesApp.delimiter}`}  onMouseLeave={handleCloseNav}>
                 <div className={showBurger === true ? `${Styles.headerTop} ${StylesLayout.opacity} ${StylesApp.delimiterChild}` : `${Styles.headerTop} ${StylesApp.delimiterChild}`}>
                     <Link to="/" className={Styles.home} onClick={handleHide}>
                         <div className={Styles.logo} onClick={handleClean}>
@@ -90,7 +88,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
 
                     <div className={administration}>
                         {admin &&
-                            <div className={administration} onClick={handleAdminMenu}>
+                            <div className={administration} onMouseMove={handleAdminMenu}>
                                 <>
                                     <h4 className={Styles.administracion}>Administración</h4>
                                     <img className={Styles.verticalLine} src={verticalLine} alt="line" />
@@ -114,27 +112,28 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
                     <MenuButton show={showBurger} handleShow={handleShow} />
                 </div>
                 <MenuBurger show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={sessionStorage.getItem("iniciales")} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
+                <div className={userMenu ? `${Styles.headerOptions} ${Styles.userOptions}` : Styles.hideButton}/* className={Styles.closeNav} */ /* onMouseLeave={handleCloseNav} */>
+                    <Link to="/">
+                        <h4 className={Styles.seeMyAccount} onClick={handleFavouriteClick}>Ver favoritos</h4>
+                    </Link>
+                    <img src={lineOrange} alt="" />
+                    <Link to="/">
+                        <h4 className={Styles.seeMyAccount}>Mis reservas</h4>
+                    </Link>
+                    <img src={lineOrange} alt="" />
+                    <h4 className={Styles.seeMyAccount}><a href="/" onClick={handleLogOut}>Cerrar sesión</a> </h4>
+                </div>
+                <div className={adminMenu ? `${Styles.headerOptions} ${Styles.adminOptions}` : Styles.hideButton} >
+                    <Link to="/product/create">
+                        <h4 className={Styles.seeMyAccount}>Crear Producto</h4>
+                    </Link>
+                    <img src={lineOrange} alt="" />
+                    <Link to="/product/update">
+                        <h4 className={Styles.seeMyAccount}>Modificar Producto</h4>
+                    </Link>
+                </div>
             </header>
-            <nav className={Styles.closeNav} onMouseLeave={handleCloseNav}>
-                <Link to="/">
-                    <h4 className={Styles.seeMyAccount} onClick={handleFavouriteClick}>Ver favoritos</h4>
-                </Link>
-                <img src={lineOrange} alt="" />
-                <Link to="/">
-                    <h4 className={Styles.seeMyAccount}>Mis reservas</h4>
-                </Link>
-                <img src={lineOrange} alt="" />
-                <h4 className={Styles.seeMyAccount}><a href="/" onClick={handleLogOut}>Cerrar sesión</a> </h4>
-            </nav>
-            <div className={adminMenu ? Styles.adminOptions : Styles.hideButton} >
-                <Link to="/product/create">
-                    <h4 className={Styles.seeMyAccount}>Crear Producto</h4>
-                </Link>
-                <img src={lineOrange} alt="" />
-                <Link to="/product/update">
-                    <h4 className={Styles.seeMyAccount}>Modificar Producto</h4>
-                </Link>
-            </div>
+
         </div >
     )
 }
