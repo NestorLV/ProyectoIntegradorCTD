@@ -550,4 +550,3 @@ VALUES ('10:00 AM','2021-12-18','2021-12-15',12,1);
 INSERT INTO `proyecto_integrador`.`reservation`(arrivalSchedule, endDate, startDate,idProduct,idUser)
 VALUES ('10:00 AM','2021-12-25','2021-12-23',12,1);
 
-

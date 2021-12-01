@@ -26,6 +26,9 @@ public class FeatureServiceImpl implements IFeatureService {
     @Autowired
     IFeatureRepository featureRepository;
 
+    @Autowired
+    ProductServiceImpl productService;
+
     @Override
     public List<FeatureDTO> findAll() {
         logger.debug("Iniciando método buscar todas las características");
@@ -73,6 +76,17 @@ public class FeatureServiceImpl implements IFeatureService {
         Feature feature = featureRepository.findById(featureDTO.getId()).get();
         feature.setTitle(featureDTO.getTitle());
         feature.setType(featureDTO.getType());
+        logger.debug("Terminó la ejecución del método actualizar característica por ID");
+        return featureRepository.save(feature).toDto();
+    }
+
+    public FeatureDTO updateProducts(Integer featureId, Integer productId) throws FindByIdException {
+        logger.debug("Iniciando método actualizar característica por ID");
+        if (!featureRepository.existsById(featureId)) {
+            throw new FindByIdException("No existe una característica con el id ingresado");
+        }
+        Feature feature = featureRepository.findById(featureId).get();
+        feature.getProducts().add(productService.findById(productId).toEntity());
         logger.debug("Terminó la ejecución del método actualizar característica por ID");
         return featureRepository.save(feature).toDto();
     }

@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,6 +46,13 @@ public class FeatureController implements CRUDController<FeatureDTO> {
     @PutMapping("/update")
     public ResponseEntity<FeatureDTO> updateById(@RequestBody FeatureDTO feature) throws FindByIdException {
         return ResponseEntity.ok(featureService.update(feature));
+    }
+
+    @Operation(summary = "Update an existing feature", description = "Updates some information of an exiting feature")
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/updateproduct/{featureId}/{productId}")
+    public ResponseEntity<FeatureDTO> updateProduct(@PathVariable Integer featureId, @PathVariable Integer productId) throws FindByIdException {
+        return ResponseEntity.ok(featureService.updateProducts(featureId, productId));
     }
 
     @Operation(summary = "Delete a feature by ID", description = "Delete a feature by id")

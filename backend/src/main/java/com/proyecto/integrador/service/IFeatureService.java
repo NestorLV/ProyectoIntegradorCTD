@@ -11,4 +11,5 @@ public interface IFeatureService extends IBookingService<FeatureDTO> {
     FeatureDTO findById(Integer featureId) throws FindByIdException;
     void deleteById(Integer featureId) throws FindByIdException;
     FeatureDTO update(FeatureDTO feature) throws FindByIdException;
+    FeatureDTO updateProducts(Integer featureId, Integer productId) throws FindByIdException;
 }

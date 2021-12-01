@@ -10,16 +10,21 @@ import com.proyecto.integrador.exceptions.UnauthorizedAccessException;
 import com.proyecto.integrador.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/users")
-public class UserController implements CRUDController <UserRequestDTO> {
+public class UserController implements CRUDController<UserRequestDTO> {
 
     @Autowired
     IUserService userService;
@@ -31,7 +36,7 @@ public class UserController implements CRUDController <UserRequestDTO> {
 
     @Operation(summary = "Find All Users")
     @GetMapping("/all")
-    public ResponseEntity<List<UserResponseDTO>> getAll() throws FindByIdException{
+    public ResponseEntity<List<UserResponseDTO>> getAll() throws FindByIdException {
         return ResponseEntity.ok(userService.findAll());
     }
 
@@ -54,7 +59,7 @@ public class UserController implements CRUDController <UserRequestDTO> {
 
     @Operation(summary = "Find user by email", description = "Returns a single user")
     @GetMapping("/getByEmail/{email}")
-    public ResponseEntity<UserResponseDTO> getByEmail(@PathVariable String email){
+    public ResponseEntity<UserResponseDTO> getByEmail(@PathVariable String email) {
         return ResponseEntity.ok(userService.findByEmail(email));
     }
 
@@ -62,7 +67,7 @@ public class UserController implements CRUDController <UserRequestDTO> {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer idUser) throws FindByIdException {
         userService.deleteById(idUser);
-        return ResponseEntity.ok("Se eliminó el usuario con id"+ idUser);
+        return ResponseEntity.ok("Se eliminó el usuario con id" + idUser);
     }
 
     @Operation(summary = "Get User Favorites")
@@ -86,7 +91,14 @@ public class UserController implements CRUDController <UserRequestDTO> {
 
     @Operation(summary = "Activate user")
     @GetMapping("/activate/{email}/{hashCode}")
-    public ResponseEntity<?> activateUser(@PathVariable String email, @PathVariable Integer hashCode) throws BadRequestException, FindByIdException {
-        return ResponseEntity.ok( userService.activateUser(email, hashCode));
+    public ResponseEntity<?> activateUser(@PathVariable String email, @PathVariable Integer hashCode) throws BadRequestException, FindByIdException, URISyntaxException {
+        if (userService.activateUser(email, hashCode)) {
+            URI uri = new URI("http://localhost:3000/login");
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setLocation(uri);
+            return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
+        } else {
+            return ResponseEntity.ok("No se pudo activar el usuario correctamente");
+        }
     }
 }
