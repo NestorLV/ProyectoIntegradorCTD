@@ -1,13 +1,68 @@
 import React, { useState, useEffect } from "react";
 import StylesApp from "../../../App.module.css";
+import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
+import FormProduct from "./FormProduct";
+import axios from "axios"
+
 
 function CreateProduct(props) {
-    const [loading, setLoading] = useState(false);
+    const baseURL = "http://localhost:8080/";
+
+    const [optionsCategories, setOptionsCategories] = useState([])
+    const [selectedCategory, setSelectedCategory] = useState()
+
+    const [optionsCities, setOptionsCities] = useState([])
+    const [selectedCity, setSelectedCity] = useState()
+
+    const [optionsFeatures, setOptionsFeatures] = useState([])
+    const [selectedFeatures, setSelectedFeatures] = useState([])
+    const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-    
+
+    useEffect(() => {
+        axios
+            .get(baseURL + "categories/all")
+            .then((response) => {
+                setLoading(false);
+                setOptionsCategories(response.data.map((category) => category.title));
+            })
+            .catch((error) => {
+                setErrorMessage(error.message);
+                setLoading(false);
+            });
+    }, [])
+
+    useEffect(() => {
+        axios
+            .get(baseURL + "cities/all")
+            .then((response) => {
+                setLoading(false);
+                setOptionsCities(response.data.map((city) => city.name));
+            })
+            .catch((error) => {
+                setErrorMessage(error.message);
+                setLoading(false);
+            });
+    }, [])
+
+    useEffect(() => {
+        axios
+            .get(baseURL + "features/all")
+            .then((response) => {
+                setLoading(false);
+                setOptionsFeatures(response.data.map((feature) => feature.title));
+            })
+            .catch((error) => {
+                setErrorMessage(error.message);
+                setLoading(false);
+            });
+    }, [])
+
+
+
     return (
-       /*  (errorMessage && loading) ?
+        (errorMessage && loading) ?
             <section className={StylesApp.delimiter}>
                 <h1>{errorMessage}</h1>
             </section>
@@ -16,11 +71,14 @@ function CreateProduct(props) {
                 {loading ? (
                     <Spinner />
                 ) : (
-                    <> */
-                       <h1>Crear producto</h1>
-              /*       </>
+                    <section className={StylesApp.delimiter}>
+                        <div className={StylesApp.delimiterChild}>
+                            <h1>Crear producto</h1>
+                            <FormProduct categories={optionsCategories} setSelectedCategory={setSelectedCategory} cities={optionsCities} setSelectedCity={setSelectedCity} features={optionsFeatures} setSelectedFeatures={setSelectedFeatures} />
+                        </div>
+                    </section>
                 )}
-            </section> */
+            </section>
     )
 }
 
