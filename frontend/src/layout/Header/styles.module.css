@@ -344,8 +344,15 @@ div.mobile {
   }
 }
 
-@media all and (max-width: 570px) {
+@media all and (max-width: 600px) {
+  .optionsBox{
+    flex-direction: column;
+    flex-flow: column-reverse;
+  }
 
+  .verticalLine{
+    display: none;
+  }
 }
 
 @media all and (max-width: 415px) {

@@ -25,7 +25,7 @@ function CreateProduct(props) {
             .get(baseURL + "categories/all")
             .then((response) => {
                 setLoading(false);
-                setOptionsCategories(response.data.map((category) => category.title));
+                setOptionsCategories(response.data.map((category) =>  {return{id:category.id, name:category.title}}));
             })
             .catch((error) => {
                 setErrorMessage(error.message);
@@ -33,12 +33,14 @@ function CreateProduct(props) {
             });
     }, [])
 
+    console.log(optionsCities);
+
     useEffect(() => {
         axios
             .get(baseURL + "cities/all")
             .then((response) => {
                 setLoading(false);
-                setOptionsCities(response.data.map((city) => city.name));
+                setOptionsCities(response.data.map((city) => {return {id:city.id, name:city.name}}));
             })
             .catch((error) => {
                 setErrorMessage(error.message);
@@ -51,7 +53,8 @@ function CreateProduct(props) {
             .get(baseURL + "features/all")
             .then((response) => {
                 setLoading(false);
-                setOptionsFeatures(response.data.map((feature) => feature.title));
+                console.log(response.data);
+                setOptionsFeatures(response.data.map((feature) => {return {id:feature.id, name:feature.title}}));
             })
             .catch((error) => {
                 setErrorMessage(error.message);
@@ -59,7 +62,7 @@ function CreateProduct(props) {
             });
     }, [])
 
-
+console.log(optionsFeatures);
 
     return (
         (errorMessage && loading) ?

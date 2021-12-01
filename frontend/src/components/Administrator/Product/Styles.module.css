@@ -1,6 +1,7 @@
 h1{
     padding-left: clamp(10px,3.9%,40px);
     padding-right: clamp(10px,3.9%,40px);
+    font-size: var(--heading2);
 }
 
 .containerPrincipal{
@@ -11,8 +12,7 @@ h1{
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding-left: clamp(10px,3.9%,40px);
-    padding-right: clamp(10px,3.9%,40px);
+    padding: 20px clamp(10px,3.9%,40px);
     width: 94%;
 }
 
@@ -20,15 +20,27 @@ h1{
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: space-around;
     margin:0 auto;
     min-height: 1150px;
-    justify-content: space-evenly;
-   
+    
 }
 
 .containerForm label, .containerForm h3, .containerForm h5{
     color: var(--secondary-color);
+    padding-bottom: 5px;  
 }
+
+.containerForm h3{
+    font-size: var(--heading3);
+    font-weight: var(--font-bold);
+}
+
+.containerForm label, .containerForm h5{
+    font-size: var(--text2);
+    font-weight: var(--font-medium);
+}
+
 .containerBlockAdministrator{
     display: flex;
     width: 100%;
@@ -36,6 +48,8 @@ h1{
 }
 
 .containerBlockAdministrator>div{
+    display: flex;
+    flex-direction: column;
     width: 49%;
 }
 
@@ -71,7 +85,6 @@ h1{
 }
 
 .description textarea{
-   
     width: 100%;
 }
 
@@ -122,4 +135,30 @@ button{
     font-weight: var(--font-bold);
     padding: 5pt;
     width: clamp(164px,22.2vw,250px);
+}
+
+@media all and (max-width:769px){
+    .containerForm form{
+        min-height: 1400px;
+        
+    }
+
+    .containerPoliticsPrincipal{
+        width: 100%;
+    }
+    .containerPolitics{
+        flex-direction: column;
+        justify-content: space-between;
+        height: 60vh;
+       padding: 20px;
+    }
+
+    .politics{
+        height: 30%;
+        width: 100%;
+    }
+
+    .politics textarea{
+        height: 65%;
+    }
 }

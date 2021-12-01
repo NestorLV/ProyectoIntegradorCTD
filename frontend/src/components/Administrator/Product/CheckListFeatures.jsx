@@ -20,7 +20,7 @@ export default function({features}){
     return(
         features.map((option, index)=>{
             return(
-                <label><input type="checkbox" id={index+1} value={option}/> {option}</label>
+                <label><input type="checkbox" id={index+1} value={option.name}/> {option.name}</label>
             )
         })
         
