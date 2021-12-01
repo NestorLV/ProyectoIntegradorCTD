@@ -7,14 +7,11 @@ import Styles from "./Styles.module.css";
 
 export default function ({ categories, setSelectedCategory, cities, setSelectedCity, features, setSelectedFeatures }) {
 
-    //const [ optionsCategories, setOptionsCategories] = useState(["Hoteles", "Hostels", "Departamentos", "Bed and breakfast" ])
-
-
     function options(arrayOptions, setValor) {
         return arrayOptions.map((valor) => {
             return {
-                value: `${valor}`,
-                label: <OptionsSelect valor={valor} setValor={setValor} />,
+                value: `${valor.name}`,
+                label: <OptionsSelect valor={valor.name} setValor={setValor} />,
             };
         })
     }
@@ -72,6 +69,9 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
             },
         }),
     }
+    
+    //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
+    //qualification, reference,
 
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
@@ -117,9 +117,19 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                             <input type="text" name="longitude" id="longitude" />
                         </div>
                     </div>
+                    <div className={Styles.containerBlockAdministrator}>
+                        <div>
+                            <label htmlFor="reference">Referencia</label>
+                            <input type="text" name="reference" id="reference" />
+                        </div>
+                        <div>
+                            <label htmlFor="qualification">Calificación</label>
+                            <input type="text" name="qualification" id="qualification" />
+                        </div>
+                    </div>
                     <div className={Styles.description}>
                         <label htmlFor="description">Descripción</label>
-                        <textarea name="description" id="description">Escribir aquí</textarea>
+                        <textarea name="description" id="description" placeholder="Escribir aquí"></textarea>
                     </div>
 
                     <div className={Styles.containerCheckbox}>
@@ -132,17 +142,17 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                             <div className={Styles.politics}>
                                 <h5>Normas de la casa</h5>
                                 <label>Descripción</label>
-                                <textarea name="rules" id="rules" >Escribir aquí</textarea>
+                                <textarea name="rules" id="rules" placeholder="Escribir aquí"></textarea>
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Salud y seguridad</h5>
                                 <label>Descripción</label>
-                                <textarea name="healthAndSecurity" id="healthAndSecurity" >Escribir aquí</textarea>
+                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí"></textarea>
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Políticas de cancelación</h5>
                                 <label>Descripción</label>
-                                <textarea name="cancellationPolicy" id="cancellationPolicy" >Escribir aquí</textarea>
+                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí"></textarea>
                             </div>
                         </div>
                     </div>
@@ -150,10 +160,9 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                         <h3>Cargar imágenes</h3>
                         <input type="text" name="images" id="images" />
                     </div>
-
-                   
-                        <button type="submit">Crear</button>
-                    
+                    <div  >
+                        <button  id={Styles.buttonCreateProduct} type="submit">Crear </button>
+                    </div>
                 </form>
             </div>
         </section>

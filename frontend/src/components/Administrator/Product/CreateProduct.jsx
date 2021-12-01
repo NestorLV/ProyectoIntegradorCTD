@@ -4,6 +4,10 @@ import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
 import FormProduct from "./FormProduct";
 import axios from "axios"
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import CreateProductModal from './CreateProductModal';
+
 
 
 function CreateProduct(props) {
@@ -19,13 +23,21 @@ function CreateProduct(props) {
     const [selectedFeatures, setSelectedFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
+    const openModalCreate = (() => { 
+        setModalCreateIsOpen(true) 
+    })
+
+    const closeModalCreate = () => {
+        setModalCreateIsOpen(false);
+    };
 
     useEffect(() => {
         axios
             .get(baseURL + "categories/all")
             .then((response) => {
                 setLoading(false);
-                setOptionsCategories(response.data.map((category) => category.title));
+                setOptionsCategories(response.data.map((category) => { return { id: category.id, name: category.title } }));
             })
             .catch((error) => {
                 setErrorMessage(error.message);
@@ -33,12 +45,14 @@ function CreateProduct(props) {
             });
     }, [])
 
+    console.log(optionsCities);
+
     useEffect(() => {
         axios
             .get(baseURL + "cities/all")
             .then((response) => {
                 setLoading(false);
-                setOptionsCities(response.data.map((city) => city.name));
+                setOptionsCities(response.data.map((city) => { return { id: city.id, name: city.name } }));
             })
             .catch((error) => {
                 setErrorMessage(error.message);
@@ -51,7 +65,8 @@ function CreateProduct(props) {
             .get(baseURL + "features/all")
             .then((response) => {
                 setLoading(false);
-                setOptionsFeatures(response.data.map((feature) => feature.title));
+                console.log(response.data);
+                setOptionsFeatures(response.data.map((feature) => { return { id: feature.id, name: feature.title } }));
             })
             .catch((error) => {
                 setErrorMessage(error.message);
@@ -59,7 +74,7 @@ function CreateProduct(props) {
             });
     }, [])
 
-
+    console.log(optionsFeatures);
 
     return (
         (errorMessage && loading) ?
@@ -75,6 +90,10 @@ function CreateProduct(props) {
                         <div className={StylesApp.delimiterChild}>
                             <h1>Crear producto</h1>
                             <FormProduct categories={optionsCategories} setSelectedCategory={setSelectedCategory} cities={optionsCities} setSelectedCity={setSelectedCity} features={optionsFeatures} setSelectedFeatures={setSelectedFeatures} />
+                            <button onClick={openModalCreate}  id={Styles.buttonCreateProduct}>Crear Producto</button>
+                            <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
+                                <CreateProductModal />
+                            </Modal>
                         </div>
                     </section>
                 )}
