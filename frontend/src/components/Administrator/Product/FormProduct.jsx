@@ -117,6 +117,16 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                             <input type="text" name="longitude" id="longitude" />
                         </div>
                     </div>
+                    <div className={Styles.containerBlockAdministrator}>
+                        <div>
+                            <label htmlFor="reference">Referencia</label>
+                            <input type="text" name="reference" id="reference" />
+                        </div>
+                        <div>
+                            <label htmlFor="qualification">Calificación</label>
+                            <input type="text" name="qualification" id="qualification" />
+                        </div>
+                    </div>
                     <div className={Styles.description}>
                         <label htmlFor="description">Descripción</label>
                         <textarea name="description" id="description" placeholder="Escribir aquí"></textarea>

@@ -22,7 +22,7 @@ h1{
     flex-direction: column;
     justify-content: space-around;
     margin:0 auto;
-    min-height: 1150px;
+    min-height: 1250px;
     
 }
 
@@ -139,7 +139,7 @@ width: 100%;
 
 @media all and (max-width:769px){
     .containerForm form{
-        min-height: 1400px;
+        min-height: 1500px;
         
     }
 

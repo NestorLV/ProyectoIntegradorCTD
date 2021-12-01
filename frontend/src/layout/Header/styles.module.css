@@ -305,6 +305,14 @@ div.mobile {
     padding: 5px 4px;
   }
 
+  .headerTop{
+    height: 100%;
+  }
+
+  .administracion{
+    padding-top:6px;
+  }
+
   div.user div.text h3 {
     font-size: 12pt;
   }
@@ -352,6 +360,13 @@ div.mobile {
 
   .verticalLine{
     display: none;
+  }
+
+  .userOptions{
+    left: calc(100vw - 210px);
+  }
+  .adminOptions{
+    left: calc(100vw - 210px);
   }
 }
 
