@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import CheckListFeatures from "./CheckListFeatures";
 import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import CreateProductModal from './CreateProductModal';
 
 export default function ({ categories, setSelectedCategory, cities, setSelectedCity, features, setSelectedFeatures }) {
+    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
 
     function options(arrayOptions, setValor) {
         return arrayOptions.map((valor) => {
@@ -69,7 +73,15 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
             },
         }),
     }
-    
+
+    const openModalCreate = (() => {
+        setModalCreateIsOpen(true)
+    })
+
+    const closeModalCreate = () => {
+        setModalCreateIsOpen(false);
+    };
+
     //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
     //qualification, reference,
 
@@ -161,9 +173,12 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                         <input type="text" name="images" id="images" />
                     </div>
                     <div  >
-                        <button  id={Styles.buttonCreateProduct} type="submit">Crear </button>
+                        <button onClick={openModalCreate} id={Styles.buttonCreateProduct} type="submit">Crear </button>
                     </div>
                 </form>
+                <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
+                    <CreateProductModal />
+                </Modal>
             </div>
         </section>
     )

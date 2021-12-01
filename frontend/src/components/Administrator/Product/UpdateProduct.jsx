@@ -22,14 +22,6 @@ function UpdateProduct(props) {
     const [selectedFeatures, setSelectedFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
-    const openModalCreate = (() => {
-        setModalCreateIsOpen(true)
-    })
-
-    const closeModalCreate = () => {
-        setModalCreateIsOpen(false);
-    };
 
     useEffect(() => {
         axios
@@ -90,10 +82,6 @@ function UpdateProduct(props) {
                             <h1>Modificar producto</h1>                          
                             <ProductSelect />                           
                             <FormProduct categories={optionsCategories} setSelectedCategory={setSelectedCategory} cities={optionsCities} setSelectedCity={setSelectedCity} features={optionsFeatures} setSelectedFeatures={setSelectedFeatures} />
-                            <button onClick={openModalCreate} id={Styles.buttonCreateProduct}>Crear Producto</button>
-                            <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
-                                <CreateProductModal />
-                            </Modal>
                         </div>
                     </section>
                 )}
