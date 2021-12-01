@@ -1,6 +1,7 @@
 h1{
     padding-left: clamp(10px,3.9%,40px);
     padding-right: clamp(10px,3.9%,40px);
+    padding-top: 10px;
     font-size: var(--heading2);
 }
 
@@ -25,6 +26,32 @@ h1{
     min-height: 1250px;
     
 }
+
+.containerProductSelect {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.selectProductBox {
+    display: flex;
+    width: 75%;
+    justify-content: space-between;      
+}
+
+.titleProductSelect {
+    padding-bottom: 10px;
+}
+
+.buttonSearchProduct {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    color: white;
+    font-size: var(--button4);
+    font-weight: var(--font-bold);    
+    width: clamp(100px,10vw,150px);
+}   
 
 .containerForm label, .containerForm h3, .containerForm h5{
     color: var(--secondary-color);
@@ -161,6 +188,10 @@ width: 100%;
     .politics textarea{
         height: 65%;
     }
+
+    .selectProductBox {       
+        width: 100%;        
+    }
 }
 /*Estilos Create*/
 
@@ -179,35 +210,47 @@ width: 100%;
     min-width: 460px;
     padding: 35px;
     width: 46vw;
-  }
+}
   
-  .containerCreateModal img {
-    width: 78px;
-  }
+.containerCreateModal img {
+width: 78px;
+}
+
+.containerCreateModal h3 {
+color: var(--primary-color);
+font-size: 24px;
+}
+
+.containerCreateModal p {
+color: var(--secondary-color);
+font-size: 20px;
+font-weight: var(--font-bold);
+}
   
-  .containerCreateModal h3 {
-    color: var(--primary-color);
-    font-size: 24px;
-  }
-  
-  .containerCreateModal p {
-    color: var(--secondary-color);
-    font-size: 20px;
-    font-weight: var(--font-bold);
-  }
-  
-  .containerCreateModal a {
-    width: 55%;
-  }
-  
-  .containerCreateModal a button {
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
-    color: white;
-    font-size: 16px;
-    font-weight: var(--font-bold);
-    padding: 8px;
-    width: 100%;
-  }
+.containerCreateModal a {
+width: 55%;
+}
+
+.containerCreateModal a button {
+background-color: var(--primary-color);
+border: none;
+border-radius: 5px;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+color: white;
+font-size: 16px;
+font-weight: var(--font-bold);
+padding: 8px;
+width: 100%;
+}
+
+@media all and (max-width:415px){
+    .selectProductBox {       
+        flex-direction: column;        
+    }
+
+    .buttonSearchProduct {
+        padding: 6px 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+}

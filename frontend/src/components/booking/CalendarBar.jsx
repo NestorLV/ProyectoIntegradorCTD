@@ -51,18 +51,7 @@ function CalendarBar(props) {
             width: "100%",
         }
     });
-    const classes = useStyles();
-
-    /* const handleChange = () => {
-        //String Date  - aaaa,mm,dd
-        if (startDate.getTime() >= new Date().setHours(0, 0, 0, 0)) {
-            sessionStorage.setItem("startDate", startDate.toDateString());
-            sessionStorage.setItem("endDate", endDate.toDateString());
-            console.log(valueDate, "valueDate");
-        }
-    }; */
-
-    
+    const classes = useStyles();    
 
     function handleDateChange(newValue) {
         setValueDate(newValue);
