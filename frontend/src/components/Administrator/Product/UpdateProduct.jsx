@@ -3,7 +3,7 @@ import StylesApp from "../../../App.module.css";
 import Spinner from "../../spinner/Spinner";
 
 function UpdateProduct(props) {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     
     return (
