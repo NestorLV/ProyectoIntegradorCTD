@@ -328,7 +328,7 @@ input {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 40vh;
+  height: 60vh;
   justify-content: space-evenly;
   max-height: 350px;
   max-width: 600px;

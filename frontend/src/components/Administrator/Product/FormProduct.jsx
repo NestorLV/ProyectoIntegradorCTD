@@ -69,7 +69,7 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
             },
         }),
     }
-
+    
     //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
     //qualification, reference,
 
@@ -151,7 +151,7 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                         <input type="text" name="images" id="images" />
                     </div>
                     <div  >
-                        <button id={Styles.buttonCreateProduct} type="submit">Crear</button>
+                        <button  id={Styles.buttonCreateProduct} type="submit">Crear </button>
                     </div>
                 </form>
             </div>
