@@ -150,9 +150,7 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                         <h3>Cargar imágenes</h3>
                         <input type="text" name="images" id="images" />
                     </div>
-
-                   
-                        <button type="submit">Crear</button>
+                    <button classname={Styles.buttonCreateProduct} type="submit">Crear</button>
                     
                 </form>
             </div>
