@@ -3,8 +3,8 @@ import StylesApp from "../../../App.module.css";
 import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
 import FormProduct from "./FormProduct";
-import axios from "axios"
 import ProductSelect from "./ProductSelect";
+import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axiosCollection/Product/AxiosProduct.jsx"
 
 function UpdateProduct(props) {
     const baseURL = "http://localhost:8080/";
@@ -35,45 +35,9 @@ function UpdateProduct(props) {
     });
 
     useEffect(() => {
-        axios
-            .get(baseURL + "categories/all")
-            .then((response) => {
-                setLoading(false);
-                setOptionsCategories(response.data.map((category) => { return { id: category.id, name: category.title } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
-    }, [])
-
-    console.log(optionsFeatures);
-
-    useEffect(() => {
-        axios
-            .get(baseURL + "cities/all")
-            .then((response) => {
-                setLoading(false);
-                setOptionsCities(response.data.map((city) => { return { id: city.id, name: city.name } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
-    }, [])
-
-    useEffect(() => {
-        axios
-            .get(baseURL + "features/all")
-            .then((response) => {
-                setLoading(false);
-                console.log(response.data);
-                setOptionsFeatures(response.data.map((feature) => { return { id: feature.id, name: feature.title } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
+        AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) 
+        AxiosGetCities(setLoading, setOptionsCities, setErrorMessage)
+        AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) 
     }, [])
 
     const handleProduct = (p) => {

@@ -3,8 +3,7 @@ import StylesApp from "../../../App.module.css";
 import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
 import FormProduct from "./FormProduct";
-import axios from "axios"
-
+import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axiosCollection/Product/AxiosProduct.jsx"
 
 
 
@@ -12,57 +11,17 @@ function CreateProduct(props) {
     const baseURL = "http://localhost:8080/";
 
     const [optionsCategories, setOptionsCategories] = useState([])
-
     const [optionsCities, setOptionsCities] = useState([])
-    
-
     const [optionsFeatures, setOptionsFeatures] = useState([])
-    //const [selectedFeatures, setSelectedFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
    
-    
-
     useEffect(() => {
-        axios
-            .get(baseURL + "categories/all")
-            .then((response) => {
-                setLoading(false);
-                setOptionsCategories(response.data.map((category) => { return { id: category.id, name: category.title } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
+        AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) 
+        AxiosGetCities(setLoading, setOptionsCities, setErrorMessage)
+        AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) 
     }, [])
 
-    
-
-    useEffect(() => {
-        axios
-            .get(baseURL + "cities/all")
-            .then((response) => {
-                setLoading(false);
-                setOptionsCities(response.data.map((city) => { return { id: city.id, name: city.name } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
-    }, [])
-
-    useEffect(() => {
-        axios
-            .get(baseURL + "features/all")
-            .then((response) => {
-                setLoading(false);
-                setOptionsFeatures(response.data.map((feature) => { return { id: feature.id, name: feature.title } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
-    }, [])
 
     return (
         (errorMessage && loading) ?
