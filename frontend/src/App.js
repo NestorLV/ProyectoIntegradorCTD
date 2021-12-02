@@ -9,6 +9,8 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Booking from "./components/booking/Booking.jsx";
 import './App.module.css';
 
+import CreateProduct from "./components/Administrator/Product/Product";
+
 function App() {
   
   const [log, setLog] = useState(sessionStorage.getItem("log") === "true" ? true : false)
@@ -74,7 +76,8 @@ function App() {
           <Route exact path="/login"  component={() => !log? <FormLogin lastLocation={lastLocation} bookingWithoutLogin={bookingWithoutLogin} setLoading={setLoading} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to={`${lastLocation}`}/>} />                  
           <Route exact path="/create" component={() => !log? <FormCreate lastLocation={lastLocation} setIniciales={setIniciales} setUserName={setUserName} setUserSurname={setUserSurname} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to={`${lastLocation}`} />} />
           <Route exact path={"/product/:id"} render={() => <Product setBookingWithoutLogin={setBookingWithoutLogin} goBack={goBack} setLastLocation={setLastLocation} lastLocation={lastLocation} />} />   
-          <Route exact path={"/product/:id/reserva"} component={Booking}/>      
+          <Route exact path={"/product/:id/reserva"} component={Booking}/>    
+          <Route exact path={"/administrator/createProduct"} component={CreateProduct}/>  
           <Route path="*"> <NotFound /> </Route>
         </Switch>
       </LayoutPrincipal>

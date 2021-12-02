@@ -1,0 +1,118 @@
+.containerPrincipal{
+    margin:20px 0;
+}
+
+.containerForm{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 90%;
+}
+
+.containerForm form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin:0 auto;
+    min-height: 1150px;
+    justify-content: space-evenly;
+    width: 95%;
+}
+
+.containerForm label, .containerForm h3, .containerForm h5{
+    color: var(--secondary-color);
+}
+.containerBlockAdministrator{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.containerBlockAdministrator>div{
+    width: 49%;
+}
+
+.containerBlockAdministrator input{
+    padding: 5px;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.description label{
+    align-self: center;
+    width: 100%;
+}
+
+.containerPoliticsPrincipal, .containerCheckbox, .containerImages{
+    width: 100%;
+}
+
+.description textarea, .politics textarea{
+    align-self: center;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
+    color: var(--tertiary-color);
+    font-size: var(--text2);
+    font-weight: 500;
+    padding: 15px;
+   
+}
+
+.description textarea{
+   
+    width: 100%;
+}
+
+.politics textarea{
+    height:80%;
+}
+.containerCheckbox{
+    display: flex;
+    flex-direction: column;
+    margin:0 auto;
+}
+
+.containerCheckbox label{
+text-transform: capitalize;
+}
+
+.containerCheckbox input[type="checkbox"]{
+    height: 12px;
+    width: 12px;
+}
+
+.containerPolitics{
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
+    height: 32vh;
+    padding: 15px 0;
+}
+
+.politics{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.politics textarea{
+width: 100%;
+}
+
+button{
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    color: white;
+    font-size: var(--button1);
+    font-weight: var(--font-bold);
+    padding: 5pt;
+    width: clamp(164px,22.2vw,250px);
+}
