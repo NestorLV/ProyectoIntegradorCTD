@@ -128,7 +128,7 @@ function ProductSelect({ handleProduct }) {
                         placeholder="Seleccionar producto"
                         styles={customStyles}
                         isSearchable                     
-                        value={(value) => setChosenProduct(value)}                  
+                        /* value={(value) => setChosenProduct(value)}    */               
                         /* getOptionValue={(option) => option.value} */
                         /* onChange={(newValue) => setChosenProduct(newValue)} */
                         /* onClick={(newValue) => handleChange(newValue)} */

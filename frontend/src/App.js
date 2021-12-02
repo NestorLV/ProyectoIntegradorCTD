@@ -5,7 +5,6 @@ import Home from "./components/Home/Home.jsx";
 import LayoutPrincipal from "./layout/LayoutPrincipal";
 import Product from "./components/Product/Product.jsx";
 import UpdateProduct from "./components/Administrator/Product/UpdateProduct.jsx";
-import CreateProduct from "./components/Administrator/Product/CreateProduct.jsx";
 import NotFound from "./components/NotFound/NotFound.jsx";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Booking from "./components/booking/Booking.jsx";

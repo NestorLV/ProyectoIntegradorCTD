@@ -5,12 +5,15 @@ import CheckListFeatures from "./CheckListFeatures";
 import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
 import ProductSelect from "./ProductSelect";
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import CreateProductModal from './CreateProductModal';
 
 
 export default function ({ product, categories, setSelectedCategory, cities, setSelectedCity, features, setSelectedFeatures }) {
 
     //const [ optionsCategories, setOptionsCategories] = useState(["Hoteles", "Hostels", "Departamentos", "Bed and breakfast" ])
-
+    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
 
     function options(arrayOptions, setValor) {
         return arrayOptions.map((valor) => {
@@ -93,7 +96,7 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="name">Nombre de la propiedad</label>
-                            <input type="text" name="name" id="name" value={product.name && product.name}/>
+                            <input type="text" name="name" id="name" />
                         </div>
                         <div>
                             <label htmlFor="category">Categoría</label>
@@ -101,15 +104,15 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                                 options={options(categories, setSelectedCategory)}
                                 placeholder="Seleccionar categoria"
                                 styles={customStyles}
-                                getOptionValue={(option) => option.value}                      
-                                defaultValue={product.category && product.category.title}
+                                getOptionValue={(option) => option.value}         
+                                
                             />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="address">Dirección</label>
-                            <input type="text" name="address" id="address" value={product.address}/>
+                            <input type="text" name="address" id="address" />
                         </div>
                         <div>
                             <label htmlFor="city">Ciudad</label>
@@ -118,43 +121,35 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                                 placeholder="Seleccionar ciudad"
                                 styles={customStyles}
                                 getOptionValue={(option) => option.value}
-                                defaultValue={product.city && product.city.name}
+                                
                             />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="latitude">Latitud</label>
-                            <input type="text" name="latitude" id="latitude" value={product.latitude}/>
+                            <input type="text" name="latitude" id="latitude" />
                         </div>
                         <div>
                             <label htmlFor="longitude">Longitud</label>
-                            <input type="text" name="longitude" id="longitude" value={product.longitude} />
+                            <input type="text" name="longitude" id="longitude" />
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <div className={Styles.description}>
-                        <label htmlFor="description">Descripción</label>
-                        <textarea name="description" id="description">Escribir aquí</textarea>
-=======
+
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="reference">Referencia</label>
-                            <input type="text" name="reference" id="reference" value={product.reference}/>
+                            <input type="text" name="reference" id="reference" />
                         </div>
                         <div>
                             <label htmlFor="qualification">Calificación</label>
-                            <input type="text" name="qualification" id="qualification" value={product.qualification}/>
+                            <input type="text" name="qualification" id="qualification" />
                         </div>
                     </div>
                     <div className={Styles.description}>
                         <label htmlFor="description">Descripción</label>
-<<<<<<< HEAD
-                        <textarea name="description" id="description" placeholder="Escribir aquí" value={product.description}></textarea>
-=======
                         <textarea name="description" id="description" placeholder="Escribir aquí"></textarea>
->>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
->>>>>>> c8ceeecfb86aa9a6272481eb7ec1f239c9c9dff4
+
                     </div>
 
                     <div className={Styles.containerCheckbox}>
@@ -168,38 +163,21 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                                 <h5>Normas de la casa</h5>
                                 <label>Descripción</label>
 
-<<<<<<< HEAD
-                                <textarea name="rules" id="rules" >Escribir aquí</textarea>
-=======
                                 <textarea name="rules" id="rules" placeholder="Escribir aquí"></textarea>
->>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
->>>>>>> c8ceeecfb86aa9a6272481eb7ec1f239c9c9dff4
+
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Salud y seguridad</h5>
                                 <label>Descripción</label>
-<<<<<<< HEAD
-                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí" value={product.health}></textarea>
-=======
-<<<<<<< HEAD
-                                <textarea name="healthAndSecurity" id="healthAndSecurity" >Escribir aquí</textarea>
-=======
+
                                 <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí"></textarea>
->>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
->>>>>>> c8ceeecfb86aa9a6272481eb7ec1f239c9c9dff4
+
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Políticas de cancelación</h5>
                                 <label>Descripción</label>
-<<<<<<< HEAD
-                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí" value={product.politics}></textarea>
-=======
-<<<<<<< HEAD
-                                <textarea name="cancellationPolicy" id="cancellationPolicy" >Escribir aquí</textarea>
-=======
                                 <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí"></textarea>
->>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
->>>>>>> c8ceeecfb86aa9a6272481eb7ec1f239c9c9dff4
+
                             </div>
                         </div>
                     </div>
@@ -207,13 +185,6 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                         <h3>Cargar imágenes</h3>
                         <input type="text" name="images" id="images" />
                     </div>
-<<<<<<< HEAD
-
-                   
-                        <button type="submit">Crear</button>
-                    
-                </form>
-=======
                     <div  >
                         <button onClick={openModalCreate} id={Styles.buttonCreateProduct} type="submit">Crear </button>
                     </div>
@@ -221,7 +192,6 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                 <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
                     <CreateProductModal />
                 </Modal>
->>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
             </div>
         </section>
     )
