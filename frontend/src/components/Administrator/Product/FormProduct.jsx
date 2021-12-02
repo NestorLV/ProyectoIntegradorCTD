@@ -1,25 +1,102 @@
 import Select from "react-select"
 import OptionsSelect from "./OptionsSelect";
-import React, { useState } from "react";
-import CheckListFeatures from "./CheckListFeatures";
+import React, { useEffect, useState } from "react";
 import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
-import ProductSelect from "./ProductSelect";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
+import Delete from "../icons/delete.svg"
 
+export default function ({ categories, cities, features }) {
+    const [name, setName] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState({ id: "", name: "" })
+    const [address, setAddress] = useState("");
+    const [selectedCity, setSelectedCity] = useState({ id: "", name: "" })
+    const [latitude, setLatitude] = useState();
+    const [longitude, setLongitude] = useState();
+    const [reference, setReference] = useState("");
+    const [qualification, setQualification] = useState();
+    const [description, setDescription] = useState("");
+    const [selectedFeatures, setSelectedFeatures] = useState([]);
+    const [rules, setRules] = useState("");
+    const [healthAndSecurity, setHealthAndSecurity] = useState("");
+    const [cancellationPolicy, setCancellationPolicy] = useState("");
+    const [imageTitle, setImageTitle] = useState()
+    const [imageUrl, setImageUrl] = useState()
+    const [images, setImages] = useState([])
 
-export default function ({ product, categories, setSelectedCategory, cities, setSelectedCity, features, setSelectedFeatures }) {
-
-    //const [ optionsCategories, setOptionsCategories] = useState(["Hoteles", "Hostels", "Departamentos", "Bed and breakfast" ])
     const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
+
+    /*console.log(name);
+    console.log(selectedCategory);
+    console.log(address);
+    console.log(selectedCity);
+    console.log(latitude);
+    console.log(longitude);
+    console.log(reference);
+    console.log(qualification);
+    console.log(description);
+    console.log(selectedFeatures);
+    console.log(rules);
+    console.log(healthAndSecurity);
+    console.log(cancellationPolicy);
+    console.log(images);*/
+
+    /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
+    const handleChangeName = (event) => {
+        setName(event.target.value)
+    }
+
+    const handleChangeAddress = (event) => {
+        setAddress(event.target.value)
+    }
+
+    const handleChangeLatitude = (event) => {
+        setLatitude(event.target.value)
+    }
+
+    const handleChangeLongitude = (event) => {
+        setLongitude(event.target.value)
+    }
+
+    const handleChangeReference = (event) => {
+        setReference(event.target.value)
+    }
+
+    const handleChangeQualification = (event) => {
+        setQualification(event.target.value)
+    }
+
+    const handleChangeDescription = (event) => {
+        setDescription(event.target.value)
+    }
+
+    const handleChangeRules = (event) => {
+        setRules(event.target.value)
+    }
+
+    const handleChangeHealthAndSecurity = (event) => {
+        setHealthAndSecurity(event.target.value)
+    }
+
+    const handleChangeCancellationPolicy = (event) => {
+        setCancellationPolicy(event.target.value)
+    }
+
+    const handleChangeImageTitle = (event) => {
+        setImageTitle(event.target.value)
+    }
+
+    const handleChangeImageUrl = (event) => {
+        setImageUrl(event.target.value)
+    }
 
     function options(arrayOptions, setValor) {
         return arrayOptions.map((valor) => {
             return {
                 value: `${valor.name}`,
-                label: <OptionsSelect valor={valor.name} setValor={setValor} />,
+                label: <OptionsSelect valor={valor} setValor={setValor} />,
             };
         })
     }
@@ -43,7 +120,7 @@ export default function ({ product, categories, setSelectedCategory, cities, set
         }),
         singleValue: () => ({
             minWidth: "70%",
-            padding: "15px 10px",
+            padding: "9px 5px",
 
         }),
 
@@ -78,6 +155,16 @@ export default function ({ product, categories, setSelectedCategory, cities, set
         }),
     }
 
+    const handleClickImage = ((event) => {
+        event.preventDefault()
+        setImages([...images, { title: imageTitle, url: imageUrl }])
+        setImageTitle("");
+        setImageUrl("");
+        //console.log(event);
+        //setImage({ title: "", url: "" })
+
+    })
+
     const openModalCreate = (() => {
         setModalCreateIsOpen(true)
     })
@@ -89,14 +176,54 @@ export default function ({ product, categories, setSelectedCategory, cities, set
     //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
     //qualification, reference,
 
+
+
+    function saveSelectedFeatures(event) {
+        if (event.target.checked) {
+            setSelectedFeatures([...selectedFeatures, { id: event.target.id, name: event.target.value }])
+
+        } else {
+            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.id == event.target.id))
+            if (index != -1) {
+                let aux = selectedFeatures;
+                aux.splice(index, 1)
+                setSelectedFeatures(aux)
+            }
+            //console.log("form product false");
+            //console.log(index, "index");
+        }
+    }
+
+    function handleTacho(event){
+        setTacho(event.target.id)
+    }
+
+    const[tacho, setTacho]=useState()
+
+    useEffect((tacho)=>{
+        deleteImage(tacho)
+    }, [tacho])
+
+    function deleteImage(tacho){
+        let aux = images;
+        aux.splice(tacho, 1)
+        setImages(aux)
+    }
+
+    console.log(images, "images");
+    function sendData(event) {
+        event.preventDefault()
+
+    }
+
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
             <div className={`${StylesApp.delimiterChild} ${Styles.containerForm}`}>
-                <form >
+                <form onSubmit={sendData}>
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="name">Nombre de la propiedad</label>
-                            <input type="text" name="name" id="name" />
+                            <input type="text" name="name" id="name" value={name} onChange={handleChangeName} />
                         </div>
                         <div>
                             <label htmlFor="category">Categoría</label>
@@ -104,15 +231,14 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                                 options={options(categories, setSelectedCategory)}
                                 placeholder="Seleccionar categoria"
                                 styles={customStyles}
-                                getOptionValue={(option) => option.value}         
-                                
+                                getOptionValue={(option) => option.value}
                             />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="address">Dirección</label>
-                            <input type="text" name="address" id="address" />
+                            <input type="text" name="address" id="address" value={address} onChange={handleChangeAddress} />
                         </div>
                         <div>
                             <label htmlFor="city">Ciudad</label>
@@ -121,40 +247,41 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                                 placeholder="Seleccionar ciudad"
                                 styles={customStyles}
                                 getOptionValue={(option) => option.value}
-                                
                             />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="latitude">Latitud</label>
-                            <input type="text" name="latitude" id="latitude" />
+                            <input type="text" name="latitude" id="latitude" value={latitude} onChange={handleChangeLatitude} />
                         </div>
                         <div>
                             <label htmlFor="longitude">Longitud</label>
-                            <input type="text" name="longitude" id="longitude" />
+                            <input type="text" name="longitude" id="longitude" value={longitude} onChange={handleChangeLongitude} />
                         </div>
                     </div>
-
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="reference">Referencia</label>
-                            <input type="text" name="reference" id="reference" />
+                            <input type="text" name="reference" id="reference" value={reference} onChange={handleChangeReference} />
                         </div>
                         <div>
                             <label htmlFor="qualification">Calificación</label>
-                            <input type="text" name="qualification" id="qualification" />
+                            <input type="text" name="qualification" id="qualification" value={qualification} onChange={handleChangeQualification} />
                         </div>
                     </div>
                     <div className={Styles.description}>
                         <label htmlFor="description">Descripción</label>
-                        <textarea name="description" id="description" placeholder="Escribir aquí"></textarea>
-
+                        <textarea name="description" id="description" placeholder="Escribir aquí" value={description} onChange={handleChangeDescription} />
                     </div>
 
                     <div className={Styles.containerCheckbox}>
                         <h3>Agregar atributos</h3>
-                        <CheckListFeatures features={features} />
+                        {features.map((option, index) => {
+                            return (
+                                <label onClick={saveSelectedFeatures}><input type="checkbox" id={index + 1} value={option.name} /> {option.name}</label>
+                            )
+                        })}
                     </div>
                     <div className={Styles.containerPoliticsPrincipal}>
                         <h3>Políticas del producto</h3>
@@ -162,31 +289,48 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                             <div className={Styles.politics}>
                                 <h5>Normas de la casa</h5>
                                 <label>Descripción</label>
-
-                                <textarea name="rules" id="rules" placeholder="Escribir aquí"></textarea>
-
+                                <textarea name="rules" id="rules" placeholder="Escribir aquí" value={rules} onChange={handleChangeRules} />
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Salud y seguridad</h5>
                                 <label>Descripción</label>
-
-                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí"></textarea>
-
+                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí" value={healthAndSecurity} onChange={handleChangeHealthAndSecurity} />
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Políticas de cancelación</h5>
                                 <label>Descripción</label>
-                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí"></textarea>
-
+                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí" value={cancellationPolicy} onChange={handleChangeCancellationPolicy} />
                             </div>
                         </div>
                     </div>
                     <div className={Styles.containerImages}>
                         <h3>Cargar imágenes</h3>
-                        <input type="text" name="images" id="images" />
+                        <div className={Styles.containerBlockAdministrator}>
+                            <div className={Styles.image}>
+                                <label htmlFor="titleImage">Título</label>
+                                <input type="text" name="titleImage" id="titleImage" value={imageTitle} onChange={handleChangeImageTitle} />
+                            </div>
+                            <div className={Styles.image}>
+                                <label htmlFor="urlImage">URL</label>
+                                <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
+                            </div>
+                            <button onClick={handleClickImage}>+</button>
+                        </div>
+                        <div className={Styles.insertedImages}>
+                            {images.map((image, index) => {
+                                return (
+                                    <div className={Styles.insertedImage}>
+                                        <input className={Styles.imageItem} value={image.title}/> 
+                                        <div className={Styles.imageItem}> {image.url} </div>
+                                        <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={index} onClick={handleTacho} /></div>
+                                    </div>
+                                )
+                            })}
+
+                        </div>
                     </div>
-                    <div  >
-                        <button onClick={openModalCreate} id={Styles.buttonCreateProduct} type="submit">Crear </button>
+                    <div>
+                        <button onClick={openModalCreate} id={Styles.buttonCreateProduct} type="submit">Crear</button>
                     </div>
                 </form>
                 <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
