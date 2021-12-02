@@ -6,19 +6,12 @@ import FormProduct from "./FormProduct";
 import axios from "axios"
 
 
-
-
 function CreateProduct(props) {
     const baseURL = "http://localhost:8080/";
 
     const [optionsCategories, setOptionsCategories] = useState([])
-    const [selectedCategory, setSelectedCategory] = useState()
-
     const [optionsCities, setOptionsCities] = useState([])
-    const [selectedCity, setSelectedCity] = useState()
-
     const [optionsFeatures, setOptionsFeatures] = useState([])
-    const [selectedFeatures, setSelectedFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
    
@@ -81,7 +74,7 @@ function CreateProduct(props) {
                     <section className={StylesApp.delimiter}>
                         <div className={StylesApp.delimiterChild}>
                             <h1>Crear producto</h1>
-                            <FormProduct categories={optionsCategories} setSelectedCategory={setSelectedCategory} cities={optionsCities} setSelectedCity={setSelectedCity} features={optionsFeatures} setSelectedFeatures={setSelectedFeatures} />
+                            <FormProduct categories={optionsCategories} cities={optionsCities} features={optionsFeatures} />
                         </div>
                     </section>
                 )}
