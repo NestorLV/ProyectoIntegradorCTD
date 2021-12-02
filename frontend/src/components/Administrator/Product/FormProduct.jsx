@@ -96,7 +96,7 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="name">Nombre de la propiedad</label>
-                            <input type="text" name="name" id="name" />
+                            <input type="text" name="name" id="name" value={product.name && product.name}/>
                         </div>
                         <div>
                             <label htmlFor="category">Categoría</label>

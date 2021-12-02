@@ -44,11 +44,7 @@ function ProductSelect({ handleProduct }) {
         return {
             key: p.id,           
             label: `${p.id} ${p.name}`,
-            value:p,
-            /* getOptionValue: (option) => option.value */
-            /* onClick: (e) => handleChange(e) */
-            /* isOptionSelected: (p) => setChosenProduct(p),
-            getOptionValue: (option) => option.value */
+            value:p,          
         };
     })
 
@@ -113,9 +109,9 @@ function ProductSelect({ handleProduct }) {
         }),
     }
 
-   /*  let handleChange = (e) => {
-        setChosenProduct(e.target.value);
-    } */
+   let handleChange = (option) => {       
+       setChosenProduct(option.value);
+    }
 
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
@@ -127,12 +123,9 @@ function ProductSelect({ handleProduct }) {
                         options={options}
                         placeholder="Seleccionar producto"
                         styles={customStyles}
-                        isSearchable                     
-                        /* value={(value) => setChosenProduct(value)}    */               
-                        /* getOptionValue={(option) => option.value} */
-                        /* onChange={(newValue) => setChosenProduct(newValue)} */
-                        /* onClick={(newValue) => handleChange(newValue)} */
-                        /* isOptionSelected={(option) => setChosenProduct(option.value)} */
+                        isSearchable                        
+                        onChange={(newValue) => handleChange(newValue)} 
+                      
                     />
                     <button onClick={() => { handleProduct(chosenProduct) }} className={`${Styles.buttonSearchProduct} ${Styles.button}`}>Buscar</button>
                 </div>
