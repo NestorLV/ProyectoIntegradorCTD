@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 h1{
     padding-left: clamp(10px,3.9%,40px);
     padding-right: clamp(10px,3.9%,40px);
@@ -5,6 +7,7 @@ h1{
     font-size: var(--heading2);
 }
 
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
 .containerPrincipal{
     margin:20px 0;
 }
@@ -13,14 +16,29 @@ h1{
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+<<<<<<< HEAD
+    width: 90%;
+=======
     padding: 20px clamp(10px,3.9%,40px);
     width: 94%;
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
 }
 
 .containerForm form{
     display: flex;
     align-items: center;
     flex-direction: column;
+<<<<<<< HEAD
+    margin:0 auto;
+    min-height: 1150px;
+    justify-content: space-evenly;
+    width: 95%;
+}
+
+.containerForm label, .containerForm h3, .containerForm h5{
+    color: var(--secondary-color);
+}
+=======
     justify-content: space-around;
     margin:0 auto;
     min-height: 1250px;
@@ -72,6 +90,7 @@ h1{
     font-weight: var(--font-medium);
 }
 
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
 .containerBlockAdministrator{
     display: flex;
     width: 100%;
@@ -79,8 +98,11 @@ h1{
 }
 
 .containerBlockAdministrator>div{
+<<<<<<< HEAD
+=======
     display: flex;
     flex-direction: column;
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
     width: 49%;
 }
 
@@ -116,6 +138,10 @@ h1{
 }
 
 .description textarea{
+<<<<<<< HEAD
+   
+=======
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
     width: 100%;
 }
 
@@ -157,7 +183,11 @@ text-transform: capitalize;
 width: 100%;
 }
 
+<<<<<<< HEAD
+button{
+=======
 #buttonCreateProduct{
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
     background-color: var(--primary-color);
     border-radius: 5px;
     border: 1px solid var(--primary-color);
@@ -167,6 +197,8 @@ width: 100%;
     padding: 5pt;
     width: clamp(164px,22.2vw,250px);
 }
+<<<<<<< HEAD
+=======
 
 @media all and (max-width:769px){
     .containerForm form{
@@ -258,3 +290,4 @@ width: 100%;
         width: 100%;
     }
 }
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309

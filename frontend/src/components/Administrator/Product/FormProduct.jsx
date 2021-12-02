@@ -6,7 +6,11 @@ import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
 import ProductSelect from "./ProductSelect";
 
+
 export default function ({ product, categories, setSelectedCategory, cities, setSelectedCity, features, setSelectedFeatures }) {
+
+    //const [ optionsCategories, setOptionsCategories] = useState(["Hoteles", "Hostels", "Departamentos", "Bed and breakfast" ])
+
 
     function options(arrayOptions, setValor) {
         return arrayOptions.map((valor) => {
@@ -70,7 +74,15 @@ export default function ({ product, categories, setSelectedCategory, cities, set
             },
         }),
     }
-    
+
+    const openModalCreate = (() => {
+        setModalCreateIsOpen(true)
+    })
+
+    const closeModalCreate = () => {
+        setModalCreateIsOpen(false);
+    };
+
     //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
     //qualification, reference,
 
@@ -120,6 +132,11 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                             <input type="text" name="longitude" id="longitude" value={product.longitude} />
                         </div>
                     </div>
+<<<<<<< HEAD
+                    <div className={Styles.description}>
+                        <label htmlFor="description">Descripción</label>
+                        <textarea name="description" id="description">Escribir aquí</textarea>
+=======
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="reference">Referencia</label>
@@ -132,7 +149,12 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                     </div>
                     <div className={Styles.description}>
                         <label htmlFor="description">Descripción</label>
+<<<<<<< HEAD
                         <textarea name="description" id="description" placeholder="Escribir aquí" value={product.description}></textarea>
+=======
+                        <textarea name="description" id="description" placeholder="Escribir aquí"></textarea>
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
+>>>>>>> c8ceeecfb86aa9a6272481eb7ec1f239c9c9dff4
                     </div>
 
                     <div className={Styles.containerCheckbox}>
@@ -145,17 +167,39 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                             <div className={Styles.politics}>
                                 <h5>Normas de la casa</h5>
                                 <label>Descripción</label>
-                                <textarea name="rules" id="rules" placeholder="Escribir aquí" value={product.rules}></textarea>
+
+<<<<<<< HEAD
+                                <textarea name="rules" id="rules" >Escribir aquí</textarea>
+=======
+                                <textarea name="rules" id="rules" placeholder="Escribir aquí"></textarea>
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
+>>>>>>> c8ceeecfb86aa9a6272481eb7ec1f239c9c9dff4
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Salud y seguridad</h5>
                                 <label>Descripción</label>
+<<<<<<< HEAD
                                 <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí" value={product.health}></textarea>
+=======
+<<<<<<< HEAD
+                                <textarea name="healthAndSecurity" id="healthAndSecurity" >Escribir aquí</textarea>
+=======
+                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí"></textarea>
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
+>>>>>>> c8ceeecfb86aa9a6272481eb7ec1f239c9c9dff4
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Políticas de cancelación</h5>
                                 <label>Descripción</label>
+<<<<<<< HEAD
                                 <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí" value={product.politics}></textarea>
+=======
+<<<<<<< HEAD
+                                <textarea name="cancellationPolicy" id="cancellationPolicy" >Escribir aquí</textarea>
+=======
+                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí"></textarea>
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
+>>>>>>> c8ceeecfb86aa9a6272481eb7ec1f239c9c9dff4
                             </div>
                         </div>
                     </div>
@@ -163,10 +207,21 @@ export default function ({ product, categories, setSelectedCategory, cities, set
                         <h3>Cargar imágenes</h3>
                         <input type="text" name="images" id="images" />
                     </div>
+<<<<<<< HEAD
+
+                   
+                        <button type="submit">Crear</button>
+                    
+                </form>
+=======
                     <div  >
-                        <button  id={Styles.buttonCreateProduct} type="submit">Crear </button>
+                        <button onClick={openModalCreate} id={Styles.buttonCreateProduct} type="submit">Crear </button>
                     </div>
                 </form>
+                <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
+                    <CreateProductModal />
+                </Modal>
+>>>>>>> 530754a770a45556467620ddbc553ea3f4f40309
             </div>
         </section>
     )
