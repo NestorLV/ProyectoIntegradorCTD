@@ -15,9 +15,9 @@ function UpdateProduct(props) {
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
 
-    /*const [product, setProduct] = useState({
+    const [product, setProduct] = useState({
         id: null,
-        name: "Hotel Transilvania",
+        name: "",
         description: "",
         latitude: null,
         longitude: null,
@@ -32,7 +32,7 @@ function UpdateProduct(props) {
         health: "",
         politics: "",
         address: "",
-    });*/
+    });
 
     useEffect(() => {
         axios
@@ -76,9 +76,9 @@ function UpdateProduct(props) {
             });
     }, [])
 
-    /*const handleProduct = (p) => {
+    const handleProduct = (p) => {
         setProduct(p);
-    }  */
+    }  
 
     return (
         (errorMessage && loading) ?
@@ -93,8 +93,8 @@ function UpdateProduct(props) {
                     <section className={StylesApp.delimiter}>
                         <div className={StylesApp.delimiterChild}>
                             <h1>Modificar producto</h1>                          
-                            <ProductSelect />                           
-                            <FormProduct categories={optionsCategories} cities={optionsCities} features={optionsFeatures} />
+                            <ProductSelect handleProduct={handleProduct}/>                           
+                            <FormProduct product={product} categories={optionsCategories} cities={optionsCities} features={optionsFeatures} />
                         </div>
                     </section>
                 )}
