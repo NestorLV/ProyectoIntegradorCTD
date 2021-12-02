@@ -23,6 +23,26 @@ function UpdateProduct(props) {
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
+
+    const [product, setProduct] = useState({
+        id: null,
+        name: "",
+        description: "",
+        latitude: null,
+        longitude: null,
+        qualification: null,
+        favorite: null,
+        reference: "",
+        category: { id: null, title: "", description: "", url: "" },
+        city: { id: null, name: "", country: "" },
+        images: [{ id: null, title: "", url: "", productId: null }],
+        features: [{ id: null, title: "", state: null }],
+        rules: "",
+        health: "",
+        politics: "",
+        address: "",
+    });
+
     const openModalCreate = (() => {
         setModalCreateIsOpen(true)
     })
@@ -73,7 +93,9 @@ function UpdateProduct(props) {
             });
     }, [])
 
-   
+    const handleProduct = (p) => {
+        setProduct(p);
+    }  
 
     return (
         (errorMessage && loading) ?
@@ -88,9 +110,9 @@ function UpdateProduct(props) {
                     <section className={StylesApp.delimiter}>
                         <div className={StylesApp.delimiterChild}>
                             <h1>Modificar producto</h1>                          
-                            <ProductSelect />                           
-                            <FormProduct categories={optionsCategories} setSelectedCategory={setSelectedCategory} cities={optionsCities} setSelectedCity={setSelectedCity} features={optionsFeatures} setSelectedFeatures={setSelectedFeatures} />
-                            <button onClick={openModalCreate} id={Styles.buttonCreateProduct}>Crear Producto</button>
+                            <ProductSelect handleProduct={handleProduct}/>                           
+                            <FormProduct product={product} categories={optionsCategories} setSelectedCategory={setSelectedCategory} cities={optionsCities} setSelectedCity={setSelectedCity} features={optionsFeatures} setSelectedFeatures={setSelectedFeatures} />
+                            <button onClick={openModalCreate} id={Styles.buttonCreateProduct}>Modificar Producto</button>
                             <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
                                 <CreateProductModal />
                             </Modal>

@@ -53,6 +53,10 @@ h1{
     width: clamp(100px,10vw,150px);
 }   
 
+.buttonSearchProduct:hover {
+    cursor: pointer;
+}
+
 .containerForm label, .containerForm h3, .containerForm h5{
     color: var(--secondary-color);
     padding-bottom: 5px;  

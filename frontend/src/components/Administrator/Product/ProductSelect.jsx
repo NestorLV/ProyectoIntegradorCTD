@@ -4,28 +4,51 @@ import Select from "react-select";
 import StylesApp from "../../../App.module.css"
 import axios from "axios";
 
-function ProductSelect(props) {
-    const [products, setProducts] = useState([]);
+function ProductSelect({ handleProduct }) {
     const [errorMessage, setErrorMessage] = useState("");
+    const [products, setProducts] = useState([]);
+    const [chosenProduct, setChosenProduct] = useState({
+        id: null,
+        name: "Hotel Transilvania",
+        description: "Donde tus miedos se cumplen",
+        latitude: 45.709198,
+        longitude: 25.600926,
+        qualification: 5,
+        favorite: null,
+        reference: "Castillo aislado del mundo",
+        category: { id: 1, title: "Hotel", description: "", url: "" },
+        city: { id: 1, name: "Rumania", country: "" },
+        images: [{ id: null, title: "", url: "", productId: null }],
+        features: [{ id: 1, title: "wifi", state: null }],
+        rules: "No beber agua",
+        health: "No se respeta la salud",
+        politics: "Beber sangre",
+        address: "Alguna parte de Rumania",
+    });
 
     const baseURL = "http://localhost:8080/";
 
     useEffect(() => {
         axios
             .get(baseURL + "products/all")
-            .then((response) => {             
+            .then((response) => {
                 setProducts(response.data);
                 console.log(response.data);
             })
             .catch((error) => {
-                setErrorMessage(error.message);               
+                setErrorMessage(error.message);
             });
-    },[]);
+    }, []);
 
     const options = products.map((p) => {
         return {
-            value: `${p.id}`,
+            key: p.id,           
             label: `${p.id} ${p.name}`,
+            value:p,
+            /* getOptionValue: (option) => option.value */
+            /* onClick: (e) => handleChange(e) */
+            /* isOptionSelected: (p) => setChosenProduct(p),
+            getOptionValue: (option) => option.value */
         };
     })
 
@@ -39,12 +62,9 @@ function ProductSelect(props) {
             width: "40vw",
             minWidth: "250px",
             color: "black",
-            
             '@media all and (max-width:415px)': {
                 width: "100%"
             }
-
-
         }),
 
         placeholder: () => ({
@@ -57,7 +77,7 @@ function ProductSelect(props) {
         }),
         singleValue: () => ({
             minWidth: "70%",
-            padding: "15px 10px",
+            padding: "10px 10px",
 
         }),
 
@@ -89,8 +109,13 @@ function ProductSelect(props) {
                 cursor: 'pointer',
                 opacity: "0.5"
             },
+
         }),
     }
+
+   /*  let handleChange = (e) => {
+        setChosenProduct(e.target.value);
+    } */
 
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
@@ -98,12 +123,18 @@ function ProductSelect(props) {
                 <p className={Styles.titleProductSelect}>Seleccione el nombre del producto para modificar</p>
                 <div className={Styles.selectProductBox}>
                     <Select
+                        /* onChange={handleChange}  */
                         options={options}
                         placeholder="Seleccionar producto"
                         styles={customStyles}
-                        getOptionValue={(option) => option.value}
+                        isSearchable                     
+                        value={(value) => setChosenProduct(value)}                  
+                        /* getOptionValue={(option) => option.value} */
+                        /* onChange={(newValue) => setChosenProduct(newValue)} */
+                        /* onClick={(newValue) => handleChange(newValue)} */
+                        /* isOptionSelected={(option) => setChosenProduct(option.value)} */
                     />
-                    <button className={`${Styles.buttonSearchProduct} ${Styles.button}`}>Buscar</button>
+                    <button onClick={() => { handleProduct(chosenProduct) }} className={`${Styles.buttonSearchProduct} ${Styles.button}`}>Buscar</button>
                 </div>
             </div>
         </section>

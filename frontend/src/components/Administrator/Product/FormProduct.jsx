@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import CheckListFeatures from "./CheckListFeatures";
 import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
+import ProductSelect from "./ProductSelect";
 
-export default function ({ categories, setSelectedCategory, cities, setSelectedCity, features, setSelectedFeatures }) {
+export default function ({ product, categories, setSelectedCategory, cities, setSelectedCity, features, setSelectedFeatures }) {
 
     function options(arrayOptions, setValor) {
         return arrayOptions.map((valor) => {
@@ -80,7 +81,7 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="name">Nombre de la propiedad</label>
-                            <input type="text" name="name" id="name" />
+                            <input type="text" name="name" id="name" value={product.name && product.name}/>
                         </div>
                         <div>
                             <label htmlFor="category">Categoría</label>
@@ -88,14 +89,15 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                                 options={options(categories, setSelectedCategory)}
                                 placeholder="Seleccionar categoria"
                                 styles={customStyles}
-                                getOptionValue={(option) => option.value}
+                                getOptionValue={(option) => option.value}                      
+                                defaultValue={product.category && product.category.title}
                             />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="address">Dirección</label>
-                            <input type="text" name="address" id="address" />
+                            <input type="text" name="address" id="address" value={product.address}/>
                         </div>
                         <div>
                             <label htmlFor="city">Ciudad</label>
@@ -104,32 +106,33 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                                 placeholder="Seleccionar ciudad"
                                 styles={customStyles}
                                 getOptionValue={(option) => option.value}
+                                defaultValue={product.city && product.city.name}
                             />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="latitude">Latitud</label>
-                            <input type="text" name="latitude" id="latitude" />
+                            <input type="text" name="latitude" id="latitude" value={product.latitude}/>
                         </div>
                         <div>
                             <label htmlFor="longitude">Longitud</label>
-                            <input type="text" name="longitude" id="longitude" />
+                            <input type="text" name="longitude" id="longitude" value={product.longitude} />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
                         <div>
                             <label htmlFor="reference">Referencia</label>
-                            <input type="text" name="reference" id="reference" />
+                            <input type="text" name="reference" id="reference" value={product.reference}/>
                         </div>
                         <div>
                             <label htmlFor="qualification">Calificación</label>
-                            <input type="text" name="qualification" id="qualification" />
+                            <input type="text" name="qualification" id="qualification" value={product.qualification}/>
                         </div>
                     </div>
                     <div className={Styles.description}>
                         <label htmlFor="description">Descripción</label>
-                        <textarea name="description" id="description" placeholder="Escribir aquí"></textarea>
+                        <textarea name="description" id="description" placeholder="Escribir aquí" value={product.description}></textarea>
                     </div>
 
                     <div className={Styles.containerCheckbox}>
@@ -142,17 +145,17 @@ export default function ({ categories, setSelectedCategory, cities, setSelectedC
                             <div className={Styles.politics}>
                                 <h5>Normas de la casa</h5>
                                 <label>Descripción</label>
-                                <textarea name="rules" id="rules" placeholder="Escribir aquí"></textarea>
+                                <textarea name="rules" id="rules" placeholder="Escribir aquí" value={product.rules}></textarea>
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Salud y seguridad</h5>
                                 <label>Descripción</label>
-                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí"></textarea>
+                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí" value={product.health}></textarea>
                             </div>
                             <div className={Styles.politics}>
                                 <h5>Políticas de cancelación</h5>
                                 <label>Descripción</label>
-                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí"></textarea>
+                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí" value={product.politics}></textarea>
                             </div>
                         </div>
                     </div>
