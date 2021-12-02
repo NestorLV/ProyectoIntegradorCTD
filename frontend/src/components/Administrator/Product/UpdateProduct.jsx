@@ -4,27 +4,18 @@ import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
 import FormProduct from "./FormProduct";
 import axios from "axios"
-import { Modal } from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
-import CreateProductModal from './CreateProductModal';
 import ProductSelect from "./ProductSelect";
 
 function UpdateProduct(props) {
     const baseURL = "http://localhost:8080/";
 
     const [optionsCategories, setOptionsCategories] = useState([])
-    const [selectedCategory, setSelectedCategory] = useState()
-
     const [optionsCities, setOptionsCities] = useState([])
-    const [selectedCity, setSelectedCity] = useState()
-
     const [optionsFeatures, setOptionsFeatures] = useState([])
-    const [selectedFeatures, setSelectedFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
 
-    const [product, setProduct] = useState({
+    /*const [product, setProduct] = useState({
         id: null,
         name: "",
         description: "",
@@ -41,15 +32,7 @@ function UpdateProduct(props) {
         health: "",
         politics: "",
         address: "",
-    });
-
-    const openModalCreate = (() => {
-        setModalCreateIsOpen(true)
-    })
-
-    const closeModalCreate = () => {
-        setModalCreateIsOpen(false);
-    };
+    });*/
 
     useEffect(() => {
         axios
@@ -64,7 +47,7 @@ function UpdateProduct(props) {
             });
     }, [])
 
-    console.log(optionsCities);
+    console.log(optionsFeatures);
 
     useEffect(() => {
         axios
@@ -93,9 +76,9 @@ function UpdateProduct(props) {
             });
     }, [])
 
-    const handleProduct = (p) => {
+    /*const handleProduct = (p) => {
         setProduct(p);
-    }  
+    }  */
 
     return (
         (errorMessage && loading) ?
@@ -110,12 +93,8 @@ function UpdateProduct(props) {
                     <section className={StylesApp.delimiter}>
                         <div className={StylesApp.delimiterChild}>
                             <h1>Modificar producto</h1>                          
-                            <ProductSelect handleProduct={handleProduct}/>                           
-                            <FormProduct product={product} categories={optionsCategories} setSelectedCategory={setSelectedCategory} cities={optionsCities} setSelectedCity={setSelectedCity} features={optionsFeatures} setSelectedFeatures={setSelectedFeatures} />
-                            <button onClick={openModalCreate} id={Styles.buttonCreateProduct}>Modificar Producto</button>
-                            <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
-                                <CreateProductModal />
-                            </Modal>
+                            <ProductSelect />                           
+                            <FormProduct categories={optionsCategories} cities={optionsCities} features={optionsFeatures} />
                         </div>
                     </section>
                 )}

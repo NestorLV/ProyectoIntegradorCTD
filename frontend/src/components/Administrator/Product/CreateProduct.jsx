@@ -6,12 +6,18 @@ import FormProduct from "./FormProduct";
 import axios from "axios"
 
 
+
+
 function CreateProduct(props) {
     const baseURL = "http://localhost:8080/";
 
     const [optionsCategories, setOptionsCategories] = useState([])
+
     const [optionsCities, setOptionsCities] = useState([])
+    
+
     const [optionsFeatures, setOptionsFeatures] = useState([])
+    //const [selectedFeatures, setSelectedFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
    
@@ -30,7 +36,7 @@ function CreateProduct(props) {
             });
     }, [])
 
-    console.log(optionsCities);
+    
 
     useEffect(() => {
         axios
@@ -50,7 +56,6 @@ function CreateProduct(props) {
             .get(baseURL + "features/all")
             .then((response) => {
                 setLoading(false);
-                console.log(response.data);
                 setOptionsFeatures(response.data.map((feature) => { return { id: feature.id, name: feature.title } }));
             })
             .catch((error) => {
@@ -58,8 +63,6 @@ function CreateProduct(props) {
                 setLoading(false);
             });
     }, [])
-
-    console.log(optionsFeatures);
 
     return (
         (errorMessage && loading) ?

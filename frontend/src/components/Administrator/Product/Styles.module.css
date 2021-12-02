@@ -51,7 +51,7 @@ h1{
     font-size: var(--button4);
     font-weight: var(--font-bold);    
     width: clamp(100px,10vw,150px);
-}   
+}
 
 .buttonSearchProduct:hover {
     cursor: pointer;
@@ -101,6 +101,47 @@ h1{
 
 .containerPoliticsPrincipal, .containerCheckbox, .containerImages{
     width: 100%;
+}
+
+.containerImages .image{
+    width: 46%;
+}
+
+.containerImages .insertedImages{
+    display: flex;
+    flex-direction: column;
+}
+
+.containerImages .insertedImage{
+    display: flex;
+   justify-content: space-between;
+  
+}
+
+.containerImages .insertedImage .imageItem{
+    padding: 5px;
+    width: 46%;
+}
+
+.containerImages .insertedImage .deleteImage{
+    display: flex;
+    justify-content: center;
+    width: 41px;
+}
+
+.containerImages .insertedImage .deleteImage>img{
+    width: 22px;
+}
+.containerImages button{
+    align-self: flex-end;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    color:white;
+    font-size: 33px;
+    font-weight: var(--font-bold);
+    height: 41px;
+    width: 41px;
 }
 
 .description textarea, .politics textarea{

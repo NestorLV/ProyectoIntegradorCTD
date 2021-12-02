@@ -1,8 +1,9 @@
 import axios from "axios";
+const baseURL = "http://localhost:8080/"
 
 function AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage) {
     axios
-        .get(`http://localhost:8080/products/get/${id}`)
+        .get(`${baseURL}products/get/${id}`)
         .then((response) => {
             setProd(response.data);
             setLoading(false);
@@ -14,7 +15,7 @@ function AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage) {
 
 function AxiosCalificarProducto(starIndex, id, setCalificacion_text, setErrorMessage) {
     axios
-        .post("http://localhost:8080/products/scores/create", {
+        .post(`${baseURL}products/scores/create`, {
             score: starIndex,
             userEmail: sessionStorage.getItem('email'),
             productId: id
@@ -32,7 +33,7 @@ function AxiosCalificarProducto(starIndex, id, setCalificacion_text, setErrorMes
 
 function AxiosGetReservasPorProducto(idProducto, setReservas, setErrorMessage) {
     axios
-        .get(`http://localhost:8080/reservations/get/product/${idProducto}`)
+        .get(`${baseURL}reservations/get/product/${idProducto}`)
         .then((response) => {
             let reservas = [];
             (response.data).forEach(reserva => {
@@ -54,7 +55,7 @@ function AxiosGetReservasPorProducto(idProducto, setReservas, setErrorMessage) {
 
 function AxiosGetPuntuacionDelProducto(email, idProduct, setStartIndex) {
     axios
-        .get(`http://localhost:8080/products/scores/getByUserAndProduct/${email}/${idProduct}`, {
+        .get(`${baseURL}products/scores/getByUserAndProduct/${email}/${idProduct}`, {
             headers: {
                 "Authorization": `Bearer ${sessionStorage.getItem("token")}`
             }
@@ -69,7 +70,7 @@ function AxiosGetPuntuacionDelProducto(email, idProduct, setStartIndex) {
 
 function AxiosResetPuntuacion(email, idProduct, setStartIndex) {
     axios
-        .put(`http://localhost:8080/products/scores/resetScore/${email}/${idProduct}`, {
+        .put(`${baseURL}products/scores/resetScore/${email}/${idProduct}`, {
             headers: {
                 "Authorization": `Bearer ${sessionStorage.getItem("token")}`
             }
@@ -79,6 +80,45 @@ function AxiosResetPuntuacion(email, idProduct, setStartIndex) {
         })
         .catch((error) => {
             console.log(error);
+        });
+}
+
+function AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) {
+    axios
+        .get(baseURL + "categories/all")
+        .then((response) => {
+            setLoading(false);
+            setOptionsCategories(response.data.map((category) => { return { id: category.id, name: category.title } }));
+        })
+        .catch((error) => {
+            setErrorMessage(error.message);
+            setLoading(false);
+        });
+}
+
+function AxiosGetCities(setLoading, setOptionsCities, setErrorMessage) {
+    axios
+        .get(baseURL + "cities/all")
+        .then((response) => {
+            setLoading(false);
+            setOptionsCities(response.data.map((city) => { return { id: city.id, name: city.name } }));
+        })
+        .catch((error) => {
+            setErrorMessage(error.message);
+            setLoading(false);
+        });
+}
+
+function AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) {
+    axios
+        .get(baseURL + "features/all")
+        .then((response) => {
+            setLoading(false);
+            setOptionsFeatures(response.data.map((feature) => { return { id: feature.id, name: feature.title } }));
+        })
+        .catch((error) => {
+            setErrorMessage(error.message);
+            setLoading(false);
         });
 }
 
@@ -149,7 +189,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
 }
 
 function AxiosModificarProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct) {
-//Hay que reformular la parte de modificar las imagenes y features para que elimine las que ya no están, deje las que sí están y las imagenes que no están las cree
+    //Hay que reformular la parte de modificar las imagenes y features para que elimine las que ya no están, deje las que sí están y las imagenes que no están las cree
 
     /* axios
         .post("http://localhost:3000/products/update", {
@@ -216,4 +256,4 @@ function AxiosModificarProducto(name, description, latitude, longitude, address,
 
 }
 
-export { AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetPuntuacionDelProducto, AxiosResetPuntuacion, AxiosCrearProducto, AxiosModificarProducto }
+export { AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetPuntuacionDelProducto, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities }
