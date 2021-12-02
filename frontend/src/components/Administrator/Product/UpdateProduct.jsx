@@ -17,7 +17,7 @@ function UpdateProduct(props) {
 
     /*const [product, setProduct] = useState({
         id: null,
-        name: "",
+        name: "Hotel Transilvania",
         description: "",
         latitude: null,
         longitude: null,
