@@ -39,6 +39,17 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
                         <p onClick={handleFavourite}>Favoritos</p>
                     </Link>
                     <img src={line} alt="" />
+                    <Link to="/">
+                        <p>Mis reservas</p>
+                    </Link>
+                    <img src={line} alt="" />
+                    <Link to="/product/create">
+                        <p>Crear Producto</p>
+                    </Link>
+                    <img src={line} alt="" />
+                    <Link to="/product/update">
+                        <p>Modificar Producto</p>
+                    </Link>
                 </div>
                 <div className={`botones ${hideObject} ${(!activeLogin && activeCreate) ? "subir" : null}`}>
 

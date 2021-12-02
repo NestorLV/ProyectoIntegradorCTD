@@ -44,10 +44,6 @@ a:active {
   transition: all 0.3s;
 }
 
-.cardBox:hover {
-  box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.5);
-}
-
 .cardImage {
   background-size: cover;
   border-radius: 10px;
@@ -169,12 +165,14 @@ div.buttons button.create{
 div.buttons button.login:hover {
   background-color: #cf411d;
   border: 2px solid  #b9411f;
+  cursor: pointer;
 
 }
   
 div.buttons button.create:hover {
   background-color: #ffd6c6;
   border: 2px solid  #ffd6c6;
+  cursor: pointer;
 }
 
 
@@ -338,15 +336,26 @@ min-width: 80px;
   justify-content: center;
   text-align: center;
   transition: all 0.3s;
+  width: 98%;
+}
+
+.cardButton2:hover, .clearFilterButton:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.cardButton2:active, .clearFilterButton:active {
+  transform: scale(0.85);
+}
+
+.buttonsBox {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 
-.cardButton2:hover {
-  transform: scale(1.02);
-}
-
-.cardButton2:active {
-  transform: scale(0.85);
+.cardButtonModify {
+  background-color: var(--secondary-color);  
 }
 
 .pages {
@@ -380,14 +389,16 @@ min-width: 80px;
 .pages button:hover {
   background-color: var(--primary-color);
   color: white;
+  cursor: pointer;
 }
 
 .pages img:hover{
   background-color: white;
-  color: white; 
+  color: white;
+  cursor: pointer; 
 }
 .pages img:hover , .pages button:hover {
-  pointer-events: painted;
+  pointer-events: painted;  
 }
 
 .pages button:disabled {
