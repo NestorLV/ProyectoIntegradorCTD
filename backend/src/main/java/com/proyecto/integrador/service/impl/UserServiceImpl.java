@@ -15,6 +15,8 @@ import com.proyecto.integrador.persistence.repository.IUserRepository;
 import com.proyecto.integrador.service.IUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -70,7 +72,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     public boolean activateUser(String email, Integer hashCode) throws BadRequestException, FindByIdException {
-        boolean response = false; /*"El link es inválido, no se pudo activar el usuario"*/;
+        boolean response = false; /*"El link es inválido, no se pudo activar el usuario"*/
         if (userRepository.findByEmail(email).isEmpty()) {
             throw new BadRequestException("El usuario no está logueado");
         }
@@ -163,11 +165,9 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         }
 
         ScoreDTO scoresByProductAndUser= null;
-        if(scoresByUser!= null){
-            for (ScoreDTO score:scoresByUser) {
-                if(score.getProductId()==idProduct){
-                    scoresByProductAndUser = score;
-                }
+        for (ScoreDTO score:scoresByUser) {
+            if(Objects.equals(score.getProductId(), idProduct)){
+                scoresByProductAndUser = score;
             }
         }
 
@@ -188,13 +188,23 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     public boolean isFavourite(ProductDTO productDTO) {
-        return false;
         /*if (findByEmail()) --> Validar usuario y filtrar los favoritos del usuario */
+        return false;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("El email no matchea con ningún usuario en la base de datos"));
+        logger.debug("Inicio del método cargar por nombre de usuario");
+        Optional<User> u = userRepository.findByEmail(email);
+        if (u.isEmpty())
+            throw new UsernameNotFoundException("No existe el usuario con email: " + email);
+
+        User user = u.get();
+        /*Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(user.getRole().getName().name()));*/
+        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole().getName().name());
+        logger.debug("Fin del método cargar por nombre de usuario");
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true, true, true, true,Collections.singletonList(grantedAuthority));
     }
 
     // Agregar más validaciones y ver lo del UserDTO RequestBody
@@ -211,12 +221,13 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
             throw new BadRequestException("El email y/o contraseña son inválidos, no existen en la base de datos");
         }
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername("javainuse");
+        final UserDetails userDetails = loadUserByUsername(userRequestDTO.getEmail());
         datos.put("id", user.get().getId().toString());
         datos.put("name",user.get().getName());
         datos.put("surname", user.get().getSurname());
         datos.put("token", jwtTokenUtil.generateToken(userDetails));
         datos.put("activation", user.get().isActivation()?"true":"false");
+        datos.put("role", user.get().getRole().getName().name());
         return datos;
     }
 }

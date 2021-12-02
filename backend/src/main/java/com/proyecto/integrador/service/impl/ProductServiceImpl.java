@@ -6,10 +6,8 @@ import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.repository.IProductRepository;
 import com.proyecto.integrador.service.IProductService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -121,6 +119,20 @@ public class ProductServiceImpl implements IProductService {
         return productsByCategory;
     }
 
+    @Override
+    public List<ProductDTO> findAllByCity(Integer cityId) throws FindByIdException, BadRequestException {
+        logger.debug("Iniciando método buscar productos por ciudad");
+        if (!cityService.cityExistsInDatabase(cityId)) {
+            throw new BadRequestException("No se registra ninguna ciudad asociada al id ingresado");
+        }
+        List<ProductDTO> productsByCity = new ArrayList<>();
+        for (Product product : productRepository.findByCity_Id(cityId)) {
+            productsByCity.add(loadDataIntoProductDTO(product));
+        }
+        logger.debug("Terminó la ejecución del método buscar productos por ciudad");
+        return productsByCity;
+    }
+
     public List<ProductDTO> findAllByDates(Date startDate, Date endDate) throws FindByIdException {
         logger.debug("Iniciando método buscar productos por fechas");
         List<ReservationDTO> reservas = reservationService.findAll();
@@ -150,7 +162,7 @@ public class ProductServiceImpl implements IProductService {
 
         //Filtro sólo por categoría
         if (filterDto.getCityId() == null && filterDto.getStartDate() == null && filterDto.getEndDate() == null) {
-            if(filterDto.getCategory().equals("All")) {
+            if (filterDto.getCategory().equals("All")) {
                 return findAll();
             } else {
                 return findAllByCategory(filterDto.getCategory());
@@ -214,7 +226,7 @@ public class ProductServiceImpl implements IProductService {
         }
         // Filtro por categoría, fecha y ciudad
         //if (!filterDto.getCategory().equals("All")) {
-            else {
+        else {
             List<ProductDTO> productsByCity = findAllByCity(filterDto.getCityId());
             List<ProductDTO> productsByDates = findAllByDates(filterDto.getStartDate(), filterDto.getEndDate());
             List<ProductDTO> productsByCategory = findAllByCategory(filterDto.getCategory());
@@ -239,22 +251,33 @@ public class ProductServiceImpl implements IProductService {
         }
     }
 
-
-    @Override
-    public List<ProductDTO> findAllByCity(Integer cityId) throws FindByIdException, BadRequestException {
-        logger.debug("Iniciando método buscar productos por ciudad");
-        if (!cityService.cityExistsInDatabase(cityId)) {
-            throw new BadRequestException("No se registra ninguna ciudad asociada al id ingresado");
+    // Revisar si se puede mejorar este método
+    public List<ProductDTO> findRecommendations() throws FindByIdException {
+        List<ProductDTO> recommendedProducts = new ArrayList<>();
+        productRepository.findAll().forEach(p -> {
+            p.setQualification(scoreService.average(p.getId()));
+            productRepository.save(p);
+        });
+        for (Product product : productRepository.findFirst12ByOrderByQualificationDesc()) {
+            recommendedProducts.add(loadDataIntoProductDTO(product));
         }
-        List<ProductDTO> productsByCity = new ArrayList<>();
-        for (Product product : productRepository.findByCity_Id(cityId)) {
-            productsByCity.add(loadDataIntoProductDTO(product));
-        }
-        logger.debug("Terminó la ejecución del método buscar productos por ciudad");
-        return productsByCity;
+        return recommendedProducts;
     }
 
-    public List<ProductDTO> findCityDateRange(FilterDTO filterDTO) throws FindByIdException {
+    public void updateQualification(Integer productId, double newQualification) throws FindByIdException {
+        logger.debug("Iniciando método actualizar calificación de producto");
+        if (!productRepository.existsById(productId)) {
+            throw new FindByIdException("No existe un producto con el id ingresado");
+        }
+        Product product = productRepository.findById(productId).get();
+        product.setQualification(newQualification);
+        productRepository.save(product);
+        logger.debug("Terminó la ejecución del método actualizar calificación de producto");
+    }
+
+    /* Opción 2 del filtrado de ciudad y fechas con queries SQL */
+
+   /* public List<ProductDTO> findCityDateRange(FilterDTO filterDTO) throws FindByIdException {
         logger.debug("Iniciando método buscar productos por ciudad y dos fechas");
         return findDateRange(filterDTO.getCityId(), filterDTO.getStartDate(), filterDTO.getEndDate());
     }
@@ -287,51 +310,5 @@ public class ProductServiceImpl implements IProductService {
             }
         }
         return products;
-    }
-
-    // Revisar si se puede mejorar este método
-    public List<ProductDTO> findRecommendations() throws FindByIdException {
-        List<ProductDTO> recommendedProducts = new ArrayList<>();
-        productRepository.findAll().forEach(p -> {
-            p.setQualification(scoreService.average(p.getId()));
-            productRepository.save(p);
-        });
-        for (Product product : productRepository.findFirst12ByOrderByQualificationDesc()) {
-            recommendedProducts.add(loadDataIntoProductDTO(product));
-        }
-        return recommendedProducts;
-    }
-
-    // A corregir lo de favoritos --> Que no se hardcodee
-    /*public List<ProductDTO> findFavorites(String email) throws FindByIdException, BadRequestException {
-        if (userService.findByEmail(email) == null) {
-            throw new BadRequestException("El usuario no está logueado");
-        }
-        UserDTO user = userService.findByEmail(email);
-
-        List<ProductDTO> favoriteProducts = new ArrayList<>();
-        for (ProductDTO product : user.getFavoriteProducts()) {
-            favoriteProducts.add(findById(product.getId()));
-        }
-        return favoriteProducts;
-/*        List<ProductDTO> recommendedFavorites = new ArrayList<>();
-       for (Product product : productRepository.findFirst5ByOrderByQualificationDesc()) {
-            product.setFavourite(true);
-            recommendedFavorites.add(loadDataIntoProductDTO(product));
-        }
-        return recommendedFavorites;
     }*/
-
-
-    public void updateQualification(Integer productId, double newQualification) throws FindByIdException {
-        logger.debug("Iniciando método actualizar calificación de producto");
-        if (!productRepository.existsById(productId)) {
-            throw new FindByIdException("No existe un producto con el id ingresado");
-        }
-        Product product = productRepository.findById(productId).get();
-        product.setQualification(newQualification);
-        productRepository.save(product);
-        logger.debug("Terminó la ejecución del método actualizar calificación de producto");
-    }
-
 }

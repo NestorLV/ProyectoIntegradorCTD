@@ -19,6 +19,7 @@ public class Role {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "name", nullable = false)
+    @Enumerated(EnumType.STRING)
     private RolesTypes name;
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private Set<User> users;

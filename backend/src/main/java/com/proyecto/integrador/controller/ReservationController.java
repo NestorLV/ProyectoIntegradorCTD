@@ -56,10 +56,16 @@ public class ReservationController implements CRUDController<ReservationDTO>{
         return ResponseEntity.ok("Se eliminó la reserva con id: "+id);
     }
 
-    @Operation(summary = "Find reservation by ID of Product", description = "Returns all reservations by product")
+    @Operation(summary = "Find reservation by ID of Product", description = "Returns all reservations by product id")
     @GetMapping("/get/product/{idProduct}")
-    public ResponseEntity<Set<ReservationDTO>> getByIdProduct(@PathVariable Integer idProduct) throws FindByIdException {
+    public ResponseEntity<Set<ReservationDTO>> getByIdProduct(@PathVariable Integer idProduct) {
         return ResponseEntity.ok(reservationServiceImpl.findByProductId(idProduct));
+    }
+
+    @Operation(summary = "Find reservation by ID of User", description = "Returns all reservations by user id")
+    @GetMapping("/get/user/{idUser}")
+    public ResponseEntity<Set<ReservationDTO>> getByIdUser(@PathVariable Integer idUser) {
+        return ResponseEntity.ok(reservationServiceImpl.findByUserId(idUser));
     }
 
 }

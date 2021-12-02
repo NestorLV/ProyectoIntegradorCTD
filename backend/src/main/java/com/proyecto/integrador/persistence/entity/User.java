@@ -59,6 +59,7 @@ public class User implements UserDetails {
         userResponseDTO.setSurname(surname);
         userResponseDTO.setEmail(email);
         userResponseDTO.setActivation(activation);
+        userResponseDTO.setRole(role.getName());
         return userResponseDTO;
     }
 

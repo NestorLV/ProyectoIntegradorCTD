@@ -14,7 +14,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -47,7 +46,7 @@ public class UserController implements CRUDController<UserRequestDTO> {
     }
 
     @Operation(summary = "Find user by ID", description = "Returns a single user")
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/{idUser}")
     public ResponseEntity<UserResponseDTO> getById(@PathVariable Integer idUser) throws FindByIdException {
         return ResponseEntity.ok(userService.findById(idUser));
     }
@@ -85,7 +84,7 @@ public class UserController implements CRUDController<UserRequestDTO> {
     @Operation(summary = "User login")
     @PostMapping("/login")
     public ResponseEntity<?> validateLogIn(@RequestBody UserRequestDTO userRequestDTO) throws BadRequestException {
-        Map datos = userService.validateLogIn(userRequestDTO);
+        Map<String, String> datos = userService.validateLogIn(userRequestDTO);
         return ResponseEntity.ok(datos);
     }
 

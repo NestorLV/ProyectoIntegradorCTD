@@ -70,14 +70,8 @@ public class ProductController implements CRUDController<ProductDTO> {
 
     @Operation(summary = "Find by dates")
     @GetMapping("/get/dates/{startDate}/{endDate}")
-    public ResponseEntity<List<ProductDTO>> getAllByDates(@PathVariable Date startDate, @PathVariable Date endDate) throws FindByIdException, BadRequestException {
+    public ResponseEntity<List<ProductDTO>> getAllByDates(@PathVariable Date startDate, @PathVariable Date endDate) throws FindByIdException {
         return ResponseEntity.ok(productService.findAllByDates(startDate,endDate));
-    }
-
-    @Operation(summary = "Find by city and date range")
-    @PostMapping("/filter")
-    public ResponseEntity<List<ProductDTO>> filterCityAndDates(@RequestBody FilterDTO filterDTO) throws BadRequestException, FindByIdException {
-            return ResponseEntity.ok(productService.filterCityAndDates(filterDTO));
     }
 
     @Operation(summary = "Find recommended products")
@@ -86,7 +80,13 @@ public class ProductController implements CRUDController<ProductDTO> {
         return ResponseEntity.ok(productService.findRecommendations());
     }
 
-    @Operation(summary = "Find by city and date range")
+    @Operation(summary = "Find by city, date range and Category")
+    @PostMapping("/filters")
+    public ResponseEntity<List<ProductDTO>> filterCityDatesCategory(@RequestBody FilterDTO filterDTO) throws BadRequestException, FindByIdException {
+        return ResponseEntity.ok(productService.filterCityAndDates(filterDTO));
+    }
+
+    /*    @Operation(summary = "Find by city and date range")
     @PostMapping("/get/filter")
     public ResponseEntity<List<ProductDTO>> getCityDateRange(@RequestBody FilterDTO filterDTO)
             throws BadRequestException, FindByIdException {
@@ -95,27 +95,5 @@ public class ProductController implements CRUDController<ProductDTO> {
                 return ResponseEntity.ok(productService.findCityDateRange(filterDTO));
         }
         return null;
-    }
-
-    @Operation(summary = "Find by city, date range and Category")
-    @PostMapping("/filters")
-    public ResponseEntity<List<ProductDTO>> filterCityDatesCategory(@RequestBody FilterDTO filterDTO) throws BadRequestException, FindByIdException {
-        return ResponseEntity.ok(productService.filterCityAndDates(filterDTO));
-    }
-
-    public Boolean validate(FilterDTO filterDTO){
-        if((filterDTO.getCityId() == null) && (filterDTO.getStartDate() == null &&filterDTO.getEndDate() == null)){
-            if(filterDTO.getCityId()==null&&(filterDTO.getStartDate()==null||filterDTO.getEndDate()==null)){
-                return false;
-                }
-            return false;
-        }else {
-            return true;
-        }
-    }
-    /*@GetMapping("/get/test")
-    public List<ReservationResultDTO> test(){
-        return productService.test();
     }*/
 }
- /*  */

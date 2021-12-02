@@ -1,20 +1,12 @@
 package com.proyecto.integrador.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.proyecto.integrador.DTO.FeatureDTO;
+import com.proyecto.integrador.DTO.FeatureResponseDTO;
 import com.proyecto.integrador.persistence.entity.enums.FeatureTypes;
-import io.swagger.v3.oas.models.tags.Tag;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Entity
 @Getter
@@ -46,13 +38,20 @@ public class Feature {
         this.type = type;
     }
 
+    private List<Integer> responseDTO() {
+        List<Integer> productIds = new ArrayList<>();
+        for (Product product: products) {
+            productIds.add(product.getId());
+        }
+        return productIds;
+    }
 
-
-    public FeatureDTO toDto() {
-        FeatureDTO featureDTO = new FeatureDTO();
+    public FeatureResponseDTO toDto() {
+        FeatureResponseDTO featureDTO = new FeatureResponseDTO();
         featureDTO.setId(id);
         featureDTO.setTitle(title);
         featureDTO.setType(type);
+        featureDTO.setProductIds(responseDTO());
         return featureDTO;
     }
 }

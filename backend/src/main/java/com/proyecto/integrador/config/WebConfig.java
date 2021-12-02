@@ -10,6 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/categories/**");
         registry.addMapping("/cities/**");
         registry.addMapping("/products/**");
+        registry.addMapping("/features/**");
+        registry.addMapping("/images/**");
+        registry.addMapping("/reservations/**");
         registry.addMapping("/users/**")
                 .allowedMethods("GET", "PUT", "POST", "DELETE");
     }

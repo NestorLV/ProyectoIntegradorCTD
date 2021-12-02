@@ -28,7 +28,7 @@ public class ProductDTO {
     private String health;
     private String politics;
     private Set<ImageDTO> images = new HashSet<>();
-    private Set<FeatureDTO> features = new HashSet<>();
+    private Set<FeatureResponseDTO> features = new HashSet<>();
 
     public ProductDTO() {
     }
@@ -36,6 +36,10 @@ public class ProductDTO {
     public ProductDTO(Integer id, double qualification) {
         this.id = id;
         this.qualification = qualification;
+    }
+
+    public ProductDTO(Integer id) {
+        this.id = id;
     }
 
     public ProductDTO(String name, String description, double latitude, double longitude, String address, double qualification, boolean favourite, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {

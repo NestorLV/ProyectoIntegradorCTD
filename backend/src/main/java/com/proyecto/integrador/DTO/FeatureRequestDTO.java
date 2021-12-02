@@ -11,22 +11,22 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class FeatureDTO {
+public class FeatureRequestDTO {
     private Integer id;
     private String title;
     private FeatureTypes type;
     private Set<Product> products = new HashSet<>();
 
-    public FeatureDTO() {
+    public FeatureRequestDTO() {
     }
 
-    public FeatureDTO(Integer id, String title, boolean state, FeatureTypes type) {
+    public FeatureRequestDTO(Integer id, String title, boolean state, FeatureTypes type) {
         this.id = id;
         this.title = title;
         this.type = type;
     }
 
-    public FeatureDTO(String title, boolean state, FeatureTypes type) {
+    public FeatureRequestDTO(String title, boolean state, FeatureTypes type) {
         this.title = title;
         this.type = type;
     }

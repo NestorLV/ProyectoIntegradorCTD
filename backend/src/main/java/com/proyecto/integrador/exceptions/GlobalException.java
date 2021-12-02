@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -37,12 +38,18 @@ public class GlobalException extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         logger.error(ex.getMessage() + " " +  headers + " " + status + " " + request);
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("No tiene permisos para acceder a este recurso");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("El método http que está intentando utilizar no es soportado por la aplicación, verifique que sea el correcto y vuelva a intentarlo");
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public final ResponseEntity<ErrorMessage> handleAccessDeniedException() {
         ErrorMessage errorDetails = new ErrorMessage("No tiene permisos para acceder a este recurso");
         return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
+    public final ResponseEntity<ErrorMessage> procesarErrorTokenNoEncontrado() {
+        ErrorMessage errorDetails = new ErrorMessage("No se ha encontrado token para ser validado");
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 }

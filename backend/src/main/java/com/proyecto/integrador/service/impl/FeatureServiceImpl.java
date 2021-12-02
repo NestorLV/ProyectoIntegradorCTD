@@ -1,9 +1,8 @@
 package com.proyecto.integrador.service.impl;
 
-import com.proyecto.integrador.DTO.CategoryDTO;
-import com.proyecto.integrador.DTO.FeatureDTO;
+import com.proyecto.integrador.DTO.FeatureRequestDTO;
+import com.proyecto.integrador.DTO.FeatureResponseDTO;
 import com.proyecto.integrador.DTO.ProductDTO;
-import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.persistence.entity.Feature;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Product;
@@ -30,9 +29,9 @@ public class FeatureServiceImpl implements IFeatureService {
     ProductServiceImpl productService;
 
     @Override
-    public List<FeatureDTO> findAll() {
+    public List<FeatureResponseDTO> findAll() {
         logger.debug("Iniciando método buscar todas las características");
-        List<FeatureDTO> features = new ArrayList<>();
+        List<FeatureResponseDTO> features = new ArrayList<>();
         for (Feature f: featureRepository.findAll()) {
             features.add(f.toDto());
         }
@@ -41,14 +40,14 @@ public class FeatureServiceImpl implements IFeatureService {
     }
 
     @Override
-    public FeatureDTO save(FeatureDTO feature) throws FindByIdException {
+    public FeatureResponseDTO save(FeatureRequestDTO feature) throws FindByIdException {
         logger.debug("Iniciando método guardar característica");
         logger.debug("Terminó la ejecución del método guardar característica");
         return Optional.of(featureRepository.save(feature.toEntity())).get().toDto();
     }
 
     @Override
-    public FeatureDTO findById(Integer featureId) throws FindByIdException {
+    public FeatureResponseDTO findById(Integer featureId) throws FindByIdException {
         logger.debug("Iniciando método buscar característica por ID");
         if (!featureRepository.existsById(featureId)) {
             throw new FindByIdException("No existe una característica con el id ingresado");
@@ -68,30 +67,34 @@ public class FeatureServiceImpl implements IFeatureService {
     }
 
     @Override
-    public FeatureDTO update(FeatureDTO featureDTO) throws FindByIdException {
+    public FeatureResponseDTO update(FeatureRequestDTO featureRequestDTO) throws FindByIdException {
         logger.debug("Iniciando método actualizar característica por ID");
-        if (!featureRepository.existsById(featureDTO.getId())) {
+        if (!featureRepository.existsById(featureRequestDTO.getId())) {
             throw new FindByIdException("No existe una característica con el id ingresado");
         }
-        Feature feature = featureRepository.findById(featureDTO.getId()).get();
-        feature.setTitle(featureDTO.getTitle());
-        feature.setType(featureDTO.getType());
+        Feature feature = featureRepository.findById(featureRequestDTO.getId()).get();
+        feature.setTitle(featureRequestDTO.getTitle());
+        feature.setType(featureRequestDTO.getType());
         logger.debug("Terminó la ejecución del método actualizar característica por ID");
         return featureRepository.save(feature).toDto();
     }
 
-    public FeatureDTO updateProducts(Integer featureId, Integer productId) throws FindByIdException {
+    public FeatureResponseDTO updateProducts(Integer featureId, Integer productId) throws FindByIdException {
         logger.debug("Iniciando método actualizar característica por ID");
         if (!featureRepository.existsById(featureId)) {
-            throw new FindByIdException("No existe una característica con el id ingresado");
+            throw new FindByIdException("No existe una característica con nuevo producto");
         }
         Feature feature = featureRepository.findById(featureId).get();
-        feature.getProducts().add(productService.findById(productId).toEntity());
-        logger.debug("Terminó la ejecución del método actualizar característica por ID");
+        Set<Product> products = feature.getProducts();
+        Product product = productService.findById(productId).toEntity();
+        product.setId(productId);
+        products.add(product);
+        feature.setProducts(products);
+        logger.debug("Terminó la ejecución del método actualizar característica con nuevo producto");
         return featureRepository.save(feature).toDto();
     }
 
-    public Set<FeatureDTO> findByProduct(Product product) {
+    public Set<FeatureResponseDTO> findByProduct(Product product) {
         logger.debug("Iniciando método buscar lista de características asociadas a un producto");
         Set<Feature> featuresFound =  featureRepository.findAll().stream().filter(feature -> feature.getProducts().contains(product)).collect(Collectors.toSet());
         logger.debug("Terminó la ejecución del método buscar lista de características asociadas a un producto");

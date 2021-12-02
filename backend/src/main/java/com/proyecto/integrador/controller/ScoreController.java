@@ -38,7 +38,7 @@ public class ScoreController implements CRUDController <ScoreDTO> {
         return ResponseEntity.ok(scoresService.findById(id));
     }
 
-    @Operation(summary = "Find score by IDuser and product", description = "Returns a single score")
+    @Operation(summary = "Find score by IdUser and product", description = "Returns a single score")
     @GetMapping("/getByUserAndProduct/{email}/{idProduct}")
     public ResponseEntity<ScoreDTO> getByUserAndProduct(@PathVariable String email, @PathVariable Integer idProduct) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(scoresService.findByUserAndProduct(email, idProduct));
@@ -60,9 +60,11 @@ public class ScoreController implements CRUDController <ScoreDTO> {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws FindByIdException {
         scoresService.deleteById(id);
-        return ResponseEntity.ok("Se elimino la puntuación con id"+ id);
+        return ResponseEntity.ok("Se elimino la puntuación con id "+ id);
     }
 
+
+    // Agregar id de producto o no ??
     @Operation(summary = "Average", description = "Returns average score")
     @GetMapping("/average")
     public ResponseEntity<Double> getAverage(@PathVariable Integer idProduct) {

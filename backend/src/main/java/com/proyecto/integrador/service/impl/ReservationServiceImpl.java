@@ -89,8 +89,6 @@ public class ReservationServiceImpl implements IReservationService {
     public Set<ReservationDTO> findByUserId(Integer userId) {
         logger.debug("Iniciando método buscar reservas asociados al usuario");
         logger.debug("Terminó la ejecución del método buscar reservas asociados al usuario");
-        return reservationRepository.findByProduct_Id(userId).stream().map(Reservation::toDto).collect(Collectors.toSet());
+        return reservationRepository.findByUser_Id(userId).stream().map(Reservation::toDto).collect(Collectors.toSet());
     }
-
-
 }

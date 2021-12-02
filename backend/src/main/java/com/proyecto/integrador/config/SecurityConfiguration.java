@@ -16,6 +16,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
+import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -61,19 +63,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
-        httpSecurity.csrf().disable()
-                .cors().and()
+        System.err.println(httpSecurity.csrf().disable()
+                .cors().and().
                 // dont authenticate these requests
-
-                .authorizeRequests().antMatchers("/users/activate/**", "/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login","/email/**").permitAll()
+                        authorizeRequests().antMatchers("/users/activate/**", "/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login", "/email/**").permitAll()
                 // requests need to be authenticated
-                .antMatchers("/reservations/**").authenticated().
-                antMatchers("/categories/create","/cities/create","/products/create").hasAnyAuthority(RolesTypes.ADMIN.name()).and().
-                // make sure we use stateless session; session won't be used to
+                .antMatchers("/categories/create", "/products/create", "/cities/create","/categories/update", "/products/update", "/cities/update","/categories/delete", "/products/delete", "/cities/delete").access("hasAuthority('ADMIN')").
+                anyRequest().authenticated().and().
+                        formLogin().loginPage("/users/login").and().
+        // make sure we use stateless session; session won't be used to
                 // store user's state.
                         exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
-                exceptionHandling().accessDeniedPage("/users/403");
+                exceptionHandling().accessDeniedPage("/users/403"));
     }
 
     @Override
@@ -92,12 +94,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return source;
     }
 
-    /*@Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(userServiceImpl);
-        return provider;
-    }*/
+    @Bean
+    public JwtRequestFilter authenticationTokenFilterBean() {
+        return new JwtRequestFilter();
+    }
 
 }

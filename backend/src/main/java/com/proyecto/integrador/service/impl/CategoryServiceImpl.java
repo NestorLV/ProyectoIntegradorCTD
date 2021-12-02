@@ -1,13 +1,16 @@
 package com.proyecto.integrador.service.impl;
 
 import com.proyecto.integrador.DTO.CategoryDTO;
+import com.proyecto.integrador.DTO.UserResponseDTO;
 import com.proyecto.integrador.persistence.entity.Category;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.repository.ICategoryRepository;
 import com.proyecto.integrador.service.ICategoryService;
+import com.proyecto.integrador.service.IUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,6 +22,8 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
     ICategoryRepository categoryRepository;
+    @Autowired
+    UserServiceImpl userService;
 
     @Override
     public List<CategoryDTO> findAll() {
