@@ -42,21 +42,23 @@ function ProductSelect({ handleProduct }) {
 
     const options = products.map((p) => {
         return {
-            key: p.id,           
+            key: p.id,
             label: `${p.id} ${p.name}`,
-            value:p,          
+            value: p,
         };
     })
 
     const customStyles = {
         control: () => ({
+            border: "1px solid rgba(0,0,0,.4)",
             borderRadius: "7px",
             boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
             display: "flex",
             justifyContent: "space-between",
             backgroundColor: "white",
-            width: "40vw",
+            width: "43vw",
             minWidth: "250px",
+            maxWidth: "590px",
             color: "black",
             '@media all and (max-width:415px)': {
                 width: "100%"
@@ -93,7 +95,7 @@ function ProductSelect({ handleProduct }) {
         }),
 
         indicatorsContainer: () => ({
-            paddingTop: "15px"
+            paddingTop: "11px"
         }),
 
         dropdownIndicator: () => ({
@@ -109,8 +111,8 @@ function ProductSelect({ handleProduct }) {
         }),
     }
 
-   let handleChange = (option) => {       
-       setChosenProduct(option.value);
+    let handleChange = (option) => {
+        setChosenProduct(option.value);
     }
 
     return (
@@ -123,9 +125,9 @@ function ProductSelect({ handleProduct }) {
                         options={options}
                         placeholder="Seleccionar producto"
                         styles={customStyles}
-                        isSearchable                        
-                        onChange={(newValue) => handleChange(newValue)} 
-                      
+                        isSearchable
+                        onChange={(newValue) => handleChange(newValue)}
+
                     />
                     <button onClick={() => { handleProduct(chosenProduct) }} className={`${Styles.buttonSearchProduct} ${Styles.button}`}>Buscar</button>
                 </div>

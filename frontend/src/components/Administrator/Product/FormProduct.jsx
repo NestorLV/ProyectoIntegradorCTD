@@ -7,6 +7,7 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
 import Delete from "../icons/delete.svg"
+import { render } from "@testing-library/react";
 
 export default function ({ categories, cities, features }) {
     const [name, setName] = useState("");
@@ -105,6 +106,7 @@ export default function ({ categories, cities, features }) {
 
     const customStyles = {
         control: () => ({
+            border: "1px solid rgba(0,0,0,.4)",
             borderRadius: "7px",
             boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.15)",
             display: "flex",
@@ -157,16 +159,6 @@ export default function ({ categories, cities, features }) {
         }),
     }
 
-    const handleClickImage = ((event) => {
-        event.preventDefault()
-        setImages([...images, { title: imageTitle, url: imageUrl }])
-        setImageTitle("");
-        setImageUrl("");
-        //console.log(event);
-        //setImage({ title: "", url: "" })
-
-    })
-
     const openModalCreate = (() => {
         setModalCreateIsOpen(true)
     })
@@ -191,25 +183,28 @@ export default function ({ categories, cities, features }) {
                 aux.splice(index, 1)
                 setSelectedFeatures(aux)
             }
-            //console.log("form product false");
-            //console.log(index, "index");
         }
     }
 
-    function handleTacho(event){
-        setTacho(event.target.id)
+    function handleIndexImageDeleted(event) {
+        console.log(event.target);
+        deleteImage(event.target.id)
+        console.log(event);
     }
 
-    const[tacho, setTacho]=useState()
+    const handleClickImage = ((event) => {
+        event.preventDefault()
+        setImages([...images, { title: imageTitle, url: imageUrl }])
+        setImageTitle("");
+        setImageUrl("");
 
-    useEffect((tacho)=>{
-        deleteImage(tacho)
-    }, [tacho])
+    })
 
-    function deleteImage(tacho){
+    function deleteImage(index) {
         let aux = images;
-        aux.splice(tacho, 1)
-        setImages(aux)
+        aux = aux.filter((image) => { return image.url !== index })
+        setImages(aux);
+        //console.log(images, "images");
     }
 
     console.log(images, "images");
@@ -223,11 +218,11 @@ export default function ({ categories, cities, features }) {
             <div className={`${StylesApp.delimiterChild} ${Styles.containerForm}`}>
                 <form onSubmit={sendData}>
                     <div className={Styles.containerBlockAdministrator}>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="name">Nombre de la propiedad</label>
                             <input type="text" name="name" id="name" value={name} onChange={handleChangeName} />
                         </div>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="category">Categoría</label>
                             <Select
                                 options={options(categories, setSelectedCategory)}
@@ -238,11 +233,11 @@ export default function ({ categories, cities, features }) {
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="address">Dirección</label>
                             <input type="text" name="address" id="address" value={address} onChange={handleChangeAddress} />
                         </div>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="city">Ciudad</label>
                             <Select
                                 options={options(cities, setSelectedCity)}
@@ -253,21 +248,21 @@ export default function ({ categories, cities, features }) {
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="latitude">Latitud</label>
                             <input type="text" name="latitude" id="latitude" value={latitude} onChange={handleChangeLatitude} />
                         </div>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="longitude">Longitud</label>
                             <input type="text" name="longitude" id="longitude" value={longitude} onChange={handleChangeLongitude} />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="reference">Referencia</label>
                             <input type="text" name="reference" id="reference" value={reference} onChange={handleChangeReference} />
                         </div>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="qualification">Calificación</label>
                             <input type="text" name="qualification" id="qualification" value={qualification} onChange={handleChangeQualification} />
                         </div>
@@ -307,24 +302,28 @@ export default function ({ categories, cities, features }) {
                     </div>
                     <div className={Styles.containerImages}>
                         <h3>Cargar imágenes</h3>
-                        <div className={Styles.containerBlockAdministrator}>
-                            <div className={Styles.image}>
-                                <label htmlFor="titleImage">Título</label>
-                                <input type="text" name="titleImage" id="titleImage" value={imageTitle} onChange={handleChangeImageTitle} />
-                            </div>
-                            <div className={Styles.image}>
-                                <label htmlFor="urlImage">URL</label>
-                                <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
+                        <div className={Styles.containerBlockAdministratorImage}>
+                            <div className={Styles.blockInputsImages}>
+                                <div className={Styles.image}>
+                                    <label htmlFor="titleImage">Título</label>
+                                    <input type="text" name="titleImage" id="titleImage" value={imageTitle} onChange={handleChangeImageTitle} />
+                                </div>
+                                <div className={Styles.image}>
+                                    <label htmlFor="urlImage">URL</label>
+                                    <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
+                                </div>
                             </div>
                             <button onClick={handleClickImage}>+</button>
                         </div>
                         <div className={Styles.insertedImages}>
                             {images.map((image, index) => {
                                 return (
-                                    <div className={Styles.insertedImage}>
-                                        <input className={Styles.imageItem} value={image.title}/> 
-                                        <div className={Styles.imageItem}> {image.url} </div>
-                                        <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={index} onClick={handleTacho} /></div>
+                                    <div className={Styles.insertedImageAndButton}>
+                                        <div className={Styles.insertedImage}>
+                                            <div className={Styles.imageItem}> {image.title}</div>
+                                            <div className={Styles.imageItem}> {image.url}</div>
+                                        </div>
+                                        <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={image.url} onClick={handleIndexImageDeleted} /></div>
                                     </div>
                                 )
                             })}

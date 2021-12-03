@@ -35,7 +35,7 @@ h1{
 
 .selectProductBox {
     display: flex;
-    width: 75%;
+    width: 100%;
     justify-content: space-between;      
 }
 
@@ -72,19 +72,25 @@ h1{
     font-weight: var(--font-medium);
 }
 
-.containerBlockAdministrator{
+.containerBlockAdministrator, .containerBlockAdministratorImage{
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.containerBlockAdministrator>div{
+.containerBlockAdministratorImage .blockInputsImages{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 93.5%;
+}
+
+.containerBlockAdministrator .blockInputs, .containerBlockAdministratorImage .blockInputsImages .image{
     width: 49%;
 }
 
-.containerBlockAdministrator input{
+.containerBlockAdministrator input, .containerBlockAdministratorImage input{
+    border: 1px solid rgba(0,0,0,.4);
     padding: 5px;
 }
 
@@ -112,24 +118,34 @@ h1{
     flex-direction: column;
 }
 
-.containerImages .insertedImage{
+.containerImages .insertedImageAndButton{
     display: flex;
    justify-content: space-between;
   
 }
 
-.containerImages .insertedImage .imageItem{
-    padding: 5px;
-    width: 46%;
+.insertedImageAndButton{
+    margin-top: 5px;
 }
 
-.containerImages .insertedImage .deleteImage{
+.insertedImageAndButton .insertedImage{
+    display: flex;
+    width: 93%;
+    justify-content: space-between;
+}
+
+.insertedImage .imageItem{
+    padding: 5px;
+    width: 48.5%;
+}
+
+.containerImages .insertedImageAndButton .deleteImage{
     display: flex;
     justify-content: center;
     width: 41px;
 }
 
-.containerImages .insertedImage .deleteImage>img{
+.deleteImage>img{
     width: 22px;
 }
 .containerImages button{
@@ -146,7 +162,7 @@ h1{
 
 .description textarea, .politics textarea{
     align-self: center;
-    border: none;
+    border: 1px solid rgba(0,0,0,.4);
     border-radius: 5px;
     box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
     color: var(--tertiary-color);
@@ -179,6 +195,7 @@ text-transform: capitalize;
 }
 
 .containerPolitics{
+    border: 1px solid rgba(0,0,0,.4);
     display: flex;
     justify-content: space-evenly;
     border-radius: 5px;
@@ -209,35 +226,10 @@ width: 100%;
     width: clamp(164px,22.2vw,250px);
 }
 
-@media all and (max-width:769px){
-    .containerForm form{
-        min-height: 1500px;
-        
-    }
-
-    .containerPoliticsPrincipal{
-        width: 100%;
-    }
-    .containerPolitics{
-        flex-direction: column;
-        justify-content: space-between;
-        height: 60vh;
-       padding: 20px;
-    }
-
-    .politics{
-        height: 30%;
-        width: 100%;
-    }
-
-    .politics textarea{
-        height: 65%;
-    }
-
-    .selectProductBox {       
-        width: 100%;        
-    }
+.hide{
+    display: none;
 }
+
 /*Estilos Create*/
 
 .containerCreateModal {
@@ -288,6 +280,74 @@ padding: 8px;
 width: 100%;
 }
 
+
+@media all and (max-width:769px){
+    .containerForm form{
+        min-height: 1500px;
+        
+    }
+
+    .containerPoliticsPrincipal{
+        width: 100%;
+    }
+    .containerPolitics{
+        flex-direction: column;
+        justify-content: space-between;
+        height: 60vh;
+       padding: 20px;
+    }
+
+    .politics{
+        height: 30%;
+        width: 100%;
+    }
+
+    .politics textarea{
+        height: 65%;
+    }
+
+    .selectProductBox {       
+        width: 100%;        
+    }
+
+    .insertedImageAndButton .insertedImage, .blockInputsImages{
+        flex-direction: column;
+    }
+    .containerBlockAdministratorImage .blockInputsImages{
+        width: 90.5%;
+    }
+
+    .containerBlockAdministratorImage .blockInputsImages .image{
+        width: 49%;
+    }
+
+   
+   
+}
+
+@media all and (max-width:600px){
+    .containerForm form{
+        min-height: 1800px;
+    }
+
+    .containerBlockAdministrator, .containerBlockAdministratorImage .blockInputsImages{
+        flex-direction: column;
+    }
+
+    .containerBlockAdministratorImage .blockInputsImages .image{
+        width: 100%;
+    }
+
+    .containerBlockAdministrator .blockInputs{
+        width: 100%;
+    }
+
+    .containerBlockAdministratorImage .blockInputsImages {
+        width: 87.5%;
+    }
+
+}
+
 @media all and (max-width:415px){
     .selectProductBox {       
         flex-direction: column;        
@@ -298,4 +358,8 @@ width: 100%;
         margin-top: 10px;
         width: 100%;
     }
+    .containerBlockAdministratorImage .blockInputsImages {
+        width: 84.5%;
+    }
+    
 }

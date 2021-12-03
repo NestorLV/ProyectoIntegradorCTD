@@ -15,6 +15,7 @@ function CreateProduct(props) {
     const [optionsFeatures, setOptionsFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    
    
     useEffect(() => {
         AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) 
