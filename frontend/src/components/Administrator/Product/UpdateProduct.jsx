@@ -44,6 +44,9 @@ function UpdateProduct(props) {
         setProduct(p);
     }  
 
+    const title="¡Gracias!";
+    const message="Se ha actualizado exitosamente el producto";
+    
     return (
         (errorMessage && loading) ?
             <section className={StylesApp.delimiter}>
@@ -58,7 +61,7 @@ function UpdateProduct(props) {
                         <div className={StylesApp.delimiterChild}>
                             <h1>Modificar producto</h1>                          
                             <ProductSelect handleProduct={handleProduct}/>                           
-                            <FormProduct product={product} categories={optionsCategories} cities={optionsCities} features={optionsFeatures} />
+                            <FormProduct product={product} categories={optionsCategories} cities={optionsCities} features={optionsFeatures} titleModal={title} messageModal={message} />
                         </div>
                     </section>
                 )}
