@@ -6,7 +6,7 @@ import Styles from "./Styles.module.css";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
-import Delete from "../icons/tildeOk.svg"
+import Delete from "../icons/delete.svg"
 
 export default function ({ product, categories, cities, features }) {
     const [name, setName] = useState("");
@@ -104,27 +104,34 @@ export default function ({ product, categories, cities, features }) {
     }
 
     useEffect(() => {
-        if (product) {
-            setName(product.name)            
-            setSelectedCategory({ id: product.category.id, name: product.category.title })
-            setAddress(product.address)
-            setSelectedCity({ id: product.city.id, name: product.city.name })
-            setLatitude(product.latitude)
-            setLongitude(product.longitude)
-            setReference(product.reference)
-            setQualification(product.qualification)
-            setDescription(product.description)
-            setSelectedFeatures(product.features)
-            setRules(product.rules)
-            setHealthAndSecurity(product.healthAndSecurity)
-            setCancellationPolicy(product.cancellationPolicy)
-            setImages(product.images)
-        }
+        setName(product.name)
+        setSelectedCategory(
+            {
+                value: `${product.category.title}`,
+                label: <div>{product.category.title}</div>  //<OptionsSelect valor={product.category} setValor={setSelectedCategory} />,                
+            })
+        setAddress(product.address)
+        setSelectedCity({
+            value: `${product.city.name}`,
+            label: <OptionsSelect valor={{ id: product.city.id, name: product.city.name }} />
+        })
+        setLatitude(product.latitude)
+        setLongitude(product.longitude)
+        setReference(product.reference)
+        setQualification(product.qualification)
+        setDescription(product.description)
+        setSelectedFeatures(product.features)
+        setRules(product.rules)
+        setHealthAndSecurity(product.healthAndSecurity)
+        setCancellationPolicy(product.cancellationPolicy)
+        setImages(product.images)
+
     }, [product])
 
-    console.log(product.images,"product.images")
-    console.log(product.features,"product.features")
-    console.log(product.category.title,"product.category.title")
+    /*    console.log(product.images,"product.images")
+       console.log(product.features,"product.features")
+       console.log(product.category.title,"product.category.title") */
+    console.log(product.features, "product.features")
 
     const customStyles = {
         control: () => ({
@@ -201,8 +208,6 @@ export default function ({ product, categories, cities, features }) {
     //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
     //qualification, reference,
 
-
-
     function saveSelectedFeatures(event) {
         if (event.target.checked) {
             setSelectedFeatures([...selectedFeatures, { id: event.target.id, name: event.target.value }])
@@ -219,17 +224,17 @@ export default function ({ product, categories, cities, features }) {
         }
     }
 
-    function handleTacho(event){
+    function handleTacho(event) {
         setTacho(event.target.id)
     }
 
-    const[tacho, setTacho]=useState()
+    const [tacho, setTacho] = useState()
 
-    useEffect((tacho)=>{
+    useEffect((tacho) => {
         deleteImage(tacho)
     }, [tacho])
 
-    function deleteImage(tacho){
+    function deleteImage(tacho) {
         let aux = images;
         aux.splice(tacho, 1)
         setImages(aux)
@@ -240,6 +245,36 @@ export default function ({ product, categories, cities, features }) {
         event.preventDefault()
 
     }
+
+    let handleChangeCategory = (value) => {
+        setSelectedCategory(value)
+    }
+
+    let handleChangeCity = (value) => {
+        setSelectedCity(value)
+    }
+
+  
+ 
+    let handleChangeFeature = (value) => {
+        if(value.target.checked){
+             setSelectedFeatures([...selectedFeatures, value])
+        } else {
+            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.title == value.target.value))
+            if (index != -1) {
+                let aux = selectedFeatures;
+                aux = aux.filter((feature) => { return feature.title !== value.target.value })
+                /* aux.splice(index, 1) */
+                setSelectedFeatures(aux)
+            }
+        }       
+        console.log(selectedFeatures, "selectedFeatures"); 
+        
+        
+
+        
+    }
+
 
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
@@ -253,11 +288,12 @@ export default function ({ product, categories, cities, features }) {
                         <div>
                             <label htmlFor="category">Categoría</label>
                             <Select
+                                onChange={(newValue) => handleChangeCategory(newValue)}
                                 options={options(categories, setSelectedCategory)}
                                 placeholder="Seleccionar categoria"
                                 styles={customStyles}
-                                getOptionValue={selectedCategory}
-                                /* value={selectedCategory} */
+                                getOptionValue={option => option.value}
+                                value={selectedCategory}
                             />
                         </div>
                     </div>
@@ -269,11 +305,12 @@ export default function ({ product, categories, cities, features }) {
                         <div>
                             <label htmlFor="city">Ciudad</label>
                             <Select
+                                onChange={(newValue) => handleChangeCity(newValue)}
                                 options={options(cities, setSelectedCity)}
                                 placeholder="Seleccionar ciudad"
                                 styles={customStyles}
                                 getOptionValue={(option) => option.value}
-                                value={selectedCategory}
+                                value={selectedCity}
                             />
                         </div>
                     </div>
@@ -306,7 +343,16 @@ export default function ({ product, categories, cities, features }) {
                         <h3>Agregar atributos</h3>
                         {features.map((option, index) => {
                             return (
-                                <label onClick={saveSelectedFeatures}><input type="checkbox" id={index + 1} value={option.name} /> {option.name}</label>
+                                <label onClick={saveSelectedFeatures}>
+                                    <input                                        
+                                        onChange={event => handleChangeFeature(event)}
+                                        type="checkbox"
+                                        checked={selectedFeatures.find(feature => feature.id == option.id)} 
+                                        id={index + 1}
+                                        value={option.name}
+                                    />
+                                    {option.name}
+                                </label>
                             )
                         })}
                     </div>
@@ -347,7 +393,7 @@ export default function ({ product, categories, cities, features }) {
                             {images.map((image, index) => {
                                 return (
                                     <div className={Styles.insertedImage}>
-                                        <input className={Styles.imageItem} value={image.title}/> 
+                                        <input className={Styles.imageItem} value={image.title} />
                                         <div className={Styles.imageItem}> {image.url} </div>
                                         <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={index} onClick={handleTacho} /></div>
                                     </div>
