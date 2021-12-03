@@ -8,7 +8,7 @@ import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
 import Delete from "../icons/delete.svg"
 
-export default function ({ categories, cities, features }) {
+export default function ({ categories, cities, features, titleModal, messageModal}) {
     const [name, setName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState({ id: "", name: "" })
     const [address, setAddress] = useState("");
@@ -174,7 +174,7 @@ export default function ({ categories, cities, features }) {
     const closeModalCreate = () => {
         setModalCreateIsOpen(false);
     };
-
+    
     //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
     //qualification, reference,
 
@@ -336,7 +336,7 @@ export default function ({ categories, cities, features }) {
                     </div>
                 </form>
                 <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
-                    <CreateProductModal />
+                    <CreateProductModal title={titleModal} message={messageModal}/>
                 </Modal>
             </div>
         </section>

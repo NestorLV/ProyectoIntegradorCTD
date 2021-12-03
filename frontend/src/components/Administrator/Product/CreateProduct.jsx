@@ -22,6 +22,8 @@ function CreateProduct(props) {
         AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) 
     }, [])
 
+    const title="¡Gracias!";
+    const message="Se ha creado exitosamente el producto";
 
     return (
         (errorMessage && loading) ?
@@ -36,7 +38,7 @@ function CreateProduct(props) {
                     <section className={StylesApp.delimiter}>
                         <div className={StylesApp.delimiterChild}>
                             <h1>Crear producto</h1>
-                            <FormProduct categories={optionsCategories} cities={optionsCities} features={optionsFeatures} />
+                            <FormProduct categories={optionsCategories} cities={optionsCities} features={optionsFeatures} titleModal={title} messageModal={message} />
                         </div>
                     </section>
                 )}
