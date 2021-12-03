@@ -3,30 +3,21 @@ import StylesApp from "../../../App.module.css";
 import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
 import FormProduct from "./FormProduct";
-import axios from "axios"
-import { Modal } from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
-import CreateProductModal from './CreateProductModal';
 import ProductSelect from "./ProductSelect";
+import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axiosCollection/Product/AxiosProduct.jsx"
 
 function UpdateProduct(props) {
     const baseURL = "http://localhost:8080/";
 
     const [optionsCategories, setOptionsCategories] = useState([])
-    const [selectedCategory, setSelectedCategory] = useState()
-
     const [optionsCities, setOptionsCities] = useState([])
-    const [selectedCity, setSelectedCity] = useState()
-
     const [optionsFeatures, setOptionsFeatures] = useState([])
-    const [selectedFeatures, setSelectedFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
 
     const [product, setProduct] = useState({
         id: null,
-        name: "Hotel Transilvania",
+        name: "",
         description: "",
         latitude: null,
         longitude: null,
@@ -43,54 +34,10 @@ function UpdateProduct(props) {
         address: "",
     });
 
-    const openModalCreate = (() => {
-        setModalCreateIsOpen(true)
-    })
-
-    const closeModalCreate = () => {
-        setModalCreateIsOpen(false);
-    };
-
     useEffect(() => {
-        axios
-            .get(baseURL + "categories/all")
-            .then((response) => {
-                setLoading(false);
-                setOptionsCategories(response.data.map((category) => { return { id: category.id, name: category.title } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
-    }, [])
-
-    console.log(optionsCities);
-
-    useEffect(() => {
-        axios
-            .get(baseURL + "cities/all")
-            .then((response) => {
-                setLoading(false);
-                setOptionsCities(response.data.map((city) => { return { id: city.id, name: city.name } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
-    }, [])
-
-    useEffect(() => {
-        axios
-            .get(baseURL + "features/all")
-            .then((response) => {
-                setLoading(false);
-                console.log(response.data);
-                setOptionsFeatures(response.data.map((feature) => { return { id: feature.id, name: feature.title } }));
-            })
-            .catch((error) => {
-                setErrorMessage(error.message);
-                setLoading(false);
-            });
+        AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) 
+        AxiosGetCities(setLoading, setOptionsCities, setErrorMessage)
+        AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) 
     }, [])
 
     const handleProduct = (p) => {
@@ -111,11 +58,7 @@ function UpdateProduct(props) {
                         <div className={StylesApp.delimiterChild}>
                             <h1>Modificar producto</h1>                          
                             <ProductSelect handleProduct={handleProduct}/>                           
-                            <FormProduct product={product} categories={optionsCategories} setSelectedCategory={setSelectedCategory} cities={optionsCities} setSelectedCity={setSelectedCity} features={optionsFeatures} setSelectedFeatures={setSelectedFeatures} />
-                            <button onClick={openModalCreate} id={Styles.buttonCreateProduct}>Modificar Producto</button>
-                            <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
-                                <CreateProductModal />
-                            </Modal>
+                            <FormProduct product={product} categories={optionsCategories} cities={optionsCities} features={optionsFeatures} />
                         </div>
                     </section>
                 )}

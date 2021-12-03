@@ -28,6 +28,8 @@ export default function ({ product, categories, cities, features }) {
 
     const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
 
+    console.log(features);
+
     /*console.log(name);
     console.log(selectedCategory);
     console.log(address);
