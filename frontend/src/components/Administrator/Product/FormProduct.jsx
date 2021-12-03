@@ -6,9 +6,9 @@ import Styles from "./Styles.module.css";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
-import Delete from "../icons/delete.svg"
+import Delete from "../icons/tildeOk.svg"
 
-export default function ({ categories, cities, features }) {
+export default function ({ product, categories, cities, features }) {
     const [name, setName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState({ id: "", name: "" })
     const [address, setAddress] = useState("");
@@ -100,6 +100,29 @@ export default function ({ categories, cities, features }) {
             };
         })
     }
+
+    useEffect(() => {
+        if (product) {
+            setName(product.name)            
+            setSelectedCategory({ id: product.category.id, name: product.category.title })
+            setAddress(product.address)
+            setSelectedCity({ id: product.city.id, name: product.city.name })
+            setLatitude(product.latitude)
+            setLongitude(product.longitude)
+            setReference(product.reference)
+            setQualification(product.qualification)
+            setDescription(product.description)
+            setSelectedFeatures(product.features)
+            setRules(product.rules)
+            setHealthAndSecurity(product.healthAndSecurity)
+            setCancellationPolicy(product.cancellationPolicy)
+            setImages(product.images)
+        }
+    }, [product])
+
+    console.log(product.images,"product.images")
+    console.log(product.features,"product.features")
+    console.log(product.category.title,"product.category.title")
 
     const customStyles = {
         control: () => ({
@@ -231,7 +254,8 @@ export default function ({ categories, cities, features }) {
                                 options={options(categories, setSelectedCategory)}
                                 placeholder="Seleccionar categoria"
                                 styles={customStyles}
-                                getOptionValue={(option) => option.value}
+                                getOptionValue={selectedCategory}
+                                /* value={selectedCategory} */
                             />
                         </div>
                     </div>
@@ -247,6 +271,7 @@ export default function ({ categories, cities, features }) {
                                 placeholder="Seleccionar ciudad"
                                 styles={customStyles}
                                 getOptionValue={(option) => option.value}
+                                value={selectedCategory}
                             />
                         </div>
                     </div>
