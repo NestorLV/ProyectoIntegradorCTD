@@ -10,6 +10,7 @@ import Icons from "../Product/icons/Icons";
 import { AxiosCreateFavourite } from '../../axiosCollection/Cards/AxiosCards';
 
 function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
+    const role = sessionStorage.getItem("role");
     const [isLike, setLike] = useState(favorite);
     const [mapIsOpen, setMapIsOpen] = useState(false)
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
@@ -17,6 +18,14 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     const [textoDespliegue, setTextoDespliegue] = useState("más...")
     const [errorMessage, setErrorMessage] = useState("");
     const [admin, setAdmin] = useState(true);
+
+    useEffect(() => {
+        if (sessionStorage.getItem("role") === "ADMIN") {
+            setAdmin(true)
+        } else {
+            setAdmin(false)
+        }
+    }, [role])
 
     const handleToggle = () => {
         AxiosCreateFavourite(id, setLike, setErrorMessage)
@@ -110,11 +119,19 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                     <Link to={`/product/${id}`} key={id} className={Styles.link} onClick={handleLastLocation}>
                         <button className={Styles.cardButton2}>Ver más</button>
                     </Link>
+
                     {admin &&
-                        <Link to={`/product/update/${id}`} key={id} className={Styles.link} onClick={handleLastLocation}>
-                            <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`}>Modificar</button>
-                        </Link>
+                        <div className={Styles.buttonsAdminBox}>
+                            <Link to={`/product/update/`} key={id} className={Styles.link} onClick={handleLastLocation}>
+                                <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`}>Modificar</button>
+                            </Link>
+                            <Link to={`/product/delete/${id}`} key={id} className={Styles.link} onClick={handleLastLocation}>
+                                <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`}>Eliminar</button>
+                            </Link>
+                        </div>
                     }
+
+
                 </div>
 
             </div>

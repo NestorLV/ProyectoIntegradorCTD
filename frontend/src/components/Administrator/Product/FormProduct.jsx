@@ -268,9 +268,7 @@ export default function ({ product, categories, cities, features, titleModal, me
                 setSelectedFeatures(aux)
             }
         }       
-        console.log(selectedFeatures, "selectedFeatures"); 
-        
-        
+        console.log(selectedFeatures, "selectedFeatures");        
 
         
     }
