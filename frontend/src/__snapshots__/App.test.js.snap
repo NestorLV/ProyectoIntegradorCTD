@@ -22,15 +22,25 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
           category="All"
           city=""
           clickBusqueda={false}
+          clickSeeFavourites={false}
+          endDate={null}
           favourite={false}
           handleCategory={[Function]}
           handleCity={[Function]}
+          handleClean={[Function]}
           handleSearch={[Function]}
           loading={false}
           search={false}
           setActiveCreate={[Function]}
           setActiveLogin={[Function]}
+          setCategory={[Function]}
+          setCity={[Function]}
+          setEndDate={[Function]}
+          setFavourite={[Function]}
           setLastLocation={[Function]}
+          setSearch={[Function]}
+          setStartDate={[Function]}
+          startDate={null}
         />
       </Route>
       <Route
@@ -42,6 +52,16 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
         component={[Function]}
         exact={true}
         path="/create"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/product/create"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/product/update"
       />
       <Route
         exact={true}

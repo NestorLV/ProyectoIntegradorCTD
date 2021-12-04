@@ -13,6 +13,9 @@ import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createSerializer } from 'enzyme-to-json';
 
+import * as TestRenderer from "react-test-renderer";
+import { MemoryRouter, Outlet, Routes, Route, useParams } from "react-router";
+
 
 Enzyme.configure({ adapter: new Adapter() });
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
@@ -29,6 +32,7 @@ describe("Probando el componente <ArrivalTimeBar/>", () => {
     });
 
 })
+
 
 describe("Probando el componente <CalendarBar/>", () => {
     let wrapper;
