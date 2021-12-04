@@ -15,6 +15,7 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
             sessionStorage.setItem("id", response.data.id);
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("log", "true");
+            sessionStorage.setItem("role", response.data.role);
             /*  setEmail({ campo:email, valido: true })
              setPassword({campo:password, valido: true }) */
             setFormValido(true);

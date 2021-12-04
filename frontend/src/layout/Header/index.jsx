@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from "./img/logoWguest.jpg";
 import Styles from "./styles.module.css"
 import StylesApp from "../../App.module.css"
@@ -10,7 +10,8 @@ import lineOrange from "./img/LineOrange.png"
 import verticalLine from "./img/VerticalLine.png"
 
 export default function Header({ setLastLocation, setBookingWithoutLogin, setLoading, activeCreate, activeLogin, isLogged, showBurger, setShowBurger, handleClean, handleFavourite }) {
-    const [admin, setAdmin] = useState(true);
+    const role = sessionStorage.getItem("role");
+    const [admin, setAdmin] = useState(false);
     const [adminMenu, setAdminMenu] = useState(false);
     const [userMenu,setUserMenu] = useState(false);
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
@@ -28,6 +29,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
         sessionStorage.removeItem("id")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
+        sessionStorage.removeItem("role")
         setLastLocation(window.location.pathname)
     }
 
@@ -61,7 +63,16 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     let handleAdminMenu = () => {
         setAdminMenu(true);
         setUserMenu(false);
-    }
+    }    
+
+    useEffect(() => {
+        if (sessionStorage.getItem("role") === "ADMIN") {
+            setAdmin(true)            
+        } else {
+            setAdmin(false)
+        }
+    }, [role])
+  
 
     return (
         <div className={Styles.containerHeader}>
