@@ -132,10 +132,10 @@ div.loggedIn>div {
   border-width: 0 2px 2px 0;
   content: '';
   display: inline-block;
-  height: 9px;
+  height: 8px;
   position: relative;
   transform: rotate(45deg);
-  width: 9px;
+  width: 8px;
   opacity: 50%;
   margin: 16px 0 0 6px;
   vertical-align: top;
@@ -174,8 +174,7 @@ div.user div.text h3.name {
 }
 
 div.user div.text h4.seeMyAccount {     
-  z-index : 50;    
-
+  z-index : 50;   
 }
 
 div.user div.text h4.seeMyAccount:hover {
@@ -205,6 +204,21 @@ div.user div.close{
 .administracion {
   text-decoration: none;
   color: var(--secondary-color);
+  padding-right: 5px;
+}
+
+.arrowAdmin{
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  content: '';
+  display: inline-block;
+  height: 7px;
+  position: relative;
+  transform: rotate(45deg);
+  width: 7px;
+  opacity: 50%;
+  margin-left: 6px;
+  vertical-align: top;
 }
 
 .headerOptions {
@@ -232,7 +246,7 @@ div.user div.close{
 }
 
 .adminOptions {     
-  right: calc((100vw - 900px) / 2);
+  right: calc((100vw - 883px) / 2);
   top: 80px; 
   width: 174px;  
 }
@@ -240,7 +254,7 @@ div.user div.close{
 .userOptions {
   right: calc((100vw - 1366px) / 2);
   top: 80px; 
-  width: 220px;  
+  width: 215px;  
 }
 
 .adminOptions a, .userOptions a{
@@ -256,12 +270,18 @@ div.user div.close{
 }
 
 .seeMyAccount {
-  padding:14px 0;  
+  padding: 10px 0;
+  margin: 10px 0;  
 }
 
 .seeMyAccount:hover{
   cursor: pointer;
   background-color:#f0d7d1;    
+}
+
+.boxAdminArrow {
+  display: flex;
+  align-items: center;
 }
 
 /* css contenedor mobile  */
@@ -355,8 +375,10 @@ div.mobile {
 @media all and (max-width: 600px) {
   .optionsBox{
     flex-direction: column;
-    flex-flow: column-reverse;
+    flex-flow: column-reverse;   
   }
+
+  
 
   .verticalLine{
     display: none;
