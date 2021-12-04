@@ -1,52 +1,13 @@
-import Select from "react-select"
-import OptionsSelect from "./OptionsSelect";
-import React, { useEffect, useState } from "react";
 import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
-import { Modal } from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
-import CreateProductModal from './CreateProductModal';
+import Select from "react-select"
+import OptionsSelect from "./OptionsSelect";
 import Delete from "../icons/delete.svg"
 
-export default function ({ product, categories, cities, features, titleModal, messageModal}) {
-    const [name, setName] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState({ id: "", name: "" })
-    const [address, setAddress] = useState("");
-    const [selectedCity, setSelectedCity] = useState({ id: "", name: "" })
-    const [latitude, setLatitude] = useState();
-    const [longitude, setLongitude] = useState();
-    const [reference, setReference] = useState("");
-    const [qualification, setQualification] = useState();
-    const [description, setDescription] = useState("");
-    const [selectedFeatures, setSelectedFeatures] = useState([]);
-    const [rules, setRules] = useState("");
-    const [healthAndSecurity, setHealthAndSecurity] = useState("");
-    const [cancellationPolicy, setCancellationPolicy] = useState("");
-    const [imageTitle, setImageTitle] = useState()
-    const [imageUrl, setImageUrl] = useState()
-    const [images, setImages] = useState([])
+export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude,setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen}){
 
-    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
-
-    console.log(features);
-
-    /*console.log(name);
-    console.log(selectedCategory);
-    console.log(address);
-    console.log(selectedCity);
-    console.log(latitude);
-    console.log(longitude);
-    console.log(reference);
-    console.log(qualification);
-    console.log(description);
-    console.log(selectedFeatures);
-    console.log(rules);
-    console.log(healthAndSecurity);
-    console.log(cancellationPolicy);
-    console.log(images);*/
-
-    /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
-    const handleChangeName = (event) => {
+     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
+     const handleChangeName = (event) => {
         setName(event.target.value)
     }
 
@@ -103,38 +64,74 @@ export default function ({ product, categories, cities, features, titleModal, me
         })
     }
 
-    useEffect(() => {
-        setName(product.name)
-        setSelectedCategory(
-            {
-                value: `${product.category.title}`,
-                label: <div>{product.category.title}</div>  //<OptionsSelect valor={product.category} setValor={setSelectedCategory} />,                
-            })
-        setAddress(product.address)
-        setSelectedCity({
-            value: `${product.city.name}`,
-            label: <OptionsSelect valor={{ id: product.city.id, name: product.city.name }} />
-        })
-        setLatitude(product.latitude)
-        setLongitude(product.longitude)
-        setReference(product.reference)
-        setQualification(product.qualification)
-        setDescription(product.description)
-        setSelectedFeatures(product.features)
-        setRules(product.rules)
-        setHealthAndSecurity(product.healthAndSecurity)
-        setCancellationPolicy(product.cancellationPolicy)
-        setImages(product.images)
+    function saveSelectedFeatures(event) {
+        if (event.target.checked) {
+            setSelectedFeatures([...selectedFeatures, { id: event.target.id, name: event.target.value }])
 
-    }, [product])
+        } else {
+            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.id == event.target.id))
+            if (index != -1) {
+                let aux = selectedFeatures;
+                aux.splice(index, 1)
+                setSelectedFeatures(aux)
+            }
+        }
+    }
 
-    /*    console.log(product.images,"product.images")
-       console.log(product.features,"product.features")
-       console.log(product.category.title,"product.category.title") */
-    console.log(product.features, "product.features")
+    function handleIndexImageDeleted(event) {
+        console.log(event.target);
+        deleteImage(event.target.id)
+        console.log(event);
+    }
+
+    const handleClickImage = ((event) => {
+        event.preventDefault()
+        setImages([...images, { title: imageTitle, url: imageUrl }])
+        setImageTitle("");
+        setImageUrl("");
+
+    })
+
+    function deleteImage(index) {
+        let aux = images;
+        aux = aux.filter((image) => { return image.url !== index })
+        setImages(aux);
+        //console.log(images, "images");
+    }
+
+    console.log(images, "images");
+    function sendData(event) {
+        event.preventDefault()
+
+    }
+
+    let handleChangeCategory = (value) => {
+        setSelectedCategory(value)
+    }
+
+    let handleChangeCity = (value) => {
+        setSelectedCity(value)
+    }
+
+    let handleChangeFeature = (value) => {
+        if(value.target.checked){
+             setSelectedFeatures([...selectedFeatures, value])
+        } else {
+            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.title == value.target.value))
+            if (index != -1) {
+                let aux = selectedFeatures;
+                aux = aux.filter((feature) => { return feature.title !== value.target.value })
+                /* aux.splice(index, 1) */
+                setSelectedFeatures(aux)
+            }
+        }       
+        console.log(selectedFeatures, "selectedFeatures"); 
+        
+    }
 
     const customStyles = {
         control: () => ({
+            border: "1px solid rgba(0,0,0,.4)",
             borderRadius: "7px",
             boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.15)",
             display: "flex",
@@ -187,103 +184,18 @@ export default function ({ product, categories, cities, features, titleModal, me
         }),
     }
 
-    const handleClickImage = ((event) => {
-        event.preventDefault()
-        setImages([...images, { title: imageTitle, url: imageUrl }])
-        setImageTitle("");
-        setImageUrl("");
-        //console.log(event);
-        //setImage({ title: "", url: "" })
-
-    })
-
     const openModalCreate = (() => {
         setModalCreateIsOpen(true)
     })
 
-    const closeModalCreate = () => {
-        setModalCreateIsOpen(false);
-    };
-    
-    //AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, setErrorProduct)
-    //qualification, reference,
-
-    function saveSelectedFeatures(event) {
-        if (event.target.checked) {
-            setSelectedFeatures([...selectedFeatures, { id: event.target.id, name: event.target.value }])
-
-        } else {
-            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.id == event.target.id))
-            if (index != -1) {
-                let aux = selectedFeatures;
-                aux.splice(index, 1)
-                setSelectedFeatures(aux)
-            }
-            //console.log("form product false");
-            //console.log(index, "index");
-        }
-    }
-
-    function handleTacho(event) {
-        setTacho(event.target.id)
-    }
-
-    const [tacho, setTacho] = useState()
-
-    useEffect((tacho) => {
-        deleteImage(tacho)
-    }, [tacho])
-
-    function deleteImage(tacho) {
-        let aux = images;
-        aux.splice(tacho, 1)
-        setImages(aux)
-    }
-
-    console.log(images, "images");
-    function sendData(event) {
-        event.preventDefault()
-
-    }
-
-    let handleChangeCategory = (value) => {
-        setSelectedCategory(value)
-    }
-
-    let handleChangeCity = (value) => {
-        setSelectedCity(value)
-    }
-
-  
- 
-    let handleChangeFeature = (value) => {
-        if(value.target.checked){
-             setSelectedFeatures([...selectedFeatures, value])
-        } else {
-            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.title == value.target.value))
-            if (index != -1) {
-                let aux = selectedFeatures;
-                aux = aux.filter((feature) => { return feature.title !== value.target.value })
-                /* aux.splice(index, 1) */
-                setSelectedFeatures(aux)
-            }
-        }       
-        console.log(selectedFeatures, "selectedFeatures");        
-
-        
-    }
-
-
-    return (
-        <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
-            <div className={`${StylesApp.delimiterChild} ${Styles.containerForm}`}>
-                <form onSubmit={sendData}>
+    return(
+        <form onSubmit={sendData}>
                     <div className={Styles.containerBlockAdministrator}>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="name">Nombre de la propiedad</label>
                             <input type="text" name="name" id="name" value={name} onChange={handleChangeName} />
                         </div>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="category">Categoría</label>
                             <Select
                                 onChange={(newValue) => handleChangeCategory(newValue)}
@@ -296,11 +208,11 @@ export default function ({ product, categories, cities, features, titleModal, me
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="address">Dirección</label>
                             <input type="text" name="address" id="address" value={address} onChange={handleChangeAddress} />
                         </div>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="city">Ciudad</label>
                             <Select
                                 onChange={(newValue) => handleChangeCity(newValue)}
@@ -313,21 +225,21 @@ export default function ({ product, categories, cities, features, titleModal, me
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="latitude">Latitud</label>
                             <input type="text" name="latitude" id="latitude" value={latitude} onChange={handleChangeLatitude} />
                         </div>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="longitude">Longitud</label>
                             <input type="text" name="longitude" id="longitude" value={longitude} onChange={handleChangeLongitude} />
                         </div>
                     </div>
                     <div className={Styles.containerBlockAdministrator}>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="reference">Referencia</label>
                             <input type="text" name="reference" id="reference" value={reference} onChange={handleChangeReference} />
                         </div>
-                        <div>
+                        <div className={Styles.blockInputs}>
                             <label htmlFor="qualification">Calificación</label>
                             <input type="text" name="qualification" id="qualification" value={qualification} onChange={handleChangeQualification} />
                         </div>
@@ -376,24 +288,28 @@ export default function ({ product, categories, cities, features, titleModal, me
                     </div>
                     <div className={Styles.containerImages}>
                         <h3>Cargar imágenes</h3>
-                        <div className={Styles.containerBlockAdministrator}>
-                            <div className={Styles.image}>
-                                <label htmlFor="titleImage">Título</label>
-                                <input type="text" name="titleImage" id="titleImage" value={imageTitle} onChange={handleChangeImageTitle} />
-                            </div>
-                            <div className={Styles.image}>
-                                <label htmlFor="urlImage">URL</label>
-                                <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
+                        <div className={Styles.containerBlockAdministratorImage}>
+                            <div className={Styles.blockInputsImages}>
+                                <div className={Styles.image}>
+                                    <label htmlFor="titleImage">Título</label>
+                                    <input type="text" name="titleImage" id="titleImage" value={imageTitle} onChange={handleChangeImageTitle} />
+                                </div>
+                                <div className={Styles.image}>
+                                    <label htmlFor="urlImage">URL</label>
+                                    <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
+                                </div>
                             </div>
                             <button onClick={handleClickImage}>+</button>
                         </div>
                         <div className={Styles.insertedImages}>
                             {images.map((image, index) => {
                                 return (
-                                    <div className={Styles.insertedImage}>
-                                        <input className={Styles.imageItem} value={image.title} />
-                                        <div className={Styles.imageItem}> {image.url} </div>
-                                        <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={index} onClick={handleTacho} /></div>
+                                    <div className={Styles.insertedImageAndButton}>
+                                        <div className={Styles.insertedImage}>
+                                            <div className={Styles.imageItem}> {image.title}</div>
+                                            <div className={Styles.imageItem}> {image.url}</div>
+                                        </div>
+                                        <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={image.url} onClick={handleIndexImageDeleted} /></div>
                                     </div>
                                 )
                             })}
@@ -404,10 +320,5 @@ export default function ({ product, categories, cities, features, titleModal, me
                         <button onClick={openModalCreate} id={Styles.buttonCreateProduct} type="submit">Crear</button>
                     </div>
                 </form>
-                <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
-                    <CreateProductModal title={titleModal} message={messageModal}/>
-                </Modal>
-            </div>
-        </section>
     )
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import StylesApp from "../../../App.module.css";
 import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
-import FormProduct from "./FormProduct";
+import FormProductCreate from "./FormProductCreate";
 import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axiosCollection/Product/AxiosProduct.jsx"
 
 
@@ -15,6 +15,7 @@ function CreateProduct(props) {
     const [optionsFeatures, setOptionsFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    
    
     useEffect(() => {
         AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) 
@@ -38,7 +39,7 @@ function CreateProduct(props) {
                     <section className={StylesApp.delimiter}>
                         <div className={StylesApp.delimiterChild}>
                             <h1>Crear producto</h1>
-                            <FormProduct categories={optionsCategories} cities={optionsCities} features={optionsFeatures} titleModal={title} messageModal={message} />
+                            <FormProductCreate categories={optionsCategories} cities={optionsCities} features={optionsFeatures} titleModal={title} messageModal={message} />
                         </div>
                     </section>
                 )}

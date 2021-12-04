@@ -317,7 +317,7 @@ form ul {
     width: 100%;
   }
 
-  input[type=text]{
+  .inputLabel input[type=text]{
     max-width: 320px;
   }
   .containerFullname{
