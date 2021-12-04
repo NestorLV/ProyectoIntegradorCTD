@@ -62,11 +62,9 @@ public class ScoreController implements CRUDController <ScoreDTO> {
         scoresService.deleteById(id);
         return ResponseEntity.ok("Se elimino la puntuación con id "+ id);
     }
-
-
-    // Agregar id de producto o no ??
+    
     @Operation(summary = "Average", description = "Returns average score")
-    @GetMapping("/average")
+    @GetMapping("/average/{idProduct}")
     public ResponseEntity<Double> getAverage(@PathVariable Integer idProduct) {
         return ResponseEntity.ok(scoresService.average(idProduct));
     }

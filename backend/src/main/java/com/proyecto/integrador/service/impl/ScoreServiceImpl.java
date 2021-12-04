@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,27 +30,25 @@ public class ScoreServiceImpl implements IScoreService {
     ProductServiceImpl productService;
 
     public Double average(Integer idProduct) {
-       logger.debug("Iniciando método promedio de todas las puntuaciones");
+        logger.debug("Iniciando método promedio de todas las puntuaciones");
 
         List<Score> scores = scoresRepository.findByProductId(idProduct);
         Double totalScore = 0.0;
-        if(scores != null && scores.size()!=0) {
-            for (Score score : scores) {
-                if(score.getScore()!=null){
-                    totalScore += score.getScore();
-                }
-            }
-            return (totalScore / scores.size());
-        }else{
-            return 0.0;
+        if (scores == null || scores.size() == 0) {
+            return totalScore;
         }
+        for (Score score : scores) {
+            totalScore += score.getScore();
+        }
+        return totalScore / scores.size();
     }
+
     @Override
     public List<ScoreDTO> findAll() throws FindByIdException {
         logger.debug("Iniciando método buscar todas las puntuaciones");
         List<ScoreDTO> scoresList = new ArrayList<>();
-        for (Score score: scoresRepository.findAll()) {
-            ScoreDTO scoreDTO =score.toDto();
+        for (Score score : scoresRepository.findAll()) {
+            ScoreDTO scoreDTO = score.toDto();
 
             scoreDTO.setUserEmail(userService.findById(score.getIdUser()).getEmail());
             scoresList.add(scoreDTO);
@@ -63,36 +62,33 @@ public class ScoreServiceImpl implements IScoreService {
         logger.debug("Iniciando método guardar puntuación");
 
         List<ScoreDTO> scores = findAll();
-        List<ScoreDTO> scoresByUser=new ArrayList<>();
+        List<ScoreDTO> scoresByUser = new ArrayList<>();
 
-        for (ScoreDTO scoreDTO: scores){
-            if(scoreDTO.getUserEmail().equals(score.getUserEmail())){
+        for (ScoreDTO scoreDTO : scores) {
+            if (scoreDTO.getUserEmail().equals(score.getUserEmail())) {
                 scoresByUser.add(scoreDTO);
             }
         }
 
-        ScoreDTO scoreDTOGuardado= null;
-        if(scoresByUser!=null){
-            for (ScoreDTO scoreDTO:scoresByUser) {
-                if(score.getProductId()==scoreDTO.getProductId()){
-                    scoreDTOGuardado = scoreDTO;
-                }
+        ScoreDTO scoreDTOGuardado = null;
+        for (ScoreDTO scoreDTO : scoresByUser) {
+            if (Objects.equals(score.getProductId(), scoreDTO.getProductId())) {
+                scoreDTOGuardado = scoreDTO;
             }
         }
 
-        if(scoreDTOGuardado==null){
+        if (scoreDTOGuardado == null) {
             Score scoreEntity = score.toEntity();
             scoreEntity.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
             scoreEntity.setFavourite(false);
             scoreDTOGuardado = scoresRepository.save(scoreEntity).toDto();
             scoreDTOGuardado.setUserEmail(userService.findByEmail(score.getUserEmail()).getEmail());
-            productService.updateQualification(score.getProductId(),average(score.getProductId()));
-        }else{
+        } else {
             score.setFavourite(scoreDTOGuardado.getFavourite());
             score.setIdScore(scoreDTOGuardado.getIdScore());
             scoreDTOGuardado = update(score);
-            productService.updateQualification(score.getProductId(),average(score.getProductId()));
         }
+        productService.updateQualification(score.getProductId(), average(score.getProductId()));
 
         logger.debug("Terminó la ejecución del método guardar puntuación");
         return scoreDTOGuardado;
@@ -144,25 +140,23 @@ public class ScoreServiceImpl implements IScoreService {
     public ScoreDTO findByUserAndProduct(String email, Integer idProduct) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método obtener puntuacion por usuario y producto");
         UserResponseDTO user = userService.findByEmail(email);
-        if (user==null) {
+        if (user == null) {
             throw new BadRequestException("El usuario no existe");
         }
 
         List<ScoreDTO> scores = findAll();
-        List<ScoreDTO> scoresByUser=new ArrayList<>();
+        List<ScoreDTO> scoresByUser = new ArrayList<>();
 
-        for (ScoreDTO scoreDTO: scores){
-            if(scoreDTO.getUserEmail().equals(email)){
+        for (ScoreDTO scoreDTO : scores) {
+            if (scoreDTO.getUserEmail().equals(email)) {
                 scoresByUser.add(scoreDTO);
             }
         }
 
-        ScoreDTO scoreDTOGuardado= null;
-        if(scoresByUser!=null){
-            for (ScoreDTO scoreDTO:scoresByUser) {
-                if(scoreDTO.getProductId()==idProduct){
-                    scoreDTOGuardado = scoreDTO;
-                }
+        ScoreDTO scoreDTOGuardado = null;
+        for (ScoreDTO scoreDTO : scoresByUser) {
+            if (Objects.equals(scoreDTO.getProductId(), idProduct)) {
+                scoreDTOGuardado = scoreDTO;
             }
         }
         logger.debug("Terminó la ejecución del método obtener puntuacion por usuario y producto");
@@ -173,30 +167,28 @@ public class ScoreServiceImpl implements IScoreService {
     @Override
     public ScoreDTO resetScore(String email, Integer idProduct) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método obtener puntuacion por usuario y producto");
-        UserResponseDTO user=userService.findByEmail(email);
-        if (user==null) {
+        UserResponseDTO user = userService.findByEmail(email);
+        if (user == null) {
             throw new BadRequestException("El usuario no existe");
         }
 
         List<ScoreDTO> scores = findAll();
         List<ScoreDTO> scoresByUser = new ArrayList<>();
 
-        for (ScoreDTO scoreDTO: scores){
-            if(scoreDTO.getUserEmail().equals(email)){
+        for (ScoreDTO scoreDTO : scores) {
+            if (scoreDTO.getUserEmail().equals(email)) {
                 scoresByUser.add(scoreDTO);
             }
         }
 
-        ScoreDTO scoreDTOGuardado= null;
-        if(scoresByUser!=null){
-            for (ScoreDTO scoreDTO:scoresByUser) {
-                if(scoreDTO.getProductId()==idProduct){
-                    scoreDTOGuardado = scoreDTO;
-                }
+        ScoreDTO scoreDTOGuardado = null;
+        for (ScoreDTO scoreDTO : scoresByUser) {
+            if (Objects.equals(scoreDTO.getProductId(), idProduct)) {
+                scoreDTOGuardado = scoreDTO;
             }
         }
 
-        if(scoreDTOGuardado!=null){
+        if (scoreDTOGuardado != null) {
             scoreDTOGuardado.setScore(null);
             scoreDTOGuardado.setFavourite(scoreDTOGuardado.getFavourite());
             update(scoreDTOGuardado);

@@ -85,13 +85,27 @@ public class Product {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
+        return Double.compare(product.getLatitude(), getLatitude()) == 0 && Double.compare(product.getLongitude(), getLongitude()) == 0 && getId().equals(product.getId()) && getName().equals(product.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getLatitude(), getLongitude());
+    }
+
+
+/*@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
         return getId().equals(product.getId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId());
-    }
+    }*/
 
     public ProductDTO toDto(){
         ProductDTO productDTO = new ProductDTO();

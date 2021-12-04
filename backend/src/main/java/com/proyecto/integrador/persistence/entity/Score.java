@@ -18,14 +18,14 @@ public class Score {
     @Column(name = "idScore", nullable = false)
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer idScore;
-    @Column(name = "idUser")
+    @Column(name = "idUser", nullable = false)
     private Integer idUser;
-    @Column(name = "score")
+    @Column(name = "score", nullable = false)
     private Integer score;
     @Column(name = "favourite")
     private Boolean favourite;
     @ManyToOne
-    @JoinColumn(name = "idProduct")
+    @JoinColumn(name = "idProduct", nullable = false)
     private Product product;
 
     public ScoreDTO toDto(){
