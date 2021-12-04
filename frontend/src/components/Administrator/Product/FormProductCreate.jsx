@@ -1,16 +1,13 @@
-//import Select from "react-select"
-//import OptionsSelect from "./OptionsSelect";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
 import FormProduct from "./FormProduct";
-//import Delete from "../icons/delete.svg"
 
 
-export default function ({ categories, cities, features, titleModal, messageModal}) {
+export default function FormProductCreate({ categories, cities, features, titleModal, messageModal}) {
     const [name, setName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState({ id: "", name: "" })
     const [address, setAddress] = useState("");

@@ -7,9 +7,7 @@ import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
 import FormProduct from "./FormProduct";
 
-import { render } from "@testing-library/react";
-
-export default function ({ product, categories, cities, features, titleModal, messageModal}) {
+export default function FormProductUpdate({ product, categories, cities, features, titleModal, messageModal}) {
     const [name, setName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState({ id: "", name: "" })
     const [address, setAddress] = useState("");

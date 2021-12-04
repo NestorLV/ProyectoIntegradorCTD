@@ -133,8 +133,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             setSelectedFeatures([...selectedFeatures, { id: parseInt(event.target.id), title: event.target.value }])
 
         } else {
-            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.id == event.target.id))
-            if (index != -1) {
+            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.id === event.target.id))
+            if (index !== -1) {
                 let aux = selectedFeatures;
                 aux = aux.filter((feature) => { return feature.title !== event.target.value })
                 setSelectedFeatures(aux)
@@ -243,7 +243,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                                     <input                                        
                                         onChange={event => saveSelectedFeatures(event)}
                                         type="checkbox"
-                                        checked={selectedFeatures.find(feature => feature.id == option.id)} 
+                                        checked={selectedFeatures.find(feature => feature.id === option.id)} 
                                         id={index + 1}
                                         value={option.name}
                                     />

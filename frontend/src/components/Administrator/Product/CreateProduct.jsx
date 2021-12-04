@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import StylesApp from "../../../App.module.css";
-import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
 import FormProductCreate from "./FormProductCreate";
 import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axiosCollection/Product/AxiosProduct.jsx"
@@ -8,8 +7,6 @@ import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axi
 
 
 function CreateProduct(props) {
-    const baseURL = "http://localhost:8080/";
-
     const [optionsCategories, setOptionsCategories] = useState([])
     const [optionsCities, setOptionsCities] = useState([])
     const [optionsFeatures, setOptionsFeatures] = useState([])
