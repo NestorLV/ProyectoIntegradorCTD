@@ -29,7 +29,7 @@ export default function ({ product, categories, cities, features, titleModal, me
 
     const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
 
-    console.log(features);
+   
 
     /*console.log(name);
     console.log(selectedCategory);
@@ -44,6 +44,7 @@ export default function ({ product, categories, cities, features, titleModal, me
     console.log(rules);
     console.log(healthAndSecurity);
     console.log(cancellationPolicy);
+     console.log(features);
     console.log(images);*/
 
    
@@ -65,7 +66,7 @@ export default function ({ product, categories, cities, features, titleModal, me
         setReference(product.reference)
         setQualification(product.qualification)
         setDescription(product.description)
-        setSelectedFeatures(product.features)
+        setSelectedFeatures(product.features.map((feature)=>{return {id:feature.id, title:feature.title}}))
         setRules(product.rules)
         setHealthAndSecurity(product.healthAndSecurity)
         setCancellationPolicy(product.cancellationPolicy)
@@ -73,14 +74,12 @@ export default function ({ product, categories, cities, features, titleModal, me
 
     }, [product])
 
+   
+
     /*    console.log(product.images,"product.images")
-       console.log(product.features,"product.features")
+        console.log(product.features,"product.features")
        console.log(product.category.title,"product.category.title") */
     //console.log(product.features, "product.features")
-
-    
-
-   
 
     const closeModalCreate = () => {
         setModalCreateIsOpen(false);

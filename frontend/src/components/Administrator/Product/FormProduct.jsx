@@ -1,4 +1,3 @@
-import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
 import Select from "react-select"
 import OptionsSelect from "./OptionsSelect";
@@ -55,79 +54,15 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setImageUrl(event.target.value)
     }
 
-    function options(arrayOptions, setValor) {
-        return arrayOptions.map((valor) => {
-            return {
-                value: `${valor.name}`,
-                label: <OptionsSelect valor={valor} setValor={setValor} />,
-            };
-        })
-    }
-
-    function saveSelectedFeatures(event) {
-        if (event.target.checked) {
-            setSelectedFeatures([...selectedFeatures, { id: event.target.id, name: event.target.value }])
-
-        } else {
-            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.id == event.target.id))
-            if (index != -1) {
-                let aux = selectedFeatures;
-                aux.splice(index, 1)
-                setSelectedFeatures(aux)
-            }
-        }
-    }
-
-    function handleIndexImageDeleted(event) {
-        console.log(event.target);
-        deleteImage(event.target.id)
-        console.log(event);
-    }
-
-    const handleClickImage = ((event) => {
-        event.preventDefault()
-        setImages([...images, { title: imageTitle, url: imageUrl }])
-        setImageTitle("");
-        setImageUrl("");
-
-    })
-
-    function deleteImage(index) {
-        let aux = images;
-        aux = aux.filter((image) => { return image.url !== index })
-        setImages(aux);
-        //console.log(images, "images");
-    }
-
-    console.log(images, "images");
-    function sendData(event) {
-        event.preventDefault()
-
-    }
-
-    let handleChangeCategory = (value) => {
+    const handleChangeCategory = (value) => {
         setSelectedCategory(value)
     }
 
-    let handleChangeCity = (value) => {
+    const handleChangeCity = (value) => {
         setSelectedCity(value)
     }
 
-    let handleChangeFeature = (value) => {
-        if(value.target.checked){
-             setSelectedFeatures([...selectedFeatures, value])
-        } else {
-            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.title == value.target.value))
-            if (index != -1) {
-                let aux = selectedFeatures;
-                aux = aux.filter((feature) => { return feature.title !== value.target.value })
-                /* aux.splice(index, 1) */
-                setSelectedFeatures(aux)
-            }
-        }       
-        console.log(selectedFeatures, "selectedFeatures"); 
-        
-    }
+    
 
     const customStyles = {
         control: () => ({
@@ -183,6 +118,57 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             },
         }),
     }
+
+    function options(arrayOptions, setValor) {
+        return arrayOptions.map((valor) => {
+            return {
+                value: `${valor.name}`,
+                label: <OptionsSelect valor={valor} setValor={setValor} />,
+            };
+        })
+    }
+
+    function saveSelectedFeatures(event) {
+        if (event.target.checked) {
+            setSelectedFeatures([...selectedFeatures, { id: parseInt(event.target.id), title: event.target.value }])
+
+        } else {
+            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.id == event.target.id))
+            if (index != -1) {
+                let aux = selectedFeatures;
+                aux = aux.filter((feature) => { return feature.title !== event.target.value })
+                setSelectedFeatures(aux)
+            }
+        }
+    }
+    console.log(selectedFeatures, "selectedFeatures"); 
+
+    function handleIndexImageDeleted(event) {
+        console.log(event.target);
+        deleteImage(event.target.id)
+        console.log(event);
+    }
+
+    const handleClickImage = ((event) => {
+        event.preventDefault()
+        setImages([...images, { title: imageTitle, url: imageUrl }])
+        setImageTitle("");
+        setImageUrl("");
+
+    })
+
+    function deleteImage(index) {
+        let aux = images;
+        aux = aux.filter((image) => { return image.url !== index })
+        setImages(aux);
+    }
+
+  
+    function sendData(event) {
+        event.preventDefault()
+
+    }
+
 
     const openModalCreate = (() => {
         setModalCreateIsOpen(true)
@@ -255,7 +241,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                             return (
                                 <label onClick={saveSelectedFeatures}>
                                     <input                                        
-                                        onChange={event => handleChangeFeature(event)}
+                                        onChange={event => saveSelectedFeatures(event)}
                                         type="checkbox"
                                         checked={selectedFeatures.find(feature => feature.id == option.id)} 
                                         id={index + 1}
