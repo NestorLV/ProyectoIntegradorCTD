@@ -457,11 +457,11 @@ exports[`Probando el componente <CalendarBar/> Deberia mostrar <CalendarBar/> co
           dateAdapter={[Function]}
         >
           <ForwardRef(StaticDateRangePicker)
-            className="makeStyles-root-1"
+            className="makeStyles-root-2"
             displayStaticWrapperAs="desktop"
             hintText="Dates Disabled"
             maxDate={null}
-            minDate={2021-12-04T12:21:16.813Z}
+            minDate={2021-12-04T16:14:23.807Z}
             onChange={[Function]}
             renderInput={[Function]}
             shouldDisableDate={[Function]}

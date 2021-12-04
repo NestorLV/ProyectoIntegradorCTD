@@ -45,8 +45,18 @@ describe("Probando el componente <CalendarBar/>", () => {
     });
 
     it("Deberia mostrar <CalendarBar/> correctamente", () => {
+        wrapper = shallow(<CalendarBar {...props}/>)
         expect(wrapper).toMatchSnapshot();
     });
+
+
+    /*let AxiosGetReservasPorProducto = jest.fn()
+    it("probando", () => {
+        wrapper = mount(<CalendarBar {...props} AxiosGetReservasPorProducto={AxiosGetReservasPorProducto}/>)
+        expect(wrapper).not.toBeNull();
+    });*/
+
+
 })
 
 describe("Probando el componente <DetailBar/>", () => {

@@ -85,7 +85,7 @@ function CalendarBar(props) {
 
     useEffect(() => {       
         AxiosGetReservasPorProducto(props.id, setReservas, setErrorMessage)             
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+ 
     }, []); 
 
     return (

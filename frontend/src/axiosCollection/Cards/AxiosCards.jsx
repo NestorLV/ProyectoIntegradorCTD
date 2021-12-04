@@ -4,6 +4,8 @@ const { format } = require("date-fns");
 
 const baseUrl = "http://localhost:8080/"
 
+//YA TESTEADO
+
 function AxiosGetProductosRecomendados(setData, setLoading, setTitulo, setErrorMessage) {
     const baseUrlProductosRecomendados = `${baseUrl}products/get/recommended`;
 
@@ -19,6 +21,8 @@ function AxiosGetProductosRecomendados(setData, setLoading, setTitulo, setErrorM
         })
 }
 
+//YA TESTEADO
+
 function AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage) {
     let email = sessionStorage.getItem("email")
     const baseUrlFavourite = `${baseUrl}users/getfavourites/${email}`;
@@ -32,6 +36,8 @@ function AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage) {
                 setErrorMessage(error.message);
             });
 }
+
+//YA TESTEADO
 
 function AxiosGetProductoFavorito(setErrorMessage, id,setLike) {
     let email = sessionStorage.getItem("email")

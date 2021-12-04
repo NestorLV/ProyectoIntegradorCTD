@@ -47,13 +47,46 @@ exports[`Probando el componente <MenuBurger/> Deberia mostrar <MenuBurger/> corr
     <div
       className="menuFavoritos hide "
     >
-      <p>
-        Favoritos
-      </p>
+      <Link
+        to="/"
+      >
+        <p>
+          Favoritos
+        </p>
+      </Link>
       <img
         alt=""
         src="Line.png"
       />
+      <Link
+        to="/"
+      >
+        <p>
+          Mis reservas
+        </p>
+      </Link>
+      <img
+        alt=""
+        src="Line.png"
+      />
+      <Link
+        to="/product/create"
+      >
+        <p>
+          Crear Producto
+        </p>
+      </Link>
+      <img
+        alt=""
+        src="Line.png"
+      />
+      <Link
+        to="/product/update"
+      >
+        <p>
+          Modificar Producto
+        </p>
+      </Link>
     </div>
     <div
       className="botones null null"
@@ -106,17 +139,6 @@ exports[`Probando el componente <MenuBurger/> Deberia mostrar <MenuBurger/> corr
     <div
       className="iconsMobile"
     >
-      <img
-        alt="iconSocial"
-        className="iconSocial"
-        onClick={[Function]}
-        src="icon-share.svg"
-      />
-      <Share
-        placeShareCall="footer"
-        setShareIsOpen={[Function]}
-        shareIsOpen={false}
-      />
       <a
         href="https://www.facebook.com/profile.php?id=100074545225635"
         rel="noreferrer"
@@ -159,6 +181,17 @@ exports[`Probando el componente <MenuBurger/> Deberia mostrar <MenuBurger/> corr
           src="IconIg.png"
         />
       </a>
+      <img
+        alt="iconSocial"
+        className="iconSocial"
+        onClick={[Function]}
+        src="icon-share.svg"
+      />
+      <Share
+        placeShareCall="footer"
+        setShareIsOpen={[Function]}
+        shareIsOpen={false}
+      />
     </div>
   </div>
 </styled.nav>
@@ -166,7 +199,7 @@ exports[`Probando el componente <MenuBurger/> Deberia mostrar <MenuBurger/> corr
 
 exports[`Probando el componente <MenuBurgerWrapper Deberia mostrar <MenuBurgerWrapper/> correctamente 1`] = `
 <nav
-  className="sc-bdvvtL gfcYty"
+  className="sc-bdvvtL eRUdUI"
 />
 `;
 

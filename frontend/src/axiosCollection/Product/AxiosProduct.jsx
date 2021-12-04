@@ -1,7 +1,8 @@
 import axios from "axios";
 const baseURL = "http://localhost:8080/"
 
-function AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage) {
+//YA TESTEADO
+function AxiosGetProductById(id, setProd, setLoading, setErrorMessage) {
     axios
         .get(`${baseURL}products/get/${id}`)
         .then((response) => {
@@ -9,7 +10,7 @@ function AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage) {
             setLoading(false);
         })
         .catch((error) => {
-            setErrorMessage("No es posible mostrar la página");
+            setErrorMessage(error);
         });
 }
 
@@ -30,6 +31,8 @@ function AxiosCalificarProducto(starIndex, id, setCalificacion_text, setErrorMes
             setErrorMessage(error);
         });
 }
+
+//YA PROBADO
 
 function AxiosGetReservasPorProducto(idProducto, setReservas, setErrorMessage) {
     axios
@@ -53,7 +56,9 @@ function AxiosGetReservasPorProducto(idProducto, setReservas, setErrorMessage) {
         });
 }
 
-function AxiosGetPuntuacionDelProducto(email, idProduct, setStartIndex) {
+//YA PROBADO
+
+function AxiosGetProductScore(email, idProduct, setStartIndex) {
     axios
         .get(`${baseURL}products/scores/getByUserAndProduct/${email}/${idProduct}`, {
             headers: {
@@ -83,6 +88,8 @@ function AxiosResetPuntuacion(email, idProduct, setStartIndex) {
         });
 }
 
+//YA PROBADO
+
 function AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) {
     axios
         .get(baseURL + "categories/all")
@@ -96,6 +103,8 @@ function AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) {
         });
 }
 
+//ya probado
+
 function AxiosGetCities(setLoading, setOptionsCities, setErrorMessage) {
     axios
         .get(baseURL + "cities/all")
@@ -108,6 +117,8 @@ function AxiosGetCities(setLoading, setOptionsCities, setErrorMessage) {
             setLoading(false);
         });
 }
+
+//YA TESTEADO
 
 function AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) {
     axios
@@ -256,4 +267,4 @@ function AxiosModificarProducto(name, description, latitude, longitude, address,
 
 }
 
-export { AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetPuntuacionDelProducto, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities }
+export { AxiosGetProductById, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetProductScore, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities }
