@@ -31,8 +31,6 @@ public class Product {
     @Column(name = "qualification", nullable = false)
     private double qualification;
     @Column(name = "favourite", nullable = false)
-    private boolean favourite;
-    @Column(name = "reference", nullable = false)
     private String reference;
     @Column(name = "rules", nullable = false)
     private String rules;
@@ -52,7 +50,8 @@ public class Product {
     private  Set<Score> scores = new HashSet<>();
     @ManyToMany(targetEntity = Feature.class, mappedBy = "products", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
     private List<Feature> features = new ArrayList<>();
-
+    @ManyToMany(mappedBy = "favoriteProducts", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
+    private Set<User> users = new HashSet<>();
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     private Set<Reservation> reservations= new HashSet<>();
 
@@ -63,7 +62,7 @@ public class Product {
         this.id = id;
     }
 
-    public Product(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, boolean favourite, String reference, Category category, City city, String rules, String health, String politics) {
+    public Product(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, String reference, Category category, City city, String rules, String health, String politics) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -71,7 +70,6 @@ public class Product {
         this.longitude = longitude;
         this.address = address;
         this.qualification = qualification;
-        this.favourite = favourite;
         this.reference = reference;
         this.category = category;
         this.city = city;
@@ -115,7 +113,6 @@ public class Product {
         productDTO.setLatitude(latitude);
         productDTO.setLongitude(longitude);
         productDTO.setAddress(address);
-        productDTO.setFavourite(favourite);
         productDTO.setReference(reference);
         productDTO.setCategory(new CategoryDTO(category.getId()));
         productDTO.setCity(new CityDTO(city.getId()));

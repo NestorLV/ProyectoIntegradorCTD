@@ -29,10 +29,16 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "activation", nullable = false)
     private boolean activation;
-
     @ManyToOne
     @JoinColumn(name = "idRole", nullable = false)
     private Role role;
+    @ManyToMany(targetEntity = Product.class, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(
+            name = "favorites",
+            joinColumns = @JoinColumn(name = "idUser"),
+            inverseJoinColumns = @JoinColumn(name = "idProduct")
+    )
+    private Set<Product> favoriteProducts = new HashSet<>();
 
     public User() {}
 

@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,7 +19,5 @@ public class UserResponseDTO {
     private String email;
     private boolean activation;
     private RolesTypes role;
-    // Agregar favoritos o eliminar este atributo
-    @JsonIgnore
-    private List<ProductDTO> favoriteProducts = new ArrayList<>();
+    private Set<ProductDTO> favoriteProducts = new HashSet<>();
 }

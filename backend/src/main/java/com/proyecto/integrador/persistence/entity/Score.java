@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -22,8 +23,6 @@ public class Score {
     private Integer idUser;
     @Column(name = "score", nullable = false)
     private Integer score;
-    @Column(name = "favourite")
-    private Boolean favourite;
     @ManyToOne
     @JoinColumn(name = "idProduct", nullable = false)
     private Product product;
@@ -33,7 +32,19 @@ public class Score {
         scoreDTO.setIdScore(idScore);
         scoreDTO.setScore(score);
         scoreDTO.setProductId(product.getId());
-        scoreDTO.setFavourite(favourite);
         return scoreDTO;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Score)) return false;
+        Score score = (Score) o;
+        return getIdUser().equals(score.getIdUser()) && getProduct().equals(score.getProduct());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdUser(), getProduct());
     }
 }

@@ -20,7 +20,6 @@ public class ProductDTO {
     private double longitude;
     private String address;
     private double qualification;
-    private boolean favourite = false;
     private String reference;
     private CategoryDTO category;
     private CityDTO city;
@@ -42,14 +41,13 @@ public class ProductDTO {
         this.id = id;
     }
 
-    public ProductDTO(String name, String description, double latitude, double longitude, String address, double qualification, boolean favourite, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
+    public ProductDTO(String name, String description, double latitude, double longitude, String address, double qualification, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
         this.name = name;
         this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
         this.address = address;
         this.qualification = qualification;
-        this.favourite = favourite;
         this.reference = reference;
         this.category = category;
         this.city = city;
@@ -58,7 +56,7 @@ public class ProductDTO {
         this.politics = politics;
     }
 
-    public ProductDTO(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, boolean favourite, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
+    public ProductDTO(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -66,7 +64,6 @@ public class ProductDTO {
         this.longitude = longitude;
         this.address = address;
         this.qualification = qualification;
-        this.favourite = favourite;
         this.reference = reference;
         this.category = category;
         this.city = city;
@@ -82,7 +79,6 @@ public class ProductDTO {
         product.setLatitude(latitude);
         product.setLongitude(longitude);
         product.setAddress(address);
-        product.setFavourite(favourite);
         product.setQualification(5);
         product.setReference(reference);
         product.setCategory(new Category(category.getId()));

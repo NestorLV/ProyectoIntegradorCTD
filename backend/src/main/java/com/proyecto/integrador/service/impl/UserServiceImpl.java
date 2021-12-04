@@ -1,14 +1,14 @@
 package com.proyecto.integrador.service.impl;
 
 
-import com.proyecto.integrador.DTO.ProductDTO;
-import com.proyecto.integrador.DTO.ScoreDTO;
-import com.proyecto.integrador.DTO.UserRequestDTO;
-import com.proyecto.integrador.DTO.UserResponseDTO;
+import com.proyecto.integrador.DTO.*;
 import com.proyecto.integrador.config.jwt.JwtTokenUtil;
 import com.proyecto.integrador.config.jwt.JwtUserDetailsService;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
+import com.proyecto.integrador.persistence.entity.Feature;
+import com.proyecto.integrador.persistence.entity.Product;
+import com.proyecto.integrador.persistence.entity.Score;
 import com.proyecto.integrador.persistence.entity.User;
 import com.proyecto.integrador.persistence.entity.enums.RolesTypes;
 import com.proyecto.integrador.persistence.repository.IUserRepository;
@@ -117,8 +117,17 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     @Override
+    // REVISAR
     public List<ProductDTO> getFavorites(String email) throws FindByIdException, BadRequestException {
-        UserResponseDTO user = findByEmail(email);
+        return null;
+/*        logger.debug("Iniciando método buscar todas las características");
+        List<ProductDTO> favoriteProducts = new ArrayList<>();
+        for (Product p: userRepository.findAll()) {
+            features.add(f.toDto());
+        }
+        logger.debug("Terminó la ejecución del método buscar todas las características");
+        return features;*/
+        /*UserResponseDTO user = findByEmail(email);
         if (user == null) {
             throw new BadRequestException("El usuario no está logueado");
         }
@@ -140,15 +149,40 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
             }
         }
 
-        return favouriteProducts;
+        return favouriteProducts;*/
 
     }
 
     @Override
-    public ScoreDTO saveFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException {
+    public UserResponseDTO updateFavorite(String email,Integer idProduct) throws FindByIdException {
+        logger.debug("Iniciando método actualizar usuario");
+        if (userRepository.findByEmail(email).isEmpty()) {
+            throw new FindByIdException("No existe una usuario con el email ingresado");
+        }
+        User user = userRepository.findByEmail(email).get();
+        Set<Product> favoriteProducts = user.getFavoriteProducts();
+        Product product = productService.findById(idProduct).toEntity();
+        product.setId(idProduct);
+        if (favoriteProducts.contains(product)) {
+            favoriteProducts.remove(product);
+        } else {
+            favoriteProducts.add(product);
+        }
+        user.setFavoriteProducts(favoriteProducts);
+        logger.debug("Terminó la ejecución del método actualizar usuario");
+        return userRepository.save(user).toDto();
+    }
+
+    @Override
+    public UserResponseDTO handleFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException {
         UserResponseDTO user = findByEmail(email);
         if (user == null) {
-            throw new BadRequestException("El usuario no está logueado");
+            throw new BadRequestException("El usuario no existe en la base de datos");
+        }
+        return updateFavorite(email,idProduct);
+        /*UserResponseDTO user = findByEmail(email);
+        if (user == null) {
+            throw new BadRequestException("El usuario no existe en la base de datos");
         }
         ProductDTO product = productService.findById(idProduct);
 
@@ -178,18 +212,12 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
             scoreService.update(scoresByProductAndUser);
         }
 
-        return scoresByProductAndUser;
+        return scoresByProductAndUser;*/
     }
-
 
     public UserResponseDTO findByEmail(String email) {
         User user = userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("El email no matchea con ningún usuario en la base de datos"));
         return user.toDto();
-    }
-
-    public boolean isFavourite(ProductDTO productDTO) {
-        /*if (findByEmail()) --> Validar usuario y filtrar los favoritos del usuario */
-        return false;
     }
 
     @Override

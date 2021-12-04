@@ -2,7 +2,6 @@ package com.proyecto.integrador.service.impl;
 
 
 import com.proyecto.integrador.DTO.ScoreDTO;
-import com.proyecto.integrador.DTO.UserRequestDTO;
 import com.proyecto.integrador.DTO.UserResponseDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
@@ -10,6 +9,7 @@ import com.proyecto.integrador.persistence.entity.Score;
 import com.proyecto.integrador.persistence.repository.IScoreRepository;
 import com.proyecto.integrador.service.IScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.apache.log4j.Logger;
 
@@ -60,8 +60,14 @@ public class ScoreServiceImpl implements IScoreService {
     @Override
     public ScoreDTO save(ScoreDTO score) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar puntuación");
-
-        List<ScoreDTO> scores = findAll();
+        UserResponseDTO user = userService.findByEmail(score.getUserEmail());
+        Score scoreEntity = score.toEntity();
+        scoreEntity.setIdUser(user.getId());
+        List<Score> scores = scoresRepository.findAll();
+        scores.removeIf(s -> s.equals(scoreEntity));
+        logger.debug("Terminó la ejecución del método guardar puntuación");
+        return scoresRepository.save(scoreEntity).toDto();
+        /*List<ScoreDTO> scores = findAll();
         List<ScoreDTO> scoresByUser = new ArrayList<>();
 
         for (ScoreDTO scoreDTO : scores) {
@@ -91,7 +97,7 @@ public class ScoreServiceImpl implements IScoreService {
         productService.updateQualification(score.getProductId(), average(score.getProductId()));
 
         logger.debug("Terminó la ejecución del método guardar puntuación");
-        return scoreDTOGuardado;
+        return scoreDTOGuardado;*/
     }
 
     @Override
@@ -124,7 +130,6 @@ public class ScoreServiceImpl implements IScoreService {
         Score score1 = scoresRepository.findById(score.getIdScore()).get();
         score1.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
         score1.setScore(score.getScore());
-        score1.setFavourite(score.getFavourite());
         logger.debug("Terminó la ejecución del método actualizar puntuación");
         scoresRepository.save(score1);
 
@@ -190,7 +195,6 @@ public class ScoreServiceImpl implements IScoreService {
 
         if (scoreDTOGuardado != null) {
             scoreDTOGuardado.setScore(null);
-            scoreDTOGuardado.setFavourite(scoreDTOGuardado.getFavourite());
             update(scoreDTOGuardado);
         }
 

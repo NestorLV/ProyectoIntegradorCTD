@@ -30,16 +30,12 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     ScoreServiceImpl scoreService;
     @Autowired
-    UserServiceImpl userService;
-    @Autowired
     ReservationServiceImpl reservationService;
 
     private ProductDTO loadDataIntoProductDTO(Product product) throws FindByIdException {
         ProductDTO productDto = product.toDto();
-        productDto.setFavourite(userService.isFavourite(productDto));
         productDto.setCategory(categoryService.findById(product.getCategory().getId()));
         productDto.setCity(cityService.findById(product.getCity().getId()));
-
         productDto.setQualification(scoreService.average(product.getId()));
         productDto.setImages(imageService.findByProductId(product.getId()));
         productDto.setFeatures(featureService.findByProduct(product));
@@ -101,7 +97,6 @@ public class ProductServiceImpl implements IProductService {
         product.setDescription(productDTO.getDescription());
         product.setLatitude(productDTO.getLatitude());
         product.setLongitude(productDTO.getLongitude());
-        product.setFavourite(productDTO.isFavourite());
         product.setReference(productDTO.getReference());
         product.setCategory(new Category(productDTO.getCategory().getId()));
         product.setCity(new City(productDTO.getCity().getId()));

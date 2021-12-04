@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface IScoreRepository extends JpaRepository<Score, Integer> {
+    List<Score>findByUserEmail(String userEmail);
     List<Score>findByProductId(Integer idProduct);
 }
