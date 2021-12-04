@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IProductService extends IBookingService<ProductDTO> {
     List<ProductDTO> findAll() throws FindByIdException;
-    ProductDTO save(ProductDTO product) throws FindByIdException;
+    ProductDTO save(ProductDTO product) throws FindByIdException, BadRequestException;
     ProductDTO findById(Integer productId) throws FindByIdException;
     void deleteById(Integer productId) throws FindByIdException;
     ProductDTO update(ProductDTO product) throws FindByIdException;

@@ -59,8 +59,11 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public ProductDTO save(ProductDTO product) throws FindByIdException {
+    public ProductDTO save(ProductDTO product) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar producto");
+        if (productRepository.findAll().contains(product.toEntity())) {
+            throw new BadRequestException("El producto ingresado ya existe en la base de datos");
+        }
         Product newProduct = productRepository.save(product.toEntity());
         logger.debug("Terminó la ejecución del método guardar producto");
         return loadDataIntoProductDTO(newProduct);
