@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import StylesApp from "../../../App.module.css";
 import Styles from "./Styles.module.css";
 import Spinner from "../../spinner/Spinner";
-import FormProduct from "./FormProduct";
+import FormProductUpdate from "./FormProductUpdate";
 import ProductSelect from "./ProductSelect";
 import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axiosCollection/Product/AxiosProduct.jsx"
 
@@ -26,7 +26,7 @@ function UpdateProduct(props) {
         reference: "",
         category: { id: null, title: "", description: "", url: "" },
         city: { id: null, name: "", country: "" },
-        images: [{ id: null, title: "", url: "", productId: null }],
+        images: [],
         features: [{ id: null, title: "", state: null }],
         rules: "",
         health: "",
@@ -44,6 +44,9 @@ function UpdateProduct(props) {
         setProduct(p);
     }  
 
+    const title="¡Gracias!";
+    const message="Se ha actualizado exitosamente el producto";
+    
     return (
         (errorMessage && loading) ?
             <section className={StylesApp.delimiter}>
@@ -58,7 +61,7 @@ function UpdateProduct(props) {
                         <div className={StylesApp.delimiterChild}>
                             <h1>Modificar producto</h1>                          
                             <ProductSelect handleProduct={handleProduct}/>                           
-                            <FormProduct product={product} categories={optionsCategories} cities={optionsCities} features={optionsFeatures} />
+                            <FormProductUpdate product={product} categories={optionsCategories} cities={optionsCities} features={optionsFeatures} titleModal={title} messageModal={message} />
                         </div>
                     </section>
                 )}
