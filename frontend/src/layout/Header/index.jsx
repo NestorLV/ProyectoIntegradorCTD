@@ -13,7 +13,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     const role = sessionStorage.getItem("role");
     const [admin, setAdmin] = useState(false);
     const [adminMenu, setAdminMenu] = useState(false);
-    const [userMenu,setUserMenu] = useState(false);
+    const [userMenu, setUserMenu] = useState(false);
     const showUserName = (isLogged) ? `${Styles.user} ${Styles.loggedIn}` : Styles.user;
     const hideButtons = (isLogged) ? `${Styles.buttons} ${Styles.user}` : Styles.buttons;
     const administration = isLogged ? Styles.optionsBox : Styles.hideButton;
@@ -57,26 +57,26 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
 
     function handleCloseNav() {
         setUserMenu(false);
-        setAdminMenu(false);     
-    }    
+        setAdminMenu(false);
+    }
 
     let handleAdminMenu = () => {
         setAdminMenu(true);
         setUserMenu(false);
-    }    
+    }
 
     useEffect(() => {
         if (sessionStorage.getItem("role") === "ADMIN") {
-            setAdmin(true)            
+            setAdmin(true)
         } else {
             setAdmin(false)
         }
     }, [role])
-  
+
 
     return (
         <div className={Styles.containerHeader}>
-            <header className={`${Styles.header} ${StylesApp.delimiter}`}  onMouseLeave={handleCloseNav}>
+            <header className={`${Styles.header} ${StylesApp.delimiter}`} onMouseLeave={handleCloseNav}>
                 <div className={showBurger === true ? `${Styles.headerTop} ${StylesLayout.opacity} ${StylesApp.delimiterChild}` : `${Styles.headerTop} ${StylesApp.delimiterChild}`}>
                     <Link to="/" className={Styles.home} onClick={handleHide}>
                         <div className={Styles.logo} onClick={handleClean}>
@@ -101,7 +101,10 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
                         {admin &&
                             <div className={administration} onMouseMove={handleAdminMenu}>
                                 <>
-                                    <h4 className={Styles.administracion}>Administración</h4>
+                                    <div className={Styles.boxAdminArrow}>
+                                        <h4 className={Styles.administracion}>Administración</h4>
+                                        <span className={Styles.arrowAdmin}></span>
+                                    </div>
                                     <img className={Styles.verticalLine} src={verticalLine} alt="line" />
                                 </>
                             </div>
