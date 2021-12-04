@@ -37,7 +37,7 @@ public class ProductController implements CRUDController<ProductDTO> {
     @Operation(summary = "Add a new product")
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO product) throws FindByIdException {
+    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO product) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(productService.save(product));
     }
 

@@ -8,6 +8,7 @@ import com.proyecto.integrador.DTO.CityDTO;
 import com.proyecto.integrador.DTO.ImageDTO;
 import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.controller.ImageController;
+import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.service.impl.CategoryServiceImpl;
 import com.proyecto.integrador.service.impl.CityServiceImpl;
@@ -45,7 +46,7 @@ public class ImageIntegrationTests {
     @Autowired
     private CityServiceImpl cityServiceImpl;
 
-    public void cargarDatos() throws FindByIdException {
+    public void cargarDatos() throws FindByIdException, BadRequestException {
         CategoryDTO categoryDTO = categoryServiceImpl.save(new CategoryDTO(1,"Apart Hotels", "500.012", "http://exampleimage.com"));
         CityDTO cityDTO = cityServiceImpl.save(new CityDTO (1,"Córdoba","Argentina"));
         ProductDTO productDTO = productServiceImpl.save(new ProductDTO(1,"Hotel Plaza","Hotel 5 estrellas",123.45,143.67,"Calle Falsa 123, CABA",9,false,"En el centro",categoryDTO,cityDTO,"rules","health","politics"));

@@ -5,6 +5,7 @@ import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.controller.CategoryController;
 import com.proyecto.integrador.controller.CityController;
 import com.proyecto.integrador.controller.ProductController;
+import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.exceptions.GlobalException;
 import com.proyecto.integrador.service.ICityService;
@@ -49,7 +50,7 @@ public class ProductServiceUnitTest {
         configureMockito();
     }
 
-    public void configureMockito() throws FindByIdException {
+    public void configureMockito() throws FindByIdException, BadRequestException {
         Mockito.when(productService.save(product)).thenReturn(product);
         Mockito.when(productService.findById(3)).thenReturn(product);
         Mockito.when(productService.update(product)).thenReturn(product);
@@ -58,7 +59,7 @@ public class ProductServiceUnitTest {
     }
 
     @Test
-    public void testAgregarProducto() throws FindByIdException {
+    public void testAgregarProducto() throws FindByIdException, BadRequestException {
         ProductDTO p = productService.save(product);
         Assertions.assertEquals(product,p);
     }
