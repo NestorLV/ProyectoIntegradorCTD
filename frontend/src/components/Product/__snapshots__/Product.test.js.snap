@@ -930,7 +930,7 @@ exports[`Probando el componente <DateBar/> Deberia mostrar <DateBar/> correctame
               displayStaticWrapperAs="desktop"
               hintText="Dates Disabled"
               maxDate={null}
-              minDate={2021-12-04T16:14:24.197Z}
+              minDate={2021-12-05T12:14:44.590Z}
               onChange={[Function]}
               renderInput={[Function]}
               shouldDisableDate={[Function]}

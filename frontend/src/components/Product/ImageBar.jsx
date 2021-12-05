@@ -49,6 +49,8 @@ function ImageBar(props) {
 
     let logged = sessionStorage.getItem("log");
 
+    console.log(images, "images");
+
     return (
         <div className={`${Styles.imageBar} ${StylesApp.delimiter}`}>
             <div className={`${Styles.imageBarChild} ${StylesApp.delimiterChild}`}>
@@ -79,10 +81,10 @@ function ImageBar(props) {
                         <img src={images[0].url} alt={images[0].title} />
                     </div>
                     <div className={Styles.barraDer}>
-                        {images[1].url !== null ? <img src={images[1].url} alt={images[1].title} /> : <img src={white} alt="white" />}
-                        {images[2].url !== null ? <img src={images[2].url} alt={images[2].title} /> : <img src={white} alt="white" />}
-                        {images[3].url !== null ? <img src={images[3].url} alt={images[3].title} /> : <img src={white} alt="white" />}
-                        {images[4].url !== null ? <img src={images[4].url} alt={images[4].title} /> : <img src={white} alt="white" />}
+                        {images[1] ? <img src={images[1].url} alt={images[1].title} /> : <img src={white} alt="white" />}
+                        {images[2] ? <img src={images[2].url} alt={images[2].title} /> : <img src={white} alt="white" />}
+                        {images[3] ? <img src={images[3].url} alt={images[3].title} /> : <img src={white} alt="white" />}
+                        {images[4] ? <img src={images[4].url} alt={images[4].title} /> : <img src={white} alt="white" />}
                         <div className={Styles.verMas} onClick={openLightBox}>Ver Más</div>
                     </div>
                     <CarouselModal viewerIsOpen={props.viewerIsOpen} images={images} setCurrentImage={props.setCurrentImage} setViewerIsOpen={props.setViewerIsOpen} />

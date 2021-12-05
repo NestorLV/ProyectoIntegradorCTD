@@ -127,7 +127,12 @@ exports[`Probando el componente <FormProductUpdate/> Deberia mostrar <FormProduc
       setQualification={[Function]}
       setReference={[Function]}
       setRules={[Function]}
-      setSelectedCategory={[Function]}
+      setSelectedCategory={
+        Object {
+          "id": "",
+          "name": "",
+        }
+      }
       setSelectedCity={[Function]}
       setSelectedFeatures={[Function]}
     />

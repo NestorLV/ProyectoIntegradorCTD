@@ -101,11 +101,31 @@ function AxiosCreateFavourite(id, setLike, setErrorMessage) {
         axios.post(baseUrlFavourite)
             .then(response => {
                 setLike(response.data.favourite); 
+                console.log(response.data.favourite);
             })
             .catch(error => {
                 setErrorMessage(error.message);
+                console.log(error.message);
             })
     }
 }
 
-export { AxiosGetProductosRecomendados, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria, AxiosCreateFavourite, AxiosGetProductoFavorito }
+function AxiosDeletedMark(id) {
+    const baseUrlBorrarProducto = `${baseUrl}products/deletedmark/${id}`;
+
+    axios.put(baseUrlBorrarProducto, {
+        headers: {
+            Authorization: "Bearer "+sessionStorage.getItem("token")
+        }
+    })
+        .then(response => {
+            console.log(response.data);
+            
+        })
+        .catch(error => {
+            console.log(error.message);
+           
+        })
+}
+
+export { AxiosGetProductosRecomendados, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria, AxiosCreateFavourite, AxiosGetProductoFavorito,AxiosDeletedMark }

@@ -2,11 +2,11 @@ import Styles from "./Styles.module.css";
 import Select from "react-select"
 import OptionsSelect from "./OptionsSelect";
 import Delete from "../icons/delete.svg"
-import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
+
 import { useState } from "react";
 
-export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen }) {
-    const [errorProduct, setErrorProduct] = useState("");
+export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton }) {
+    
 
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
     const handleChangeName = (event) => {
@@ -125,7 +125,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
     function options(arrayOptions, setValor) {
         return arrayOptions.map((valor) => {
             return {
-                value: `${valor.name}`,
+                value: `${valor.id}`,
                 label: <OptionsSelect valor={valor} setValor={setValor} />,
             };
         })
@@ -194,10 +194,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
      console.log(features, "features"); */
 
 
-    const crearProducto = (e) => {
-        e.preventDefault();
-        AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct)
-    }
+    
 
     return (
         <form onSubmit={sendData}>
@@ -266,7 +263,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                     return (
                         <label onClick={saveSelectedFeatures}>
                             <input
-                                onChange={event => handleChangeFeature(event)}
+                                onChange={event => saveSelectedFeatures(event)}
                                 type="checkbox"
                                 checked={selectedFeatures.find(feature => feature.id == option.id)}
                                 id={index + 1}
@@ -310,73 +307,25 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                             <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
                         </div>
                     </div>
-                    <div className={Styles.description}>
-                        <label htmlFor="description">Descripción</label>
-                        <textarea name="description" id="description" placeholder="Escribir aquí" value={description} onChange={handleChangeDescription} />
-                    </div>
-
-                    <div className={Styles.containerCheckbox}>
-                        <h3>Agregar atributos</h3>
-                        {features.map((option, index) => {
-                            return (
-                                <label onClick={saveSelectedFeatures}>
-                                    <input
-                                        onChange={event => saveSelectedFeatures(event)}
-                                        type="checkbox"
-                                        checked={selectedFeatures.find(feature => feature.id === option.id)}
-                                        id={index + 1}
-                                        value={option.name}
-                                    />
-                                    {option.name}
-                                </label>
-                            )
-                        })}
-                    </div>
-                    <div className={Styles.containerPoliticsPrincipal}>
-                        <h3>Políticas del producto</h3>
-                        <div className={Styles.containerPolitics}>
-                            <div className={Styles.politics}>
-                                <h5>Normas de la casa</h5>
-                                <label>Descripción</label>
-                                <textarea name="rules" id="rules" placeholder="Escribir aquí" value={rules} onChange={handleChangeRules} />
-                            </div>
-                            <div className={Styles.politics}>
-                                <h5>Salud y seguridad</h5>
-                                <label>Descripción</label>
-                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí" value={healthAndSecurity} onChange={handleChangeHealthAndSecurity} />
-                            </div>
-                            <div className={Styles.politics}>
-                                <h5>Políticas de cancelación</h5>
-                                <label>Descripción</label>
-                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí" value={cancellationPolicy} onChange={handleChangeCancellationPolicy} />
-                            </div>
-                        </div>
-                    </div>
-                    <div className={Styles.containerImages}>
-                        <h3>Cargar imágenes</h3>
-                        <div className={Styles.containerBlockAdministratorImage}>
-                            <div className={Styles.blockInputsImages}>
-                                <div className={Styles.image}>
-                                    <label htmlFor="titleImage">Título</label>
-                                    <input type="text" name="titleImage" id="titleImage" value={imageTitle} onChange={handleChangeImageTitle} />
-                                </div>
-                                <div className={Styles.image}>
-                                    <label htmlFor="urlImage">URL</label>
-                                    <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
+                    <button onClick={handleClickImage}>+</button>
+                </div>
+                <div className={Styles.insertedImages}>
+                    {images.map((image, index) => {
+                        return (
+                            <div className={Styles.insertedImageAndButton}>
+                                <div className={Styles.insertedImage}>
+                                    <div className={Styles.imageItem}> {image.title}</div>
+                                    <div className={Styles.imageItem}> {image.url}</div>
                                 </div>
                                 <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={image.url} onClick={handleIndexImageDeleted} /></div>
                             </div>
-
-
-
-                        </div>
-                    </div>
-                    <div>
-                        <button onClick={(e) => crearProducto(e)} /* onClick={openModalCreate} */ id={Styles.buttonCreateProduct} type="submit">Crear</button>
-                    </div>
+                        )
+                    })}
                 </div>
-                
             </div>
-        </form>
+            <div>
+                <button onClick={(e) => enviarDatos(e)} /* onClick={openModalCreate} */ id={Styles.buttonCreateProduct} type="submit">{tituloBoton}</button>
+            </div>
+        </form >
     )
 }

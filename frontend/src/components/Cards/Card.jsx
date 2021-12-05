@@ -7,7 +7,7 @@ import { Modal } from 'react-responsive-modal';
 import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
 import Icons from "../Product/icons/Icons";
-import { AxiosCreateFavourite } from '../../axiosCollection/Cards/AxiosCards';
+import { AxiosCreateFavourite , AxiosDeletedMark} from '../../axiosCollection/Cards/AxiosCards';
 
 function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
     const role = sessionStorage.getItem("role");
@@ -58,6 +58,10 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
 
     function handleLastLocation() {
         setLastLocation(`/product/${id}`)
+    }
+
+    function handleDelete(){
+        AxiosDeletedMark(id)
     }
 
     return (
@@ -125,9 +129,9 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                             <Link to={`/product/update/`} key={id} className={Styles.link} onClick={handleLastLocation}>
                                 <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`}>Modificar</button>
                             </Link>
-                            <Link to={`/product/delete/${id}`} key={id} className={Styles.link} onClick={handleLastLocation}>
-                                <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`}>Eliminar</button>
-                            </Link>
+                            <div className={Styles.link} onClick={handleLastLocation}>
+                                <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`} onClick={handleDelete}>Eliminar</button>
+                            </div>
                         </div>
                     }
 

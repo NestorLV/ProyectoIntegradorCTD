@@ -71,7 +71,11 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setImages(product.images)
 
     }, [product])
+    console.log(product.features, "product features");
 
+    function modificarProducto(event){
+        event.preventDefault()
+    }
    
 
     /*    console.log(product.images,"product.images")
@@ -105,6 +109,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
                     images={images} setImages={setImages}
                     categories={categories} cities={cities} features={features}
                     setModalCreateIsOpen={setModalCreateIsOpen}
+                    enviarDatos={modificarProducto} tituloBoton={"Modificar"}
                     />
                 <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
                     <CreateProductModal title={titleModal} message={messageModal}/>

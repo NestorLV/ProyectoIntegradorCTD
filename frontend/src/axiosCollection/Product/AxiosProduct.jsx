@@ -163,6 +163,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
             setErrorProduct("")
             /* openModalSucceed() */
             let idProduct = product.data.id;
+            console.log(qualificationInt, "qualificationint");
             axios
                 .post(`http://localhost:8080/products/scores/create`, {
                     score: qualificationInt,
@@ -193,7 +194,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                     });
             });           
             features.forEach(feature => {
-                let featureInt = parseInt(feature.target.id);               
+                let featureInt = parseInt(feature.id);               
                 axios
                     .post(`http://localhost:8080/features/updateproduct/${featureInt}/${idProduct}`, {},
                     {
@@ -202,7 +203,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                         }
                     })
                     .catch((error) => {
-                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.target.value} . Por favor, intente más tarde`)
+                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} . Por favor, intente más tarde`)
                         console.log(error);
                     });
             });           
@@ -281,4 +282,4 @@ function AxiosModificarProducto(name, description, latitude, longitude, address,
 
 }
 
-export { AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetPuntuacionDelProducto, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities, AxiosCrearProducto, AxiosModificarProducto };
+export { AxiosGetProductById, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetProductScore, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities, AxiosCrearProducto, AxiosModificarProducto };

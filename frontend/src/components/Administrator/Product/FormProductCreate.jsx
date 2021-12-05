@@ -5,6 +5,7 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
 import FormProduct from "./FormProduct";
+import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
 
 
 export default function FormProductCreate({ categories, cities, features, titleModal, messageModal}) {
@@ -24,6 +25,8 @@ export default function FormProductCreate({ categories, cities, features, titleM
     const [imageTitle, setImageTitle] = useState()
     const [imageUrl, setImageUrl] = useState()
     const [images, setImages] = useState([])
+
+    const [errorProduct, setErrorProduct] = useState("");
 
     const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
 
@@ -48,6 +51,11 @@ export default function FormProductCreate({ categories, cities, features, titleM
         setModalCreateIsOpen(false);
     };
 
+    const crearProducto = (e) => {
+        e.preventDefault();
+        AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct)
+    }
+
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
             <div className={`${StylesApp.delimiterChild} ${Styles.containerForm}`}>
@@ -70,6 +78,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
                     images={images} setImages={setImages}
                     categories={categories} cities={cities} features={features}
                     setModalCreateIsOpen={setModalCreateIsOpen}
+                    enviarDatos={crearProducto} tituloBoton={"Crear"}
                     />
                 <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
                     <CreateProductModal title={titleModal} message={messageModal}/>
