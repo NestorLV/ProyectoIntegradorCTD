@@ -113,12 +113,13 @@ function AxiosCreateFavourite(id, setLike, setErrorMessage) {
 function AxiosDeletedMark(id) {
     const baseUrlBorrarProducto = `${baseUrl}products/deletedmark/${id}`;
 
-    axios.put(baseUrlBorrarProducto, {
+    axios.post(baseUrlBorrarProducto,{},{
         headers: {
-            Authorization: "Bearer "+sessionStorage.getItem("token")
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`
         }
     })
         .then(response => {
+            window.location.reload();
             console.log(response.data);
             
         })
