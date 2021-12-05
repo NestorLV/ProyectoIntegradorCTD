@@ -5,7 +5,7 @@ import Delete from "../icons/delete.svg"
 
 import { useState } from "react";
 
-export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton }) {
+export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios}) {
     
 
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
@@ -58,15 +58,17 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
     }
 
     const handleChangeCategory = (value) => {
+        console.log(value);
         setSelectedCategory(value)
     }
 
     const handleChangeCity = (value) => {
+        console.log(value);
         setSelectedCity(value)
     }
 
-
-
+    console.log(selectedCategory);
+    console.log(selectedCity);
     const customStyles = {
         control: () => ({
             border: "1px solid rgba(0,0,0,.4)",
@@ -126,7 +128,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         return arrayOptions.map((valor) => {
             return {
                 value: `${valor.id}`,
-                label: <OptionsSelect valor={valor} setValor={setValor} />,
+                label: `${valor.name}` 
             };
         })
     }
@@ -155,9 +157,13 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
 
     const handleClickImage = ((event) => {
         event.preventDefault()
-        setImages([...images, { title: imageTitle, url: imageUrl }])
-        setImageTitle("");
-        setImageUrl("");
+        if(imageTitle && imageUrl){
+            setImages([...images, { title: imageTitle, url: imageUrl }])
+            setImageTitle("");
+            setImageUrl("");
+        }
+        
+        
 
     })
 
@@ -212,6 +218,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                         styles={customStyles}
                         getOptionValue={option => option.value}
                         value={selectedCategory}
+                        
                     />
                 </div>
             </div>
@@ -296,6 +303,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             </div>
             <div className={Styles.containerImages}>
                 <h3>Cargar imágenes</h3>
+                <h6>(Las imágenes se cargan haciendo click en +)</h6>
                 <div className={Styles.containerBlockAdministratorImage}>
                     <div className={Styles.blockInputsImages}>
                         <div className={Styles.image}>
@@ -313,9 +321,9 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                     {images.map((image, index) => {
                         return (
                             <div className={Styles.insertedImageAndButton}>
-                                <div className={Styles.insertedImage}>
-                                    <div className={Styles.imageItem}> {image.title}</div>
-                                    <div className={Styles.imageItem}> {image.url}</div>
+                                <div className={`${Styles.insertedImage}`}>
+                                    <input type="text" name="titleImage" id={index+1} className={Styles.imageItem} value={image.title}/>
+                                    <input type="text" name="urlImage" id={index+1} className={Styles.imageItem} value={image.url}/> 
                                 </div>
                                 <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={image.url} onClick={handleIndexImageDeleted} /></div>
                             </div>
@@ -326,6 +334,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             <div>
                 <button onClick={(e) => enviarDatos(e)} /* onClick={openModalCreate} */ id={Styles.buttonCreateProduct} type="submit">{tituloBoton}</button>
             </div>
+            <div className={Styles.error}>{errorCamposVacios}</div>
         </form >
     )
 }

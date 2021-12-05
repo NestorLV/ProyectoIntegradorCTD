@@ -10,9 +10,9 @@ import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduc
 
 export default function FormProductCreate({ categories, cities, features, titleModal, messageModal}) {
     const [name, setName] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState({ id: "", name: "" })
+    const [selectedCategory, setSelectedCategory] = useState()
     const [address, setAddress] = useState("");
-    const [selectedCity, setSelectedCity] = useState({ id: "", name: "" })
+    const [selectedCity, setSelectedCity] = useState()
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
     const [reference, setReference] = useState("");
@@ -27,6 +27,8 @@ export default function FormProductCreate({ categories, cities, features, titleM
     const [images, setImages] = useState([])
 
     const [errorProduct, setErrorProduct] = useState("");
+
+    const [errorCamposVacios, setErrorCamposVacios] = useState("")
 
     const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
 
@@ -44,8 +46,9 @@ export default function FormProductCreate({ categories, cities, features, titleM
     console.log(selectedFeatures);
     console.log(rules);
     console.log(healthAndSecurity);
-    console.log(cancellationPolicy);
-    console.log(images);*/
+    console.log(cancellationPolicy);*/
+    console.log(selectedCity);
+    console.log(selectedCategory);
 
     const closeModalCreate = () => {
         setModalCreateIsOpen(false);
@@ -53,7 +56,13 @@ export default function FormProductCreate({ categories, cities, features, titleM
 
     const crearProducto = (e) => {
         e.preventDefault();
-        AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct)
+        if(name && description && latitude && longitude && address && qualification && reference && selectedCategory && selectedCity && rules && healthAndSecurity && cancellationPolicy && images.length>0 && selectedFeatures.length>0){
+            AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct)
+            setErrorCamposVacios("")
+        }else{
+            setErrorCamposVacios("Por favor complete todos los campos")
+        }
+        
     }
 
     return (
@@ -79,6 +88,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
                     categories={categories} cities={cities} features={features}
                     setModalCreateIsOpen={setModalCreateIsOpen}
                     enviarDatos={crearProducto} tituloBoton={"Crear"}
+                    errorCamposVacios={errorCamposVacios}
                     />
                 <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
                     <CreateProductModal title={titleModal} message={messageModal}/>

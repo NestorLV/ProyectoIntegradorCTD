@@ -54,6 +54,7 @@ export default function Cards({
         setTitulo,
         setErrorMessage
       );
+      console.log("Ingreso al primer if");
     } else if (favourite === false) {
       AxiosGetProductosPorCiudadFechaYCategoria(
         setData,
@@ -65,13 +66,19 @@ export default function Cards({
         endDate,
         category
       );
+      console.log(category, "category");
+      console.log(startDate);
+      console.log(endDate);
+      console.log("Ingreso al segundo if");
     } else if (favourite) {
       AxiosGetProductosFavoritos(setData, setErrorMessage);
       setListadoFavoritos(data);
       setTitulo(`Favoritos`);
+      console.log("Ingreso al 3 if");
     } else {
       setErrorMessage("Error");
       setLoading(false);
+      console.log("Ingreso al 4 if");
     }
   }, [category, clickBusqueda, favourite, clickSeeFavourites]);
 

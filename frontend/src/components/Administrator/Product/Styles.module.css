@@ -57,7 +57,7 @@ h1{
     cursor: pointer;
 }
 
-.containerForm label, .containerForm h3, .containerForm h5{
+.containerForm label, .containerForm h3, .containerForm h5, .containerForm h6{
     color: var(--secondary-color);
     padding-bottom: 5px;  
 }
@@ -117,6 +117,9 @@ h1{
     display: flex;
     flex-direction: column;
 }
+.containerImages .insertedImages input{
+    border: 1px solid rgba(0,0,0,.4);
+}
 
 .containerImages .insertedImageAndButton{
     display: flex;
@@ -130,13 +133,13 @@ h1{
 
 .insertedImageAndButton .insertedImage{
     display: flex;
-    width: 93%;
+    width: 93.5%;
     justify-content: space-between;
 }
 
 .insertedImage .imageItem{
     padding: 5px;
-    width: 48.5%;
+    width: 49%;
 }
 
 .containerImages .insertedImageAndButton .deleteImage{
@@ -222,6 +225,7 @@ width: 100%;
     color: white;
     font-size: var(--button1);
     font-weight: var(--font-bold);
+    margin-top: 30px;
     padding: 5pt;
     width: clamp(164px,22.2vw,250px);
 }
@@ -250,36 +254,43 @@ width: 100%;
 }
   
 .containerCreateModal img {
-width: 78px;
+    width: 78px;
 }
 
 .containerCreateModal h3 {
-color: var(--primary-color);
-font-size: 24px;
+    color: var(--primary-color);
+    font-size: 24px;
 }
 
 .containerCreateModal p {
-color: var(--secondary-color);
-font-size: 20px;
-font-weight: var(--font-bold);
+    color: var(--secondary-color);
+    font-size: 20px;
+    font-weight: var(--font-bold);
 }
   
 .containerCreateModal a {
-width: 55%;
+    width: 55%;
 }
 
 .containerCreateModal a button {
-background-color: var(--primary-color);
-border: none;
-border-radius: 5px;
-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
-color: white;
-font-size: 16px;
-font-weight: var(--font-bold);
-padding: 8px;
-width: 100%;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+    color: white;
+    font-size: 16px;
+    font-weight: var(--font-bold);
+    padding: 8px;
+    width: 100%;
 }
 
+.error{
+    color: red;
+  font-size: 12pt;
+  font-weight: bold;
+  
+  
+}
 
 @media all and (max-width:769px){
     .containerForm form{

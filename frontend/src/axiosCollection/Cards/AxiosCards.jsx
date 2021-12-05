@@ -68,6 +68,7 @@ function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitul
     axios.post(baseUrlFiltros, { cityId: city, startDate: startDateParse, endDate: endDateParse, category: category })
         .then(response => {
             setData(response.data);
+            console.log(response.data, "Axios");
             setLoading(false);
             return response.data;
         })

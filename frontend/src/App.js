@@ -33,13 +33,16 @@ function App() {
   const [endDate, setEndDate] = useState(null);
   const role = sessionStorage.getItem("role");
 
+console.log(city);
+
   const handleCategory = (c) => {       
     setFavourite(false);
     setCategory(c);           
   }
+  console.log(category, "app");
 
   const handleSearch = (e) => {
-    e.preventDefault();         
+    e.preventDefault();        
     setSearch(true);
     setClickBusqueda((prevState)=>!prevState);
   }
