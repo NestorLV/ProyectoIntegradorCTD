@@ -4,11 +4,12 @@ import Styles from "./Styles.module.css";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import CreateProductModal from './CreateProductModal';
+import ConfirmProductModal from "./ConfirmProductModal"
 import FormProduct from "./FormProduct";
 import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
 
 
-export default function FormProductCreate({ categories, cities, features, titleModal, messageModal}) {
+export default function FormProductCreate({ categories, cities, features, titleModal, messageModal }) {
     const [name, setName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState()
     const [address, setAddress] = useState("");
@@ -31,6 +32,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
     const [errorCamposVacios, setErrorCamposVacios] = useState("")
 
     const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
+    const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
 
     console.log(features);
 
@@ -46,29 +48,41 @@ export default function FormProductCreate({ categories, cities, features, titleM
     console.log(selectedFeatures);
     console.log(rules);
     console.log(healthAndSecurity);
-    console.log(cancellationPolicy);*/
+    console.log(cancellationPolicy);
     console.log(selectedCity);
     console.log(selectedCategory);
+*/
 
+const openModalCreate = (() => {
+    setModalCreateIsOpen(true)
+})
     const closeModalCreate = () => {
         setModalCreateIsOpen(false);
     };
 
-    const crearProducto = (e) => {
+    const openModalConfirm = (e) => {
         e.preventDefault();
-        if(name && description && latitude && longitude && address && qualification && reference && selectedCategory && selectedCity && rules && healthAndSecurity && cancellationPolicy && images.length>0 && selectedFeatures.length>0){
-            AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct)
+        if (name && description && latitude && longitude && address && qualification && reference && selectedCategory && selectedCity && rules && healthAndSecurity && cancellationPolicy && images.length > 0 && selectedFeatures.length > 0) {
+            setModalConfirmIsOpen(true)
             setErrorCamposVacios("")
-        }else{
+        } else {
             setErrorCamposVacios("Por favor complete todos los campos")
         }
-        
+
+    }
+
+    const closeModalConfirm = () =>{
+        setModalConfirmIsOpen(false)
+    }
+
+    const crearProducto = () =>{
+        AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalCreate)
     }
 
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
             <div className={`${StylesApp.delimiterChild} ${Styles.containerForm}`}>
-            <FormProduct 
+                <FormProduct
                     name={name} setName={setName}
                     selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}
                     address={address} setAddress={setAddress}
@@ -87,11 +101,14 @@ export default function FormProductCreate({ categories, cities, features, titleM
                     images={images} setImages={setImages}
                     categories={categories} cities={cities} features={features}
                     setModalCreateIsOpen={setModalCreateIsOpen}
-                    enviarDatos={crearProducto} tituloBoton={"Crear"}
+                    enviarDatos={openModalConfirm} tituloBoton={"Crear"}
                     errorCamposVacios={errorCamposVacios}
-                    />
+                />
+                <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
+                    <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} crearProducto={crearProducto} closeModalConfirm={closeModalConfirm}/>
+                </Modal>
                 <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
-                    <CreateProductModal title={titleModal} message={messageModal}/>
+                    <CreateProductModal title={titleModal} message={messageModal} />
                 </Modal>
             </div>
         </section>

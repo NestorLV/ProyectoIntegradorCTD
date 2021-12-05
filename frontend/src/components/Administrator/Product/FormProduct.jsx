@@ -175,13 +175,10 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
 
     function sendData(event) {
         event.preventDefault()
-
     }
 
 
-    const openModalCreate = (() => {
-        setModalCreateIsOpen(true)
-    })
+   
 
     /*  console.log(name,"name");
      console.log(description,"description");

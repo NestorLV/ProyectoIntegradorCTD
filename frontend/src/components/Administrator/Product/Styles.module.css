@@ -272,7 +272,7 @@ width: 100%;
     width: 55%;
 }
 
-.containerCreateModal a button {
+.containerCreateModal button {
     background-color: var(--primary-color);
     border: none;
     border-radius: 5px;
@@ -283,6 +283,33 @@ width: 100%;
     padding: 8px;
     width: 100%;
 }
+
+.containerCreateModal .question{
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    color: white;
+    font-size: 55px;
+    height: 70px;
+    text-align: center;
+    width: 70px;
+}
+
+.containerCreateModal .ok{
+    width:55%;
+}
+
+.containerCreateModal .cancel{
+    background-color: var(--tertiary-color);
+    color: white;
+    width:40%;
+}
+
+.containerCreateModal button:hover{
+    cursor: pointer;
+    transition: all 0.7s;
+    transform: scale(1.2);
+}
+
 
 .error{
     color: red;
