@@ -24,7 +24,7 @@ exports[`Probando el componente <FormCreate/> Deberia mostrar <FormCreate/> corr
             className="inputLabel "
           >
             <label
-              for="name"
+              htmlFor="name"
             >
               Nombre
             </label>
@@ -42,7 +42,7 @@ exports[`Probando el componente <FormCreate/> Deberia mostrar <FormCreate/> corr
             className="apellido "
           >
             <label
-              for="surname"
+              htmlFor="surname"
             >
               Apellido
             </label>
@@ -69,7 +69,7 @@ exports[`Probando el componente <FormCreate/> Deberia mostrar <FormCreate/> corr
         className="inputLabel "
       >
         <label
-          for="email"
+          htmlFor="email"
         >
           Correo electrónico
         </label>
@@ -94,7 +94,7 @@ exports[`Probando el componente <FormCreate/> Deberia mostrar <FormCreate/> corr
         className="inputLabel "
       >
         <label
-          for="password"
+          htmlFor="password"
         >
           Contraseña
         </label>
@@ -129,7 +129,7 @@ exports[`Probando el componente <FormCreate/> Deberia mostrar <FormCreate/> corr
         className="inputLabel confirmPassword "
       >
         <label
-          for="confirm-password"
+          htmlFor="confirm-password"
         >
           Confirmar contraseña
         </label>
@@ -184,6 +184,26 @@ exports[`Probando el componente <FormCreate/> Deberia mostrar <FormCreate/> corr
           </Link>
         </p>
       </div>
+      <ForwardRef
+        center={true}
+        onClose={[Function]}
+        open={false}
+      >
+        <div
+          className="modalConfirm"
+        >
+          <p>
+            Se ha enviado un email de verificación.
+          </p>
+          <Link
+            to="/"
+          >
+            <button>
+              Continuar
+            </button>
+          </Link>
+        </div>
+      </ForwardRef>
     </form>
   </div>
 </div>
@@ -218,7 +238,7 @@ exports[`Probando el componente <FormLogin/> Deberia mostrar <FormLogin/> correc
         className="inputLabel "
       >
         <label
-          for="email"
+          htmlFor="email"
         >
           Correo electrónico
         </label>
@@ -243,7 +263,7 @@ exports[`Probando el componente <FormLogin/> Deberia mostrar <FormLogin/> correc
         className="inputLabel "
       >
         <label
-          for="password"
+          htmlFor="password"
         >
           Contraseña
         </label>

@@ -1,5 +1,5 @@
 import Styles from "./styles.module.css"
-import React, { Component } from 'react'
+import React from 'react'
 import Select from 'react-select'
 
 export default function FormBooking({ errorBooking, name, setName, surname, setSurname, email, setEmail, city, setCity }) {
@@ -8,9 +8,9 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         { value: 'esquemaIncompleto', label: 'Esquema Incompleto' },
         { value: 'noVacunado', label: 'No Vacunado' }
     ]
-    const optionsC = () => (
+    /*const optionsC = () => (
         <Select options={options} />
-    )
+    )*/
     const customStyles = {
         control: () => ({
             borderRadius: "7px",

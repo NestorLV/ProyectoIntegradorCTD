@@ -11,7 +11,9 @@ import InfoBar from "./InfoBar";
 import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
 import Spinner from "../spinner/Spinner";
-import { AxiosGetProductoPorId } from "../../axiosCollection/Product/AxiosProduct"
+import { AxiosGetProductById } from "../../axiosCollection/Product/AxiosProduct"
+import { AxiosGetProductoFavorito} from "../../axiosCollection/Cards/AxiosCards"
+
 
 function Product(props) {
     /* eslint-disable no-unused-vars */
@@ -49,7 +51,7 @@ function Product(props) {
     });
 
     useEffect(() => {
-        AxiosGetProductoPorId(id, setProd, setLoading, setErrorMessage)
+        AxiosGetProductById(id, setProd, setLoading, setErrorMessage)
     }, [id]);
 
     /* useEffect (() => {

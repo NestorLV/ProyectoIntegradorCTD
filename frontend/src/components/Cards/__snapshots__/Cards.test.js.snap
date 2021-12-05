@@ -171,18 +171,50 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
         más...
       </span>
     </div>
-    <Link
-      className="link"
-      key="1"
-      onClick={[Function]}
-      to="/product/1"
+    <div
+      className="buttonsBox"
     >
-      <button
-        className="cardButton2"
+      <Link
+        className="link"
+        key="1"
+        onClick={[Function]}
+        to="/product/1"
       >
-        Ver más
-      </button>
-    </Link>
+        <button
+          className="cardButton2"
+        >
+          Ver más
+        </button>
+      </Link>
+      <div
+        className="buttonsAdminBox"
+      >
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/update/"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Modificar
+          </button>
+        </Link>
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/delete/1"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Eliminar
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -335,18 +367,50 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
         más...
       </span>
     </div>
-    <Link
-      className="link"
-      key="1"
-      onClick={[Function]}
-      to="/product/1"
+    <div
+      className="buttonsBox"
     >
-      <button
-        className="cardButton2"
+      <Link
+        className="link"
+        key="1"
+        onClick={[Function]}
+        to="/product/1"
       >
-        Ver más
-      </button>
-    </Link>
+        <button
+          className="cardButton2"
+        >
+          Ver más
+        </button>
+      </Link>
+      <div
+        className="buttonsAdminBox"
+      >
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/update/"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Modificar
+          </button>
+        </Link>
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/delete/1"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Eliminar
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -499,18 +563,50 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
         más...
       </span>
     </div>
-    <Link
-      className="link"
-      key="1"
-      onClick={[Function]}
-      to="/product/1"
+    <div
+      className="buttonsBox"
     >
-      <button
-        className="cardButton2"
+      <Link
+        className="link"
+        key="1"
+        onClick={[Function]}
+        to="/product/1"
       >
-        Ver más
-      </button>
-    </Link>
+        <button
+          className="cardButton2"
+        >
+          Ver más
+        </button>
+      </Link>
+      <div
+        className="buttonsAdminBox"
+      >
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/update/"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Modificar
+          </button>
+        </Link>
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/delete/1"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Eliminar
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -663,18 +759,50 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
         más...
       </span>
     </div>
-    <Link
-      className="link"
-      key="1"
-      onClick={[Function]}
-      to="/product/1"
+    <div
+      className="buttonsBox"
     >
-      <button
-        className="cardButton2"
+      <Link
+        className="link"
+        key="1"
+        onClick={[Function]}
+        to="/product/1"
       >
-        Ver más
-      </button>
-    </Link>
+        <button
+          className="cardButton2"
+        >
+          Ver más
+        </button>
+      </Link>
+      <div
+        className="buttonsAdminBox"
+      >
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/update/"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Modificar
+          </button>
+        </Link>
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/delete/1"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Eliminar
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -827,18 +955,50 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
         más...
       </span>
     </div>
-    <Link
-      className="link"
-      key="1"
-      onClick={[Function]}
-      to="/product/1"
+    <div
+      className="buttonsBox"
     >
-      <button
-        className="cardButton2"
+      <Link
+        className="link"
+        key="1"
+        onClick={[Function]}
+        to="/product/1"
       >
-        Ver más
-      </button>
-    </Link>
+        <button
+          className="cardButton2"
+        >
+          Ver más
+        </button>
+      </Link>
+      <div
+        className="buttonsAdminBox"
+      >
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/update/"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Modificar
+          </button>
+        </Link>
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/delete/1"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Eliminar
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -991,18 +1151,50 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
         más...
       </span>
     </div>
-    <Link
-      className="link"
-      key="1"
-      onClick={[Function]}
-      to="/product/1"
+    <div
+      className="buttonsBox"
     >
-      <button
-        className="cardButton2"
+      <Link
+        className="link"
+        key="1"
+        onClick={[Function]}
+        to="/product/1"
       >
-        Ver más
-      </button>
-    </Link>
+        <button
+          className="cardButton2"
+        >
+          Ver más
+        </button>
+      </Link>
+      <div
+        className="buttonsAdminBox"
+      >
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/update/"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Modificar
+          </button>
+        </Link>
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/delete/1"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Eliminar
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -1155,18 +1347,50 @@ exports[`Pruebas en Card Deberia mostrarse el componente al hacer click para des
         menos...
       </span>
     </div>
-    <Link
-      className="link"
-      key="1"
-      onClick={[Function]}
-      to="/product/1"
+    <div
+      className="buttonsBox"
     >
-      <button
-        className="cardButton2"
+      <Link
+        className="link"
+        key="1"
+        onClick={[Function]}
+        to="/product/1"
       >
-        Ver más
-      </button>
-    </Link>
+        <button
+          className="cardButton2"
+        >
+          Ver más
+        </button>
+      </Link>
+      <div
+        className="buttonsAdminBox"
+      >
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/update/"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Modificar
+          </button>
+        </Link>
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/delete/1"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Eliminar
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -1319,18 +1543,50 @@ exports[`Pruebas en Card Deberia mostrarse el componente al hacer click para mos
         menos...
       </span>
     </div>
-    <Link
-      className="link"
-      key="1"
-      onClick={[Function]}
-      to="/product/1"
+    <div
+      className="buttonsBox"
     >
-      <button
-        className="cardButton2"
+      <Link
+        className="link"
+        key="1"
+        onClick={[Function]}
+        to="/product/1"
       >
-        Ver más
-      </button>
-    </Link>
+        <button
+          className="cardButton2"
+        >
+          Ver más
+        </button>
+      </Link>
+      <div
+        className="buttonsAdminBox"
+      >
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/update/"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Modificar
+          </button>
+        </Link>
+        <Link
+          className="link"
+          key="1"
+          onClick={[Function]}
+          to="/product/delete/1"
+        >
+          <button
+            className="cardButton2 cardButtonModify"
+          >
+            Eliminar
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -1344,6 +1600,9 @@ exports[`Pruebas en Cards Debe de mostrarse correctamente 1`] = `
   >
     <h2>
       Recomendaciones
+      <ClearFilters
+        setTitulo={[Function]}
+      />
     </h2>
     <div
       className="cardsBox"
@@ -1364,6 +1623,9 @@ exports[`Pruebas en Cards Debe de mostrarse correctamente 2`] = `
   >
     <h2>
       Recomendaciones
+      <ClearFilters
+        setTitulo={[Function]}
+      />
     </h2>
     <div
       className="cardsBox"

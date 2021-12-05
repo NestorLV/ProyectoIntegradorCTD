@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <CreateProduct/> Deberia mostrar <CreateProduct/> correctamente 1`] = `
+<section>
+  <Spinner />
+</section>
+`;
+
+exports[`Probando el componente <CreateProductModal/> Deberia mostrar <CreateProductModal/> correctamente 1`] = `
+<div
+  className="containerCreateModal"
+>
+  <img
+    alt="Tilde ok"
+    src="tildeOk.svg"
+  />
+  <h3 />
+  <p />
+  <Link
+    to="/"
+  >
+    <button>
+      Ok
+    </button>
+  </Link>
+</div>
+`;
+
+exports[`Probando el componente <FormProductCreate/> Deberia mostrar <FormProductCreate/> correctamente 1`] = `
+<section
+  className="delimiter containerPrincipal"
+>
+  <div
+    className="delimiterChild containerForm"
+  >
+    <FormProduct
+      address=""
+      cancellationPolicy=""
+      description=""
+      healthAndSecurity=""
+      images={Array []}
+      name=""
+      reference=""
+      rules=""
+      selectedCategory={
+        Object {
+          "id": "",
+          "name": "",
+        }
+      }
+      selectedCity={
+        Object {
+          "id": "",
+          "name": "",
+        }
+      }
+      selectedFeatures={Array []}
+      setAddress={[Function]}
+      setCancellationPolicy={[Function]}
+      setDescription={[Function]}
+      setHealthAndSecurity={[Function]}
+      setImageTitle={[Function]}
+      setImageUrl={[Function]}
+      setImages={[Function]}
+      setLatitude={[Function]}
+      setLongitude={[Function]}
+      setModalCreateIsOpen={[Function]}
+      setName={[Function]}
+      setQualification={[Function]}
+      setReference={[Function]}
+      setRules={[Function]}
+      setSelectedCategory={[Function]}
+      setSelectedCity={[Function]}
+      setSelectedFeatures={[Function]}
+    />
+    <ForwardRef
+      center={true}
+      onClose={[Function]}
+      open={false}
+    >
+      <CreateProductModal />
+    </ForwardRef>
+  </div>
+</section>
+`;
+
+exports[`Probando el componente <FormProductUpdate/> Deberia mostrar <FormProductUpdate/> correctamente 1`] = `
+<section
+  className="delimiter containerPrincipal"
+>
+  <div
+    className="delimiterChild containerForm"
+  >
+    <FormProduct
+      address=""
+      cancellationPolicy=""
+      description=""
+      healthAndSecurity=""
+      images={Array []}
+      name=""
+      reference=""
+      rules=""
+      selectedCategory={
+        Object {
+          "id": "",
+          "name": "",
+        }
+      }
+      selectedCity={
+        Object {
+          "id": "",
+          "name": "",
+        }
+      }
+      selectedFeatures={Array []}
+      setAddress={[Function]}
+      setCancellationPolicy={[Function]}
+      setDescription={[Function]}
+      setHealthAndSecurity={[Function]}
+      setImageTitle={[Function]}
+      setImageUrl={[Function]}
+      setImages={[Function]}
+      setLatitude={[Function]}
+      setLongitude={[Function]}
+      setModalCreateIsOpen={[Function]}
+      setName={[Function]}
+      setQualification={[Function]}
+      setReference={[Function]}
+      setRules={[Function]}
+      setSelectedCategory={[Function]}
+      setSelectedCity={[Function]}
+      setSelectedFeatures={[Function]}
+    />
+    <ForwardRef
+      center={true}
+      onClose={[Function]}
+      open={false}
+    >
+      <CreateProductModal />
+    </ForwardRef>
+  </div>
+</section>
+`;
+
+exports[`Probando el componente <ProductSelect/> Deberia mostrar <ProductSelect/> correctamente 1`] = `
+<section
+  className="delimiter containerPrincipal"
+>
+  <div
+    className="delimiterChild containerForm containerProductSelect"
+  >
+    <p
+      className="titleProductSelect"
+    >
+      Seleccione el nombre del producto para modificar
+    </p>
+    <div
+      className="selectProductBox"
+    >
+      <ForwardRef
+        isSearchable={true}
+        onChange={[Function]}
+        options={Array []}
+        placeholder="Seleccionar producto"
+        styles={
+          Object {
+            "control": [Function],
+            "dropdownIndicator": [Function],
+            "indicatorsContainer": [Function],
+            "input": [Function],
+            "option": [Function],
+            "placeholder": [Function],
+            "singleValue": [Function],
+            "valueContainer": [Function],
+          }
+        }
+      />
+      <button
+        className="buttonSearchProduct button"
+        onClick={[Function]}
+      >
+        Buscar
+      </button>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`Probando el componente <UpdateSelect/> Deberia mostrar <UpdateSelect/> correctamente 1`] = `
+<section>
+  <Spinner />
+</section>
+`;

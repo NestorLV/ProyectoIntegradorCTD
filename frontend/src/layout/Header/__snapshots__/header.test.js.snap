@@ -1,104 +1,168 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctamente 1`] = `
-<header
-  className="header delimiter"
+<div
+  className="containerHeader"
 >
-  <div
-    className="headerTop delimiterChild"
+  <header
+    className="header delimiter"
+    onMouseLeave={[Function]}
   >
-    <Link
-      className="home"
-      onClick={[Function]}
-      to="/"
-    >
-      <div
-        className="logo"
-        onClick={[MockFunction]}
-      >
-        <img
-          alt="logo"
-          src="logoWguest.jpg"
-        />
-        <h3>
-          Un mundo por descubrir
-        </h3>
-      </div>
-    </Link>
     <div
-      className="buttons"
+      className="headerTop delimiterChild"
     >
       <Link
-        to="/create"
+        className="home"
+        onClick={[Function]}
+        to="/"
       >
-        <button
-          className={null}
-        >
-          Crear Cuenta
-        </button>
-      </Link>
-      <Link
-        to="/login"
-      >
-        <button
-          className={null}
-          onClick={[Function]}
-        >
-          Iniciar Sesión
-        </button>
-      </Link>
-    </div>
-    <div
-      className="user"
-    >
-      <div
-        className="logoName"
-      >
-        <p />
-      </div>
-      <div
-        className="text"
-      >
-        <h3
-          className="great"
-        >
-          Hola,
-        </h3>
-        <h3
-          className="name"
-        >
-           
-        </h3>
-        <h4
-          className="seeFavourite"
+        <div
+          className="logo"
           onClick={[MockFunction]}
+        >
+          <img
+            alt="logo"
+            src="logoWguest.jpg"
+          />
+          <h3>
+            Un mundo por descubrir
+          </h3>
+        </div>
+      </Link>
+      <div
+        className="buttons"
+      >
+        <Link
+          to="/create"
+        >
+          <button
+            className={null}
+          >
+            Crear Cuenta
+          </button>
+        </Link>
+        <Link
+          to="/login"
+        >
+          <button
+            className={null}
+            onClick={[Function]}
+          >
+            Iniciar Sesión
+          </button>
+        </Link>
+      </div>
+      <div
+        className="hideButton"
+      >
+        <div
+          className="user"
+          onMouseMove={[Function]}
+        >
+          <div>
+            <div
+              className="logoName"
+            >
+              <p />
+            </div>
+            <div
+              className="text"
+            >
+              <h3
+                className="great"
+              >
+                Hola,
+              </h3>
+              <h3
+                className="name"
+              >
+                 
+              </h3>
+            </div>
+            <span
+              className="arrow"
+            />
+          </div>
+        </div>
+      </div>
+      <MenuButton
+        handleShow={[Function]}
+      />
+    </div>
+    <MenuMobile
+      handleFavourite={[MockFunction]}
+      handleHide={[Function]}
+      handleLogOut={[Function]}
+      iniciales={null}
+    />
+    <div
+      className="hideButton"
+    >
+      <Link
+        to="/"
+      >
+        <h4
+          className="seeMyAccount"
+          onClick={[Function]}
         >
           Ver favoritos
         </h4>
-      </div>
-      <div>
-        <div
-          className="close"
+      </Link>
+      <img
+        alt=""
+        src="LineOrange.png"
+      />
+      <Link
+        to="/"
+      >
+        <h4
+          className="seeMyAccount"
         >
-          <a
-            href="/"
-            onClick={[Function]}
-          >
-            X
-          </a>
-           
-        </div>
-      </div>
+          Mis reservas
+        </h4>
+      </Link>
+      <img
+        alt=""
+        src="LineOrange.png"
+      />
+      <h4
+        className="seeMyAccount"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Cerrar sesión
+        </a>
+         
+      </h4>
     </div>
-    <MenuButton
-      handleShow={[Function]}
-    />
-  </div>
-  <MenuMobile
-    handleFavourite={[MockFunction]}
-    handleHide={[Function]}
-    handleLogOut={[Function]}
-    iniciales={null}
-  />
-</header>
+    <div
+      className="hideButton"
+    >
+      <Link
+        to="/product/create"
+      >
+        <h4
+          className="seeMyAccount"
+        >
+          Crear Producto
+        </h4>
+      </Link>
+      <img
+        alt=""
+        src="LineOrange.png"
+      />
+      <Link
+        to="/product/update"
+      >
+        <h4
+          className="seeMyAccount"
+        >
+          Modificar Producto
+        </h4>
+      </Link>
+    </div>
+  </header>
+</div>
 `;

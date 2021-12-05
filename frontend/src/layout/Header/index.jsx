@@ -21,16 +21,15 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
     /* const baseUrl = "http://localhost:8080/" */
 
     function handleLogOut() {
-        document.querySelectorAll("nav")[1].classList.remove(`${Styles.openNav}`)
-        document.querySelectorAll("nav")[1].classList.add(`${Styles.closeNav}`)
-        setLoading(true)
-
         sessionStorage.setItem("log", "false")
         sessionStorage.removeItem("id")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
         sessionStorage.removeItem("role")
+        setLoading(true)
         setLastLocation(window.location.pathname)
+        document.querySelectorAll("nav")[1].classList.remove(`${Styles.openNav}`)
+        document.querySelectorAll("nav")[1].classList.add(`${Styles.closeNav}`)
     }
 
     function handleFavouriteClick() {

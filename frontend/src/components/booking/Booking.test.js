@@ -13,6 +13,9 @@ import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createSerializer } from 'enzyme-to-json';
 
+import * as TestRenderer from "react-test-renderer";
+import { MemoryRouter, Outlet, Routes, Route, useParams } from "react-router";
+
 
 Enzyme.configure({ adapter: new Adapter() });
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
@@ -30,6 +33,7 @@ describe("Probando el componente <ArrivalTimeBar/>", () => {
 
 })
 
+
 describe("Probando el componente <CalendarBar/>", () => {
     let wrapper;
     let props={
@@ -41,8 +45,18 @@ describe("Probando el componente <CalendarBar/>", () => {
     });
 
     it("Deberia mostrar <CalendarBar/> correctamente", () => {
+        wrapper = shallow(<CalendarBar {...props}/>)
         expect(wrapper).toMatchSnapshot();
     });
+
+
+    /*let AxiosGetReservasPorProducto = jest.fn()
+    it("probando", () => {
+        wrapper = mount(<CalendarBar {...props} AxiosGetReservasPorProducto={AxiosGetReservasPorProducto}/>)
+        expect(wrapper).not.toBeNull();
+    });*/
+
+
 })
 
 describe("Probando el componente <DetailBar/>", () => {

@@ -137,7 +137,7 @@ exports[`Probando el componente <CalendarBar/> Deberia mostrar <CalendarBar/> co
         >
           <svg
             aria-hidden="true"
-            class="svg-inline--fa fa-info-circle fa-w-16"
+            className="svg-inline--fa fa-info-circle fa-w-16"
             data-icon="info-circle"
             data-prefix="fas"
             focusable="false"
@@ -457,11 +457,11 @@ exports[`Probando el componente <CalendarBar/> Deberia mostrar <CalendarBar/> co
           dateAdapter={[Function]}
         >
           <ForwardRef(StaticDateRangePicker)
-            className="makeStyles-root-1"
+            className="makeStyles-root-2"
             displayStaticWrapperAs="desktop"
             hintText="Dates Disabled"
             maxDate={null}
-            minDate={2021-11-23T15:32:12.087Z}
+            minDate={2021-12-04T16:14:23.807Z}
             onChange={[Function]}
             renderInput={[Function]}
             shouldDisableDate={[Function]}
@@ -528,6 +528,9 @@ exports[`Probando el componente <DetailBar/> Deberia mostrar <DetailBar/> correc
       >
         Confirmar Reserva
       </button>
+      <div
+        className="containerErrorBooking"
+      />
       <ForwardRef
         center={true}
         onClose={[Function]}
@@ -606,7 +609,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="city"
         >
-          Ciudad
+          Ciudad de origen
         </label>
         <input
           id="city"
@@ -616,6 +619,67 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
           type="text"
         />
       </div>
+    </div>
+    <div>
+      <label
+        htmlFor="esquema"
+      >
+        Vacunación COVID-19
+      </label>
+      <ForwardRef
+        getOptionValue={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "Esquema Completo",
+              "value": "esquemaCompleto",
+            },
+            Object {
+              "label": "Esquema Incompleto",
+              "value": "esquemaIncompleto",
+            },
+            Object {
+              "label": "No Vacunado",
+              "value": "noVacunado",
+            },
+          ]
+        }
+        placeholder="Selecciona una opción"
+        styles={
+          Object {
+            "control": [Function],
+            "dropdownIndicator": [Function],
+            "indicatorsContainer": [Function],
+            "input": [Function],
+            "option": [Function],
+            "placeholder": [Function],
+            "singleValue": [Function],
+            "valueContainer": [Function],
+          }
+        }
+      />
+    </div>
+    <div>
+      <label
+        className="observaciones"
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        id="observaciones"
+        name="observaciones"
+        style={
+          Object {
+            "border": "none",
+            "boxShadow": "1px 2px 4px rgba(0, 0, 0, 0.25)",
+            "display": "block",
+            "height": "44px",
+            "marginTop": "15px",
+            "minWidth": "100%",
+          }
+        }
+      />
     </div>
     <div
       className="containerErrorBooking"
@@ -690,7 +754,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="city"
         >
-          Ciudad
+          Ciudad de origen
         </label>
         <input
           id="city"
@@ -700,6 +764,67 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
           type="text"
         />
       </div>
+    </div>
+    <div>
+      <label
+        htmlFor="esquema"
+      >
+        Vacunación COVID-19
+      </label>
+      <ForwardRef
+        getOptionValue={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "Esquema Completo",
+              "value": "esquemaCompleto",
+            },
+            Object {
+              "label": "Esquema Incompleto",
+              "value": "esquemaIncompleto",
+            },
+            Object {
+              "label": "No Vacunado",
+              "value": "noVacunado",
+            },
+          ]
+        }
+        placeholder="Selecciona una opción"
+        styles={
+          Object {
+            "control": [Function],
+            "dropdownIndicator": [Function],
+            "indicatorsContainer": [Function],
+            "input": [Function],
+            "option": [Function],
+            "placeholder": [Function],
+            "singleValue": [Function],
+            "valueContainer": [Function],
+          }
+        }
+      />
+    </div>
+    <div>
+      <label
+        className="observaciones"
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        id="observaciones"
+        name="observaciones"
+        style={
+          Object {
+            "border": "none",
+            "boxShadow": "1px 2px 4px rgba(0, 0, 0, 0.25)",
+            "display": "block",
+            "height": "44px",
+            "marginTop": "15px",
+            "minWidth": "100%",
+          }
+        }
+      />
     </div>
     <div
       className="containerErrorBooking"
@@ -725,6 +850,7 @@ exports[`Probando el componente <Succeed/> Deberia mostrar <Succeed/> correctame
     Su reserva se ha realizado con éxito
   </p>
   <Link
+    onClick={[Function]}
     to="/"
   >
     <button>

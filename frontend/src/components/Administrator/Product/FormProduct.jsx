@@ -3,11 +3,11 @@ import Select from "react-select"
 import OptionsSelect from "./OptionsSelect";
 import Delete from "../icons/delete.svg"
 import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
-import {useState} from "react";
+import { useState } from "react";
 
 export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen }) {
     const [errorProduct, setErrorProduct] = useState("");
-    
+
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -57,78 +57,15 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setImageUrl(event.target.value)
     }
 
-    function options(arrayOptions, setValor) {
-        return arrayOptions.map((valor) => {
-            return {
-                value: `${valor.id}`,
-                label: <OptionsSelect valor={valor} setValor={setValor} />,
-            };
-        })
-    }
-
-    function saveSelectedFeatures(event) {
-        if (event.target.checked) {
-            setSelectedFeatures([...selectedFeatures, { id: event.target.id, name: event.target.value }])
-
-        } else {
-            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.id == event.target.id))
-            if (index != -1) {
-                let aux = selectedFeatures;
-                aux.splice(index, 1)
-                setSelectedFeatures(aux)
-            }
-        }
-    }
-
-    function handleIndexImageDeleted(event) {
-        console.log(event.target);
-        deleteImage(event.target.id)
-        console.log(event);
-    }
-
-    const handleClickImage = ((event) => {
-        event.preventDefault()
-        setImages([...images, { title: imageTitle, url: imageUrl }])
-        setImageTitle("");
-        setImageUrl("");
-
-    })
-
-    function deleteImage(index) {
-        let aux = images;
-        aux = aux.filter((image) => { return image.url !== index })
-        setImages(aux);       
-    }
-
-    function sendData(event) {
-        event.preventDefault()
-    }
-
-    let handleChangeCategory = (value) => {
+    const handleChangeCategory = (value) => {
         setSelectedCategory(value)
     }
 
-    let handleChangeCity = (value) => {
+    const handleChangeCity = (value) => {
         setSelectedCity(value)
     }
 
-    let handleChangeFeature = (value) => {
-        if (value.target.checked) {
-            setSelectedFeatures([...selectedFeatures, value])
-        } else {
-            let index = selectedFeatures.indexOf(selectedFeatures.find(feature => feature.title == value.target.value))
-            if (index != -1) {
-                let aux = selectedFeatures;
-                aux = aux.filter((feature) => { return feature.title !== value.target.value })
-                /* aux.splice(index, 1) */
-                setSelectedFeatures(aux)
-            }
-        }
-        console.log(selectedFeatures, "selectedFeatures");
-        console.log(selectedFeatures.target, "selectedFeatures.target");
-      
 
-    }
 
     const customStyles = {
         control: () => ({
@@ -185,24 +122,76 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         }),
     }
 
+    function options(arrayOptions, setValor) {
+        return arrayOptions.map((valor) => {
+            return {
+                value: `${valor.name}`,
+                label: <OptionsSelect valor={valor} setValor={setValor} />,
+            };
+        })
+    }
+
+    function saveSelectedFeatures(event) {
+        if (event.target.checked) {
+            setSelectedFeatures([...selectedFeatures, { id: parseInt(event.target.id), title: event.target.value }])
+
+        } else {
+            let index = selectedFeatures.findIndex(feature => feature.id === parseInt(event.target.id))
+            console.log(index);
+            if (index !== -1) {
+                let aux = selectedFeatures;
+                aux = aux.filter((feature) => feature.id !== parseInt(event.target.id))
+                setSelectedFeatures(aux)
+            }
+        }
+    }
+    console.log(selectedFeatures, "selectedFeatures");
+
+    function handleIndexImageDeleted(event) {
+        console.log(event.target);
+        deleteImage(event.target.id)
+        console.log(event);
+    }
+
+    const handleClickImage = ((event) => {
+        event.preventDefault()
+        setImages([...images, { title: imageTitle, url: imageUrl }])
+        setImageTitle("");
+        setImageUrl("");
+
+    })
+
+    function deleteImage(index) {
+        let aux = images;
+        aux = aux.filter((image) => { return image.url !== index })
+        setImages(aux);
+    }
+
+
+    function sendData(event) {
+        event.preventDefault()
+
+    }
+
+
     const openModalCreate = (() => {
         setModalCreateIsOpen(true)
     })
 
-   /*  console.log(name,"name");
-    console.log(description,"description");
-    console.log(latitude,"latitude");
-    console.log(longitude,"longitude");
-    console.log(address,"address");
-    console.log(qualification,"qualification");
-    console.log(reference,"reference");
-    console.log(selectedCategory.value, "selectedCategory.value");
-    console.log(selectedCity.value, "selectedCity.value");   
-    console.log(rules, "rules");
-    console.log(healthAndSecurity, "healthAndSecurity");
-    console.log(cancellationPolicy, "cancellationPolicy");
-    console.log(images, "images"); 
-    console.log(features, "features"); */
+    /*  console.log(name,"name");
+     console.log(description,"description");
+     console.log(latitude,"latitude");
+     console.log(longitude,"longitude");
+     console.log(address,"address");
+     console.log(qualification,"qualification");
+     console.log(reference,"reference");
+     console.log(selectedCategory.value, "selectedCategory.value");
+     console.log(selectedCity.value, "selectedCity.value");   
+     console.log(rules, "rules");
+     console.log(healthAndSecurity, "healthAndSecurity");
+     console.log(cancellationPolicy, "cancellationPolicy");
+     console.log(images, "images"); 
+     console.log(features, "features"); */
 
 
     const crearProducto = (e) => {
@@ -220,7 +209,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                 <div className={Styles.blockInputs}>
                     <label htmlFor="category">Categoría</label>
                     <Select
-                        onChange={(newValue) => handleChangeCategory(newValue)} 
+                        onChange={(newValue) => handleChangeCategory(newValue)}
                         options={options(categories, setSelectedCategory)}
                         placeholder="Seleccionar categoria"
                         styles={customStyles}
@@ -321,25 +310,72 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                             <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
                         </div>
                     </div>
-                    <button onClick={handleClickImage}>+</button>
-                </div>
-                <div className={Styles.insertedImages}>
-                    {images.map((image, index) => {
-                        return (
-                            <div className={Styles.insertedImageAndButton}>
-                                <div className={Styles.insertedImage}>
-                                    <div className={Styles.imageItem}> {image.title}</div>
-                                    <div className={Styles.imageItem}> {image.url}</div>
+                    <div className={Styles.description}>
+                        <label htmlFor="description">Descripción</label>
+                        <textarea name="description" id="description" placeholder="Escribir aquí" value={description} onChange={handleChangeDescription} />
+                    </div>
+
+                    <div className={Styles.containerCheckbox}>
+                        <h3>Agregar atributos</h3>
+                        {features.map((option, index) => {
+                            return (
+                                <label onClick={saveSelectedFeatures}>
+                                    <input
+                                        onChange={event => saveSelectedFeatures(event)}
+                                        type="checkbox"
+                                        checked={selectedFeatures.find(feature => feature.id === option.id)}
+                                        id={index + 1}
+                                        value={option.name}
+                                    />
+                                    {option.name}
+                                </label>
+                            )
+                        })}
+                    </div>
+                    <div className={Styles.containerPoliticsPrincipal}>
+                        <h3>Políticas del producto</h3>
+                        <div className={Styles.containerPolitics}>
+                            <div className={Styles.politics}>
+                                <h5>Normas de la casa</h5>
+                                <label>Descripción</label>
+                                <textarea name="rules" id="rules" placeholder="Escribir aquí" value={rules} onChange={handleChangeRules} />
+                            </div>
+                            <div className={Styles.politics}>
+                                <h5>Salud y seguridad</h5>
+                                <label>Descripción</label>
+                                <textarea name="healthAndSecurity" id="healthAndSecurity" placeholder="Escribir aquí" value={healthAndSecurity} onChange={handleChangeHealthAndSecurity} />
+                            </div>
+                            <div className={Styles.politics}>
+                                <h5>Políticas de cancelación</h5>
+                                <label>Descripción</label>
+                                <textarea name="cancellationPolicy" id="cancellationPolicy" placeholder="Escribir aquí" value={cancellationPolicy} onChange={handleChangeCancellationPolicy} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className={Styles.containerImages}>
+                        <h3>Cargar imágenes</h3>
+                        <div className={Styles.containerBlockAdministratorImage}>
+                            <div className={Styles.blockInputsImages}>
+                                <div className={Styles.image}>
+                                    <label htmlFor="titleImage">Título</label>
+                                    <input type="text" name="titleImage" id="titleImage" value={imageTitle} onChange={handleChangeImageTitle} />
+                                </div>
+                                <div className={Styles.image}>
+                                    <label htmlFor="urlImage">URL</label>
+                                    <input type="text" name="urlImage" id="urlImage" value={imageUrl} onChange={handleChangeImageUrl} />
                                 </div>
                                 <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={image.url} onClick={handleIndexImageDeleted} /></div>
                             </div>
-                        )
-                    })}
 
+
+
+                        </div>
+                    </div>
+                    <div>
+                        <button onClick={(e) => crearProducto(e)} /* onClick={openModalCreate} */ id={Styles.buttonCreateProduct} type="submit">Crear</button>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <button onClick={(e) => crearProducto(e)} /* onClick={openModalCreate} */ id={Styles.buttonCreateProduct} type="submit">Crear</button>
+                
             </div>
         </form>
     )

@@ -7,7 +7,7 @@ function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, 
         "password": `${password}`
     }).then(response => {
         console.log(response.data);
-        if(response.data.activation=="true"){
+        if(response.data.activation==="true"){
             sessionStorage.setItem("name", `${response.data.name.charAt(0).toUpperCase()}${response.data.name.slice(1)}`);
             sessionStorage.setItem("surname", `${response.data.surname.charAt(0).toUpperCase()}${response.data.surname.slice(1)}`);
             sessionStorage.setItem("iniciales", `${response.data.name.slice(0, 1).toUpperCase()}${response.data.surname.slice(0, 1).toUpperCase()}`)
@@ -54,7 +54,7 @@ function AxiosCreate(name, surname, email, password, setFormValido, setLog, setE
     .catch(error => {
         setLoading(false)
         console.log(error.response);
-        if (error.response.status != 200) {
+        if (error.response.status !== 200) {
             setEmail({ valido: false, error: "El usuario ya existe."})
             setFormValido(false)
             sessionStorage.setItem("log", "false");
