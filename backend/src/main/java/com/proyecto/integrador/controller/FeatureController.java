@@ -48,7 +48,7 @@ public class FeatureController implements CRUDController<FeatureRequestDTO> {
 
     @Operation(summary = "Update an existing feature", description = "Updates some information of an exiting feature")
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PutMapping("/updateproduct/{featureId}/{productId}")
+    @PostMapping("/updateproduct/{featureId}/{productId}")
     public ResponseEntity<FeatureResponseDTO> updateProduct(@PathVariable Integer featureId, @PathVariable Integer productId) throws FindByIdException {
         return ResponseEntity.ok(featureService.updateProducts(featureId, productId));
     }

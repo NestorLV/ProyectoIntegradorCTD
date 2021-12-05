@@ -30,7 +30,7 @@ public class Product {
     private String address;
     @Column(name = "qualification", nullable = false)
     private double qualification;
-    @Column(name = "favourite", nullable = false)
+    @Column(name = "reference", nullable = false)
     private String reference;
     @Column(name = "rules", nullable = false)
     private String rules;

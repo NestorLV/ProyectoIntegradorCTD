@@ -18,7 +18,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findFirst5ByOrderByQualificationDesc();
 
-    String RESERVATION_QUERY_BY_CITY = "select p.idProduct, p.name, p.description, p.latitude, p.longitude, p.address, " +
+    /*String RESERVATION_QUERY_BY_CITY = "select p.idProduct, p.name, p.description, p.latitude, p.longitude, p.address, " +
             " p.qualification, p.favourite,p.reference,p.idCategory,p.idCity, p.rules, p.health, p.politics, " +
             " r.idReservation " +
             " from product p " +
@@ -73,5 +73,5 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
         } else {
             return null;
         }
-    }
+    }*/
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -21,7 +22,7 @@ public class UserRequestDTO {
     private String email;
     private String password;
     private RoleDTO role;
-    private Set<Product> favoriteProducts = new HashSet<>();
+    private Set<ProductDTO> favoriteProducts = new HashSet<>();
 
     public User toEntity(){
         User user = new User();
@@ -30,7 +31,7 @@ public class UserRequestDTO {
         user.setEmail(email);
         user.setPassword(password);
         user.setRole(role.toEntity());
-        user.setFavoriteProducts(favoriteProducts);
+        user.setFavoriteProducts(favoriteProducts.stream().map(ProductDTO::toEntity).collect(Collectors.toSet()));
         return user;
     }
 }

@@ -19,6 +19,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -71,7 +72,7 @@ public class UserController implements CRUDController<UserRequestDTO> {
 
     @Operation(summary = "Get User Favorites")
     @GetMapping("/getfavourites/{email}")
-    public ResponseEntity<List<ProductDTO>> getFavorites(@PathVariable String email) throws FindByIdException, BadRequestException {
+    public ResponseEntity<Set<ProductDTO>> getFavorites(@PathVariable String email) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(userService.getFavorites(email));
     }
 

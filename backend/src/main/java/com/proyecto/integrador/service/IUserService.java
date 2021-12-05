@@ -10,6 +10,7 @@ import com.proyecto.integrador.exceptions.FindByIdException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface IUserService {
     List<UserResponseDTO> findAll() throws FindByIdException;
@@ -17,7 +18,7 @@ public interface IUserService {
     UserResponseDTO findById(Integer idUsers) throws FindByIdException;
     void deleteById(Integer idUsers) throws FindByIdException;
     UserResponseDTO update(String email) throws FindByIdException;
-    List<ProductDTO> getFavorites(String email) throws BadRequestException, FindByIdException;
+    Set<ProductDTO> getFavorites(String email) throws BadRequestException, FindByIdException;
     UserResponseDTO handleFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException;
     UserResponseDTO updateFavorite(String email,Integer idProduct) throws FindByIdException;
     UserResponseDTO findByEmail(String email);

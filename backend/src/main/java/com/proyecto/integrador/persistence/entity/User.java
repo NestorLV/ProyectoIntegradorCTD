@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -66,6 +67,7 @@ public class User implements UserDetails {
         userResponseDTO.setEmail(email);
         userResponseDTO.setActivation(activation);
         userResponseDTO.setRole(role.getName());
+        userResponseDTO.setFavoriteProducts(favoriteProducts.stream().map(Product::toDto).collect(Collectors.toSet()));
         return userResponseDTO;
     }
 
