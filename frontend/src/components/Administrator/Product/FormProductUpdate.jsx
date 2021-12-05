@@ -1,4 +1,3 @@
-import OptionsSelect from "./OptionsSelect";
 import React, { useEffect, useState } from "react";
 import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
@@ -51,13 +50,13 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setName(product.name)
         setSelectedCategory(
             {
-                value: `${product.category.title}`,
-                label: <div>{product.category.title}</div>  //<OptionsSelect valor={product.category} setValor={setSelectedCategory} />,                
+                value: `${product.category.id}`,
+                label: `${product.category.title}`  //<OptionsSelect valor={product.category} setValor={setSelectedCategory} />,                
             })
         setAddress(product.address)
         setSelectedCity({
-            value: `${product.city.name}`,
-            label: <OptionsSelect valor={{ id: product.city.id, name: product.city.name }} />
+            value: `${product.city.id}`,
+            label: `${product.city.name}`
         })
         setLatitude(product.latitude)
         setLongitude(product.longitude)
@@ -92,7 +91,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
             <div className={`${StylesApp.delimiterChild} ${Styles.containerForm}`}>
                 <FormProduct 
                     name={name} setName={setName}
-                    selectedCategory={selectedCategory} setSelectedCategory={selectedCategory}
+                    selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}
                     address={address} setAddress={setAddress}
                     selectedCity={selectedCity} setSelectedCity={setSelectedCity}
                     latitude={latitude} setLatitude={setLatitude}

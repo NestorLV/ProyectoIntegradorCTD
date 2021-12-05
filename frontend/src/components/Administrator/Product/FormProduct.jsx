@@ -1,6 +1,5 @@
 import Styles from "./Styles.module.css";
 import Select from "react-select"
-import OptionsSelect from "./OptionsSelect";
 import Delete from "../icons/delete.svg"
 
 import { useState } from "react";
@@ -124,7 +123,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         }),
     }
 
-    function options(arrayOptions, setValor) {
+    function options(arrayOptions) {
         return arrayOptions.map((valor) => {
             return {
                 value: `${valor.id}`,
@@ -213,7 +212,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                     <label htmlFor="category">Categoría</label>
                     <Select
                         onChange={(newValue) => handleChangeCategory(newValue)}
-                        options={options(categories, setSelectedCategory)}
+                        options={options(categories)}
                         placeholder="Seleccionar categoria"
                         styles={customStyles}
                         getOptionValue={option => option.value}
@@ -231,7 +230,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                     <label htmlFor="city">Ciudad</label>
                     <Select
                         onChange={(newValue) => handleChangeCity(newValue)}
-                        options={options(cities, setSelectedCity)}
+                        options={options(cities)}
                         placeholder="Seleccionar ciudad"
                         styles={customStyles}
                         getOptionValue={(option) => option.value}
