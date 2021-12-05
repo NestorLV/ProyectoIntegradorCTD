@@ -38,6 +38,8 @@ public class Product {
     private String health;
     @Column(name = "politics", nullable = false)
     private String politics;
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted;
     @ManyToOne
     @JoinColumn(name = "idCategory", nullable = false)
     private Category category;
@@ -62,7 +64,7 @@ public class Product {
         this.id = id;
     }
 
-    public Product(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, String reference, Category category, City city, String rules, String health, String politics) {
+    public Product(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, String reference, Category category, City city, String rules, String health, String politics, boolean deleted) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -76,6 +78,7 @@ public class Product {
         this.rules = rules;
         this.health = health;
         this.politics = politics;
+        this.deleted=deleted;
     }
 
     @Override
@@ -119,6 +122,7 @@ public class Product {
         productDTO.setRules(rules);
         productDTO.setHealth(health);
         productDTO.setPolitics(politics);
+        productDTO.setDeleted(deleted);
         return productDTO;
     }
 }

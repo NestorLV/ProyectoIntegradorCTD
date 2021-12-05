@@ -26,6 +26,7 @@ public class ProductDTO {
     private String rules;
     private String health;
     private String politics;
+    private boolean deleted;
     private Set<ImageDTO> images = new HashSet<>();
     private Set<FeatureResponseDTO> features = new HashSet<>();
 
@@ -54,6 +55,7 @@ public class ProductDTO {
         this.rules = rules;
         this.health = health;
         this.politics = politics;
+        this.deleted = false;
     }
 
     public ProductDTO(Integer id, String name, String description, double latitude, double longitude, String address, double qualification, String reference, CategoryDTO category, CityDTO city, String rules, String health, String politics) {
@@ -70,6 +72,7 @@ public class ProductDTO {
         this.rules = rules;
         this.health = health;
         this.politics = politics;
+        this.deleted = false;
     }
 
     public Product toEntity(){
@@ -86,6 +89,7 @@ public class ProductDTO {
         product.setRules(rules);
         product.setHealth(health);
         product.setPolitics(politics);
+        product.setDeleted(deleted);
         return product;
     }
 

@@ -1,5 +1,6 @@
 package com.proyecto.integrador.persistence.repository;
 
+import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

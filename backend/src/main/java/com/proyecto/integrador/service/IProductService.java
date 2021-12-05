@@ -13,6 +13,7 @@ public interface IProductService extends IBookingService<ProductDTO> {
     ProductDTO save(ProductDTO product) throws FindByIdException, BadRequestException;
     ProductDTO findById(Integer productId) throws FindByIdException;
     void deleteById(Integer productId) throws FindByIdException;
+    void deletedMarkById(Integer productId) throws FindByIdException;
     ProductDTO update(ProductDTO product) throws FindByIdException;
     List<ProductDTO> findAllByCategory(String categoryName) throws FindByIdException, BadRequestException;
     List<ProductDTO> findAllByCity(Integer cityId) throws FindByIdException, BadRequestException;

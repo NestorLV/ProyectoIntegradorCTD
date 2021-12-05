@@ -48,7 +48,9 @@ public class ProductServiceImpl implements IProductService {
         logger.debug("Iniciando método buscar todos los productos");
         List<ProductDTO> products = new ArrayList<>();
         for (Product product : productRepository.findAll()) {
-            products.add(loadDataIntoProductDTO(product));
+            if(!product.isDeleted()) {
+                products.add(loadDataIntoProductDTO(product));
+            }
         }
         logger.debug("Terminó la ejecución del método buscar todos los productos");
         return products;
@@ -60,6 +62,7 @@ public class ProductServiceImpl implements IProductService {
         if (productRepository.findAll().contains(product.toEntity())) {
             throw new BadRequestException("El producto ingresado ya existe en la base de datos");
         }
+        product.setDeleted(false);
         Product newProduct = productRepository.save(product.toEntity());
         logger.debug("Terminó la ejecución del método guardar producto");
         return loadDataIntoProductDTO(newProduct);
@@ -68,11 +71,12 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ProductDTO findById(Integer productId) throws FindByIdException {
         logger.debug("Iniciando método buscar producto por ID");
-        if (!productRepository.existsById(productId)) {
+        if (!productRepository.existsById(productId) || productRepository.findById(productId).get().isDeleted()) {
             throw new FindByIdException("No existe un producto con el id ingresado");
         }
         Product foundProduct = productRepository.findById(productId).get();
         logger.debug("Terminó la ejecución del método buscar producto por ID");
+
         return loadDataIntoProductDTO(foundProduct);
     }
 
@@ -87,9 +91,21 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public void deletedMarkById(Integer productId) throws FindByIdException {
+        logger.debug("Iniciando método eliminar producto por ID");
+        if (!productRepository.existsById(productId)) {
+            throw new FindByIdException("No existe una producto con el id ingresado");
+        }
+        Product product = productRepository.findById(productId).get();
+        product.setDeleted(true);
+        logger.debug("Terminó la ejecución del método eliminar producto por ID");
+        productRepository.save(product);
+    }
+
+    @Override
     public ProductDTO update(ProductDTO productDTO) throws FindByIdException {
         logger.debug("Iniciando método actualizar producto");
-        if (!productRepository.existsById(productDTO.getId())) {
+        if (!productRepository.existsById(productDTO.getId()) || productRepository.findById(productDTO.getId()).get().isDeleted()) {
             throw new FindByIdException("No existe una producto con el id ingresado");
         }
         Product product = productRepository.findById(productDTO.getId()).get();
@@ -111,7 +127,9 @@ public class ProductServiceImpl implements IProductService {
         categoryService.categoryExistsInDatabase(categoryName);
         List<ProductDTO> productsByCategory = new ArrayList<>();
         for (Product product : productRepository.findByCategory_Title(categoryName)) {
-            productsByCategory.add(loadDataIntoProductDTO(product));
+            if(!product.isDeleted()) {
+                productsByCategory.add(loadDataIntoProductDTO(product));
+            }
         }
         logger.debug("Terminó la ejecución del método buscar productos por categoría");
         return productsByCategory;
@@ -125,7 +143,9 @@ public class ProductServiceImpl implements IProductService {
         }
         List<ProductDTO> productsByCity = new ArrayList<>();
         for (Product product : productRepository.findByCity_Id(cityId)) {
-            productsByCity.add(loadDataIntoProductDTO(product));
+            if(!product.isDeleted()) {
+                productsByCity.add(loadDataIntoProductDTO(product));
+            }
         }
         logger.debug("Terminó la ejecución del método buscar productos por ciudad");
         return productsByCity;
@@ -257,14 +277,16 @@ public class ProductServiceImpl implements IProductService {
             productRepository.save(p);
         });
         for (Product product : productRepository.findFirst12ByOrderByQualificationDesc()) {
-            recommendedProducts.add(loadDataIntoProductDTO(product));
+            if(!product.isDeleted()) {
+                recommendedProducts.add(loadDataIntoProductDTO(product));
+            }
         }
         return recommendedProducts;
     }
 
     public void updateQualification(Integer productId, double newQualification) throws FindByIdException {
         logger.debug("Iniciando método actualizar calificación de producto");
-        if (!productRepository.existsById(productId)) {
+        if (!productRepository.existsById(productId) || productRepository.findById(productId).get().isDeleted()) {
             throw new FindByIdException("No existe un producto con el id ingresado");
         }
         Product product = productRepository.findById(productId).get();

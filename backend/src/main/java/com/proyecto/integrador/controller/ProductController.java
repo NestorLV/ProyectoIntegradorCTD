@@ -8,6 +8,7 @@ import com.proyecto.integrador.service.IProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,6 +55,14 @@ public class ProductController implements CRUDController<ProductDTO> {
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws FindByIdException {
         productService.deleteById(id);
         return ResponseEntity.ok("Se eliminó el producto con id: "+id);
+    }
+
+    @Operation(summary = "Mark as deleted a product")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/deletedmark/{productId}")
+    public ResponseEntity<String> deletedMarkById(@PathVariable Integer productId) throws FindByIdException {
+        productService.deletedMarkById(productId);
+        return ResponseEntity.ok("Se marcó como deleted el producto con id: "+productId);
     }
 
     @Operation(summary = "Find by category")
