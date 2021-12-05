@@ -88,7 +88,7 @@ function AxiosGetProductosPorCiudadFechaYCategoria(setData, setLoading, setTitul
 
 function AxiosCreateFavourite(id, setLike, setErrorMessage) {
     let email = sessionStorage.getItem("email");
-    const baseUrlFavourite = `${baseUrl}users/createfavourite/${email}/${id}`;
+    const baseUrlFavourite = `${baseUrl}users/handlefavourite/${email}/${id}`;
     console.log(baseUrlFavourite, "soy la url de favoritos");
 
     if (sessionStorage.getItem("email") != null) {

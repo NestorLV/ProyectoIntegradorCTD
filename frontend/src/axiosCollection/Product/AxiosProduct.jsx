@@ -123,14 +123,15 @@ function AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) {
 }
 
 function AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct) {
-    /* axios
-        .post("http://localhost:3000/products/create", {
+    let qualificationInt = parseInt(qualification);
+    
+    axios
+        .post("http://localhost:8080/products/create", {
             name,
             description,
             latitude,
             longitude,
             address,
-            qualification,
             reference,
             category: {
                 id: categoryId
@@ -145,14 +146,29 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`
             }
-        })       
+        })
         .then(product => {
+            console.log("primer post con éxito")
             setErrorProduct("")
-            openModalSucceed()
+            /* openModalSucceed() */
             let idProduct = product.data.id;
-            images.forEach(image => {
+            axios
+                .post(`http://localhost:8080/products/scores/create`, {
+                    score: qualificationInt,
+                    userEmail: sessionStorage.getItem('email'),
+                    productId: idProduct
+                })
+                .then((response) => {
+                    if (response.status === 200) {
+                        console.log("Se envió correctamente la puntuación");
+                    }
+                })
+                .catch((error) => {
+                    setErrorProduct(error);
+                });
+            images.forEach(image => {               
                 axios
-                    .post(`http://localhost:3000/images/create`, {
+                    .post(`http://localhost:8080/images/create`, {
                         title: image.title,
                         url: image.url,
                         productId: idProduct
@@ -164,27 +180,25 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                     .catch((error) => {
                         setErrorProduct(`Lamentablemente no se ha podido cargar la imagen ${image.title} . Por favor, intente más tarde`)
                     });
-            });
+            });           
             features.forEach(feature => {
+                let featureInt = parseInt(feature.target.id);               
                 axios
-                    .post(`http://localhost:3000/features/update`, {
-                        featureId: feature.id,
-                        productId: idProduct
-                    }, {
+                    .post(`http://localhost:8080/features/updateproduct/${featureInt}/${idProduct}`, {},
+                    {
                         headers: {
                             Authorization: `Bearer ${sessionStorage.getItem("token")}`
                         }
                     })
                     .catch((error) => {
-                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.name} . Por favor, intente más tarde`)
+                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.target.value} . Por favor, intente más tarde`)
+                        console.log(error);
                     });
-            });
-
+            });           
         })
-        .catch((error) => {
-            console.log(error);
+        .catch((error) => {           
             setErrorProduct("Lamentablemente el producto no ha podido crearse. Por favor, intente más tarde")
-        }); */
+        });
 
 }
 
@@ -256,4 +270,4 @@ function AxiosModificarProducto(name, description, latitude, longitude, address,
 
 }
 
-export { AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetPuntuacionDelProducto, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities }
+export { AxiosGetProductoPorId, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetPuntuacionDelProducto, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities, AxiosCrearProducto, AxiosModificarProducto };

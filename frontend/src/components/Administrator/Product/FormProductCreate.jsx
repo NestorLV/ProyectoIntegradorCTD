@@ -244,7 +244,7 @@ export default function ({ categories, cities, features, titleModal, messageModa
             <div className={`${StylesApp.delimiterChild} ${Styles.containerForm}`}>
             <FormProduct 
                     name={name} setName={setName}
-                    selectedCategory={selectedCategory} setSelectedCategory={selectedCategory}
+                    selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}
                     address={address} setAddress={setAddress}
                     selectedCity={selectedCity} setSelectedCity={setSelectedCity}
                     latitude={latitude} setLatitude={setLatitude}
