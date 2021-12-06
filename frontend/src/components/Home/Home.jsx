@@ -18,7 +18,7 @@ export default function Home(props) {
   }, [props])
 
 
-  if (sessionStorage.getItem("log") === "false") {
+  if (sessionStorage.getItem("log") === "false" && !props.loading) {
     sessionStorage.removeItem("iniciales")
     sessionStorage.removeItem("name")
     sessionStorage.removeItem("surname")

@@ -113,7 +113,6 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
 
     const sendData = (event) => {
         event.preventDefault();
-        setLoading(true);
         validarName()
         validarSurname()
         validarEmail()
