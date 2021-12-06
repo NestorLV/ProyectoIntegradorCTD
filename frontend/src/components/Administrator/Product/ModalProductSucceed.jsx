@@ -9,7 +9,7 @@ export default function ProductModalSucceed ({title, message, closeModal, icon})
             <div className={icon === "X" ? Styles.cruz : null}> {icon === "X"? icon : <img src={icon} alt="icon"/>}</div>
             <h3 >{title}</h3>
             <p>{message}</p>
-            <Link to="/" onClick={closeModal}><button>Ok</button></Link>
+            <button onClick={closeModal}>Ok</button>
         </div>
     )
 }

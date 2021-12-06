@@ -3,11 +3,11 @@ import Select from "react-select"
 import Delete from "../icons/delete.svg"
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import ModalExpiredLogin from './ModalProductSucceed';
+import ModalMessage from './ModalProductSucceed';
 
 import { useState } from "react";
 
-export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios,modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen }) {
+export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios, modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen, modalExistedProductIsOpen, setModalExistedProductIsOpen }) {
     
 
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
@@ -196,7 +196,9 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         window.location.href = "/login"
     };
 
-
+    const closeModalExistedProduct = () => {
+        setModalExistedProductIsOpen(false);
+    };
 
     /*  console.log(name,"name");
      console.log(description,"description");
@@ -352,7 +354,10 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             </div>
             <div className={Styles.error}>{errorCamposVacios}</div>
             <Modal open={modalExpiredLoginIsOpen} onClose={closeModalExpiredLogin} center>
-                <ModalExpiredLogin title={"El login expiró"} message={"Por favor inicie sesión nuevamente."} closeModal={closeModalExpiredLogin} icon="X" />
+                <ModalMessage title={"El login expiró"} message={"Por favor inicie sesión nuevamente."} closeModal={closeModalExpiredLogin} icon="X" />
+            </Modal>
+            <Modal open={modalExistedProductIsOpen} onClose={closeModalExistedProduct} center>
+                <ModalMessage title={"El producto ya existe."} message={"Por favor, verifique los datos e intente nuevamente."} closeModal={closeModalExistedProduct} icon="X" />
             </Modal>
         </form >
     )
