@@ -14,7 +14,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
     const [reference, setReference] = useState("");
-    const [qualification, setQualification] = useState();
+    const [qualification, setQualification] = useState({campo:"", valido:false, error:""});
     const [description, setDescription] = useState("");
     const [selectedFeatures, setSelectedFeatures] = useState([]);
     const [rules, setRules] = useState("");
@@ -61,7 +61,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setLatitude(product.latitude)
         setLongitude(product.longitude)
         setReference(product.reference)
-        setQualification(product.qualification)
+        setQualification({campo:product.qualification})
         setDescription(product.description)
         setSelectedFeatures(product.features.map((feature)=>{return {id:feature.id, title:feature.title}}))
         setRules(product.rules)
@@ -70,7 +70,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setImages(product.images)
 
     }, [product])
-    console.log(product.features, "product features");
+    console.log(qualification, "qualification");
 
     function modificarProducto(event){
         event.preventDefault()

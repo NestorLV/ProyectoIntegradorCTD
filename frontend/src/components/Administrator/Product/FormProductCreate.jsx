@@ -17,7 +17,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
     const [reference, setReference] = useState("");
-    const [qualification, setQualification] = useState();
+    const [qualification, setQualification] = useState({campo:"", valido:false, error:""});
     const [description, setDescription] = useState("");
     const [selectedFeatures, setSelectedFeatures] = useState([]);
     const [rules, setRules] = useState("");
@@ -34,7 +34,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
     const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
 
-    console.log(features);
+    console.log(qualification, "qualification");
 
     /*console.log(name);
     console.log(selectedCategory);
@@ -62,7 +62,7 @@ const openModalSucceed = (() => {
 
     const openModalConfirm = (e) => {
         e.preventDefault();
-        if (name && description && latitude && longitude && address && qualification && reference && selectedCategory && selectedCity && rules && healthAndSecurity && cancellationPolicy && images.length > 0 && selectedFeatures.length > 0) {
+        if (name && description && latitude && longitude && address && qualification.valido && reference && selectedCategory && selectedCity && rules && healthAndSecurity && cancellationPolicy && images.length > 0 && selectedFeatures.length > 0) {
             setModalConfirmIsOpen(true)
             setErrorCamposVacios("")
         } else {
@@ -77,7 +77,7 @@ const openModalSucceed = (() => {
 
     const crearProducto = () =>{
         closeModalConfirm()
-        AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed)
+        AxiosCrearProducto(name, description, latitude, longitude, address, qualification.campo, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed)
     }
 
     return (

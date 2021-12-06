@@ -29,7 +29,11 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
     }
 
     const handleChangeQualification = (event) => {
-        setQualification(event.target.value)
+        if(event.target.value >= 1 && event.target.value <= 5){
+            setQualification({campo:event.target.value, valido:true, error:""})
+        }else{
+            setQualification({campo:event.target.value, valido:false, error: "Ingrese una calificación del 1 al 5."})
+        }
     }
 
     const handleChangeDescription = (event) => {
@@ -252,7 +256,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                 </div>
                 <div className={Styles.blockInputs}>
                     <label htmlFor="qualification">Calificación</label>
-                    <input type="text" name="qualification" id="qualification" value={qualification} onChange={handleChangeQualification} />
+                    <input type="text" name="qualification" id="qualification" value={qualification.campo} onChange={handleChangeQualification} />
+                    <div className={Styles.error}>{qualification.error}</div>
                 </div>
             </div>
             <div className={Styles.description}>
