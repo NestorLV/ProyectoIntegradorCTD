@@ -6,6 +6,7 @@ import 'react-responsive-modal/styles.css';
 import ModalProductSucceed from "./ModalProductSucceed";
 import ConfirmProductModal from "./ConfirmProductModal"
 import FormProduct from "./FormProduct";
+import tildeOk from "../icons/tildeOk.svg"
 
 export default function FormProductUpdate({ product, categories, cities, features, titleModal, messageModal }) {
     const [name, setName] = useState("");
@@ -139,7 +140,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
                     <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={modificarProducto} closeModalConfirm={closeModalConfirm} />
                 </Modal>
                 <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
-                    <ModalProductSucceed title={titleModal} message={messageModal} />
+                    <ModalProductSucceed title={titleModal} message={messageModal} icon={tildeOk}/>
                 </Modal>
             </div>
         </section>

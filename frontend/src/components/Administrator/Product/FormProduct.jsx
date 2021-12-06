@@ -2,6 +2,7 @@ import Styles from "./Styles.module.css";
 import Select from "react-select"
 import Delete from "../icons/delete.svg"
 
+
 import { useState } from "react";
 
 export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios}) {

@@ -10,6 +10,8 @@ function AxiosGetProductById(id, setProd, setLoading, setErrorMessage) {
             setLoading(false);
         })
         .catch((error) => {
+            sessionStorage.setItem("productoErroneo", "true")
+            window.location.href = "/"
             setErrorMessage(error);
         });
 }

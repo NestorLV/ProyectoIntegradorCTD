@@ -7,6 +7,7 @@ import ModalProductSucceed from './ModalProductSucceed';
 import ConfirmProductModal from "./ConfirmProductModal";
 import FormProduct from "./FormProduct";
 import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
+import tildeOk from "../icons/tildeOk.svg"
 
 
 export default function FormProductCreate({ categories, cities, features, titleModal, messageModal }) {
@@ -108,7 +109,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
                     <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={crearProducto} closeModalConfirm={closeModalConfirm}/>
                 </Modal>
                 <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
-                    <ModalProductSucceed title={titleModal} message={messageModal} />
+                    <ModalProductSucceed title={titleModal} message={messageModal} icon={tildeOk}/>
                 </Modal>
             </div>
         </section>

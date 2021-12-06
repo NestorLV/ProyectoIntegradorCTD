@@ -1,15 +1,15 @@
-import tildeOk from "../icons/tildeOk.svg"
+
 import Styles from "./Styles.module.css"
 import { Link } from "react-router-dom"
 
-export default function ProductModalSucceed ({title, message, closeModalSucceed}){
-
+export default function ProductModalSucceed ({title, message, closeModal, icon}){
+    console.log(icon, "icon");
     return (
         <div className={Styles.containerCreateModal}>
-            <img src={tildeOk} alt="Tilde ok"/>
+            <div className={icon === "X" ? Styles.cruz : null}> {icon === "X"? icon : <img src={icon} alt="icon"/>}</div>
             <h3 >{title}</h3>
             <p>{message}</p>
-            <Link to="/" onClick={closeModalSucceed}><button>Ok</button></Link>
+            <Link to="/" onClick={closeModal}><button>Ok</button></Link>
         </div>
     )
 }
