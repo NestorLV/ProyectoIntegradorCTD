@@ -164,8 +164,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             setImages([...images, { title: imageTitle, url: imageUrl }])
             setImageTitle("");
             setImageUrl("");
-        }
-        
+        }  
         
 
     })

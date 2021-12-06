@@ -79,7 +79,9 @@ export default function Cards({
       setErrorMessage("Error");
       setLoading(false);
       console.log("Ingreso al 4 if");
+
     }
+    setNumberPage(1);
   }, [category, clickBusqueda, favourite, clickSeeFavourites]);
 
   const dataLimited = () =>

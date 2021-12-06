@@ -6,6 +6,7 @@ import 'react-responsive-modal/styles.css';
 import ModalProductSucceed from "./ModalProductSucceed";
 import ConfirmProductModal from "./ConfirmProductModal"
 import FormProduct from "./FormProduct";
+import axios from "axios";
 
 export default function FormProductUpdate({ product, categories, cities, features, titleModal, messageModal }) {
     const [name, setName] = useState("");
@@ -21,9 +22,10 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const [rules, setRules] = useState("");
     const [healthAndSecurity, setHealthAndSecurity] = useState("");
     const [cancellationPolicy, setCancellationPolicy] = useState("");
-    const [imageTitle, setImageTitle] = useState()
-    const [imageUrl, setImageUrl] = useState()
-    const [images, setImages] = useState([])
+    const [imageTitle, setImageTitle] = useState();
+    const [imageUrl, setImageUrl] = useState();
+    const [images, setImages] = useState([]);
+    const [errorProduct, setErrorProduct] = useState("");
 
     const [errorCamposVacios, setErrorCamposVacios] = useState("")
 
@@ -106,6 +108,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
 
     function modificarProducto() {
         closeModalConfirm()
+        axios(name, description, latitude, longitude, address, qualification.campo, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed)
         //AXIOS DE MODIFICAR PRODUCTO (ENVIAR LA CALIFICACION COMO QUALIFICATION.CAMPO PORQUE EL ESTADO ESTA COMO UN OBJETO PARA HACER LA VALIDACION.
         //TAMBIEN MANDAR EL OPENMODALSUCCEED PARA QUE LO EJECUTE CUANDO RETORNA UN STATUS 200)
     }
