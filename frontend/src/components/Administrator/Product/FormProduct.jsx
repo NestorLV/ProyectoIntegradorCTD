@@ -242,11 +242,11 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             <div className={Styles.containerBlockAdministrator}>
                 <div className={Styles.blockInputs}>
                     <label htmlFor="latitude">Latitud</label>
-                    <input type="text" name="latitude" id="latitude" value={latitude} onChange={handleChangeLatitude} />
+                    <input type="number" name="latitude" id="latitude" value={latitude} onChange={handleChangeLatitude} />
                 </div>
                 <div className={Styles.blockInputs}>
                     <label htmlFor="longitude">Longitud</label>
-                    <input type="text" name="longitude" id="longitude" value={longitude} onChange={handleChangeLongitude} />
+                    <input type="number" name="longitude" id="longitude" value={longitude} onChange={handleChangeLongitude} />
                 </div>
             </div>
             <div className={Styles.containerBlockAdministrator}>
