@@ -65,7 +65,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setLatitude(product.latitude)
         setLongitude(product.longitude)
         setReference(product.reference)
-        setQualification({ campo: product.qualification })
+        setQualification({ campo: product.qualification, valido: true })
         setDescription(product.description)
         setSelectedFeatures(product.features.map((feature) => { return { id: feature.id, title: feature.title } }))
         setRules(product.rules)

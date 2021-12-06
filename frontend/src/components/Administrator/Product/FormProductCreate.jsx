@@ -5,6 +5,7 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ModalProductSucceed from './ModalProductSucceed';
 import ConfirmProductModal from "./ConfirmProductModal";
+import ModalExpiredLogin from './ModalProductSucceed';
 import FormProduct from "./FormProduct";
 import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
 import tildeOk from "../icons/tildeOk.svg"
@@ -34,6 +35,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
 
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
     const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
+    const [modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen] = useState(false)
 
     /*console.log(name);
     console.log(selectedCategory);
@@ -57,7 +59,6 @@ export default function FormProductCreate({ categories, cities, features, titleM
     })
     const closeModalSucceed = () => {
         setModalProductSucceedIsOpen(false);
-        window.location.href = "/"
     };
 
     const openModalConfirm = (e) => {
@@ -75,9 +76,14 @@ export default function FormProductCreate({ categories, cities, features, titleM
         setModalConfirmIsOpen(false)
     }
 
+    const openModalExpiredLogin = (() => {
+        setModalExpiredLoginIsOpen(true)
+    })
+
     const crearProducto = () =>{
         closeModalConfirm()
-        AxiosCrearProducto(name, description, latitude, longitude, address, qualification.campo, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed)
+        AxiosCrearProducto(name, description, latitude, longitude, address, qualification.campo, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed, openModalExpiredLogin)
+        console.log(errorProduct);
     }
 
     return (
@@ -104,6 +110,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
                     setModalProductSucceedIsOpen={setModalProductSucceedIsOpen}
                     enviarDatos={openModalConfirm} tituloBoton={"Crear"}
                     errorCamposVacios={errorCamposVacios}
+                    modalExpiredLoginIsOpen={modalExpiredLoginIsOpen} setModalExpiredLoginIsOpen={setModalExpiredLoginIsOpen}
                 />
                 <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
                     <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={crearProducto} closeModalConfirm={closeModalConfirm}/>
