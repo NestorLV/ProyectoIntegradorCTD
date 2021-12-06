@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -20,13 +21,14 @@ public class FeatureRequestDTO {
     public FeatureRequestDTO() {
     }
 
-    public FeatureRequestDTO(Integer id, String title, boolean state, FeatureTypes type) {
+    public FeatureRequestDTO(Integer id, String title, FeatureTypes type, Set<Product> products) {
         this.id = id;
         this.title = title;
         this.type = type;
+        this.products = products;
     }
 
-    public FeatureRequestDTO(String title, boolean state, FeatureTypes type) {
+    public FeatureRequestDTO(String title, FeatureTypes type) {
         this.title = title;
         this.type = type;
     }

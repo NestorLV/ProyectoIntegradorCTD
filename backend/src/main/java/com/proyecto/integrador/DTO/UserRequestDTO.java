@@ -24,6 +24,23 @@ public class UserRequestDTO {
     private RoleDTO role;
     private Set<ProductDTO> favoriteProducts = new HashSet<>();
 
+    public UserRequestDTO(Integer id, String name, String surname, String email, String password, RoleDTO role) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public UserRequestDTO(String name, String surname, String email, String password, RoleDTO role) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     public User toEntity(){
         User user = new User();
         user.setName(name);

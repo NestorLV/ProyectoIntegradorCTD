@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -43,6 +44,13 @@ public class ImageController implements CRUDController<ImageDTO> {
     @PutMapping("/update")
     public ResponseEntity<ImageDTO> updateById(@RequestBody ImageDTO image) throws FindByIdException {
         return ResponseEntity.ok(imageService.update(image));
+    }
+
+    @Operation(summary = "Update images per product")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/updateimagesperproduct")
+    public ResponseEntity<?> updateImagesPerProduct(@RequestBody List<ImageDTO> images) throws FindByIdException {
+        return ResponseEntity.ok(imageService.updateProductImages(images));
     }
 
     @Operation(summary = "Delete a image by ID", description = "Delete a image by id")

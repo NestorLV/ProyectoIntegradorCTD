@@ -1,6 +1,7 @@
 package com.proyecto.integrador.service.impl;
 
 import com.proyecto.integrador.DTO.ImageDTO;
+import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.persistence.entity.Image;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.repository.IImageRepository;
@@ -21,6 +22,8 @@ public class ImageServiceImpl implements IImageService {
 
     @Autowired
     IImageRepository imageRepository;
+    @Autowired
+    ProductServiceImpl productService;
 
     @Override
     public List<ImageDTO> findAll() {
@@ -80,4 +83,16 @@ public class ImageServiceImpl implements IImageService {
         return imageRepository.findByProduct_Id(productId).stream().map(Image::toDto).collect(Collectors.toSet());
     }
 
+    public Set<ImageDTO> updateProductImages(List<ImageDTO> newImages) throws FindByIdException {
+        logger.debug("Iniciando método actualizar imágenes asociadas al producto");
+        Set<ImageDTO> imagesPerProduct = findByProductId(newImages.get(0).getProductId());
+        for (ImageDTO image: imagesPerProduct) {
+            deleteById(image.getId());
+        }
+        for (ImageDTO newImage : newImages) {
+            save(newImage);
+        }
+        logger.debug("Terminó la ejecución del método actualizar imágenes asociadas al producto");
+        return imagesPerProduct;
+    }
 }

@@ -88,7 +88,11 @@ public class FeatureServiceImpl implements IFeatureService {
         Set<Product> products = feature.getProducts();
         Product product = productService.findById(productId).toEntity();
         product.setId(productId);
-        products.add(product);
+        if (products.contains(product)) {
+            products.remove(product);
+        } else {
+            products.add(product);
+        }
         feature.setProducts(products);
         logger.debug("Terminó la ejecución del método actualizar característica con nuevo producto");
         return featureRepository.save(feature).toDto();

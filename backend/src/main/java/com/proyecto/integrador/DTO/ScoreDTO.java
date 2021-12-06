@@ -23,7 +23,9 @@ public class ScoreDTO {
         this.productId = productId;
     }
 
-    public ScoreDTO(String userEmail, Integer productId) {
+    public ScoreDTO(Integer idScore, Integer score, String userEmail, Integer productId) {
+        this.idScore = idScore;
+        this.score = score;
         this.userEmail = userEmail;
         this.productId = productId;
     }

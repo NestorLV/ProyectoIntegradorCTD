@@ -42,9 +42,7 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public void deleteById(Integer roleId) throws FindByIdException {
-
-    }
+    public void deleteById(Integer roleId) throws FindByIdException {}
 
     @Override
     public RoleDTO update(RoleDTO role) throws FindByIdException {

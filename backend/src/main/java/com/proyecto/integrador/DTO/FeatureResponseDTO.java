@@ -19,4 +19,10 @@ public class FeatureResponseDTO {
     public FeatureResponseDTO() {
     }
 
+    public FeatureResponseDTO(Integer id, String title, FeatureTypes type, List<Integer> productIds) {
+        this.id = id;
+        this.title = title;
+        this.type = type;
+        this.productIds = productIds;
+    }
 }

@@ -80,7 +80,6 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         if (userRepository.findByEmail(email).hashCode() == hashCode) {
             update(email);
             response = true;
-            /* message = "El usuario con email " + email + " se activó correctamente";*/
         }
         return response;
     }
@@ -134,31 +133,6 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
             }
             return null;
         }).collect(Collectors.toSet());
-
-        /*UserResponseDTO user = findByEmail(email);
-        if (user == null) {
-            throw new BadRequestException("El usuario no está logueado");
-        }
-
-        List<ScoreDTO> scores = scoreService.findAll();
-        List<ScoreDTO> scoresByUser=new ArrayList<>();
-
-        for (ScoreDTO score: scores){
-            if(score.getUserEmail().equals(email)){
-                scoresByUser.add(score);
-            }
-        }
-
-        List<ProductDTO> favouriteProducts= new ArrayList<>();
-
-        for (ScoreDTO score:scoresByUser){
-            if(score.getFavourite()){
-                favouriteProducts.add(productService.findById(score.getProductId()));
-            }
-        }
-
-        return favouriteProducts;*/
-
     }
 
     @Override
@@ -192,39 +166,6 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
             response = "Se agregó el producto id " + idProduct + " a su lista de favoritos";
         }
         return response;
-        /*UserResponseDTO user = findByEmail(email);
-        if (user == null) {
-            throw new BadRequestException("El usuario no existe en la base de datos");
-        }
-        ProductDTO product = productService.findById(idProduct);
-
-        if (product==null) {
-            throw new FindByIdException("No existe un producto con el id ingresado");
-        }
-        List<ScoreDTO> scores = scoreService.findAll();
-        List<ScoreDTO> scoresByUser=new ArrayList<>();
-
-        for (ScoreDTO score: scores){
-            if(score.getUserEmail().equals(email)){
-                scoresByUser.add(score);
-            }
-        }
-
-        ScoreDTO scoresByProductAndUser= null;
-        for (ScoreDTO score:scoresByUser) {
-            if(Objects.equals(score.getProductId(), idProduct)){
-                scoresByProductAndUser = score;
-            }
-        }
-
-        if(scoresByProductAndUser==null){
-            scoresByProductAndUser=scoreService.save(new ScoreDTO(email, idProduct, true));
-        }else{
-            scoresByProductAndUser.setFavourite(!scoresByProductAndUser.getFavourite());
-            scoreService.update(scoresByProductAndUser);
-        }
-
-        return scoresByProductAndUser;*/
     }
 
     public UserResponseDTO findByEmail(String email) {

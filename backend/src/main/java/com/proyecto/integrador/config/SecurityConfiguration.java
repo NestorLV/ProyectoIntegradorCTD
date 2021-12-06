@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         System.err.println(httpSecurity.csrf().disable()
                 .cors().and().
                 // dont authenticate these requests
-                        authorizeRequests().antMatchers("/users/activate/**", "/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login", "/email/**").permitAll()
+                        authorizeRequests().antMatchers("/users/activate/**", "/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login").permitAll()
                 // requests need to be authenticated
                 .antMatchers("/categories/create", "/products/create", "/cities/create","/categories/update", "/products/update", "/cities/update","/categories/delete", "/products/delete", "/cities/delete").access("hasAuthority('ADMIN')").
                 anyRequest().authenticated().and().

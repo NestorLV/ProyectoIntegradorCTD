@@ -67,37 +67,6 @@ public class ScoreServiceImpl implements IScoreService {
         scores.removeIf(s -> s.equals(scoreEntity));
         logger.debug("Terminó la ejecución del método guardar puntuación");
         return scoresRepository.save(scoreEntity).toDto();
-        /*List<ScoreDTO> scores = findAll();
-        List<ScoreDTO> scoresByUser = new ArrayList<>();
-
-        for (ScoreDTO scoreDTO : scores) {
-            if (scoreDTO.getUserEmail().equals(score.getUserEmail())) {
-                scoresByUser.add(scoreDTO);
-            }
-        }
-
-        ScoreDTO scoreDTOGuardado = null;
-        for (ScoreDTO scoreDTO : scoresByUser) {
-            if (Objects.equals(score.getProductId(), scoreDTO.getProductId())) {
-                scoreDTOGuardado = scoreDTO;
-            }
-        }
-
-        if (scoreDTOGuardado == null) {
-            Score scoreEntity = score.toEntity();
-            scoreEntity.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
-            scoreEntity.setFavourite(false);
-            scoreDTOGuardado = scoresRepository.save(scoreEntity).toDto();
-            scoreDTOGuardado.setUserEmail(userService.findByEmail(score.getUserEmail()).getEmail());
-        } else {
-            score.setFavourite(scoreDTOGuardado.getFavourite());
-            score.setIdScore(scoreDTOGuardado.getIdScore());
-            scoreDTOGuardado = update(score);
-        }
-        productService.updateQualification(score.getProductId(), average(score.getProductId()));
-
-        logger.debug("Terminó la ejecución del método guardar puntuación");
-        return scoreDTOGuardado;*/
     }
 
     @Override
@@ -142,22 +111,13 @@ public class ScoreServiceImpl implements IScoreService {
     }
 
     @Override
-    public ScoreDTO findByUserAndProduct(String email, Integer idProduct) throws FindByIdException, BadRequestException {
+    public ScoreDTO findByUserAndProduct(String email, Integer idProduct) throws BadRequestException {
         logger.debug("Iniciando método obtener puntuacion por usuario y producto");
         UserResponseDTO user = userService.findByEmail(email);
         if (user == null) {
             throw new BadRequestException("El usuario no existe");
         }
-
-        List<ScoreDTO> scores = findAll();
-        List<ScoreDTO> scoresByUser = new ArrayList<>();
-
-        for (ScoreDTO scoreDTO : scores) {
-            if (scoreDTO.getUserEmail().equals(email)) {
-                scoresByUser.add(scoreDTO);
-            }
-        }
-
+        List<ScoreDTO> scoresByUser = scoresRepository.findByIdUser(user.getId()).stream().map(Score::toDto).collect(Collectors.toList());
         ScoreDTO scoreDTOGuardado = null;
         for (ScoreDTO scoreDTO : scoresByUser) {
             if (Objects.equals(scoreDTO.getProductId(), idProduct)) {
@@ -165,7 +125,6 @@ public class ScoreServiceImpl implements IScoreService {
             }
         }
         logger.debug("Terminó la ejecución del método obtener puntuacion por usuario y producto");
-
         return scoreDTOGuardado;
     }
 
@@ -176,32 +135,18 @@ public class ScoreServiceImpl implements IScoreService {
         if (user == null) {
             throw new BadRequestException("El usuario no existe");
         }
-
-        List<ScoreDTO> scores = findAll();
-        List<ScoreDTO> scoresByUser = new ArrayList<>();
-
-        for (ScoreDTO scoreDTO : scores) {
-            if (scoreDTO.getUserEmail().equals(email)) {
-                scoresByUser.add(scoreDTO);
-            }
-        }
-
+        List<ScoreDTO> scoresByUser = scoresRepository.findByIdUser(user.getId()).stream().map(Score::toDto).collect(Collectors.toList());
         ScoreDTO scoreDTOGuardado = null;
         for (ScoreDTO scoreDTO : scoresByUser) {
             if (Objects.equals(scoreDTO.getProductId(), idProduct)) {
                 scoreDTOGuardado = scoreDTO;
             }
         }
-
         if (scoreDTOGuardado != null) {
             scoreDTOGuardado.setScore(null);
             update(scoreDTOGuardado);
         }
-
         logger.debug("Terminó la ejecución del método reset score");
-
         return scoreDTOGuardado;
     }
-
-
 }

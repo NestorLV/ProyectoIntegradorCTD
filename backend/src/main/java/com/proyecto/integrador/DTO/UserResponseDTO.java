@@ -20,4 +20,14 @@ public class UserResponseDTO {
     private boolean activation;
     private RolesTypes role;
     private Set<ProductDTO> favoriteProducts = new HashSet<>();
+
+    public UserResponseDTO() {}
+    public UserResponseDTO(Integer id, String name, String surname, String email, boolean activation, RolesTypes role) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.activation = activation;
+        this.role = role;
+    }
 }

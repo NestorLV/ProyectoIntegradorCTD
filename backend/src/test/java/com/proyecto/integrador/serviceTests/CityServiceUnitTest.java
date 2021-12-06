@@ -25,7 +25,7 @@ import java.util.List;
 import static org.mockito.Mockito.doThrow;
 
 @RunWith(MockitoJUnitRunner.class)
-@WebMvcTest(CategoryController.class)
+@WebMvcTest(CityController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class CityServiceUnitTest {
