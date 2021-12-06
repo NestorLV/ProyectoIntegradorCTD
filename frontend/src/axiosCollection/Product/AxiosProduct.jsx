@@ -133,7 +133,7 @@ function AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) {
         });
 }
 
-function AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalCreate) {
+function AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed) {
     let qualificationInt = parseInt(qualification);
     
     axios
@@ -209,7 +209,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
             });           
         })
         .then(()=>{
-            openModalCreate()
+            openModalSucceed()
         })
         .catch((error) => {           
             setErrorProduct("Lamentablemente el producto no ha podido crearse. Por favor, intente más tarde")

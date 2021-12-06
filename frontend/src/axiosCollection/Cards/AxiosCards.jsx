@@ -111,7 +111,7 @@ function AxiosCreateFavourite(id, setLike, setErrorMessage) {
     }
 }
 
-function AxiosDeletedMark(id) {
+function AxiosDeletedMark(id, openModalSucceed) {
     const baseUrlBorrarProducto = `${baseUrl}products/deletedmark/${id}`;
 
     axios.post(baseUrlBorrarProducto,{},{
@@ -120,9 +120,8 @@ function AxiosDeletedMark(id) {
         }
     })
         .then(response => {
-            window.location.reload();
             console.log(response.data);
-            
+            openModalSucceed()
         })
         .catch(error => {
             console.log(error.message);

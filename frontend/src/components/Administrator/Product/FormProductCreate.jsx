@@ -3,7 +3,7 @@ import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import CreateProductModal from './CreateProductModal';
+import ModalProductSucceed from './ModalProductSucceed';
 import ConfirmProductModal from "./ConfirmProductModal"
 import FormProduct from "./FormProduct";
 import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
@@ -31,7 +31,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
 
     const [errorCamposVacios, setErrorCamposVacios] = useState("")
 
-    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
+    const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
     const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
 
     console.log(features);
@@ -53,11 +53,11 @@ export default function FormProductCreate({ categories, cities, features, titleM
     console.log(selectedCategory);
 */
 
-const openModalCreate = (() => {
-    setModalCreateIsOpen(true)
+const openModalSucceed = (() => {
+    setModalProductSucceedIsOpen(true)
 })
-    const closeModalCreate = () => {
-        setModalCreateIsOpen(false);
+    const closeModalSucceed = () => {
+        setModalProductSucceedIsOpen(false);
     };
 
     const openModalConfirm = (e) => {
@@ -76,7 +76,8 @@ const openModalCreate = (() => {
     }
 
     const crearProducto = () =>{
-        AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalCreate)
+        closeModalConfirm()
+        AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed)
     }
 
     return (
@@ -100,15 +101,15 @@ const openModalCreate = (() => {
                     imageUrl={imageUrl} setImageUrl={setImageUrl}
                     images={images} setImages={setImages}
                     categories={categories} cities={cities} features={features}
-                    setModalCreateIsOpen={setModalCreateIsOpen}
+                    setModalProductSucceedIsOpen={setModalProductSucceedIsOpen}
                     enviarDatos={openModalConfirm} tituloBoton={"Crear"}
                     errorCamposVacios={errorCamposVacios}
                 />
                 <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
-                    <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} crearProducto={crearProducto} closeModalConfirm={closeModalConfirm}/>
+                    <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={crearProducto} closeModalConfirm={closeModalConfirm}/>
                 </Modal>
-                <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
-                    <CreateProductModal title={titleModal} message={messageModal} />
+                <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
+                    <ModalProductSucceed title={titleModal} message={messageModal} />
                 </Modal>
             </div>
         </section>

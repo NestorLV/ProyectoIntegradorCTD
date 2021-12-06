@@ -7,7 +7,9 @@ import { Modal } from 'react-responsive-modal';
 import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
 import Icons from "../Product/icons/Icons";
-import { AxiosCreateFavourite , AxiosDeletedMark} from '../../axiosCollection/Cards/AxiosCards';
+import ConfirmProductModal from '../Administrator/Product/ConfirmProductModal';
+import ModalProductSucceed from "../Administrator/Product/ModalProductSucceed";
+import { AxiosCreateFavourite, AxiosDeletedMark } from '../../axiosCollection/Cards/AxiosCards';
 
 function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
     const role = sessionStorage.getItem("role");
@@ -18,6 +20,9 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     const [textoDespliegue, setTextoDespliegue] = useState("más...")
     const [errorMessage, setErrorMessage] = useState("");
     const [admin, setAdmin] = useState(true);
+
+    const [modalConfirmDeletedIsOpen, setModalConfirmDeletedIsOpen] = useState(false)
+    const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
 
     useEffect(() => {
         if (sessionStorage.getItem("role") === "ADMIN") {
@@ -60,8 +65,27 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
         setLastLocation(`/product/${id}`)
     }
 
-    function handleDelete(){
-        AxiosDeletedMark(id)
+    const openModalSucceed = (() => {
+        setModalProductSucceedIsOpen(true)
+    })
+    
+    const closeModalSucceed = (() => {
+        setModalProductSucceedIsOpen(false)
+        window.location.reload()
+    })
+
+    function openModalConfirmDeleted() {
+        setModalConfirmDeletedIsOpen(true)
+
+    }
+
+    function closeModalConfirmDeleted() {
+        setModalConfirmDeletedIsOpen(false)
+    }
+
+    function eliminarProducto() {
+        closeModalConfirmDeleted()
+        AxiosDeletedMark(id, openModalSucceed)
     }
 
     return (
@@ -129,13 +153,17 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                             <Link to={`/product/update/`} key={id} className={Styles.link} onClick={handleLastLocation}>
                                 <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`}>Modificar</button>
                             </Link>
+                            <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
+                                <ModalProductSucceed title="Operación confirmada." message="Se ha borrado el producto exitosamente." closeModalSucceed={closeModalSucceed}/>
+                            </Modal>
                             <div className={Styles.link} onClick={handleLastLocation}>
-                                <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`} onClick={handleDelete}>Eliminar</button>
+                                <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`} onClick={openModalConfirmDeleted}>Eliminar</button>
                             </div>
+                            <Modal open={modalConfirmDeletedIsOpen} onClose={closeModalConfirmDeleted} center>
+                                <ConfirmProductModal accion="eliminar" setModalConfirmIsOpen={setModalConfirmDeletedIsOpen} funcionProducto={eliminarProducto} closeModalConfirm={closeModalConfirmDeleted} />
+                            </Modal>
                         </div>
                     }
-
-
                 </div>
 
             </div>

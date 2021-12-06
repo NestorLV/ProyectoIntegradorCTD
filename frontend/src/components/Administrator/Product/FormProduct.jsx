@@ -279,6 +279,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             </div>
             <div className={Styles.containerPoliticsPrincipal}>
                 <h3>Políticas del producto</h3>
+                <h6>(Separar las políticas por coma)</h6>
                 <div className={Styles.containerPolitics}>
                     <div className={Styles.politics}>
                         <h5>Normas de la casa</h5>
@@ -328,7 +329,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                 </div>
             </div>
             <div>
-                <button onClick={(e) => enviarDatos(e)} /* onClick={openModalCreate} */ id={Styles.buttonCreateProduct} type="submit">{tituloBoton}</button>
+                <button onClick={(e) => enviarDatos(e)} id={Styles.buttonCreateProduct} type="submit">{tituloBoton}</button>
             </div>
             <div className={Styles.error}>{errorCamposVacios}</div>
         </form >

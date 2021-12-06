@@ -3,7 +3,7 @@ import StylesApp from "../../../App.module.css"
 import Styles from "./Styles.module.css";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import CreateProductModal from './CreateProductModal';
+import ModalProductSucceed from "./ModalProductSucceed";
 import FormProduct from "./FormProduct";
 
 export default function FormProductUpdate({ product, categories, cities, features, titleModal, messageModal}) {
@@ -24,7 +24,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const [imageUrl, setImageUrl] = useState()
     const [images, setImages] = useState([])
 
-    const [modalCreateIsOpen, setModalCreateIsOpen] = useState(false)
+    const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
 
    
 
@@ -82,8 +82,8 @@ export default function FormProductUpdate({ product, categories, cities, feature
        console.log(product.category.title,"product.category.title") */
     //console.log(product.features, "product.features")
 
-    const closeModalCreate = () => {
-        setModalCreateIsOpen(false);
+    const closeModalSucceed = () => {
+        setModalProductSucceedIsOpen(false);
     };
 
     return (
@@ -107,11 +107,11 @@ export default function FormProductUpdate({ product, categories, cities, feature
                     imageUrl={imageUrl} setImageUrl={setImageUrl}
                     images={images} setImages={setImages}
                     categories={categories} cities={cities} features={features}
-                    setModalCreateIsOpen={setModalCreateIsOpen}
+                    setModalProductSucceedIsOpen={setModalProductSucceedIsOpen}
                     enviarDatos={modificarProducto} tituloBoton={"Modificar"}
                     />
-                <Modal open={modalCreateIsOpen} onClose={closeModalCreate} center>
-                    <CreateProductModal title={titleModal} message={messageModal}/>
+                <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
+                    <ModalProductSucceed title={titleModal} message={messageModal}/>
                 </Modal>
             </div>
         </section>
