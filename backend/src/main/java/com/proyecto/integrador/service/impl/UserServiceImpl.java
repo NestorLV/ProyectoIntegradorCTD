@@ -124,8 +124,16 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
             throw new FindByIdException("No existe una usuario con el email ingresado");
         }
         logger.debug("Terminó la ejecución del método buscar lista de productos favoritos del usuario");
-        return findByEmail(email).getFavoriteProducts();
-
+        return findByEmail(email).getFavoriteProducts().stream().map(p -> {
+            Product product = p.toEntity();
+            product.setId(p.getId());
+            try {
+                return productService.loadDataIntoProductDTO(product);
+            } catch (FindByIdException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }).collect(Collectors.toSet());
 
         /*UserResponseDTO user = findByEmail(email);
         if (user == null) {
@@ -174,12 +182,16 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     @Override
-    public UserResponseDTO handleFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException {
+    public String handleFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException {
         UserResponseDTO user = findByEmail(email);
+        String response = "No se ha podido agregar el producto a favoritos";
         if (user == null) {
             throw new BadRequestException("El usuario no existe en la base de datos");
         }
-        return updateFavorite(email, idProduct);
+        if (updateFavorite(email, idProduct) != null) {
+            response = "Se agregó el producto id " + idProduct + " a su lista de favoritos";
+        }
+        return response;
         /*UserResponseDTO user = findByEmail(email);
         if (user == null) {
             throw new BadRequestException("El usuario no existe en la base de datos");

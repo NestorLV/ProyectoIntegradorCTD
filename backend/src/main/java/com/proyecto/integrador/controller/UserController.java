@@ -78,7 +78,7 @@ public class UserController implements CRUDController<UserRequestDTO> {
 
     @Operation(summary = "Create User Favourite")
     @PostMapping("/handlefavourite/{email}/{idProduct}")
-    public ResponseEntity<UserResponseDTO> handleFavorite(@PathVariable String email, @PathVariable Integer idProduct) throws FindByIdException, BadRequestException {
+    public ResponseEntity<String> handleFavorite(@PathVariable String email, @PathVariable Integer idProduct) throws FindByIdException, BadRequestException {
         return ResponseEntity.ok(userService.handleFavorite(email, idProduct));
     }
 

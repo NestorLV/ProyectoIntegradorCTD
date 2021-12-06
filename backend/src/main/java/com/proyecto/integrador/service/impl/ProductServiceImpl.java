@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.logging.Filter;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +33,7 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     ReservationServiceImpl reservationService;
 
-    private ProductDTO loadDataIntoProductDTO(Product product) throws FindByIdException {
+    public ProductDTO loadDataIntoProductDTO(Product product) throws FindByIdException {
         ProductDTO productDto = product.toDto();
         productDto.setCategory(categoryService.findById(product.getCategory().getId()));
         productDto.setCity(cityService.findById(product.getCity().getId()));
@@ -48,7 +49,7 @@ public class ProductServiceImpl implements IProductService {
         logger.debug("Iniciando método buscar todos los productos");
         List<ProductDTO> products = new ArrayList<>();
         for (Product product : productRepository.findAll()) {
-            if(!product.isDeleted()) {
+            if (!product.isDeleted()) {
                 products.add(loadDataIntoProductDTO(product));
             }
         }
@@ -121,13 +122,14 @@ public class ProductServiceImpl implements IProductService {
         return loadDataIntoProductDTO(product);
     }
 
+    /* FILTRADO POR CATEGORIA */
     @Override
     public List<ProductDTO> findAllByCategory(String categoryName) throws BadRequestException, FindByIdException {
         logger.debug("Iniciando método buscar productos por categoría");
         categoryService.categoryExistsInDatabase(categoryName);
         List<ProductDTO> productsByCategory = new ArrayList<>();
         for (Product product : productRepository.findByCategory_Title(categoryName)) {
-            if(!product.isDeleted()) {
+            if (!product.isDeleted()) {
                 productsByCategory.add(loadDataIntoProductDTO(product));
             }
         }
@@ -135,6 +137,7 @@ public class ProductServiceImpl implements IProductService {
         return productsByCategory;
     }
 
+    /* FILTRADO POR CIUDAD */
     @Override
     public List<ProductDTO> findAllByCity(Integer cityId) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método buscar productos por ciudad");
@@ -143,7 +146,7 @@ public class ProductServiceImpl implements IProductService {
         }
         List<ProductDTO> productsByCity = new ArrayList<>();
         for (Product product : productRepository.findByCity_Id(cityId)) {
-            if(!product.isDeleted()) {
+            if (!product.isDeleted()) {
                 productsByCity.add(loadDataIntoProductDTO(product));
             }
         }
@@ -151,6 +154,8 @@ public class ProductServiceImpl implements IProductService {
         return productsByCity;
     }
 
+    /* FILTRADO POR FECHAS */
+    @Override
     public List<ProductDTO> findAllByDates(Date startDate, Date endDate) throws FindByIdException {
         logger.debug("Iniciando método buscar productos por fechas");
         List<ReservationDTO> reservas = reservationService.findAll();
@@ -163,124 +168,94 @@ public class ProductServiceImpl implements IProductService {
         if (productIds.size() == 0) {
             return products;
         }
-        List<ProductDTO> productosDisponibles = new ArrayList<>();
-        for (ProductDTO product : products) {
-            productIds.forEach(id -> {
-                if (!Objects.equals(id, product.getId())) {
-                    productosDisponibles.add(product);
-                }
-            });
-        }
         logger.debug("Terminó la ejecución del método buscar productos por fechas");
-        return productosDisponibles;
+        return products.stream().filter(p -> !productIds.contains(p.getId()) && !p.isDeleted()).collect(Collectors.toList());
     }
 
-    public List<ProductDTO> filterCityAndDates(FilterDTO filterDto) throws BadRequestException, FindByIdException {
+    /* FILTRADO POR CIUDAD Y FECHAS */
+    @Override
+    public List<ProductDTO> findAllByCityAndDates(Integer cityId, Date startDate, Date endDate) throws BadRequestException, FindByIdException {
         logger.debug("Iniciando método buscar productos por ciudad y fechas");
-
-        //Filtro sólo por categoría
-        if (filterDto.getCityId() == null && filterDto.getStartDate() == null && filterDto.getEndDate() == null) {
-            if (filterDto.getCategory().equals("All")) {
-                return findAll();
-            } else {
-                return findAllByCategory(filterDto.getCategory());
-            }
-        }
-
-        //Filtro sólo por fechas
-        if (filterDto.getCityId() == null && filterDto.getCategory().equals("All")) {
-            return findAllByDates(filterDto.getStartDate(), filterDto.getEndDate());
-        }
-        //Filtro sólo por ciudad
-        if (filterDto.getStartDate() == null && filterDto.getEndDate() == null && filterDto.getCategory().equals("All")) {
-            return findAllByCity((filterDto.getCityId()));
-        }
-
-        //Filtrado por fecha y categoría
-        if (filterDto.getCityId() == null && !filterDto.getCategory().equals("All")) {
-            List<ProductDTO> productsByDates = findAllByDates(filterDto.getStartDate(), filterDto.getEndDate());
-            List<ProductDTO> productsByCategory = findAllByCategory(filterDto.getCategory());
-            List<ProductDTO> productosDisponibles = new ArrayList<>();
-            for (ProductDTO product : productsByDates) {
-                productsByCategory.forEach(p -> {
-                    if (p.equals(product)) {
-                        productosDisponibles.add(product);
-                    }
-                });
-            }
-            logger.debug("Terminó la ejecución del método buscar productos por fechas y categoría");
-            return productosDisponibles;
-        }
-
-        //Filtrado por ciudad y categoría
-        if (filterDto.getStartDate() == null && filterDto.getEndDate() == null && !filterDto.getCategory().equals("All")) {
-            List<ProductDTO> productsByCity = findAllByCity(filterDto.getCityId());
-            List<ProductDTO> productsByCategory = findAllByCategory(filterDto.getCategory());
-            List<ProductDTO> productosDisponibles = new ArrayList<>();
-            for (ProductDTO product : productsByCity) {
-                productsByCategory.forEach(p -> {
-                    if (p.equals(product)) {
-                        productosDisponibles.add(product);
-                    }
-                });
-            }
-            logger.debug("Terminó la ejecución del método buscar productos por ciudad y Categoría");
-            return productosDisponibles;
-        }
-        //Filtro por ciudad y fecha
-        if (filterDto.getCategory().equals("All")) {
-            List<ProductDTO> productsByCity = findAllByCity(filterDto.getCityId());
-            List<ProductDTO> productsByDates = findAllByDates(filterDto.getStartDate(), filterDto.getEndDate());
-            List<ProductDTO> productosDisponibles = new ArrayList<>();
-            for (ProductDTO product : productsByCity) {
-                productsByDates.forEach(p -> {
-                    if (p.equals(product)) {
-                        productosDisponibles.add(product);
-                    }
-                });
-            }
-            logger.debug("Terminó la ejecución del método buscar productos por ciudad y fechas");
-            return productosDisponibles;
-        }
-        // Filtro por categoría, fecha y ciudad
-        //if (!filterDto.getCategory().equals("All")) {
-        else {
-            List<ProductDTO> productsByCity = findAllByCity(filterDto.getCityId());
-            List<ProductDTO> productsByDates = findAllByDates(filterDto.getStartDate(), filterDto.getEndDate());
-            List<ProductDTO> productsByCategory = findAllByCategory(filterDto.getCategory());
-            List<ProductDTO> primerFiltrado = new ArrayList<>();
-            List<ProductDTO> productosDisponibles = new ArrayList<>();
-            for (ProductDTO product : productsByCity) {
-                productsByDates.forEach(p -> {
-                    if (p.equals(product)) {
-                        primerFiltrado.add(product);
-                    }
-                });
-            }
-            for (ProductDTO product : primerFiltrado) {
-                productsByCategory.forEach(p -> {
-                    if (p.equals(product)) {
-                        productosDisponibles.add(product);
-                    }
-                });
-            }
-            logger.debug("Terminó la ejecución del método buscar productos por ciudad y fechas");
-            return productosDisponibles;
-        }
+        List<ProductDTO> productsByCity = findAllByCity(cityId);
+        List<ProductDTO> productsByDates = findAllByDates(startDate, endDate);
+        logger.debug("Terminó la ejecución del método buscar productos por ciudad y fechas");
+        return productsByCity.stream().filter(productsByDates::contains).collect(Collectors.toList());
     }
 
-    // Revisar si se puede mejorar este método
+    /* FILTRADO POR FECHAS Y CATEGORIA */
+    @Override
+    public List<ProductDTO> findAllByDatesAndCategory(Date startDate, Date endDate, String categoryName) throws FindByIdException, BadRequestException {
+        logger.debug("Iniciando método buscar productos por fechas y categoría");
+        List<ProductDTO> productsByDates = findAllByDates(startDate, endDate);
+        List<ProductDTO> productsByCategory = findAllByCategory(categoryName);
+        logger.debug("Terminó la ejecución del método buscar productos por fechas y categoría");
+        return productsByDates.stream().filter(productsByCategory::contains).collect(Collectors.toList());
+    }
+
+    /* FILTRADO POR CIUDAD Y CATEGORIA */
+    @Override
+    public List<ProductDTO> findAllByCityAndCategory(Integer cityId, String categoryName) throws BadRequestException, FindByIdException {
+        logger.debug("Iniciando método buscar productos por ciudad y categoría");
+        List<ProductDTO> productsByCity = findAllByCity(cityId);
+        List<ProductDTO> productsByCategory = findAllByCategory(categoryName);
+        logger.debug("Terminó la ejecución del método buscar productos por ciudad y categoría");
+        return productsByCity.stream().filter(productsByCategory::contains).collect(Collectors.toList());
+    }
+
+    /* FILTRADO POR CIUDAD, FECHAS Y CATEGORIA */
+    @Override
+    public List<ProductDTO> findAllByCityDatesAndCategory(Integer cityId, Date startDate, Date endDate, String categoryName) throws BadRequestException, FindByIdException {
+        logger.debug("Iniciando método buscar productos por ciudad, fechas y categoría");
+        List<ProductDTO> productsByCity = findAllByCity(cityId);
+        List<ProductDTO> productsByDates = findAllByDates(startDate, endDate);
+        List<ProductDTO> productsByCategory = findAllByCategory(categoryName);
+        List<ProductDTO> primerFiltrado = productsByCity.stream().filter(productsByDates::contains).collect(Collectors.toList());
+        logger.debug("Terminó la ejecución del método buscar productos por ciudad, fechas y categoría");
+        return primerFiltrado.stream().filter(productsByCategory::contains).collect(Collectors.toList());
+    }
+
+    /* HANDLE FILTER DE PRODUCTOS */
+    public List<ProductDTO> handleFilter(FilterDTO filterDto) throws FindByIdException, BadRequestException {
+        logger.debug("Iniciando método manejar el filtrado de productos");
+        List<ProductDTO> result;
+        Integer cityId = filterDto.getCityId();
+        Date startDate = filterDto.getStartDate();
+        Date endDate = filterDto.getEndDate();
+        String categoryName = filterDto.getCategory();
+        if (cityId == null && startDate == null && endDate == null && Objects.equals(categoryName, "All")) {
+            result = findRecommendations();
+        } else if (cityId == null && startDate == null && endDate == null && !Objects.equals(categoryName, "All")) {
+            result = findAllByCategory(categoryName);
+        } else if (cityId == null && startDate != null && endDate != null && Objects.equals(categoryName, "All")) {
+            result = findAllByDates(startDate, endDate);
+        } else if (cityId != null && startDate == null && endDate == null && Objects.equals(categoryName, "All")) {
+            result = findAllByCity(cityId);
+        } else if (cityId != null && startDate != null && endDate != null && Objects.equals(categoryName, "All")) {
+            result = findAllByCityAndDates(cityId, startDate, endDate);
+        } else if (cityId == null && startDate != null && endDate != null && !Objects.equals(categoryName, "All")) {
+            result = findAllByDatesAndCategory(startDate, endDate, categoryName);
+        } else if (cityId != null && startDate == null && endDate == null && !Objects.equals(categoryName, "All")) {
+            result = findAllByCityAndCategory(cityId, categoryName);
+        } else {
+            result = findAllByCityDatesAndCategory(cityId,startDate,endDate,categoryName);
+        }
+        logger.debug("Terminó la ejecución del método manejar el filtrado de productos");
+        return result;
+    }
+
     public List<ProductDTO> findRecommendations() throws FindByIdException {
+        logger.debug("Iniciando método buscar productos recomendados");
         List<ProductDTO> recommendedProducts = new ArrayList<>();
         productRepository.findAll().forEach(p -> {
             p.setQualification(scoreService.average(p.getId()));
             productRepository.save(p);
         });
         for (Product product : productRepository.findFirst12ByOrderByQualificationDesc()) {
-            if(!product.isDeleted()) {
+            if (!product.isDeleted()) {
                 recommendedProducts.add(loadDataIntoProductDTO(product));
             }
         }
+        logger.debug("Terminó la ejecución del método buscar productos recomendados");
         return recommendedProducts;
     }
 
@@ -294,41 +269,4 @@ public class ProductServiceImpl implements IProductService {
         productRepository.save(product);
         logger.debug("Terminó la ejecución del método actualizar calificación de producto");
     }
-
-    /* Opción 2 del filtrado de ciudad y fechas con queries SQL */
-
-   /* public List<ProductDTO> findCityDateRange(FilterDTO filterDTO) throws FindByIdException {
-        logger.debug("Iniciando método buscar productos por ciudad y dos fechas");
-        return findDateRange(filterDTO.getCityId(), filterDTO.getStartDate(), filterDTO.getEndDate());
-    }
-
-    public List<ProductDTO> findDateRange(Integer cityId, Date startDate, Date endDate) throws FindByIdException {
-        List<ProductDTO> products = new ArrayList<>();
-        List<Object[]> byCityDateRange = productRepository.queryBuilder(cityId, startDate, endDate);
-
-        if (byCityDateRange != null && byCityDateRange.size() > 0) {
-            for (Object[] item : byCityDateRange) {
-                Integer productId = (Integer) item[0];
-                ProductDTO resultDTO = new ProductDTO();
-                resultDTO.setId(productId);
-                resultDTO.setName(item[1].toString());
-                resultDTO.setDescription(item[2].toString());
-                resultDTO.setLatitude((Double) item[3]);
-                resultDTO.setLongitude((Double) item[4]);
-                resultDTO.setAddress(item[5].toString());
-                resultDTO.setQualification(Double.parseDouble(item[6].toString()));
-                resultDTO.setFavourite((Boolean) item[7]);
-                resultDTO.setReference((item[8].toString()));
-                resultDTO.setCategory(categoryService.findById((Integer) item[9]));
-                resultDTO.setCity(cityService.findById((Integer) item[10]));
-                resultDTO.setRules((String) item[11]);
-                resultDTO.setHealth((String) item[12]);
-                resultDTO.setPolitics((String) item[13]);
-                resultDTO.setImages(imageService.findByProductId(productId));
-                resultDTO.setFeatures(featureService.findByProduct(new Product(productId)));
-                products.add(resultDTO);
-            }
-        }
-        return products;
-    }*/
 }

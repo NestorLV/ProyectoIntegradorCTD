@@ -92,7 +92,7 @@ public class ProductController implements CRUDController<ProductDTO> {
     @Operation(summary = "Find by city, date range and Category")
     @PostMapping("/filters")
     public ResponseEntity<List<ProductDTO>> filterCityDatesCategory(@RequestBody FilterDTO filterDTO) throws BadRequestException, FindByIdException {
-        return ResponseEntity.ok(productService.filterCityAndDates(filterDTO));
+        return ResponseEntity.ok(productService.handleFilter(filterDTO));
     }
 
     /*    @Operation(summary = "Find by city and date range")

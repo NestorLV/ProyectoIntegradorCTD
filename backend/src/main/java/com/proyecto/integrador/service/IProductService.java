@@ -15,9 +15,14 @@ public interface IProductService extends IBookingService<ProductDTO> {
     void deleteById(Integer productId) throws FindByIdException;
     void deletedMarkById(Integer productId) throws FindByIdException;
     ProductDTO update(ProductDTO product) throws FindByIdException;
+    List<ProductDTO> findRecommendations() throws FindByIdException;
     List<ProductDTO> findAllByCategory(String categoryName) throws FindByIdException, BadRequestException;
     List<ProductDTO> findAllByCity(Integer cityId) throws FindByIdException, BadRequestException;
-    List<ProductDTO> findRecommendations() throws FindByIdException;
     List<ProductDTO> findAllByDates(Date startDate, Date endDate) throws FindByIdException;
-    List<ProductDTO> filterCityAndDates(FilterDTO filterDTO) throws BadRequestException, FindByIdException;
+    List<ProductDTO> findAllByCityAndDates(Integer cityId, Date startDate, Date endDate) throws BadRequestException, FindByIdException;
+    List<ProductDTO> findAllByDatesAndCategory(Date startDate, Date endDate, String categoryName) throws FindByIdException, BadRequestException;
+    List<ProductDTO> findAllByCityAndCategory(Integer cityId, String categoryName) throws BadRequestException, FindByIdException;
+    List<ProductDTO> findAllByCityDatesAndCategory(Integer cityId, Date startDate, Date endDate, String categoryName) throws BadRequestException, FindByIdException;
+
+    List<ProductDTO> handleFilter(FilterDTO filterDto) throws FindByIdException, BadRequestException;
 }

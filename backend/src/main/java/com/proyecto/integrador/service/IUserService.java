@@ -19,7 +19,7 @@ public interface IUserService {
     void deleteById(Integer idUsers) throws FindByIdException;
     UserResponseDTO update(String email) throws FindByIdException;
     Set<ProductDTO> getFavorites(String email) throws BadRequestException, FindByIdException;
-    UserResponseDTO handleFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException;
+    String handleFavorite(String email, Integer idProduct) throws FindByIdException, BadRequestException;
     UserResponseDTO updateFavorite(String email,Integer idProduct) throws FindByIdException;
     UserResponseDTO findByEmail(String email);
     Map<String, String> validateLogIn(UserRequestDTO userRequestDTO) throws BadRequestException;
