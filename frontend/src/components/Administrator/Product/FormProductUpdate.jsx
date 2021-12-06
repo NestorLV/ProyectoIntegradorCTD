@@ -7,6 +7,7 @@ import ModalProductSucceed from "./ModalProductSucceed";
 import ConfirmProductModal from "./ConfirmProductModal"
 import FormProduct from "./FormProduct";
 import axios from "axios";
+import tildeOk from "../icons/tildeOk.svg"
 
 export default function FormProductUpdate({ product, categories, cities, features, titleModal, messageModal }) {
     const [name, setName] = useState("");
@@ -66,7 +67,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setLatitude(product.latitude)
         setLongitude(product.longitude)
         setReference(product.reference)
-        setQualification({ campo: product.qualification })
+        setQualification({ campo: product.qualification, valido: true })
         setDescription(product.description)
         setSelectedFeatures(product.features.map((feature) => { return { id: feature.id, title: feature.title } }))
         setRules(product.rules)
@@ -142,7 +143,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
                     <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={modificarProducto} closeModalConfirm={closeModalConfirm} />
                 </Modal>
                 <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
-                    <ModalProductSucceed title={titleModal} message={messageModal} />
+                    <ModalProductSucceed title={titleModal} message={messageModal} icon={tildeOk}/>
                 </Modal>
             </div>
         </section>

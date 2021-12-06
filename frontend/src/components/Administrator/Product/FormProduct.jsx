@@ -1,10 +1,13 @@
 import Styles from "./Styles.module.css";
 import Select from "react-select"
 import Delete from "../icons/delete.svg"
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import ModalMessage from './ModalProductSucceed';
 
 import { useState } from "react";
 
-export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios}) {
+export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios, modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen, modalExistedProductIsOpen, setModalExistedProductIsOpen }) {
     
 
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
@@ -29,10 +32,10 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
     }
 
     const handleChangeQualification = (event) => {
-        if(event.target.value >= 1 && event.target.value <= 5){
-            setQualification({campo:event.target.value, valido:true, error:""})
-        }else{
-            setQualification({campo:event.target.value, valido:false, error: "Ingrese una calificación del 1 al 5."})
+        if (event.target.value >= 1 && event.target.value <= 5) {
+            setQualification({ campo: event.target.value, valido: true, error: "" })
+        } else {
+            setQualification({ campo: event.target.value, valido: false, error: "Ingrese una calificación del 1 al 5." })
         }
     }
 
@@ -70,8 +73,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setSelectedCity(value)
     }
 
-    console.log(selectedCategory);
-    console.log(selectedCity);
+    //console.log(selectedCategory);
+    //console.log(selectedCity);
     const customStyles = {
         control: () => ({
             border: "1px solid rgba(0,0,0,.4)",
@@ -131,7 +134,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         return arrayOptions.map((valor) => {
             return {
                 value: `${valor.id}`,
-                label: `${valor.name}` 
+                label: `${valor.name}`
             };
         })
     }
@@ -150,7 +153,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             }
         }
     }
-    console.log(selectedFeatures, "selectedFeatures");
+    //console.log(selectedFeatures, "selectedFeatures");
 
     function handleIndexImageDeleted(event) {
         console.log(event.target);
@@ -160,12 +163,11 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
 
     const handleClickImage = ((event) => {
         event.preventDefault()
-        if(imageTitle && imageUrl){
+        if (imageTitle && imageUrl) {
             setImages([...images, { title: imageTitle, url: imageUrl }])
             setImageTitle("");
             setImageUrl("");
-        }  
-        
+        }
 
     })
 
@@ -180,8 +182,23 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         event.preventDefault()
     }
 
+    
+    const closeModalExpiredLogin = () => {
+        setModalExpiredLoginIsOpen(false);
+        sessionStorage.setItem("log", "false")
+        sessionStorage.removeItem("iniciales")
+        sessionStorage.removeItem("id")
+        sessionStorage.removeItem("email")
+        sessionStorage.removeItem("role")
+        sessionStorage.removeItem("name")
+        sessionStorage.removeItem("surname")
+        sessionStorage.removeItem("token")
+        window.location.href = "/login"
+    };
 
-   
+    const closeModalExistedProduct = () => {
+        setModalExistedProductIsOpen(false);
+    };
 
     /*  console.log(name,"name");
      console.log(description,"description");
@@ -199,7 +216,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
      console.log(features, "features"); */
 
 
-    
+
 
     return (
         <form onSubmit={sendData}>
@@ -217,7 +234,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                         styles={customStyles}
                         getOptionValue={option => option.value}
                         value={selectedCategory}
-                        
+
                     />
                 </div>
             </div>
@@ -323,8 +340,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                         return (
                             <div className={Styles.insertedImageAndButton}>
                                 <div className={`${Styles.insertedImage}`}>
-                                    <input type="text" name="titleImage" id={index+1} className={Styles.imageItem} value={image.title}/>
-                                    <input type="text" name="urlImage" id={index+1} className={Styles.imageItem} value={image.url}/> 
+                                    <input type="text" name="titleImage" id={index + 1} className={Styles.imageItem} value={image.title} />
+                                    <input type="text" name="urlImage" id={index + 1} className={Styles.imageItem} value={image.url} />
                                 </div>
                                 <div className={Styles.deleteImage} ><img src={Delete} alt="icon delete" id={image.url} onClick={handleIndexImageDeleted} /></div>
                             </div>
@@ -336,6 +353,12 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                 <button onClick={(e) => enviarDatos(e)} id={Styles.buttonCreateProduct} type="submit">{tituloBoton}</button>
             </div>
             <div className={Styles.error}>{errorCamposVacios}</div>
+            <Modal open={modalExpiredLoginIsOpen} onClose={closeModalExpiredLogin} center>
+                <ModalMessage title={"El login expiró"} message={"Por favor inicie sesión nuevamente."} closeModal={closeModalExpiredLogin} icon="X" />
+            </Modal>
+            <Modal open={modalExistedProductIsOpen} onClose={closeModalExistedProduct} center>
+                <ModalMessage title={"El producto ya existe."} message={"Por favor, verifique los datos e intente nuevamente."} closeModal={closeModalExistedProduct} icon="X" />
+            </Modal>
         </form >
     )
 }

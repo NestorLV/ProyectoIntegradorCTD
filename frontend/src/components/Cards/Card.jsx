@@ -9,6 +9,7 @@ import ScoreDescription from '../Product/ScoreDescription';
 import Icons from "../Product/icons/Icons";
 import ConfirmProductModal from '../Administrator/Product/ConfirmProductModal';
 import ModalProductSucceed from "../Administrator/Product/ModalProductSucceed";
+import tildeOk from "../Administrator/icons/tildeOk.svg"
 import { AxiosCreateFavourite, AxiosDeletedMark } from '../../axiosCollection/Cards/AxiosCards';
 
 function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
@@ -71,7 +72,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     
     const closeModalSucceed = (() => {
         setModalProductSucceedIsOpen(false)
-        window.location.reload()
+        window.location.href="/"
     })
 
     function openModalConfirmDeleted() {
@@ -87,6 +88,8 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
         closeModalConfirmDeleted()
         AxiosDeletedMark(id, openModalSucceed)
     }
+
+console.log(modalProductSucceedIsOpen);
 
     return (
         <div className={Styles.cardBox} >
@@ -153,14 +156,14 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                             <Link to={`/product/update/`} key={id} className={Styles.link} onClick={handleLastLocation}>
                                 <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`}>Modificar</button>
                             </Link>
-                            <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
-                                <ModalProductSucceed title="Operación confirmada." message="Se ha borrado el producto exitosamente." closeModalSucceed={closeModalSucceed}/>
-                            </Modal>
                             <div className={Styles.link} onClick={handleLastLocation}>
                                 <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`} onClick={openModalConfirmDeleted}>Eliminar</button>
                             </div>
                             <Modal open={modalConfirmDeletedIsOpen} onClose={closeModalConfirmDeleted} center>
                                 <ConfirmProductModal accion="eliminar" setModalConfirmIsOpen={setModalConfirmDeletedIsOpen} funcionProducto={eliminarProducto} closeModalConfirm={closeModalConfirmDeleted} />
+                            </Modal>
+                            <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
+                                <ModalProductSucceed title="Operación confirmada." message="Se ha borrado el producto exitosamente." closeModal={closeModalSucceed} icon={tildeOk}/>
                             </Modal>
                         </div>
                     }

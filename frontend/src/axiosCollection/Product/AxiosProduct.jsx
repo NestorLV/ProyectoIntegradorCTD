@@ -10,6 +10,8 @@ function AxiosGetProductById(id, setProd, setLoading, setErrorMessage) {
             setLoading(false);
         })
         .catch((error) => {
+            sessionStorage.setItem("productoErroneo", "true")
+            window.location.href = "/"
             setErrorMessage(error);
         });
 }
@@ -133,7 +135,7 @@ function AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) {
         });
 }
 
-function AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed) {
+function AxiosCrearProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed, openModalExpiredLogin, openModalExistedProduct) {
     let qualificationInt = parseInt(qualification);
 
     axios
@@ -210,7 +212,15 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
         .then(() => {
             openModalSucceed()
         })
-        .catch((error) => {
+        .catch((error) => { 
+            if(error.response.status===400){
+                console.log("El producto ya existe");
+                openModalExistedProduct()
+            };     
+            if(error.response.status===404){
+                console.log("El login expiró");
+                openModalExpiredLogin()
+            };     
             setErrorProduct("Lamentablemente el producto no ha podido crearse. Por favor, intente más tarde")
         });
 

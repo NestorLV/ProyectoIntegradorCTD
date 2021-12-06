@@ -268,9 +268,6 @@ width: 100%;
     font-weight: var(--font-bold);
 }
   
-.containerCreateModal a {
-    width: 55%;
-}
 
 .containerCreateModal button {
     background-color: var(--primary-color);
@@ -281,7 +278,7 @@ width: 100%;
     font-size: 16px;
     font-weight: var(--font-bold);
     padding: 8px;
-    width: 100%;
+    width: 55%;
 }
 
 .containerCreateModal .question{
@@ -316,6 +313,18 @@ width: 100%;
     font-size: 12pt;
     font-weight: bold;
     height: 1em;
+}
+
+.cruz{
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    color: var(--primary-color);
+    font-size: 38pt;
+    font-weight: bold;
+    height: 70px;
+    text-align: center;
+    width: 70px;
+    
 }
 
 @media all and (max-width:769px){
