@@ -6,24 +6,24 @@ import axios from "axios";
 
 function ProductSelect({ handleProduct }) {
     const [errorMessage, setErrorMessage] = useState("");
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);   
     const [chosenProduct, setChosenProduct] = useState({
         id: null,
-        name: "Hotel Transilvania",
-        description: "Donde tus miedos se cumplen",
-        latitude: 45.709198,
-        longitude: 25.600926,
-        qualification: 5,
+        name: "",
+        description: "",
+        latitude: null,
+        longitude: null,
+        qualification: null,
         favorite: null,
-        reference: "Castillo aislado del mundo",
-        category: { id: 1, title: "Hotel", description: "", url: "" },
-        city: { id: 1, name: "Rumania", country: "" },
+        reference: "",
+        category: { id: 1, title: "", description: "", url: "" },
+        city: { id: 1, name: "", country: "" },
         images: [{ id: null, title: "", url: "", productId: null }],
-        features: [{ id: 1, title: "wifi", state: null }],
-        rules: "No beber agua",
-        health: "No se respeta la salud",
-        politics: "Beber sangre",
-        address: "Alguna parte de Rumania",
+        features: [{ id: 1, title: "", state: null }],
+        rules: "",
+        health: "",
+        politics: "",
+        address: "",
     });
 
     const baseURL = "http://localhost:8080/";
@@ -38,6 +38,7 @@ function ProductSelect({ handleProduct }) {
             .catch((error) => {
                 setErrorMessage(error.message);
             });
+        
     }, []);
 
     const options = products.map((p) => {
@@ -112,7 +113,7 @@ function ProductSelect({ handleProduct }) {
     }
 
     let handleChange = (option) => {
-        setChosenProduct(option.value);
+        setChosenProduct(option.value);         
     }
 
     return (

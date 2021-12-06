@@ -1,9 +1,7 @@
 
 import Styles from "./Styles.module.css"
-import { Link } from "react-router-dom"
 
-export default function ProductModalSucceed ({title, message, closeModal, icon}){
-    console.log(icon, "icon");
+export default function ProductModalSucceed ({title, message, closeModal, icon}){   
     return (
         <div className={Styles.containerCreateModal}>
             <div className={icon === "X" ? Styles.cruz : null}> {icon === "X"? icon : <img src={icon} alt="icon"/>}</div>

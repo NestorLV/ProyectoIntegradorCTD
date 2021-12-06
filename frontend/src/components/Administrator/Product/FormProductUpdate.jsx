@@ -6,7 +6,7 @@ import 'react-responsive-modal/styles.css';
 import ModalProductSucceed from "./ModalProductSucceed";
 import ConfirmProductModal from "./ConfirmProductModal"
 import FormProduct from "./FormProduct";
-import axios from "axios";
+import { AxiosModificarProducto } from "../../../axiosCollection/Product/AxiosProduct";
 import tildeOk from "../icons/tildeOk.svg"
 
 export default function FormProductUpdate({ product, categories, cities, features, titleModal, messageModal }) {
@@ -16,7 +16,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const [selectedCity, setSelectedCity] = useState({ id: "", name: "" })
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
-    const [reference, setReference] = useState("");
+    const [reference, setReference] = useState();
     const [qualification, setQualification] = useState({ campo: "", valido: false, error: "" });
     const [description, setDescription] = useState("");
     const [selectedFeatures, setSelectedFeatures] = useState([]);
@@ -75,13 +75,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setCancellationPolicy(product.cancellationPolicy)
         setImages(product.images)
 
-    }, [product])
-    console.log(qualification, "qualification");
-
-    /*    console.log(product.images,"product.images")
-        console.log(product.features,"product.features")
-       console.log(product.category.title,"product.category.title") */
-    //console.log(product.features, "product.features")
+    }, [product])     
 
     const openModalSucceed = (() => {
         setModalProductSucceedIsOpen(true)
@@ -100,7 +94,6 @@ export default function FormProductUpdate({ product, categories, cities, feature
         } else {
             setErrorCamposVacios("Por favor complete todos los campos")
         }
-
     }
 
     const closeModalConfirm = () => {
@@ -108,10 +101,8 @@ export default function FormProductUpdate({ product, categories, cities, feature
     }
 
     function modificarProducto() {
-        closeModalConfirm()
-        axios(name, description, latitude, longitude, address, qualification.campo, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed)
-        //AXIOS DE MODIFICAR PRODUCTO (ENVIAR LA CALIFICACION COMO QUALIFICATION.CAMPO PORQUE EL ESTADO ESTA COMO UN OBJETO PARA HACER LA VALIDACION.
-        //TAMBIEN MANDAR EL OPENMODALSUCCEED PARA QUE LO EJECUTE CUANDO RETORNA UN STATUS 200)
+        closeModalConfirm();
+        AxiosModificarProducto(product.id, name, description, latitude, longitude, address, qualification.campo, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed)        
     }
 
     return (
@@ -140,10 +131,10 @@ export default function FormProductUpdate({ product, categories, cities, feature
                     errorCamposVacios={errorCamposVacios}
                 />
                 <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
-                    <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={modificarProducto} closeModalConfirm={closeModalConfirm} />
+                    <ConfirmProductModal accion="Modificar" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={modificarProducto} closeModalConfirm={closeModalConfirm} />
                 </Modal>
                 <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
-                    <ModalProductSucceed title={titleModal} message={messageModal} icon={tildeOk}/>
+                    <ModalProductSucceed title={titleModal} message={messageModal} closeModal={closeModalSucceed} icon={tildeOk}/>
                 </Modal>
             </div>
         </section>

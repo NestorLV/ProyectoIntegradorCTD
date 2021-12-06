@@ -5,8 +5,6 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ModalMessage from './ModalProductSucceed';
 
-import { useState } from "react";
-
 export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios, modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen, modalExistedProductIsOpen, setModalExistedProductIsOpen }) {
     
 
@@ -73,8 +71,6 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setSelectedCity(value)
     }
 
-    //console.log(selectedCategory);
-    //console.log(selectedCity);
     const customStyles = {
         control: () => ({
             border: "1px solid rgba(0,0,0,.4)",
@@ -152,8 +148,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                 setSelectedFeatures(aux)
             }
         }
-    }
-    //console.log(selectedFeatures, "selectedFeatures");
+    }    
 
     function handleIndexImageDeleted(event) {
         console.log(event.target);
@@ -200,8 +195,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setModalExistedProductIsOpen(false);
     };
 
-    /*  console.log(name,"name");
-     console.log(description,"description");
+    console.log(description,"description");
+    /* console.log(name,"name");
      console.log(latitude,"latitude");
      console.log(longitude,"longitude");
      console.log(address,"address");

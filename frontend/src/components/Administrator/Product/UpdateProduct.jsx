@@ -5,18 +5,17 @@ import FormProductUpdate from "./FormProductUpdate";
 import ProductSelect from "./ProductSelect";
 import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axiosCollection/Product/AxiosProduct.jsx"
 
-function UpdateProduct(props) {
+function UpdateProduct() {
 
     const [optionsCategories, setOptionsCategories] = useState([])
     const [optionsCities, setOptionsCities] = useState([])
     const [optionsFeatures, setOptionsFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-
     const [product, setProduct] = useState({
         id: null,
         name: "",
-        description: "",
+        description: null,
         latitude: null,
         longitude: null,
         qualification: null,
@@ -39,7 +38,7 @@ function UpdateProduct(props) {
     }, [])
 
     const handleProduct = (p) => {
-        setProduct(p);
+        setProduct(p);       
     }  
 
     const title="¡Gracias!";
@@ -58,7 +57,7 @@ function UpdateProduct(props) {
                     <section className={StylesApp.delimiter}>
                         <div className={StylesApp.delimiterChild}>
                             <h1>Modificar producto</h1>                          
-                            <ProductSelect handleProduct={handleProduct}/>                           
+                            <ProductSelect handleProduct={handleProduct} />                           
                             <FormProductUpdate product={product} categories={optionsCategories} cities={optionsCities} features={optionsFeatures} titleModal={title} messageModal={message} />
                         </div>
                     </section>

@@ -226,15 +226,14 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
 
 }
 
-function AxiosModificarProducto(name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed) {
-    //Hay que reformular la parte de modificar las imagenes y features para que elimine las que ya no están, deje las que sí están y las imagenes que no están las cree
+function AxiosModificarProducto(idProduct, name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed) {   
 
     let qualificationInt = parseInt(qualification);
-
     axios
         .post("http://localhost:8080/products/update", {
+            id: idProduct,
             name,
-            description,
+            description, 
             latitude,
             longitude,
             address,
@@ -255,24 +254,24 @@ function AxiosModificarProducto(name, description, latitude, longitude, address,
         })
         .then(product => {
             console.log("primer post con éxito")
-            setErrorProduct("")           
-           /*  let idProduct = product.data.id;
+            setErrorProduct("")            
+            let idProduct = product.data.id;
             console.log(qualificationInt, "qualificationint");
             axios
-                .post(`http://localhost:8080/products/scores/update`, {
+                .post(`http://localhost:8080/products/scores/create`, {
                     score: qualificationInt,
                     userEmail: sessionStorage.getItem('email'),
                     productId: idProduct
                 })
                 .then((response) => {
                     if (response.status === 200) {
-                        console.log("Se modificó correctamente la puntuación");
+                        console.log("Se envió correctamente la puntuación");
                     }
                 })
                 .catch((error) => {
                     setErrorProduct(error);
                 });
-            axios
+          /*   axios
                 .get(`http://localhost:8080/products/get/${idProduct}`)
                 .then(response => {
                     response.data.images.forEach(image => {
@@ -314,7 +313,7 @@ function AxiosModificarProducto(name, description, latitude, longitude, address,
                         setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} . Por favor, intente más tarde`)
                         console.log(error);
                     });
-            }); */
+            });  */
         })
         .then(() => {
             openModalSucceed()
@@ -325,4 +324,22 @@ function AxiosModificarProducto(name, description, latitude, longitude, address,
 
 }
 
-export { AxiosGetProductById, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetProductScore, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities, AxiosCrearProducto, AxiosModificarProducto };
+function AxiosFindScoreByIdUser(idProduct){
+    let email = sessionStorage.getItem('email');
+    console.log(idProduct, "idProduct en AxiosFindScoreByIdUser");
+    console.log(email, "email en AxiosFindScoreByIdUser");
+    axios
+        .get(`http://localhost:8080/products/scores/getByUserAndProduct/${email}/${idProduct}`, {
+            headers: {
+                "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+            }
+        })
+        .then(response => {            
+            return response.data.score;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+export { AxiosGetProductById, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetProductScore, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities, AxiosCrearProducto, AxiosModificarProducto, AxiosFindScoreByIdUser };
