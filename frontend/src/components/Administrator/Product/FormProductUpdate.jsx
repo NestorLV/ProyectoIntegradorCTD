@@ -4,9 +4,10 @@ import Styles from "./Styles.module.css";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ModalProductSucceed from "./ModalProductSucceed";
+import ConfirmProductModal from "./ConfirmProductModal"
 import FormProduct from "./FormProduct";
 
-export default function FormProductUpdate({ product, categories, cities, features, titleModal, messageModal}) {
+export default function FormProductUpdate({ product, categories, cities, features, titleModal, messageModal }) {
     const [name, setName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState({ id: "", name: "" })
     const [address, setAddress] = useState("");
@@ -14,7 +15,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
     const [reference, setReference] = useState("");
-    const [qualification, setQualification] = useState({campo:"", valido:false, error:""});
+    const [qualification, setQualification] = useState({ campo: "", valido: false, error: "" });
     const [description, setDescription] = useState("");
     const [selectedFeatures, setSelectedFeatures] = useState([]);
     const [rules, setRules] = useState("");
@@ -24,9 +25,11 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const [imageUrl, setImageUrl] = useState()
     const [images, setImages] = useState([])
 
-    const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
+    const [errorCamposVacios, setErrorCamposVacios] = useState("")
 
-   
+    const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
+    const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
+
 
     /*console.log(name);
     console.log(selectedCategory);
@@ -44,7 +47,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
      console.log(features);
     console.log(images);*/
 
-   
+
 
     useEffect(() => {
         setName(product.name)
@@ -61,9 +64,9 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setLatitude(product.latitude)
         setLongitude(product.longitude)
         setReference(product.reference)
-        setQualification({campo:product.qualification})
+        setQualification({ campo: product.qualification })
         setDescription(product.description)
-        setSelectedFeatures(product.features.map((feature)=>{return {id:feature.id, title:feature.title}}))
+        setSelectedFeatures(product.features.map((feature) => { return { id: feature.id, title: feature.title } }))
         setRules(product.rules)
         setHealthAndSecurity(product.healthAndSecurity)
         setCancellationPolicy(product.cancellationPolicy)
@@ -72,24 +75,45 @@ export default function FormProductUpdate({ product, categories, cities, feature
     }, [product])
     console.log(qualification, "qualification");
 
-    function modificarProducto(event){
-        event.preventDefault()
-    }
-   
-
     /*    console.log(product.images,"product.images")
         console.log(product.features,"product.features")
        console.log(product.category.title,"product.category.title") */
     //console.log(product.features, "product.features")
 
+    const openModalSucceed = (() => {
+        setModalProductSucceedIsOpen(true)
+    })
+
     const closeModalSucceed = () => {
         setModalProductSucceedIsOpen(false);
+        window.location.href = "/"
     };
+
+    const openModalConfirm = (e) => {
+        e.preventDefault();
+        if (name && description && latitude && longitude && address && qualification.valido && reference && selectedCategory && selectedCity && rules && healthAndSecurity && cancellationPolicy && images.length > 0 && selectedFeatures.length > 0) {
+            setModalConfirmIsOpen(true)
+            setErrorCamposVacios("")
+        } else {
+            setErrorCamposVacios("Por favor complete todos los campos")
+        }
+
+    }
+
+    const closeModalConfirm = () => {
+        setModalConfirmIsOpen(false)
+    }
+
+    function modificarProducto() {
+        closeModalConfirm()
+        //AXIOS DE MODIFICAR PRODUCTO (ENVIAR LA CALIFICACION COMO QUALIFICATION.CAMPO PORQUE EL ESTADO ESTA COMO UN OBJETO PARA HACER LA VALIDACION.
+        //TAMBIEN MANDAR EL OPENMODALSUCCEED PARA QUE LO EJECUTE CUANDO RETORNA UN STATUS 200)
+    }
 
     return (
         <section className={`${StylesApp.delimiter} ${Styles.containerPrincipal}`}>
             <div className={`${StylesApp.delimiterChild} ${Styles.containerForm}`}>
-                <FormProduct 
+                <FormProduct
                     name={name} setName={setName}
                     selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}
                     address={address} setAddress={setAddress}
@@ -108,10 +132,14 @@ export default function FormProductUpdate({ product, categories, cities, feature
                     images={images} setImages={setImages}
                     categories={categories} cities={cities} features={features}
                     setModalProductSucceedIsOpen={setModalProductSucceedIsOpen}
-                    enviarDatos={modificarProducto} tituloBoton={"Modificar"}
-                    />
+                    enviarDatos={openModalConfirm} tituloBoton={"Modificar"}
+                    errorCamposVacios={errorCamposVacios}
+                />
+                <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
+                    <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={modificarProducto} closeModalConfirm={closeModalConfirm} />
+                </Modal>
                 <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
-                    <ModalProductSucceed title={titleModal} message={messageModal}/>
+                    <ModalProductSucceed title={titleModal} message={messageModal} />
                 </Modal>
             </div>
         </section>

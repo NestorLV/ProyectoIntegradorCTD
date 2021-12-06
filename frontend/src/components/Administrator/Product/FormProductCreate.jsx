@@ -4,7 +4,7 @@ import Styles from "./Styles.module.css";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ModalProductSucceed from './ModalProductSucceed';
-import ConfirmProductModal from "./ConfirmProductModal"
+import ConfirmProductModal from "./ConfirmProductModal";
 import FormProduct from "./FormProduct";
 import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
 
@@ -34,8 +34,6 @@ export default function FormProductCreate({ categories, cities, features, titleM
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
     const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
 
-    console.log(qualification, "qualification");
-
     /*console.log(name);
     console.log(selectedCategory);
     console.log(address);
@@ -53,11 +51,12 @@ export default function FormProductCreate({ categories, cities, features, titleM
     console.log(selectedCategory);
 */
 
-const openModalSucceed = (() => {
-    setModalProductSucceedIsOpen(true)
-})
+    const openModalSucceed = (() => {
+        setModalProductSucceedIsOpen(true)
+    })
     const closeModalSucceed = () => {
         setModalProductSucceedIsOpen(false);
+        window.location.href = "/"
     };
 
     const openModalConfirm = (e) => {
