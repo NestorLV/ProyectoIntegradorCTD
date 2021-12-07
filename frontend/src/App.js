@@ -83,7 +83,9 @@ console.log(city);
           <Route exact path="/login"  component={() => !log? <FormLogin lastLocation={lastLocation} bookingWithoutLogin={bookingWithoutLogin} setLoading={setLoading} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to={`${lastLocation}`}/>} />                  
           <Route exact path="/create" component={() => !log? <FormCreate lastLocation={lastLocation} setIniciales={setIniciales} setUserName={setUserName} setUserSurname={setUserSurname} setLog={setLog} setActiveCreate = {setActiveCreate} setActiveLogin ={setActiveLogin}/> : <Redirect to={`${lastLocation}`} />} />
           <Route exact path={"/product/create"} component={() => role === "ADMIN" && <CreateProduct />} />
+          <Route exact path={"/product/update/:id"} component={() => role === "ADMIN" && <UpdateProduct />} />
           <Route exact path={"/product/update"} component={() => role === "ADMIN" && <UpdateProduct />} />
+         
           <Route exact path={"/product/:id"} render={() => <Product setBookingWithoutLogin={setBookingWithoutLogin} goBack={goBack} setLastLocation={setLastLocation} lastLocation={lastLocation} />} />   
           <Route exact path={"/product/:id/reserva"} component={Booking}/>    
           <Route path="*"> <NotFound /> </Route>

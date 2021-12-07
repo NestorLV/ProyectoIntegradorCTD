@@ -25,7 +25,7 @@ function ProductSelect({ handleProduct }) {
         politics: "",
         address: "",
     });
-
+    console.log(chosenProduct);
     const baseURL = "http://localhost:8080/";
 
     useEffect(() => {
@@ -33,13 +33,21 @@ function ProductSelect({ handleProduct }) {
             .get(baseURL + "products/all")
             .then((response) => {
                 setProducts(response.data);
-                console.log(response.data);
+                //return response.data.find((p)=> {return p.id===id})
             })
+           /* .then((response) =>{
+                console.log(response);
+                setProduct(response)
+                //handleProduct(chosenProduct) 
+                //console.log(chosenProduct);
+               
+            })*/
             .catch((error) => {
                 setErrorMessage(error.message);
             });
         
     }, []);
+    console.log(chosenProduct);
 
     const options = products.map((p) => {
         return {
@@ -111,9 +119,11 @@ function ProductSelect({ handleProduct }) {
 
         }),
     }
-
+    
     let handleChange = (option) => {
-        setChosenProduct(option.value);         
+        
+        setChosenProduct(option.value);   
+        console.log(chosenProduct);
     }
 
     return (
@@ -128,7 +138,7 @@ function ProductSelect({ handleProduct }) {
                         styles={customStyles}
                         isSearchable
                         onChange={(newValue) => handleChange(newValue)}
-
+                        
                     />
                     <button onClick={() => { handleProduct(chosenProduct) }} className={`${Styles.buttonSearchProduct} ${Styles.button}`}>Buscar</button>
                 </div>

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import { useParams } from "react-router-dom";
 import StylesApp from "../../../App.module.css";
 import Spinner from "../../spinner/Spinner";
 import FormProductUpdate from "./FormProductUpdate";
 import ProductSelect from "./ProductSelect";
-import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures} from "../../../axiosCollection/Product/AxiosProduct.jsx"
+import {AxiosGetCategories, AxiosGetCities, AxiosGetFeatures, AxiosGetProductById} from "../../../axiosCollection/Product/AxiosProduct.jsx"
 
 function UpdateProduct() {
 
@@ -31,14 +32,22 @@ function UpdateProduct() {
         address: "",
     });
 
+    let { id } = useParams();
+   
+
     useEffect(() => {
         AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage) 
         AxiosGetCities(setLoading, setOptionsCities, setErrorMessage)
         AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage) 
+        if(id){
+            AxiosGetProductById(id, setProduct, setLoading, setErrorMessage)
+        }
+        
     }, [])
 
     const handleProduct = (p) => {
-        setProduct(p);       
+        setProduct(p);  
+        window.location.pathname=`/product/update/${p.id}`     
     }  
 
     const title="¡Gracias!";
@@ -57,7 +66,7 @@ function UpdateProduct() {
                     <section className={StylesApp.delimiter}>
                         <div className={StylesApp.delimiterChild}>
                             <h1>Modificar producto</h1>                          
-                            <ProductSelect handleProduct={handleProduct} />                           
+                            <ProductSelect handleProduct={handleProduct}/>                           
                             <FormProductUpdate product={product} categories={optionsCategories} cities={optionsCities} features={optionsFeatures} titleModal={title} messageModal={message} />
                         </div>
                     </section>

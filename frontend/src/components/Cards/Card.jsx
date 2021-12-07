@@ -153,8 +153,8 @@ console.log(modalProductSucceedIsOpen);
 
                     {admin &&
                         <div className={Styles.buttonsAdminBox}>
-                            <Link to={`/product/update/`} key={id} className={Styles.link} onClick={handleLastLocation}>
-                                <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`}>Modificar</button>
+                            <Link to={`/product/update/${id}`} key={id} className={Styles.link} onClick={handleLastLocation}>
+                                <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`} >Modificar</button>
                             </Link>
                             <div className={Styles.link} onClick={handleLastLocation}>
                                 <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`} onClick={openModalConfirmDeleted}>Eliminar</button>
