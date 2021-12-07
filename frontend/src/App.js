@@ -35,13 +35,10 @@ function App() {
 
   const role = sessionStorage.getItem("role");
 
-console.log(city);
-
   const handleCategory = (c) => {       
     setFavourite(false);
     setCategory(c);           
   }
-  console.log(category, "app");
 
   const handleSearch = (e) => {
     e.preventDefault();        
@@ -57,8 +54,7 @@ console.log(city);
     setSearch(false);
     setCity("");
     setFavourite(true);
-    setClickSeeFavourites((prevState)=>!prevState);
-    
+    setClickSeeFavourites((prevState)=>!prevState);    
   }
 
   const handleClean = () => {
@@ -85,7 +81,6 @@ console.log(city);
           <Route exact path={"/product/create"} component={() => role === "ADMIN" && <CreateProduct goBack={goBack}/>} />
           <Route exact path={"/product/update/:id"} component={() => role === "ADMIN" && <UpdateProduct goBack={goBack}/>} />
           <Route exact path={"/product/update"} component={() => role === "ADMIN" && <UpdateProduct goBack={goBack}/>} />
-         
           <Route exact path={"/product/:id"} render={() => <Product setBookingWithoutLogin={setBookingWithoutLogin} goBack={goBack} setLastLocation={setLastLocation} lastLocation={lastLocation} />} />   
           <Route exact path={"/product/:id/reserva"} component={Booking}/>    
           <Route path="*"> <NotFound /> </Route>

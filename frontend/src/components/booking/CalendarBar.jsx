@@ -84,7 +84,7 @@ function CalendarBar(props) {
     }
 
     useEffect(() => {       
-        AxiosGetReservasPorProducto(props.id, setReservas, setErrorMessage)             
+        AxiosGetReservasPorProducto(props.id, setReservas, setErrorMessage)            
  
     }, []); 
 

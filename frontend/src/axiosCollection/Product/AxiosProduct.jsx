@@ -50,8 +50,7 @@ function AxiosGetReservasPorProducto(idProducto, setReservas, setErrorMessage) {
                     i += 86400000;
                 }
             });
-            setReservas(reservas);
-            console.log(reservas, "reservas");
+            setReservas(reservas);           
         })
         .catch((error) => {
             setErrorMessage("No es posible mostrar la página");
@@ -191,7 +190,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                         }
                     })
                     .catch((error) => {
-                        setErrorProduct(`Lamentablemente no se ha podido cargar la imagen ${image.title} . Por favor, intente más tarde`)
+                        setErrorProduct(`Lamentablemente no se ha podido cargar la imagen ${image.title} debido a ${error} . Por favor, intente más tarde`)
                     });
             });
             features.forEach(feature => {
@@ -226,7 +225,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
 
 }
 
-function AxiosModificarProducto(idProduct, name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed) {
+function AxiosModificarProducto(idProduct, name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed, openModalExistedProduct,openModalExpiredLogin) {
 
     let qualificationInt = parseInt(qualification);
     axios
@@ -252,11 +251,9 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`
             }
         })
-        .then(product => {
-            console.log("primer post con éxito")
+        .then(product => {           
             setErrorProduct("")
-            let idProduct = product.data.id;
-            console.log(qualificationInt, "qualificationint");
+            let idProduct = product.data.id;          
             axios
                 .post(`http://localhost:8080/products/scores/create`, {
                     score: qualificationInt,
@@ -291,7 +288,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                     }
                 })
                 .catch((error) => {
-                    setErrorProduct(`Lamentablemente no se han podido cargar las imagenes. Por favor, intente más tarde`)
+                    setErrorProduct(`Lamentablemente no se han podido cargar las imagenes debido a ${error}. Por favor, intente más tarde`)
                 });
 
                 features.forEach(feature => {
@@ -304,8 +301,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                             }
                         })
                     .catch((error) => {
-                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} . Por favor, intente más tarde`)
-                        console.log(error);
+                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} debido a ${error}. Por favor, intente más tarde`)                        
                     });
             });  
         })
@@ -313,15 +309,21 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
             openModalSucceed()
         })
         .catch((error) => {
-            setErrorProduct("Lamentablemente el producto no ha podido crearse. Por favor, intente más tarde")
+            if(error.response.status===400){
+                console.log("El producto ya existe");
+                openModalExistedProduct()
+            };     
+            if(error.response.status===404){
+                console.log("El login expiró");
+                openModalExpiredLogin()
+            };  
+            setErrorProduct(`Lamentablemente el producto no ha podido crearse debido a ${error}. Por favor, intente más tarde`)
         });
 
 }
 
 function AxiosFindScoreByIdUser(idProduct){
-    let email = sessionStorage.getItem('email');
-    console.log(idProduct, "idProduct en AxiosFindScoreByIdUser");
-    console.log(email, "email en AxiosFindScoreByIdUser");
+    let email = sessionStorage.getItem('email');    
     axios
         .get(`http://localhost:8080/products/scores/getByUserAndProduct/${email}/${idProduct}`, {
             headers: {

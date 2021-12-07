@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import hidePassword from "./icons/hidePassword.png"
 import { AxiosLogin } from "../../axiosCollection/Forms/AxiosForms"
 import IconError from "./icons/iconError.svg"
-import Spinner from "../spinner/Spinner";
 
 export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoading, setActiveLogin, setActiveCreate, setLog }) {
     const [email, setEmail] = useState({ campo: "", valido: true, error: "" });
@@ -12,9 +11,6 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
     const [error, setError] = useState("")
     const [formValido, setFormValido] = useState(false)
 
-
-
-    /* const baseUrl = "http://localhost:8080/" */
     useEffect(() => {
         setActiveCreate(false)
         setActiveLogin(true)

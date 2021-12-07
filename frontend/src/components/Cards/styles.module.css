@@ -281,6 +281,7 @@ min-width: 80px;
 
 .cardIcons {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .cardFeatures {
@@ -496,7 +497,7 @@ min-width: 80px;
   }
 
   .cardIcons {
-    display: none;
+    display: none;    
   }
 
   .cardImage,

@@ -5,7 +5,7 @@ import Spinner from "../spinner/Spinner";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ModalProductoErroneo from "../Administrator/Product/ModalProductSucceed";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export default function Home(props) {
 

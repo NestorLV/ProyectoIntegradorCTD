@@ -53,8 +53,7 @@ export default function Cards({
         setLoading,
         setTitulo,
         setErrorMessage
-      );
-      console.log("Ingreso al primer if");
+      );     
     } else if (favourite === false) {
       AxiosGetProductosPorCiudadFechaYCategoria(
         setData,

@@ -242,7 +242,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                 </div>
                 <div className={Styles.blockInputs}>
                     <label htmlFor="qualification">Calificación</label>
-                    <input type="text" name="qualification" id="qualification" value={qualification.campo != ""? parseInt(qualification.campo) : ""} onChange={handleChangeQualification} />
+                    <input type="text" name="qualification" id="qualification" value={qualification.campo !== ""? parseInt(qualification.campo) : ""} onChange={handleChangeQualification} />
                     <div className={Styles.error}>{qualification.error}</div>
                 </div>
             </div>
@@ -259,7 +259,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                             <input
                                 onChange={event => saveSelectedFeatures(event)}
                                 type="checkbox"
-                                checked={selectedFeatures.find(feature => feature.id == option.id)}
+                                checked={selectedFeatures.find(feature => feature.id === option.id)}
                                 id={index + 1}
                                 value={option.name}
                             />
