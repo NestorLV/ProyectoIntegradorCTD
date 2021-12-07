@@ -226,14 +226,14 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
 
 }
 
-function AxiosModificarProducto(idProduct, name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed) {   
+function AxiosModificarProducto(idProduct, name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed) {
 
     let qualificationInt = parseInt(qualification);
     axios
         .post("http://localhost:8080/products/update", {
             id: idProduct,
             name,
-            description, 
+            description,
             latitude,
             longitude,
             address,
@@ -254,7 +254,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
         })
         .then(product => {
             console.log("primer post con éxito")
-            setErrorProduct("")            
+            setErrorProduct("")
             let idProduct = product.data.id;
             console.log(qualificationInt, "qualificationint");
             axios
@@ -271,36 +271,30 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                 .catch((error) => {
                     setErrorProduct(error);
                 });
-          /*   axios
-                .get(`http://localhost:8080/products/get/${idProduct}`)
-                .then(response => {
-                    response.data.images.forEach(image => {
-                        axios.delete(`http://localhost:8080/images/delete/${image.id}`, {
-                            headers: {
-                                Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                            }
-                        })
-                            .catch((error) => {
-                                setErrorProduct(`Lamentablemente no se ha podido eliminar la imagen ${image.title} . Por favor, intente más tarde`)
-                            });
-                    });
-                })
+            let arrayImages = [];
             images.forEach(image => {
-                axios
-                    .post(`http://localhost:8080/images/create`, {
-                        title: image.title,
-                        url: image.url,
-                        productId: idProduct
-                    }, {
-                        headers: {
-                            Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                        }
-                    })
-                    .catch((error) => {
-                        setErrorProduct(`Lamentablemente no se ha podido cargar la imagen ${image.title} . Por favor, intente más tarde`)
-                    });
+                let img = {  
+                    id: image.id,                  
+                    title: image.title,
+                    url: image.url,
+                    productId: idProduct
+                }
+                arrayImages.push(img);
             });
-            features.forEach(feature => {
+            axios
+                .post(`http://localhost:8080/images/updateimagesperproduct`, 
+                    arrayImages
+                , 
+                {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem("token")}`
+                    }
+                })
+                .catch((error) => {
+                    setErrorProduct(`Lamentablemente no se han podido cargar las imagenes. Por favor, intente más tarde`)
+                });
+
+                features.forEach(feature => {
                 let featureInt = parseInt(feature.id);
                 axios
                     .post(`http://localhost:8080/features/updateproduct/${featureInt}/${idProduct}`, {},
@@ -313,7 +307,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                         setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} . Por favor, intente más tarde`)
                         console.log(error);
                     });
-            });  */
+            });  
         })
         .then(() => {
             openModalSucceed()
