@@ -51,10 +51,16 @@ h1{
     font-size: var(--button4);
     font-weight: var(--font-bold);    
     width: clamp(100px,10vw,150px);
+    transition: all 0.3s;
 }
 
 .buttonSearchProduct:hover {
     cursor: pointer;
+    transform: scale(1.1);
+}
+
+.buttonSearchProduct:active {   
+    transform: scale(0.85);
 }
 
 .containerForm label, .containerForm h3, .containerForm h5, .containerForm h6{
@@ -161,7 +167,19 @@ h1{
     font-weight: var(--font-bold);
     height: 41px;
     width: 41px;
+    transition: all 0.3s;
 }
+
+.containerImages button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.containerImages button:active{   
+    transform: scale(0.85);
+}
+
+
 
 .description textarea, .politics textarea{
     align-self: center;
@@ -228,7 +246,18 @@ width: 100%;
     margin-top: 30px;
     padding: 5pt;
     width: clamp(164px,22.2vw,250px);
+    transition: all 0.3s;
 }
+
+#buttonCreateProduct:hover{
+    cursor: pointer;
+    transform:scale(1.1);
+}
+
+#buttonCreateProduct:active{   
+    transform:scale(0.85);
+}
+
 
 .hide{
     display: none;

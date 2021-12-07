@@ -35,7 +35,6 @@ function UpdateProduct(props) {
 
     let { id } = useParams();
 
-
     useEffect(() => {
         AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage)
         AxiosGetCities(setLoading, setOptionsCities, setErrorMessage)
@@ -43,7 +42,6 @@ function UpdateProduct(props) {
         if (id) {
             AxiosGetProductById(id, setProduct, setLoading, setErrorMessage)
         }
-
     }, [])
 
     const handleProduct = (p) => {

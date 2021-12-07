@@ -47,9 +47,7 @@ function ImageBar(props) {
 
     let placeShareCall = "producto"
 
-    let logged = sessionStorage.getItem("log");
-
-    console.log(images, "images");
+    let logged = sessionStorage.getItem("log");  
 
     return (
         <div className={`${Styles.imageBar} ${StylesApp.delimiter}`}>

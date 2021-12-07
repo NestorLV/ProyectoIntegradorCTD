@@ -51,8 +51,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
         setModalFavouriteIsOpen(false);
     };
 
-    const openMapModal = (() => {
-        console.log("Entro en el modal", mapIsOpen);
+    const openMapModal = (() => {       
         setMapIsOpen(true)
     })
 
@@ -88,8 +87,6 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
         closeModalConfirmDeleted()
         AxiosDeletedMark(id, openModalSucceed)
     }
-
-console.log(modalProductSucceedIsOpen);
 
     return (
         <div className={Styles.cardBox} >

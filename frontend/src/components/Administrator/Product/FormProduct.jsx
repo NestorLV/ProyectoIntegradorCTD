@@ -7,7 +7,6 @@ import ModalMessage from './ModalProductSucceed';
 
 export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios, modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen, modalExistedProductIsOpen, setModalExistedProductIsOpen }) {
     
-
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -61,13 +60,11 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setImageUrl(event.target.value)
     }
 
-    const handleChangeCategory = (value) => {
-        console.log(value);
+    const handleChangeCategory = (value) => {        
         setSelectedCategory(value)
     }
 
-    const handleChangeCity = (value) => {
-        console.log(value);
+    const handleChangeCity = (value) => {      
         setSelectedCity(value)
     }
 
@@ -151,10 +148,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         }
     }    
 
-    function handleIndexImageDeleted(event) {
-        console.log(event.target);
-        deleteImage(event.target.id)
-        console.log(event);
+    function handleIndexImageDeleted(event) {      
+        deleteImage(event.target.id);    
     }
 
     const handleClickImage = ((event) => {
@@ -173,11 +168,9 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setImages(aux);
     }
 
-
     function sendData(event) {
         event.preventDefault()
     }
-
     
     const closeModalExpiredLogin = () => {
         setModalExpiredLoginIsOpen(false);
@@ -195,7 +188,6 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
     const closeModalExistedProduct = () => {
         setModalExistedProductIsOpen(false);
     };
-
 
     return (
         <form onSubmit={sendData}>
@@ -251,13 +243,13 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                 </div>
                 <div className={Styles.blockInputs}>
                     <label htmlFor="qualification">Calificación</label>
-                    <input type="text" name="qualification" id="qualification" value={qualification.campo != ""? parseInt(qualification.campo) : ""} onChange={handleChangeQualification} />
+                    <input type="text" name="qualification" id="qualification" value={qualification.campo !== ""? parseInt(qualification.campo) : ""} onChange={handleChangeQualification} />
                     <div className={Styles.error}>{qualification.error}</div>
                 </div>
             </div>
             <div className={Styles.description}>
                 <label htmlFor="description">Descripción</label>
-                <textarea name="description" id="description" placeholder="Escribir aquí" value={description} onChange={handleChangeDescription} />
+                <textarea name="description" id="description" maxLength="500" placeholder="Escribir aquí" value={description} onChange={handleChangeDescription} />
             </div>
 
             <div className={Styles.containerCheckbox}>
@@ -268,7 +260,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                             <input
                                 onChange={event => saveSelectedFeatures(event)}
                                 type="checkbox"
-                                checked={selectedFeatures.find(feature => feature.id == option.id)}
+                                checked={selectedFeatures.find(feature => feature.id === option.id)}
                                 id={index + 1}
                                 value={option.name}
                             />

@@ -12,8 +12,6 @@ import StylesApp from "../../App.module.css";
 import QualificationBar from "./QualificationBar";
 import Spinner from "../spinner/Spinner";
 import { AxiosGetProductById } from "../../axiosCollection/Product/AxiosProduct"
-import { AxiosGetProductoFavorito} from "../../axiosCollection/Cards/AxiosCards"
-
 
 function Product(props) {
     /* eslint-disable no-unused-vars */
@@ -53,8 +51,6 @@ function Product(props) {
     useEffect(() => {
         AxiosGetProductById(id, setProd, setLoading, setErrorMessage)
     }, [id]);
-
-    
    
     return (
         (errorMessage && loading) ?

@@ -5,15 +5,12 @@ import FormProductCreate from "./FormProductCreate";
 import TitleBar from "../../Product/TitleBar";
 import { AxiosGetCategories, AxiosGetCities, AxiosGetFeatures } from "../../../axiosCollection/Product/AxiosProduct.jsx"
 
-
-
 function CreateProduct(props) {
     const [optionsCategories, setOptionsCategories] = useState([])
     const [optionsCities, setOptionsCities] = useState([])
     const [optionsFeatures, setOptionsFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
-
 
     useEffect(() => {
         AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage)

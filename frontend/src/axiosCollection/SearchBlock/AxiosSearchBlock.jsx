@@ -6,8 +6,7 @@ export default function AxiosGetAllCities(setData, setErrorMessage){
     axios
     .get(baseURL)
     .then((response) => {
-      setData(response.data);   
-      console.log(response.data);   
+      setData(response.data);     
     })
     .catch((error) => {
       setErrorMessage(error);

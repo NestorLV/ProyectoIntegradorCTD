@@ -7,6 +7,7 @@ import 'react-responsive-modal/styles.css';
 import ModalProductoErroneo from "../Administrator/Product/ModalProductSucceed";
 import { useState, useEffect} from "react";
 
+
 export default function Home(props) {
 
   const [borrarCity, setBorrarCity] = useState(false);

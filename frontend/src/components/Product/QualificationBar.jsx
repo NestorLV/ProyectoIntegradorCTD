@@ -7,8 +7,7 @@ export default function QualificationBar({ id }) {
     const [starIndex, setStarIndex] = useState();
     const [submit, setSubmit] = useState(false);
     const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex === 0 ? "" : starIndex}`);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [puntuacion, setPuntuacion] = useState();
+    const [errorMessage, setErrorMessage] = useState("");  
 
     let stars = [];
 
@@ -46,8 +45,6 @@ export default function QualificationBar({ id }) {
         setSubmit(false);
         setCalificacion_text(`Seleccione puntuación`);
     }
-
-    console.log(puntuacion);
 
     return (
         <div className={`${Styles.qualificationBar} ${StylesApp.delimiter}`}>

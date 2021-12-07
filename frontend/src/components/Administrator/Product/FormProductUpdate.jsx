@@ -33,25 +33,6 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
     const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
 
-
-    /*console.log(name);
-    console.log(selectedCategory);
-    console.log(address);
-    console.log(selectedCity);
-    console.log(latitude);
-    console.log(longitude);
-    console.log(reference);
-    console.log(qualification);
-    console.log(description);
-    console.log(selectedFeatures);
-    console.log(rules);
-    console.log(healthAndSecurity);
-    console.log(cancellationPolicy);
-     console.log(features);
-    console.log(images);*/
-
-
-
     useEffect(() => {
         setName(product.name)
         setSelectedCategory(

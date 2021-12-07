@@ -1,16 +1,3 @@
-/* import wifi from './wifi.svg'; */
-/* import pool from './pool.svg'; */
-/* import kitchen from './kitchen.svg'; */
-/* import tv from './tv.svg'; */
-/* import ac from './ac.svg'; */
-/* import pet from './pet.svg'; */
-/* import parking from './parking.svg'; */
-/* import creditCard from './creditCard.svg'; */
-/* import smoke from './smoke.svg'; */
-/* import party from './party.svg'; */
-/* import checkin from './checkIn.svg'; */
-/* import noSmoke from './noSmoke.svg'; */
-
 let wifi = (color) => <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10.8 18L14.4 13.2C13.4 12.45 12.15 12 10.8 12C9.45 12 8.2 12.45 7.2 13.2L10.8 18ZM10.8 0C6.75 0 3.01 1.34 0 3.6L1.8 6C4.3 4.12 7.42 3 10.8 3C14.18 3 17.3 4.12 19.8 6L21.6 3.6C18.59 1.34 14.85 0 10.8 0ZM10.8 6C8.1 6 5.61 6.89 3.6 8.4L5.4 10.8C6.9 9.67 8.77 9 10.8 9C12.83 9 14.7 9.67 16.2 10.8L18 8.4C15.99 6.89 13.5 6 10.8 6Z" fill={color}/>
 </svg>
@@ -51,7 +38,7 @@ let smoke = (color) => <svg width="20" height="20" viewBox="0 0 20 20" fill="non
 
 let party = (color) => <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.53 0L12.45 1.08L14.05 2.68C14.27 2.93 14.38 3.22 14.38 3.55C14.38 3.88 14.27 4.19 14.05 4.41L10.5 8.02L11.5 9.1L15.13 5.49C15.66 4.9 15.92 4.25 15.92 3.55C15.92 2.85 15.66 2.19 15.13 1.6L13.53 0ZM9.55 2.02L8.47 3.1L9.08 3.66C9.3 3.88 9.41 4.18 9.41 4.55C9.41 4.92 9.3 5.22 9.08 5.44L8.47 6L9.55 7.08L10.11 6.47C10.64 5.88 10.91 5.24 10.91 4.55C10.91 3.83 10.64 3.18 10.11 2.58L9.55 2.02ZM20 3.61C19.31 3.61 18.67 3.88 18.08 4.41L12.45 10.05L13.53 11.05L19.11 5.49C19.36 5.24 19.66 5.11 20 5.11C20.34 5.11 20.64 5.24 20.89 5.49L21.5 6.1L22.53 5.02L21.97 4.41C21.38 3.88 20.72 3.61 20 3.61ZM6 6.55L1 20.55L15 15.55L6 6.55ZM18 9.61C17.3 9.61 16.66 9.88 16.06 10.41L14.47 12L15.55 13.08L17.14 11.49C17.39 11.24 17.67 11.11 18 11.11C18.33 11.11 18.63 11.24 18.88 11.49L20.5 13.08L21.55 12.05L19.95 10.41C19.36 9.88 18.7 9.61 18 9.61Z" fill={color}/>
-<line x1="0.707107" y1="8.29289" x2="13.7071" y2="21.2929" stroke="#1DBEB4" stroke-width="2"/>
+<line x1="0.707107" y1="8.29289" x2="13.7071" y2="21.2929" stroke={color} strokeWidth="2"/>
 </svg>
 
 let checkIn = (color) => <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

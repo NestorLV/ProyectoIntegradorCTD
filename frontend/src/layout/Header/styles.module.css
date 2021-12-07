@@ -71,6 +71,7 @@ div.buttons button {
 div.buttons button:hover {
   background-color: var(--primary-color);
   color: white;
+  cursor: pointer;  
 }
 
 .hideButton{

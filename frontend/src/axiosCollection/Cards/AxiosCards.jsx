@@ -45,8 +45,7 @@ function AxiosGetProductoFavorito(setErrorMessage, id,setLike) {
 
     sessionStorage.getItem("email") &&
         axios.get(baseUrlFavourite)
-            .then(response => {   
-                console.log(response.data, "soy el response de favoritos");
+            .then(response => {                
                 let flag=false;  
                 response.data.map((p)=>p.id===id?flag=true:null);     
                 setLike(flag)
