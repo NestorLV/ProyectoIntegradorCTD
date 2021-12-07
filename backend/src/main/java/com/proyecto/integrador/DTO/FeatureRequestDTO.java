@@ -28,12 +28,13 @@ public class FeatureRequestDTO {
         this.products = products;
     }
 
-    public FeatureRequestDTO(String title, FeatureTypes type) {
+    public FeatureRequestDTO(String title, FeatureTypes type, Set<Product> products) {
         this.title = title;
         this.type = type;
+        this.products = products;
     }
 
-    public Feature toEntity (){
+    public Feature toEntity() {
         Feature feature = new Feature();
         feature.setTitle(title);
         feature.setType(type);

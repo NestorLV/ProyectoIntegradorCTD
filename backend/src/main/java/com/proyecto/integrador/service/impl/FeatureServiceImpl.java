@@ -79,23 +79,38 @@ public class FeatureServiceImpl implements IFeatureService {
         return featureRepository.save(feature).toDto();
     }
 
-    public FeatureResponseDTO updateProducts(Integer featureId, Integer productId) throws FindByIdException {
-        logger.debug("Iniciando método actualizar característica por ID");
-        if (!featureRepository.existsById(featureId)) {
-            throw new FindByIdException("No existe una característica con nuevo producto");
+    public void updateDeleteProducts(Product product) {
+        logger.debug("Iniciando método borrar asociación de producto a características");
+        Set<Feature> featuresFound =  featureRepository.findAll().stream().filter(feature -> feature.getProducts().contains(product)).collect(Collectors.toSet());
+        for (Feature feature: featuresFound) {
+            Set<Product> products = feature.getProducts();
+            products.remove(product);
+            feature.setProducts(products);
+            featureRepository.save(feature);
         }
-        Feature feature = featureRepository.findById(featureId).get();
-        Set<Product> products = feature.getProducts();
+        logger.debug("Terminó la ejecución del método borrar asociación de producto a características");
+    }
+
+    public void updateAddProducts(List<Integer> featureIds, Product product) {
+        logger.debug("Iniciando método agregar asociación de producto a características");
+        for (Integer featureId: featureIds) {
+            Feature feature = featureRepository.findById(featureId).get();
+            Set<Product> products = feature.getProducts();
+            products.add(product);
+            feature.setProducts(products);
+            featureRepository.save(feature);
+        }
+        logger.debug("Terminó la ejecución del método agregar asociación de producto a características");
+    }
+
+    public ProductDTO featuresUpdated(List<Integer> featureIds, Integer productId) throws FindByIdException {
+        logger.debug("Iniciando método actualizar características de un producto");
         Product product = productService.findById(productId).toEntity();
         product.setId(productId);
-        if (products.contains(product)) {
-            products.remove(product);
-        } else {
-            products.add(product);
-        }
-        feature.setProducts(products);
-        logger.debug("Terminó la ejecución del método actualizar característica con nuevo producto");
-        return featureRepository.save(feature).toDto();
+        updateDeleteProducts(product);
+        updateAddProducts(featureIds, product);
+        logger.debug("Terminó la ejecución del método actualizar características de un producto");
+        return productService.findById(productId);
     }
 
     public Set<FeatureResponseDTO> findByProduct(Product product) {

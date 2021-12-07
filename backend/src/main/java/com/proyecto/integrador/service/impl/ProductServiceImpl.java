@@ -87,14 +87,9 @@ public class ProductServiceImpl implements IProductService {
         if (!productRepository.existsById(productId)) {
             throw new FindByIdException("No existe una producto con el id ingresado");
         }
-        Set<FeatureResponseDTO> features = featureService.findByProduct(findById(productId).toEntity());
-        features.forEach(f -> {
-            try {
-                featureService.updateProducts(f.getId(),productId);
-            } catch (FindByIdException e) {
-                logger.error(e);
-            }
-        });
+        Product product = productRepository.findById(productId).isPresent() ? productRepository.findById(productId).get() : null;
+        Set<FeatureResponseDTO> features = featureService.findByProduct(product);
+        features.forEach(f -> featureService.updateDeleteProducts(product));
         logger.debug("Terminó la ejecución del método eliminar producto por ID");
         productRepository.deleteById(productId);
     }

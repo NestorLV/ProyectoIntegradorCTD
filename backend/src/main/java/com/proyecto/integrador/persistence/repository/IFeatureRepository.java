@@ -9,5 +9,4 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public interface IFeatureRepository extends JpaRepository<Feature, Integer>{
-}
+public interface IFeatureRepository extends JpaRepository<Feature, Integer>{}

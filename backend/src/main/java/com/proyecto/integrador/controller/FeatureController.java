@@ -2,6 +2,7 @@ package com.proyecto.integrador.controller;
 
 import com.proyecto.integrador.DTO.FeatureRequestDTO;
 import com.proyecto.integrador.DTO.FeatureResponseDTO;
+import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.service.IFeatureService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -48,9 +50,9 @@ public class FeatureController implements CRUDController<FeatureRequestDTO> {
 
     @Operation(summary = "Update an existing feature", description = "Updates some information of an exiting feature")
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("/updateproduct/{featureId}/{productId}")
-    public ResponseEntity<FeatureResponseDTO> updateProduct(@PathVariable Integer featureId, @PathVariable Integer productId) throws FindByIdException {
-        return ResponseEntity.ok(featureService.updateProducts(featureId, productId));
+    @PostMapping("/update/{productId}")
+    public ResponseEntity<ProductDTO> updateProductFeatures(@PathVariable Integer productId, @RequestBody List<Integer> featureIds) throws FindByIdException {
+        return ResponseEntity.ok(featureService.featuresUpdated(featureIds, productId));
     }
 
     @Operation(summary = "Delete a feature by ID", description = "Delete a feature by id")

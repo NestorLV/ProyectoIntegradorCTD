@@ -1,12 +1,16 @@
 package com.proyecto.integrador.DTO;
 
+import com.proyecto.integrador.exceptions.FindByIdException;
 import com.proyecto.integrador.persistence.entity.Product;
 import com.proyecto.integrador.persistence.entity.enums.FeatureTypes;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
