@@ -125,6 +125,9 @@ public class ProductServiceImpl implements IProductService {
         product.setReference(productDTO.getReference());
         product.setCategory(new Category(productDTO.getCategory().getId()));
         product.setCity(new City(productDTO.getCity().getId()));
+        product.setHealth(productDTO.getHealth());
+        product.setPolitics(productDTO.getPolitics());
+        product.setRules(productDTO.getRules());
         productRepository.save(product);
         logger.debug("Terminó la ejecución del método actualizar producto");
         return loadDataIntoProductDTO(product);
