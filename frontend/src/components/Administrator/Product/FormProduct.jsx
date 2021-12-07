@@ -248,7 +248,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             </div>
             <div className={Styles.description}>
                 <label htmlFor="description">Descripción</label>
-                <textarea name="description" id="description" placeholder="Escribir aquí" value={description} onChange={handleChangeDescription} />
+                <textarea name="description" id="description" maxLength="500" placeholder="Escribir aquí" value={description} onChange={handleChangeDescription} />
             </div>
 
             <div className={Styles.containerCheckbox}>
