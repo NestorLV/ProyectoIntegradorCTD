@@ -50,7 +50,7 @@ function AxiosGetReservasPorProducto(idProducto, setReservas, setErrorMessage) {
                     i += 86400000;
                 }
             });
-            setReservas(reservas);           
+            setReservas(reservas);
         })
         .catch((error) => {
             setErrorMessage("No es posible mostrar la página");
@@ -161,7 +161,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
         })
         .then(product => {
             console.log("primer post con éxito")
-            setErrorProduct("")            
+            setErrorProduct("")
             let idProduct = product.data.id;
             console.log(qualificationInt, "qualificationint");
             axios
@@ -169,12 +169,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                     score: qualificationInt,
                     userEmail: sessionStorage.getItem('email'),
                     productId: idProduct
-                })
-                .then((response) => {
-                    if (response.status === 200) {
-                        console.log("Se envió correctamente la puntuación");
-                    }
-                })
+                })                
                 .catch((error) => {
                     setErrorProduct(error);
                 });
@@ -203,29 +198,26 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                             }
                         })
                     .catch((error) => {
-                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} . Por favor, intente más tarde`)
-                        console.log(error);
+                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} debido a ${error} . Por favor, intente más tarde`)                        
                     });
             });
         })
         .then(() => {
             openModalSucceed()
         })
-        .catch((error) => { 
-            if(error.response.status===400){
-                console.log("El producto ya existe");
+        .catch((error) => {
+            if (error.response.status === 400) {                
                 openModalExistedProduct()
-            };     
-            if(error.response.status===404){
-                console.log("El login expiró");
+            };
+            if (error.response.status === 404) {                
                 openModalExpiredLogin()
-            };     
+            };
             setErrorProduct("Lamentablemente el producto no ha podido crearse. Por favor, intente más tarde")
         });
 
 }
 
-function AxiosModificarProducto(idProduct, name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed, openModalExistedProduct,openModalExpiredLogin) {
+function AxiosModificarProducto(idProduct, name, description, latitude, longitude, address, qualification, reference, categoryId, cityId, rules, health, politics, images, features, setErrorProduct, openModalSucceed, openModalExpiredLogin) {
 
     let qualificationInt = parseInt(qualification);
     axios
@@ -251,9 +243,9 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`
             }
         })
-        .then(product => {           
+        .then(product => {
             setErrorProduct("")
-            let idProduct = product.data.id;          
+            let idProduct = product.data.id;
             axios
                 .post(`http://localhost:8080/products/scores/create`, {
                     score: qualificationInt,
@@ -270,8 +262,8 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                 });
             let arrayImages = [];
             images.forEach(image => {
-                let img = {  
-                    id: image.id,                  
+                let img = {
+                    id: image.id,
                     title: image.title,
                     url: image.url,
                     productId: idProduct
@@ -279,58 +271,52 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                 arrayImages.push(img);
             });
             axios
-                .post(`http://localhost:8080/images/updateimagesperproduct`, 
-                    arrayImages
-                , 
-                {
-                    headers: {
-                        Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                    }
-                })
+                .post(`http://localhost:8080/images/updateimagesperproduct`,
+                    arrayImages,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${sessionStorage.getItem("token")}`
+                        }
+                    })
                 .catch((error) => {
                     setErrorProduct(`Lamentablemente no se han podido cargar las imagenes debido a ${error}. Por favor, intente más tarde`)
                 });
-
-                features.forEach(feature => {
-                let featureInt = parseInt(feature.id);
-                axios
-                    .post(`http://localhost:8080/features/updateproduct/${featureInt}/${idProduct}`, {},
-                        {
-                            headers: {
-                                Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                            }
-                        })
-                    .catch((error) => {
-                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} debido a ${error}. Por favor, intente más tarde`)                        
-                    });
-            });  
+            let featuresInt = []
+            features.forEach(feature => {
+                featuresInt.push(parseInt(feature.id));
+            });            
+            axios
+                .post(`http://localhost:8080/features/update/${idProduct}`,
+                    featuresInt,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${sessionStorage.getItem("token")}`
+                        }
+                    })                
+                .catch((error) => {
+                    setErrorProduct(`Lamentablemente no se han podido cargar los atributos debido a ${error}. Por favor, intente más tarde`)
+                });
         })
         .then(() => {
             openModalSucceed()
         })
         .catch((error) => {
-            if(error.response.status===400){
-                console.log("El producto ya existe");
-                openModalExistedProduct()
-            };     
-            if(error.response.status===404){
-                console.log("El login expiró");
+            if (error.response.status === 404) {                
                 openModalExpiredLogin()
-            };  
+            };
             setErrorProduct(`Lamentablemente el producto no ha podido crearse debido a ${error}. Por favor, intente más tarde`)
         });
-
 }
 
-function AxiosFindScoreByIdUser(idProduct){
-    let email = sessionStorage.getItem('email');    
+function AxiosFindScoreByIdUser(idProduct) {
+    let email = sessionStorage.getItem('email');
     axios
         .get(`http://localhost:8080/products/scores/getByUserAndProduct/${email}/${idProduct}`, {
             headers: {
                 "Authorization": `Bearer ${sessionStorage.getItem("token")}`
             }
         })
-        .then(response => {            
+        .then(response => {
             return response.data.score;
         })
         .catch((error) => {

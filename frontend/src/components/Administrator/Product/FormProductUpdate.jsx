@@ -27,18 +27,17 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const [imageUrl, setImageUrl] = useState();
     const [images, setImages] = useState([]);
     const [errorProduct, setErrorProduct] = useState("");
-
     const [errorCamposVacios, setErrorCamposVacios] = useState("")
-
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
     const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
+    const [modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen] = useState(false)
 
     useEffect(() => {
         setName(product.name)
         setSelectedCategory(
             {
                 value: `${product.category.id}`,
-                label: `${product.category.title}`  //<OptionsSelect valor={product.category} setValor={setSelectedCategory} />,                
+                label: `${product.category.title}`     
             })
         setAddress(product.address)
         setSelectedCity({
@@ -55,7 +54,6 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setHealthAndSecurity(product.health)
         setCancellationPolicy(product.politics)
         setImages(product.images)
-
     }, [product]) 
     
     const openModalSucceed = (() => {
@@ -77,15 +75,17 @@ export default function FormProductUpdate({ product, categories, cities, feature
         }
     }
 
+    const openModalExpiredLogin = (() => {
+        setModalExpiredLoginIsOpen(true)
+    })
+
     const closeModalConfirm = () => {
         setModalConfirmIsOpen(false)
-    }
-    console.log(healthAndSecurity);
-    console.log(cancellationPolicy);
+    }    
 
     function modificarProducto() {
         closeModalConfirm();
-        AxiosModificarProducto(product.id, name, description, latitude, longitude, address, qualification.campo, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed)        
+        AxiosModificarProducto(product.id, name, description, latitude, longitude, address, qualification.campo, reference, selectedCategory.value, selectedCity.value, rules, healthAndSecurity, cancellationPolicy, images, selectedFeatures, setErrorProduct, openModalSucceed, openModalExpiredLogin)        
     }
 
     return (
@@ -111,7 +111,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
                     categories={categories} cities={cities} features={features}
                     setModalProductSucceedIsOpen={setModalProductSucceedIsOpen}
                     enviarDatos={openModalConfirm} tituloBoton={"Modificar"}
-                    errorCamposVacios={errorCamposVacios}
+                    errorCamposVacios={errorCamposVacios} modalExpiredLoginIsOpen={modalExpiredLoginIsOpen} setModalExpiredLoginIsOpen={setModalExpiredLoginIsOpen}
                 />
                 <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
                     <ConfirmProductModal accion="Modificar" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={modificarProducto} closeModalConfirm={closeModalConfirm} />

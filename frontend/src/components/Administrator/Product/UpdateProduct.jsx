@@ -14,6 +14,8 @@ function UpdateProduct(props) {
     const [optionsFeatures, setOptionsFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    const title = "¡Gracias!";
+    const message = "Se ha actualizado exitosamente el producto";
     const [product, setProduct] = useState({
         id: null,
         name: "",
@@ -47,10 +49,7 @@ function UpdateProduct(props) {
     const handleProduct = (p) => {
         setProduct(p);
         window.location.pathname = `/product/update/${p.id}`
-    }
-
-    const title = "¡Gracias!";
-    const message = "Se ha actualizado exitosamente el producto";
+    }    
 
     return (
         (errorMessage && loading) ?

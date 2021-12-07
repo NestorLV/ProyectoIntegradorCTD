@@ -137,8 +137,7 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
             setSelectedFeatures([...selectedFeatures, { id: parseInt(event.target.id), title: event.target.value }])
 
         } else {
-            let index = selectedFeatures.findIndex(feature => feature.id === parseInt(event.target.id))
-            console.log(index);
+            let index = selectedFeatures.findIndex(feature => feature.id === parseInt(event.target.id))            
             if (index !== -1) {
                 let aux = selectedFeatures;
                 aux = aux.filter((feature) => feature.id !== parseInt(event.target.id))
@@ -204,7 +203,6 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
                         styles={customStyles}
                         getOptionValue={option => option.value}
                         value={selectedCategory}
-
                     />
                 </div>
             </div>
