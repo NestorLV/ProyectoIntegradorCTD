@@ -11,17 +11,18 @@ import ConfirmProductModal from '../Administrator/Product/ConfirmProductModal';
 import ModalProductSucceed from "../Administrator/Product/ModalProductSucceed";
 import tildeOk from "../Administrator/icons/tildeOk.svg"
 import { AxiosCreateFavourite, AxiosDeletedMark } from '../../axiosCollection/Cards/AxiosCards';
+import { render } from '@testing-library/react';
 
-function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite }) {
+
+function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite}) {
     const role = sessionStorage.getItem("role");
-    const [isLike, setLike] = useState(favorite);
+    const [isLike, setIsLike] = useState(favorite);
     const [mapIsOpen, setMapIsOpen] = useState(false)
     const [modalFavouriteIsOpen, setModalFavouriteIsOpen] = useState(false)
     const [despliegue, setDespliegue] = useState(false)
     const [textoDespliegue, setTextoDespliegue] = useState("más...")
     const [errorMessage, setErrorMessage] = useState("");
     const [admin, setAdmin] = useState(true);
-
     const [modalConfirmDeletedIsOpen, setModalConfirmDeletedIsOpen] = useState(false)
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
 
@@ -33,9 +34,10 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
         }
     }, [role])
 
-    const handleToggle = () => {
-        AxiosCreateFavourite(id, setLike, setErrorMessage)
-    }
+    const handleToggleLike = () => {   
+        AxiosCreateFavourite(id, setErrorMessage)  
+        setIsLike(prevState => !prevState)                         
+    }            
 
     const handleDespliegue = () => {
         setDespliegue(!despliegue);
@@ -51,7 +53,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
         setModalFavouriteIsOpen(false);
     };
 
-    const openMapModal = (() => {       
+    const openMapModal = (() => {
         setMapIsOpen(true)
     })
 
@@ -68,15 +70,14 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     const openModalSucceed = (() => {
         setModalProductSucceedIsOpen(true)
     })
-    
+
     const closeModalSucceed = (() => {
         setModalProductSucceedIsOpen(false)
-        window.location.href="/"
+        window.location.href = "/"
     })
 
     function openModalConfirmDeleted() {
         setModalConfirmDeletedIsOpen(true)
-
     }
 
     function closeModalConfirmDeleted() {
@@ -90,9 +91,8 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
 
     return (
         <div className={Styles.cardBox} >
-            {/*  {console.log(favorite, "favorite")} */}
             <div className={Styles.cardImage}>
-                <svg className={Styles.iconHeart} onClick={loggued === "true" ? handleToggle : openModalFavourite} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 27 27"><path className={isLike ? Styles.heartColor2 : Styles.heartColor} id="heart" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" /></svg>
+                <svg className={Styles.iconHeart} onClick={loggued === "true" ? handleToggleLike : openModalFavourite} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 27 27"><path className={isLike ? Styles.heartColor2 : Styles.heartColor} id="heart" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" /></svg>
                 <Modal open={modalFavouriteIsOpen} onClose={closeModalFavourite} center>
                     <div className={Styles.modalFavourite}>
                         <p>Para agregar favoritos, ingresa a tu cuenta</p>
@@ -160,7 +160,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                                 <ConfirmProductModal accion="eliminar" setModalConfirmIsOpen={setModalConfirmDeletedIsOpen} funcionProducto={eliminarProducto} closeModalConfirm={closeModalConfirmDeleted} />
                             </Modal>
                             <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
-                                <ModalProductSucceed title="Operación confirmada." message="Se ha borrado el producto exitosamente." closeModal={closeModalSucceed} icon={tildeOk}/>
+                                <ModalProductSucceed title="Operación confirmada." message="Se ha borrado el producto exitosamente." closeModal={closeModalSucceed} icon={tildeOk} />
                             </Modal>
                         </div>
                     }

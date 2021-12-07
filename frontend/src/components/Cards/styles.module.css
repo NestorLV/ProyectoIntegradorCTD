@@ -79,22 +79,22 @@ a:active {
 
 /* cambiar color del corazon */
 .heartColor {
-  fill: rgba(0, 0, 0, 0.2);
-  stroke: rgba(0, 0, 0, 0.5);
-  stroke-width: 3px;
-  filter: drop-shadow(4px 4px 1.5px rgba(0, 0, 0, 0.7));  
-  stroke-dasharray: 75;
-  stroke-dashoffset: 70;
-  animation: dash 3s linear forwards;  
+  fill: rgba(0, 0, 0, 0.1);
+  stroke: rgba(255, 255, 255);
+  stroke-width: 2.5px;
+  filter: drop-shadow(4px 4px 1.5px rgba(0, 0, 0, 0.3));  
+  /* stroke-dasharray: 75;
+  stroke-dashoffset: 70; */
+  /* animation: dash 3s linear forwards;  */ 
 }
 
-@keyframes dash {
+/* @keyframes dash {
   to {
     stroke-dashoffset: 0;
     stroke:white;
     fill: rgba(0, 0, 0, 0.05);
   }
-}
+} */
 
 .heartColor2 {
   fill: red;
