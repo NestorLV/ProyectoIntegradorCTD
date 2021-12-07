@@ -24,6 +24,9 @@ public class UserRequestDTO {
     private RoleDTO role;
     private Set<ProductDTO> favoriteProducts = new HashSet<>();
 
+    public UserRequestDTO() {
+    }
+
     public UserRequestDTO(Integer id, String name, String surname, String email, String password, RoleDTO role) {
         this.id = id;
         this.name = name;

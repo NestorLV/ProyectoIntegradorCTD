@@ -68,7 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // dont authenticate these requests
                         authorizeRequests().antMatchers("/users/activate/**", "/authenticate", "/categories/**", "/products/**", "/cities/**", "/users/create", "/users/login").permitAll()
                 // requests need to be authenticated
-                .antMatchers("/categories/create", "/products/create", "/cities/create","/categories/update", "/products/update", "/cities/update","/categories/delete", "/products/delete", "/cities/delete").access("hasAuthority('ADMIN')").
+                .antMatchers("/reservations/**", "/products/scores/**", "/categories/create", "/products/create", "/cities/create","/categories/update", "/products/update", "/cities/update","/categories/delete", "/products/delete", "/cities/delete").access("hasAnyAuthority('ADMIN','USER')").
                 anyRequest().authenticated().and().
                         formLogin().loginPage("/users/login").and().
         // make sure we use stateless session; session won't be used to

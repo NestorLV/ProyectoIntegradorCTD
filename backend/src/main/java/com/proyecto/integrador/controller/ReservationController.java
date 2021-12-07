@@ -16,8 +16,6 @@ import java.util.Set;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/reservations")
-
-
 public class ReservationController implements CRUDController<ReservationDTO>{
 
     @Autowired

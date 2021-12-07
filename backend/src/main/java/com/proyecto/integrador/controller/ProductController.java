@@ -4,7 +4,10 @@ import com.proyecto.integrador.DTO.FilterDTO;
 import com.proyecto.integrador.DTO.ProductDTO;
 import com.proyecto.integrador.exceptions.BadRequestException;
 import com.proyecto.integrador.exceptions.FindByIdException;
+import com.proyecto.integrador.persistence.entity.Product;
+import com.proyecto.integrador.service.IFeatureService;
 import com.proyecto.integrador.service.IProductService;
+import com.proyecto.integrador.service.impl.FeatureServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +25,8 @@ public class ProductController implements CRUDController<ProductDTO> {
 
     @Autowired
     IProductService productService;
+    @Autowired
+    FeatureServiceImpl featureService;
 
     @Operation(summary = "Find All Products")
     @GetMapping("/all")
@@ -44,7 +49,7 @@ public class ProductController implements CRUDController<ProductDTO> {
 
     @Operation(summary = "Update an existing product")
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PutMapping("/update")
+    @PostMapping("/update")
     public ResponseEntity<ProductDTO> updateById(@RequestBody ProductDTO product) throws FindByIdException {
         return ResponseEntity.ok(productService.update(product));
     }
@@ -95,14 +100,4 @@ public class ProductController implements CRUDController<ProductDTO> {
         return ResponseEntity.ok(productService.handleFilter(filterDTO));
     }
 
-    /*    @Operation(summary = "Find by city and date range")
-    @PostMapping("/get/filter")
-    public ResponseEntity<List<ProductDTO>> getCityDateRange(@RequestBody FilterDTO filterDTO)
-            throws BadRequestException, FindByIdException {
-        System.out.println("filterDTO" + filterDTO);
-            if(validate(filterDTO)){
-                return ResponseEntity.ok(productService.findCityDateRange(filterDTO));
-        }
-        return null;
-    }*/
 }

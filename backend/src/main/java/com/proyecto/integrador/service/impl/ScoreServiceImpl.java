@@ -65,8 +65,10 @@ public class ScoreServiceImpl implements IScoreService {
         scoreEntity.setIdUser(user.getId());
         List<Score> scores = scoresRepository.findAll();
         scores.removeIf(s -> s.equals(scoreEntity));
+        ScoreDTO scoreDto = scoresRepository.save(scoreEntity).toDto();
+        scoreDto.setUserEmail(score.getUserEmail());
         logger.debug("Terminó la ejecución del método guardar puntuación");
-        return scoresRepository.save(scoreEntity).toDto();
+        return scoreDto;
     }
 
     @Override

@@ -51,7 +51,7 @@ public class ScoreController implements CRUDController <ScoreDTO> {
     }
 
     @Operation(summary = "Update an existing score")
-    @PutMapping("/update")
+    @PostMapping("/update")
     public ResponseEntity<ScoreDTO> updateById(@RequestBody ScoreDTO scores) throws FindByIdException{
         return ResponseEntity.ok(scoresService.update(scores));
     }

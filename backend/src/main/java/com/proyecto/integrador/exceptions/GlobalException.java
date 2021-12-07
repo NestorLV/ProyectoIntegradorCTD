@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -48,8 +49,12 @@ public class GlobalException extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
-    public final ResponseEntity<ErrorMessage> procesarErrorTokenNoEncontrado() {
-        ErrorMessage errorDetails = new ErrorMessage("No se ha encontrado token para ser validado");
-        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    public final ResponseEntity<String> procesarErrorTokenNoEncontrado() {
+        return new ResponseEntity<>("No se ha encontrado token para ser validado o el mismo es inválido", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public final ResponseEntity<String> procesarErrorNoSeEncuentraElUsuario() {
+        return new ResponseEntity<>("El email ingresado no se encuentra registrado en la base de datos", HttpStatus.NOT_FOUND);
     }
 }

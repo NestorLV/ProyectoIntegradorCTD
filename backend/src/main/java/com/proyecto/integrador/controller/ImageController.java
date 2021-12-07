@@ -48,7 +48,7 @@ public class ImageController implements CRUDController<ImageDTO> {
 
     @Operation(summary = "Update images per product")
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PutMapping("/updateimagesperproduct")
+    @PostMapping("/updateimagesperproduct")
     public ResponseEntity<?> updateImagesPerProduct(@RequestBody List<ImageDTO> images) throws FindByIdException {
         return ResponseEntity.ok(imageService.updateProductImages(images));
     }
