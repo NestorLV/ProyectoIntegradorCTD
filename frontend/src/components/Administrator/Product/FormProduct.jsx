@@ -7,7 +7,6 @@ import ModalMessage from './ModalProductSucceed';
 
 export default function FormProduct({ name, setName, selectedCategory, setSelectedCategory, address, setAddress, selectedCity, setSelectedCity, latitude, setLatitude, longitude, setLongitude, reference, setReference, qualification, setQualification, description, setDescription, selectedFeatures, setSelectedFeatures, rules, setRules, healthAndSecurity, setHealthAndSecurity, cancellationPolicy, setCancellationPolicy, imageTitle, setImageTitle, imageUrl, setImageUrl, images, setImages, categories, cities, features, setModalCreateIsOpen, enviarDatos, tituloBoton, errorCamposVacios, modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen, modalExistedProductIsOpen, setModalExistedProductIsOpen }) {
     
-
     /*CONTROL DE COMPONENTES MEDIANTE HANDLES */
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -61,13 +60,11 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setImageUrl(event.target.value)
     }
 
-    const handleChangeCategory = (value) => {
-        console.log(value);
+    const handleChangeCategory = (value) => {        
         setSelectedCategory(value)
     }
 
-    const handleChangeCity = (value) => {
-        console.log(value);
+    const handleChangeCity = (value) => {      
         setSelectedCity(value)
     }
 
@@ -150,10 +147,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         }
     }    
 
-    function handleIndexImageDeleted(event) {
-        console.log(event.target);
-        deleteImage(event.target.id)
-        console.log(event);
+    function handleIndexImageDeleted(event) {      
+        deleteImage(event.target.id);    
     }
 
     const handleClickImage = ((event) => {
@@ -172,11 +167,9 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
         setImages(aux);
     }
 
-
     function sendData(event) {
         event.preventDefault()
     }
-
     
     const closeModalExpiredLogin = () => {
         setModalExpiredLoginIsOpen(false);
@@ -194,24 +187,6 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
     const closeModalExistedProduct = () => {
         setModalExistedProductIsOpen(false);
     };
-
-    console.log(description,"description");
-    /* console.log(name,"name");
-     console.log(latitude,"latitude");
-     console.log(longitude,"longitude");
-     console.log(address,"address");
-     console.log(qualification,"qualification");
-     console.log(reference,"reference");
-     console.log(selectedCategory.value, "selectedCategory.value");
-     console.log(selectedCity.value, "selectedCity.value");   
-     console.log(rules, "rules");
-     console.log(healthAndSecurity, "healthAndSecurity");
-     console.log(cancellationPolicy, "cancellationPolicy");
-     console.log(images, "images"); 
-     console.log(features, "features"); */
-
-
-
 
     return (
         <form onSubmit={sendData}>

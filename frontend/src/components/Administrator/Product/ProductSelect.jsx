@@ -32,16 +32,8 @@ function ProductSelect({ handleProduct }) {
         axios
             .get(baseURL + "products/all")
             .then((response) => {
-                setProducts(response.data);
-                //return response.data.find((p)=> {return p.id===id})
-            })
-           /* .then((response) =>{
-                console.log(response);
-                setProduct(response)
-                //handleProduct(chosenProduct) 
-                //console.log(chosenProduct);
-               
-            })*/
+                setProducts(response.data);               
+            })          
             .catch((error) => {
                 setErrorMessage(error.message);
             });
@@ -120,10 +112,9 @@ function ProductSelect({ handleProduct }) {
         }),
     }
     
-    let handleChange = (option) => {
-        
-        setChosenProduct(option.value);   
-        console.log(chosenProduct);
+    let handleChange = (option) => {        
+        setChosenProduct(option.value);  
+      
     }
 
     return (
@@ -131,20 +122,17 @@ function ProductSelect({ handleProduct }) {
             <div className={`${StylesApp.delimiterChild} ${Styles.containerForm} ${Styles.containerProductSelect}`}>
                 <p className={Styles.titleProductSelect}>Seleccione el nombre del producto para modificar</p>
                 <div className={Styles.selectProductBox}>
-                    <Select
-                        /* onChange={handleChange}  */
+                    <Select                     
                         options={options}
                         placeholder="Seleccionar producto"
                         styles={customStyles}
                         isSearchable
-                        onChange={(newValue) => handleChange(newValue)}
-                        
+                        onChange={(newValue) => handleChange(newValue)}                        
                     />
                     <button onClick={() => { handleProduct(chosenProduct) }} className={`${Styles.buttonSearchProduct} ${Styles.button}`}>Buscar</button>
                 </div>
             </div>
         </section>
-
     )
 }
 

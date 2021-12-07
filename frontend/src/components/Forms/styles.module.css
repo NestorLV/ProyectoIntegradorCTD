@@ -117,7 +117,19 @@ form ul {
   color: white;
   font-size: var(--button2);
   font-weight: var(--font-bold);
+  transition: all 0.3s;
 }
+
+.inputLabel button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.inputLabel button:active {  
+  transform: scale(0.85);
+}
+
+
 
 .inputLabel p,
 .inputLabel p a {

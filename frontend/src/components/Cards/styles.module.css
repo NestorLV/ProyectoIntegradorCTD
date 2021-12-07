@@ -339,12 +339,21 @@ min-width: 80px;
   width: 98%;
 }
 
-.cardButton2:hover, .clearFilterButton:hover {
+.clearFilterButton:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.clearFilterButton:active {
+  transform: scale(0.85);
+}
+
+.cardButton2:hover {
   transform: scale(1.02);
   cursor: pointer;
 }
 
-.cardButton2:active, .clearFilterButton:active {
+.cardButton2:active {
   transform: scale(0.85);
 }
 

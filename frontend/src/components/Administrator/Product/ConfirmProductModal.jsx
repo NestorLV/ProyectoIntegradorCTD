@@ -1,9 +1,6 @@
-import tildeOk from "../icons/tildeOk.svg"
 import Styles from "./Styles.module.css"
-import { Link } from "react-router-dom"
 
-export default function ConfirmProductModal ({accion, funcionProducto, closeModalConfirm}){
-    
+export default function ConfirmProductModal ({accion, funcionProducto, closeModalConfirm}){    
     return (
         <div className={Styles.containerCreateModal}>
             <div className={Styles.question}>?</div>
