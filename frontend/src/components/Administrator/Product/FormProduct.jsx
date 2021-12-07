@@ -134,7 +134,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
 
     function saveSelectedFeatures(event) {
         if (event.target.checked) {
-            setSelectedFeatures([...selectedFeatures, { id: parseInt(event.target.id), title: event.target.value }])
+            console.log(event.target);
+            setSelectedFeatures([...selectedFeatures, { id: parseInt(event.target.id), title: event.target.value}])
 
         } else {
             let index = selectedFeatures.findIndex(feature => feature.id === parseInt(event.target.id))            

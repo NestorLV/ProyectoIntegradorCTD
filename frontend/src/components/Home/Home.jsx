@@ -5,13 +5,14 @@ import Spinner from "../spinner/Spinner";
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ModalProductoErroneo from "../Administrator/Product/ModalProductSucceed";
-import { useEffect } from "react";
+import { useState, useEffect} from "react";
+
 
 export default function Home(props) {
 
-  /* props.setActiveCreate(false)
-  props.setActiveLogin(false)
- */
+  const [borrarCity, setBorrarCity] = useState(false);
+  const [borrarDate, setBorrarDate] = useState(false);
+ 
   useEffect(() => {
     props.setActiveCreate(false)
     props.setActiveLogin(false)
@@ -35,9 +36,9 @@ export default function Home(props) {
         <Spinner />
       ) : (
         <>
-          <SearchBlock handleSearch={props.handleSearch} handleCity={props.handleCity} city={props.city} setStartDate={props.setStartDate} setEndDate={props.setEndDate} startDate={props.startDate} endDate={props.endDate} />
+          <SearchBlock borrarCity={borrarCity} setBorrarCity={setBorrarCity} borrarDate={borrarDate} setBorrarDate={setBorrarDate} handleSearch={props.handleSearch} handleCity={props.handleCity} city={props.city} setStartDate={props.setStartDate} setEndDate={props.setEndDate} startDate={props.startDate} endDate={props.endDate} />
           <Categories category={props.category} handleCategory={props.handleCategory} />
-          <Cards setLastLocation={props.setLastLocation} category={props.category} handleClean={props.handleClean} search={props.search} city={props.city} clickBusqueda={props.clickBusqueda} favourite={props.favourite} clickSeeFavourites={props.clickSeeFavourites} setCategory={props.setCategory} setCity={props.setCity} setStartDate={props.setStartDate} setEndDate={props.setEndDate} propStartDate={props.startDate} propEndDate={props.endDate} setFavourite={props.setFavourite} setSearch={props.setSearch} />
+          <Cards setBorrarCity={setBorrarCity} setBorrarDate={setBorrarDate} setLastLocation={props.setLastLocation} category={props.category} handleClean={props.handleClean} search={props.search} city={props.city} clickBusqueda={props.clickBusqueda} favourite={props.favourite} clickSeeFavourites={props.clickSeeFavourites} setCategory={props.setCategory} setCity={props.setCity} setStartDate={props.setStartDate} setEndDate={props.setEndDate} propStartDate={props.startDate} propEndDate={props.endDate} setFavourite={props.setFavourite} setSearch={props.setSearch} />
           <Modal open={props.productoErroneo} onClose={closeModal} center>
             <ModalProductoErroneo title={"Error"} message={"El producto no existe."} closeModal={closeModal} icon="X"/>
           </Modal>

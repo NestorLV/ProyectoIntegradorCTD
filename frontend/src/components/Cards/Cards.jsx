@@ -11,6 +11,8 @@ import {
 } from "../../axiosCollection/Cards/AxiosCards";
 
 export default function Cards({
+  setBorrarCity,
+  setBorrarDate,
   setLastLocation,
   handleClean,
   category,
@@ -121,6 +123,8 @@ export default function Cards({
         <h2>
           {titulo}
           <ClearFilters
+            setBorrarCity={setBorrarCity}
+            setBorrarDate={setBorrarDate}
             handleClean={handleClean}
             setCategory={setCategory}
             setCity={setCity}

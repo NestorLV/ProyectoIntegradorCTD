@@ -50,7 +50,7 @@ function Product(props) {
 
     useEffect(() => {
         AxiosGetProductById(id, setProd, setLoading, setErrorMessage)
-    }, [id]);    
+    }, [id]);
    
     return (
         (errorMessage && loading) ?
