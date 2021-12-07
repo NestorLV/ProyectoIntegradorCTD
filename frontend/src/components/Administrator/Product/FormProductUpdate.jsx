@@ -71,12 +71,12 @@ export default function FormProductUpdate({ product, categories, cities, feature
         setDescription(product.description)
         setSelectedFeatures(product.features.map((feature) => { return { id: feature.id, title: feature.title } }))
         setRules(product.rules)
-        setHealthAndSecurity(product.healthAndSecurity)
-        setCancellationPolicy(product.cancellationPolicy)
+        setHealthAndSecurity(product.health)
+        setCancellationPolicy(product.politics)
         setImages(product.images)
 
-    }, [product])     
-
+    }, [product]) 
+    
     const openModalSucceed = (() => {
         setModalProductSucceedIsOpen(true)
     })
