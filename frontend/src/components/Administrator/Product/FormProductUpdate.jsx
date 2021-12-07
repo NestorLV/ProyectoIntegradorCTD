@@ -99,6 +99,8 @@ export default function FormProductUpdate({ product, categories, cities, feature
     const closeModalConfirm = () => {
         setModalConfirmIsOpen(false)
     }
+    console.log(healthAndSecurity);
+    console.log(cancellationPolicy);
 
     function modificarProducto() {
         closeModalConfirm();
