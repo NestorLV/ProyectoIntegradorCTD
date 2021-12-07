@@ -137,7 +137,8 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
 
     function saveSelectedFeatures(event) {
         if (event.target.checked) {
-            setSelectedFeatures([...selectedFeatures, { id: parseInt(event.target.id), title: event.target.value }])
+            console.log(event.target);
+            setSelectedFeatures([...selectedFeatures, { id: parseInt(event.target.id), title: event.target.value}])
 
         } else {
             let index = selectedFeatures.findIndex(feature => feature.id === parseInt(event.target.id))
@@ -194,23 +195,6 @@ export default function FormProduct({ name, setName, selectedCategory, setSelect
     const closeModalExistedProduct = () => {
         setModalExistedProductIsOpen(false);
     };
-
-    console.log(description,"description");
-    /* console.log(name,"name");
-     console.log(latitude,"latitude");
-     console.log(longitude,"longitude");
-     console.log(address,"address");
-     console.log(qualification,"qualification");
-     console.log(reference,"reference");
-     console.log(selectedCategory.value, "selectedCategory.value");
-     console.log(selectedCity.value, "selectedCity.value");   
-     console.log(rules, "rules");
-     console.log(healthAndSecurity, "healthAndSecurity");
-     console.log(cancellationPolicy, "cancellationPolicy");
-     console.log(images, "images"); 
-     console.log(features, "features"); */
-
-
 
 
     return (

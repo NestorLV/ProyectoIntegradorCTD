@@ -54,14 +54,6 @@ function Product(props) {
         AxiosGetProductById(id, setProd, setLoading, setErrorMessage)
     }, [id]);
 
-    /* useEffect (() => {
-    AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage);
-    }, [])  */
-
-    /*  useEffect(() => {
-        let prodLike = AxiosGetProductoFavorito(setErrorMessage, props.id)
-        setLike(prodLike) 
-    }, []); */
     
    
     return (
