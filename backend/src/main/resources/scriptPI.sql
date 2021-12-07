@@ -22,6 +22,62 @@ VALUES ('Corrientes','Argentina');
 INSERT INTO `proyecto_integrador`.`city` (name,country)
 VALUES ('Bariloche','Argentina');
 
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('San Juan','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Ushuaia','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Rosario','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Salta','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Jujuy','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Tafí del Valle','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Misiones','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('San Luis','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Villa General Belgrano','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Tigre','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Rio Cuarto','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Paraná','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Gualeguaychú','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Neuquén','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Bahía Blanca','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Mar del Plata','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Comodoro Rivadavia','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Río Negro','Argentina');
+
+INSERT INTO `proyecto_integrador`.`city` (name,country)
+VALUES ('Cafayate','Argentina');
 
 --
 -- Dumping data for table `category`
