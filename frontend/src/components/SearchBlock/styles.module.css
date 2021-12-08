@@ -1,12 +1,20 @@
 .container {
-  align-items: center;
-  background-color: var(--tertiary-color);
+  align-items: center;  
   display: flex;
   justify-content: center;
   padding: 10px 0 25px 0; 
   position: relative;
   text-align: center;
-  width: 100%;
+  width: 100%; 
+  background: linear-gradient(-45deg, var(--tertiary-color),  rgb(236, 236, 236), var(--tertiary-color), var(--tertiary-color));
+  background-size: 800%;
+  animation: fondo 5s ease-in-out;
+  transition: all 2s;
+}
+
+@keyframes fondo {
+  0% { background-position: 0 50% } 
+  100% { background-position: 120% 50% }   
 }
 
 .subContainer {
@@ -19,8 +27,7 @@
   width: 100%;
 }
 
-.gridContainer {
-  background-color: var(--tertiary-color);
+.gridContainer {  
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
