@@ -14,7 +14,7 @@ function ImageBar(props) {
     const [errorMessage, setErrorMessage] = useState("");      
     const [countSlider, setCountSlider] = useState(0); // se separa las imagenes a mostrar para la galeria de vista tablet y mobile
     const { images } = props;    
-    const [isLike, setLike] = useState(false);
+    const [isLike, setIsLike] = useState(false);
     const changeSlider = () => countSlider === images.length - 1 ? setCountSlider(0) : setCountSlider(countSlider + 1);
     /*setTimeout(changeSlider,3000);*/
     const openLightBox = (() => { props.setViewerIsOpen(true) });
@@ -27,18 +27,15 @@ function ImageBar(props) {
 
     const closeModalFavourite = () => {
         setModalFavouriteIsOpen(false);
-    };   
+    };     
 
      useEffect(() => {
-       AxiosGetProductoFavorito(setErrorMessage, props.id,setLike);
-    }, []);  
-
-    /* useEffect(() => {
-        AxiosCreateFavourite(props.id, setLike, setErrorMessage)        
-    },[isLike]);     */
+       AxiosGetProductoFavorito(setErrorMessage, props.id,setIsLike);
+    }, []);    
 
     const handleToggle = () => {
-        AxiosCreateFavourite(props.id, setLike, setErrorMessage)
+        AxiosCreateFavourite(props.id, setErrorMessage)
+        setIsLike(prevState => !prevState)
     } 
 
     function handleErrorLogin() {
