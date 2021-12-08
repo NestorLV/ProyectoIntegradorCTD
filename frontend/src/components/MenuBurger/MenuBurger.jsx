@@ -9,7 +9,7 @@ import { MenuBurgerWrapper } from "./MenuBurgerWrapped.jsx";
 import Share from '../../components/Product/Share';
 import iconSocial from "./img/icon-share.svg"
 
-export default function MenuMobile({ show, handleHide, isLogged, iniciales, activeLogin, activeCreate, handleLogOut, handleFavourite }) {
+export default function MenuMobile({ handleFavouriteClick, show, handleHide, isLogged, iniciales, activeLogin, activeCreate, handleLogOut }) {
 
     const hideObject = (isLogged) ? "hide" : null; //Para esconder los botones cuando esta logueado
     const showObject = (isLogged) ? null : "hide"; //Para que se vea el avatar cuando se loguea
@@ -36,10 +36,10 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
             <div className="mobileBody">
                 <div onClick={handleHide} className={`menuFavoritos ${!isLogged ? "hide" : null} `}>
                     <Link to="/">
-                        <p onClick={handleFavourite}>Favoritos</p>
+                        <p onClick={handleFavouriteClick}>Favoritos</p>
                     </Link>
                     <img src={line} alt="" />
-                    <Link to="/">
+                    <Link to="/mybookings">
                         <p>Mis reservas</p>
                     </Link>
                     <img src={line} alt="" />
