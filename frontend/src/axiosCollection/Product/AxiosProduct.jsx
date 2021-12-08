@@ -314,4 +314,4 @@ function AxiosFindScoreByIdUser(idProduct) {
         });
 }
 
-export { AxiosGetProductById, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetProductScore, AxiosResetPuntuacion, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities, AxiosCrearProducto, AxiosModificarProducto, AxiosFindScoreByIdUser };
+export { AxiosGetProductById, AxiosCalificarProducto, AxiosGetReservasPorProducto, AxiosGetProductScore, AxiosGetCategories, AxiosGetFeatures, AxiosGetCities, AxiosCrearProducto, AxiosModificarProducto, AxiosFindScoreByIdUser };
