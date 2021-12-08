@@ -51,6 +51,7 @@ form.gridContainer > div {
   border-radius: 5px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
   color: var(--secondary-color);
+  cursor: pointer;
   font-size: var(--text2);
   font-weight: var(--font-medium);
   height: 100%;
@@ -76,6 +77,7 @@ form.gridContainer > div {
 .selectedDatesButton {
   color: #ffffff;
   background: var(--primary-color);
+  border:none;
   border-radius: 5px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   font-size: var(--button2);

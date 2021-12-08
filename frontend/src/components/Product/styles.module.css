@@ -1046,4 +1046,8 @@ justify-content: space-evenly;
   .titleBarTitles h2{
     font-size: 20px;
   }
+
+  .info div{
+    width: 100%;
+  }
 }

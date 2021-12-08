@@ -4,7 +4,7 @@ import Select from 'react-select';
 import CityOption from './CityOption';
 import vector from './img/Vector.png'
 import localizador from './img/localizador.png'
-import {AxiosGetAllCities} from "../../axiosCollection/SearchBlock/AxiosSearchBlock";
+import { AxiosGetAllCities } from "../../axiosCollection/SearchBlock/AxiosSearchBlock";
 
 
 function SelectCity({ handleCity, borrarCity, setBorrarCity }) {
@@ -17,21 +17,21 @@ function SelectCity({ handleCity, borrarCity, setBorrarCity }) {
   }, []);
 
   const selectInputRef = useRef();
- 
- 
-  useEffect(()=>{
-    if(borrarCity){
-    console.log(selectInputRef.current.Select);
-    selectInputRef.current.clearValue()
-    setBorrarCity(false);
+
+
+  useEffect(() => {
+    if (borrarCity) {
+      console.log(selectInputRef.current.Select);
+      selectInputRef.current.clearValue()
+      setBorrarCity(false);
     }
   })
 
-    
-  console.log(borrarCity);
-  
 
-  
+  console.log(borrarCity);
+
+
+
   /*
   setOnClear(handleClick)
 
@@ -92,6 +92,7 @@ function SelectCity({ handleCity, borrarCity, setBorrarCity }) {
       ...styles,
       backgroundColor: '#FFFFFF',
       boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.15)',
+      cursor: "pointer",
       display: 'inline-block',
       fontWeight: 500,
       height: '40px',
@@ -129,6 +130,12 @@ function SelectCity({ handleCity, borrarCity, setBorrarCity }) {
     singleValue: () => ({
       display: 'flex',
     }),
+
+    input: () => ({
+     
+      opacity: "0",
+      width:"0"
+    }),
   }
 
   const options = data.map((city) => {
@@ -139,8 +146,8 @@ function SelectCity({ handleCity, borrarCity, setBorrarCity }) {
   })
 
 
-/*<button onClick={onClear}>Clear Value</button>*/
-  
+  /*<button onClick={onClear}>Clear Value</button>*/
+
   return (
     <>
       <Select
@@ -153,7 +160,7 @@ function SelectCity({ handleCity, borrarCity, setBorrarCity }) {
         getOptionValue={(option) => `${option.value}:`
         }
       />
-     
+
     </>
   );
 }
