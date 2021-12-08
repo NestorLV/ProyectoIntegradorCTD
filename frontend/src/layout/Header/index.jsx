@@ -85,7 +85,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
                     </Link>
                     <div className={hideButtons}>
                         <Link to="/create" >
-                            <button className={activeCreate ? Styles.hideButton : null} >
+                            <button id="createC" className={activeCreate ? Styles.hideButton : null} >
                                 Crear Cuenta
                             </button>
                         </Link>

@@ -53,7 +53,7 @@ export default function MenuMobile({ show, handleHide, isLogged, iniciales, acti
                 </div>
                 <div className={`botones ${hideObject} ${(!activeLogin && activeCreate) ? "subir" : null}`}>
 
-                    <Link to="/create" onClick={handleHide}><p className={(!activeLogin && activeCreate) ? "hide" : null} >Crear cuenta</p></Link>
+                    <Link to="/create" id="createC" onClick={handleHide}><p className={(!activeLogin && activeCreate) ? "hide" : null} >Crear cuenta</p></Link>
                     <img className={`${activeCreate || activeLogin ? "hide" : null}`} src={line} alt="" />
                     <Link to="/login" onClick={handleHide}><p className={(!activeCreate && activeLogin) ? "hide" : null} >Iniciar sesión</p></Link>
                 </div>

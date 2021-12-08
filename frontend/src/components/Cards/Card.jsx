@@ -103,7 +103,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                                 </button>
                             </Link>
                             <Link to="/create" >
-                                <button className={Styles.create}>
+                                <button id className={Styles.create}>
                                     Crear Cuenta
                                 </button>
                             </Link>

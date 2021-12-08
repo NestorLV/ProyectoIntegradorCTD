@@ -80,7 +80,7 @@ export default function FormLogin({ lastLocation, bookingWithoutLogin, setLoadin
 
                     {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}
                     <div className={`${styles.inputLabel} ${styles.boton}`}>
-                        <button type="submit">Ingresar</button>
+                        <button type="submit" id="login">Ingresar</button>
                         <p>¿Aún no tenés cuenta?<Link to="/create"> Registrate</Link></p>
                     </div>
                 </form>
