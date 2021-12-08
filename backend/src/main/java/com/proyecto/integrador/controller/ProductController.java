@@ -65,7 +65,7 @@ public class ProductController implements CRUDController<ProductDTO> {
     @Operation(summary = "Mark as deleted a product")
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/deletedmark/{productId}")
-    public ResponseEntity<String> deletedMarkById(@PathVariable Integer productId) throws FindByIdException {
+    public ResponseEntity<String> deletedMarkById(@PathVariable Integer productId) throws FindByIdException, BadRequestException {
         productService.deletedMarkById(productId);
         return ResponseEntity.ok("Se marcó como deleted el producto con id: "+productId);
     }

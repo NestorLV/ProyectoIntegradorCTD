@@ -5,6 +5,7 @@ import com.proyecto.integrador.DTO.CityDTO;
 import com.proyecto.integrador.DTO.ProductDTO;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.*;
@@ -13,6 +14,7 @@ import java.util.*;
 @Getter
 @Setter
 @Table(name ="product")
+@Where(clause = "deleted = 0")
 public class Product {
     @Id
     @Column(name="idProduct", nullable = false)
