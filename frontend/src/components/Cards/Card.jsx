@@ -11,8 +11,6 @@ import ConfirmProductModal from '../Administrator/Product/ConfirmProductModal';
 import ModalProductSucceed from "../Administrator/Product/ModalProductSucceed";
 import tildeOk from "../Administrator/icons/tildeOk.svg"
 import { AxiosCreateFavourite, AxiosDeletedMark } from '../../axiosCollection/Cards/AxiosCards';
-import { render } from '@testing-library/react';
-
 
 function Card({ setLastLocation, image, cardCategory, name, city, country, description, id, reference, qualification, features, latitude, longitude, address, favorite}) {
     const role = sessionStorage.getItem("role");
@@ -103,7 +101,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                                 </button>
                             </Link>
                             <Link to="/create" >
-                                <button className={Styles.create}>
+                                <button id className={Styles.create}>
                                     Crear Cuenta
                                 </button>
                             </Link>

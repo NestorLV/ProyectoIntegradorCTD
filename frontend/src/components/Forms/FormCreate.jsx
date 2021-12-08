@@ -194,7 +194,7 @@ function FormCreate({ lastLocation, setActiveCreate, setActiveLogin, setLog, set
 
                         {!formValido && <div className={styles.errorContainer}><p className={styles.error}>{error}</p></div>}
                         <div className={`${styles.inputLabel} ${styles.boton}`}>
-                            <button type="submit">Crear cuenta</button>
+                            <button type="submit" id="butCreate">Crear cuenta</button>
                             <p>¿Ya tienes una cuenta?<Link to="/login"> Iniciar sesión</Link></p>
                         </div>
                         <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
