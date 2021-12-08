@@ -80,7 +80,7 @@ export default function Book({ id, startDate, endDate, reservationId }) {
 
                     <div className={Styles.buttonsBox}>
                         <Link to={`/product/${id}`} key={id} className={Styles.link}>
-                            <button className={Styles.cardButton2}>Ver más</button>
+                            <button className={Styles.cardButton2}>Ver Locacion</button>
                         </Link>
                         <button className={Styles.cardButton2} onClick={deleteReservation}>Eliminar</button>
                     </div>
