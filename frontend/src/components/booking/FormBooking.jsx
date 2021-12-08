@@ -12,19 +12,19 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         <Select options={options} />
     )*/
     const customStyles = {
+       
         control: () => ({
             borderRadius: "7px",
+            border: "1px solid rgba(0,0,0,.4)",
             boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
             display: "flex",
-            justifyContent: "space-between", 
-            marginTop: "10px", 
-            marginBottom: "15px"          
-
+            justifyContent: "space-between",
+            marginBottom: "15px",
         }),
 
         placeholder: () => ({
             padding: "15px 10px",
-            
+
         }),
 
         valueContainer: () => ({
@@ -40,7 +40,7 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         input: () => ({
             opacity: 0,
             width: 0,
-            
+
         }),
 
         option: () => ({
@@ -55,7 +55,7 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
 
         indicatorsContainer: () => ({
             paddingTop: "15px",
-            
+
         }),
 
         dropdownIndicator: () => ({
@@ -74,9 +74,9 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         display: "block",
         minWidth: "100%",
         height: '44px',
-        border: 'none', 
-        marginTop: '15px',              
-        
+        border: 'none',
+        marginTop: '15px',
+
     }
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -100,25 +100,25 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
             <form>
                 <div className={Styles.block}>
                     <div className={Styles.labelInputBooking}>
-                        <label htmlFor="name">Nombre</label>
+                        <label htmlFor="name">Nombre*</label>
                         <input type="text" name="name" id="name" value={name} onChange={handleChangeName} required></input>
                     </div>
                     <div className={Styles.labelInputBooking}>
-                        <label htmlFor="surname">Apellido</label>
+                        <label htmlFor="surname">Apellido*</label>
                         <input type="text" name="surname" id="surname" value={surname} onChange={handleChangeSurname} required></input>
                     </div>
                 </div>
                 <div className={Styles.block}>
                     <div className={Styles.labelInputBooking}>
-                        <label htmlFor="email">Correo electrónico</label>
+                        <label htmlFor="email">Correo electrónico*</label>
                         <input type="email" name="email" id="email" value={email} onChange={handleChangeEmail} required />
                     </div>
                     <div className={Styles.labelInputBooking}>
-                        <label htmlFor="city">Ciudad de origen</label>
+                        <label htmlFor="city">Ciudad de origen*</label>
                         <input type="text" name="city" id="city" value={city} onChange={handleChangeCity} required></input>
                     </div>
                 </div>
-                <div >
+                <div className={Styles.observaciones}>
                     <label htmlFor="esquema">Vacunación COVID-19</label>
                     <Select
                         options={options}
@@ -127,8 +127,8 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
                         getOptionValue={(option) => option.value}
                     />
                 </div>
-                <div>
-                    <label className={Styles.observaciones} for="observaciones">Observaciones:</label>
+                <div className={Styles.observaciones} >
+                    <label for="observaciones">Observaciones:</label>
                     <textarea id="observaciones" name="observaciones" style={style}>
                     </textarea>
                 </div>

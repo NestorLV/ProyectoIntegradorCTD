@@ -47,8 +47,8 @@ function UpdateProduct(props) {
     }, [])
 
     const handleProduct = (p) => {
-        setProduct(p);
         window.location.pathname = `/product/update/${p.id}`
+        setProduct(p);
     }    
 
     return (

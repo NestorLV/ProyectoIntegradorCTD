@@ -95,14 +95,14 @@
   width: 48%;
 }
 
-.labelInputBooking label {
+.labelInputBooking label, .observaciones label {
   color: var(--secondary-color);
   font-size: var(--text2);
   font-weight: var(--font-medium);
 }
 
-input {
-  border: none;
+.labelInputBooking input {
+  border: 1px solid rgba(0,0,0,.4);
   border-radius: 5px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
   color: var(--tertiary-color);
@@ -125,9 +125,15 @@ input {
   text-align: center;
 }
 
-.observaciones {
-  margin: 8px 0px;
+.observaciones textarea{
+  border: 1px solid rgba(0,0,0,.4) !important;
+  border-radius: 5px;
+  font-size: var(--text2);
+  margin: 0 !important;
+  outline: none;
+  padding: 10px;
 }
+
 
 /*Estilos ArrivalTimeBar*/
 

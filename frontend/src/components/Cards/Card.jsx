@@ -8,7 +8,7 @@ import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
 import Icons from "../Product/icons/Icons";
 import ConfirmProductModal from '../Administrator/Product/ConfirmProductModal';
-import ModalProductSucceed from "../Administrator/Product/ModalProductSucceed";
+import ModalProductAviso from "../Administrator/Product/ModalProductSucceed";
 import tildeOk from "../Administrator/icons/tildeOk.svg"
 import { AxiosCreateFavourite, AxiosDeletedMark } from '../../axiosCollection/Cards/AxiosCards';
 
@@ -23,6 +23,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     const [admin, setAdmin] = useState(true);
     const [modalConfirmDeletedIsOpen, setModalConfirmDeletedIsOpen] = useState(false)
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
+    const [modalErrorProductoConReservasIsOpen, setModalErrorProductoConReservasIsOpen] = useState(false) 
 
     useEffect(() => {
         if (sessionStorage.getItem("role") === "ADMIN") {
@@ -82,9 +83,17 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
         setModalConfirmDeletedIsOpen(false)
     }
 
+    const openModalErrorProductoConReservas = (() => {
+        setModalErrorProductoConReservasIsOpen(true)
+    })
+
+    const closeModalErrorProductoConReservas = (() => {
+        setModalErrorProductoConReservasIsOpen(false)
+    })
+
     function eliminarProducto() {
         closeModalConfirmDeleted()
-        AxiosDeletedMark(id, openModalSucceed)
+        AxiosDeletedMark(id, openModalSucceed, openModalErrorProductoConReservas)
     }
 
     return (
@@ -158,7 +167,10 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                                 <ConfirmProductModal accion="eliminar" setModalConfirmIsOpen={setModalConfirmDeletedIsOpen} funcionProducto={eliminarProducto} closeModalConfirm={closeModalConfirmDeleted} />
                             </Modal>
                             <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
-                                <ModalProductSucceed title="Operación confirmada." message="Se ha borrado el producto exitosamente." closeModal={closeModalSucceed} icon={tildeOk} />
+                                <ModalProductAviso title="Operación confirmada." message="Se ha borrado el producto exitosamente." closeModal={closeModalSucceed} icon={tildeOk} />
+                            </Modal>
+                            <Modal open={modalErrorProductoConReservasIsOpen} onClose={closeModalErrorProductoConReservas} center>
+                                <ModalProductAviso title="El producto no pudo borrarse." message="Tiene reservas asignadas." closeModal={closeModalErrorProductoConReservas} icon={"X"} />
                             </Modal>
                         </div>
                     }

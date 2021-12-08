@@ -86,11 +86,11 @@ function DetailBar(props) {
                     </div>
                     <div className={Styles.detailCheck}>
                         <div>
-                            <p>Check-in:</p>
+                            <p>Check-in*:</p>
                             <p>{checkin}</p>
                         </div>
                         <div>
-                            <p>Check-out:</p>
+                            <p>Check-out*:</p>
                             <p>{checkout}</p>
                         </div>
 
