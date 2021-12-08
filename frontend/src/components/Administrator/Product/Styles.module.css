@@ -192,7 +192,7 @@ h1{
     font-size: var(--text2);
     font-weight: 500;
     padding: 15px;
-   
+   resize: none;
 }
 
 .description textarea{
