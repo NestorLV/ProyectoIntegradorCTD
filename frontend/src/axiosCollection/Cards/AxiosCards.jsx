@@ -107,7 +107,7 @@ function AxiosCreateFavourite(id, setErrorMessage) {
     }
 }
 
-function AxiosDeletedMark(id, openModalSucceed) {
+function AxiosDeletedMark(id, openModalSucceed, openModalErrorProductoConReservas) {
     const baseUrlBorrarProducto = `${baseUrl}products/deletedmark/${id}`;
 
     axios.post(baseUrlBorrarProducto, {}, {
@@ -120,8 +120,10 @@ function AxiosDeletedMark(id, openModalSucceed) {
             openModalSucceed()
         })
         .catch(error => {
+            if(error.response.status){
+                openModalErrorProductoConReservas()
+            }
             console.log(error.message);
-
         })
 }
 
