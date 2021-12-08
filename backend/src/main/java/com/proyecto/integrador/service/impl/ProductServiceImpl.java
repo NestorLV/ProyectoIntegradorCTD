@@ -95,11 +95,16 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void deletedMarkById(Integer productId) throws FindByIdException {
+    public void deletedMarkById(Integer productId) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método eliminar producto por ID");
         if (!productRepository.existsById(productId)) {
             throw new FindByIdException("No existe una producto con el id ingresado");
         }
+
+        if (!reservationService.findByProductId(productId).isEmpty()) {
+            throw new BadRequestException("El producto no puede ser eliminado porque tiene reservas asociadas");
+        }
+
         Product product = productRepository.findById(productId).get();
         product.setDeleted(true);
         logger.debug("Terminó la ejecución del método eliminar producto por ID");

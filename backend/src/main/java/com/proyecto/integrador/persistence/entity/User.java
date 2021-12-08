@@ -35,7 +35,7 @@ public class User implements UserDetails {
     private Role role;
     @ManyToMany(targetEntity = Product.class, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(
-            name = "favorites",
+            name = "favorite",
             joinColumns = @JoinColumn(name = "idUser"),
             inverseJoinColumns = @JoinColumn(name = "idProduct")
     )
