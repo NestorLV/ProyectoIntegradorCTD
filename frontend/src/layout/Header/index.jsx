@@ -26,6 +26,8 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("token")
         sessionStorage.removeItem("role")
+        sessionStorage.removeItem("startDate")
+        sessionStorage.removeItem("endDate")
         sessionStorage.setItem("log", "false")
         setLastLocation(window.location.pathname)
         document.querySelectorAll("nav")[1].classList.remove(`${Styles.openNav}`)

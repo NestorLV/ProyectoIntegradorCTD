@@ -81,10 +81,11 @@ export default function Booking(props) {
                 {console.log("valueDate", valueDate)}
                 <section className={`${Styles.booking} ${StylesApp.delimiter}`}>
                     {loading ? <Spinner /> : (<>
+                        <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
                         <div className={`${Styles.bookingChild} ${StylesApp.delimiterChild}`}>
 
 
-                            <TitleBar category={prod.category.title} name={prod.name} goBack={props.history.goBack} />
+                           
                             <h2>Completá tus datos</h2>
                             <div className={Styles.container}>
                                 <div>

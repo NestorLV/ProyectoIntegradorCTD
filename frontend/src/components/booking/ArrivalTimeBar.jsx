@@ -15,6 +15,7 @@ export default function ArrivalTimeBar({errorBookingArrivalTime, setArrivalSched
     const customStyles = {
         control: () => ({
             borderRadius:"7px",
+            border: "1px solid rgba(0,0,0,.4)",
             boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
             display:"flex",
             justifyContent:"space-between",

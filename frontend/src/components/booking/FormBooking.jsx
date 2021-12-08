@@ -12,19 +12,19 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         <Select options={options} />
     )*/
     const customStyles = {
+       
         control: () => ({
             borderRadius: "7px",
+            border: "1px solid rgba(0,0,0,.4)",
             boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
             display: "flex",
-            justifyContent: "space-between", 
-            marginTop: "10px", 
-            marginBottom: "15px"          
-
+            justifyContent: "space-between",
+            marginBottom: "15px",
         }),
 
         placeholder: () => ({
             padding: "15px 10px",
-            
+
         }),
 
         valueContainer: () => ({
@@ -40,7 +40,7 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         input: () => ({
             opacity: 0,
             width: 0,
-            
+
         }),
 
         option: () => ({
@@ -55,7 +55,7 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
 
         indicatorsContainer: () => ({
             paddingTop: "15px",
-            
+
         }),
 
         dropdownIndicator: () => ({
@@ -74,9 +74,9 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         display: "block",
         minWidth: "100%",
         height: '44px',
-        border: 'none', 
-        marginTop: '15px',              
-        
+        border: 'none',
+        marginTop: '15px',
+
     }
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -118,7 +118,7 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
                         <input type="text" name="city" id="city" value={city} onChange={handleChangeCity} required></input>
                     </div>
                 </div>
-                <div >
+                <div className={Styles.observaciones}>
                     <label htmlFor="esquema">Vacunación COVID-19</label>
                     <Select
                         options={options}
@@ -127,8 +127,8 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
                         getOptionValue={(option) => option.value}
                     />
                 </div>
-                <div>
-                    <label className={Styles.observaciones} for="observaciones">Observaciones:</label>
+                <div className={Styles.observaciones} >
+                    <label for="observaciones">Observaciones:</label>
                     <textarea id="observaciones" name="observaciones" style={style}>
                     </textarea>
                 </div>
