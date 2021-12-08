@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Probando el componente <ClearFilters/> Deberia mostrar <ClearFilters/> correctamente 1`] = `
+<div
+  className="clearFilterContainer"
+>
+  <button
+    className="clearFilterButton"
+    onClick={[Function]}
+  >
+    Limpiar filtros
+  </button>
+</div>
+`;
+
+exports[`Probando el componente <ConsultarLike/> Deberia mostrar <ConsultarLike/> correctamente 1`] = `""`;
+
 exports[`Probando el componente <MapModal/> Deberia mostrar <MapModal> correctamente 1`] = `
 <ForwardRef
   center={true}
@@ -72,6 +87,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
           >
             <button
               className="create"
+              id={true}
             >
               Crear Cuenta
             </button>
@@ -193,7 +209,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
           className="link"
           key="1"
           onClick={[Function]}
-          to="/product/update/"
+          to="/product/update/1"
         >
           <button
             className="cardButton2 cardButtonModify"
@@ -201,18 +217,53 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
             Modificar
           </button>
         </Link>
-        <Link
+        <div
           className="link"
-          key="1"
           onClick={[Function]}
-          to="/product/delete/1"
         >
           <button
             className="cardButton2 cardButtonModify"
+            onClick={[Function]}
           >
             Eliminar
           </button>
-        </Link>
+        </div>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ConfirmProductModal
+            accion="eliminar el producto"
+            closeModalConfirm={[Function]}
+            funcionProducto={[Function]}
+            setModalConfirmIsOpen={[Function]}
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="tildeOk.svg"
+            message="Se ha borrado el producto exitosamente."
+            title="Operación confirmada."
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="X"
+            message="Tiene reservas asignadas."
+            title="El producto no pudo borrarse."
+          />
+        </ForwardRef>
       </div>
     </div>
   </div>
@@ -268,6 +319,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
           >
             <button
               className="create"
+              id={true}
             >
               Crear Cuenta
             </button>
@@ -389,7 +441,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
           className="link"
           key="1"
           onClick={[Function]}
-          to="/product/update/"
+          to="/product/update/1"
         >
           <button
             className="cardButton2 cardButtonModify"
@@ -397,18 +449,53 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 3
             Modificar
           </button>
         </Link>
-        <Link
+        <div
           className="link"
-          key="1"
           onClick={[Function]}
-          to="/product/delete/1"
         >
           <button
             className="cardButton2 cardButtonModify"
+            onClick={[Function]}
           >
             Eliminar
           </button>
-        </Link>
+        </div>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ConfirmProductModal
+            accion="eliminar el producto"
+            closeModalConfirm={[Function]}
+            funcionProducto={[Function]}
+            setModalConfirmIsOpen={[Function]}
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="tildeOk.svg"
+            message="Se ha borrado el producto exitosamente."
+            title="Operación confirmada."
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="X"
+            message="Tiene reservas asignadas."
+            title="El producto no pudo borrarse."
+          />
+        </ForwardRef>
       </div>
     </div>
   </div>
@@ -464,6 +551,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
           >
             <button
               className="create"
+              id={true}
             >
               Crear Cuenta
             </button>
@@ -585,7 +673,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
           className="link"
           key="1"
           onClick={[Function]}
-          to="/product/update/"
+          to="/product/update/1"
         >
           <button
             className="cardButton2 cardButtonModify"
@@ -593,18 +681,53 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 5
             Modificar
           </button>
         </Link>
-        <Link
+        <div
           className="link"
-          key="1"
           onClick={[Function]}
-          to="/product/delete/1"
         >
           <button
             className="cardButton2 cardButtonModify"
+            onClick={[Function]}
           >
             Eliminar
           </button>
-        </Link>
+        </div>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ConfirmProductModal
+            accion="eliminar el producto"
+            closeModalConfirm={[Function]}
+            funcionProducto={[Function]}
+            setModalConfirmIsOpen={[Function]}
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="tildeOk.svg"
+            message="Se ha borrado el producto exitosamente."
+            title="Operación confirmada."
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="X"
+            message="Tiene reservas asignadas."
+            title="El producto no pudo borrarse."
+          />
+        </ForwardRef>
       </div>
     </div>
   </div>
@@ -660,6 +783,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
           >
             <button
               className="create"
+              id={true}
             >
               Crear Cuenta
             </button>
@@ -781,7 +905,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
           className="link"
           key="1"
           onClick={[Function]}
-          to="/product/update/"
+          to="/product/update/1"
         >
           <button
             className="cardButton2 cardButtonModify"
@@ -789,18 +913,53 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 7
             Modificar
           </button>
         </Link>
-        <Link
+        <div
           className="link"
-          key="1"
           onClick={[Function]}
-          to="/product/delete/1"
         >
           <button
             className="cardButton2 cardButtonModify"
+            onClick={[Function]}
           >
             Eliminar
           </button>
-        </Link>
+        </div>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ConfirmProductModal
+            accion="eliminar el producto"
+            closeModalConfirm={[Function]}
+            funcionProducto={[Function]}
+            setModalConfirmIsOpen={[Function]}
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="tildeOk.svg"
+            message="Se ha borrado el producto exitosamente."
+            title="Operación confirmada."
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="X"
+            message="Tiene reservas asignadas."
+            title="El producto no pudo borrarse."
+          />
+        </ForwardRef>
       </div>
     </div>
   </div>
@@ -856,6 +1015,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
           >
             <button
               className="create"
+              id={true}
             >
               Crear Cuenta
             </button>
@@ -977,7 +1137,7 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
           className="link"
           key="1"
           onClick={[Function]}
-          to="/product/update/"
+          to="/product/update/1"
         >
           <button
             className="cardButton2 cardButtonModify"
@@ -985,18 +1145,53 @@ exports[`Pruebas en Card Debe de mostrarse correctamente con una puntuacion de 1
             Modificar
           </button>
         </Link>
-        <Link
+        <div
           className="link"
-          key="1"
           onClick={[Function]}
-          to="/product/delete/1"
         >
           <button
             className="cardButton2 cardButtonModify"
+            onClick={[Function]}
           >
             Eliminar
           </button>
-        </Link>
+        </div>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ConfirmProductModal
+            accion="eliminar el producto"
+            closeModalConfirm={[Function]}
+            funcionProducto={[Function]}
+            setModalConfirmIsOpen={[Function]}
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="tildeOk.svg"
+            message="Se ha borrado el producto exitosamente."
+            title="Operación confirmada."
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="X"
+            message="Tiene reservas asignadas."
+            title="El producto no pudo borrarse."
+          />
+        </ForwardRef>
       </div>
     </div>
   </div>
@@ -1052,6 +1247,7 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
           >
             <button
               className="create"
+              id={true}
             >
               Crear Cuenta
             </button>
@@ -1173,7 +1369,7 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
           className="link"
           key="1"
           onClick={[Function]}
-          to="/product/update/"
+          to="/product/update/1"
         >
           <button
             className="cardButton2 cardButtonModify"
@@ -1181,18 +1377,53 @@ exports[`Pruebas en Card Debe mostrar un error con una calificacion invalida 1`]
             Modificar
           </button>
         </Link>
-        <Link
+        <div
           className="link"
-          key="1"
           onClick={[Function]}
-          to="/product/delete/1"
         >
           <button
             className="cardButton2 cardButtonModify"
+            onClick={[Function]}
           >
             Eliminar
           </button>
-        </Link>
+        </div>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ConfirmProductModal
+            accion="eliminar el producto"
+            closeModalConfirm={[Function]}
+            funcionProducto={[Function]}
+            setModalConfirmIsOpen={[Function]}
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="tildeOk.svg"
+            message="Se ha borrado el producto exitosamente."
+            title="Operación confirmada."
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="X"
+            message="Tiene reservas asignadas."
+            title="El producto no pudo borrarse."
+          />
+        </ForwardRef>
       </div>
     </div>
   </div>
@@ -1248,6 +1479,7 @@ exports[`Pruebas en Card Deberia mostrarse el componente al hacer click para des
           >
             <button
               className="create"
+              id={true}
             >
               Crear Cuenta
             </button>
@@ -1369,7 +1601,7 @@ exports[`Pruebas en Card Deberia mostrarse el componente al hacer click para des
           className="link"
           key="1"
           onClick={[Function]}
-          to="/product/update/"
+          to="/product/update/1"
         >
           <button
             className="cardButton2 cardButtonModify"
@@ -1377,18 +1609,53 @@ exports[`Pruebas en Card Deberia mostrarse el componente al hacer click para des
             Modificar
           </button>
         </Link>
-        <Link
+        <div
           className="link"
-          key="1"
           onClick={[Function]}
-          to="/product/delete/1"
         >
           <button
             className="cardButton2 cardButtonModify"
+            onClick={[Function]}
           >
             Eliminar
           </button>
-        </Link>
+        </div>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ConfirmProductModal
+            accion="eliminar el producto"
+            closeModalConfirm={[Function]}
+            funcionProducto={[Function]}
+            setModalConfirmIsOpen={[Function]}
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="tildeOk.svg"
+            message="Se ha borrado el producto exitosamente."
+            title="Operación confirmada."
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="X"
+            message="Tiene reservas asignadas."
+            title="El producto no pudo borrarse."
+          />
+        </ForwardRef>
       </div>
     </div>
   </div>
@@ -1444,6 +1711,7 @@ exports[`Pruebas en Card Deberia mostrarse el componente al hacer click para mos
           >
             <button
               className="create"
+              id={true}
             >
               Crear Cuenta
             </button>
@@ -1565,7 +1833,7 @@ exports[`Pruebas en Card Deberia mostrarse el componente al hacer click para mos
           className="link"
           key="1"
           onClick={[Function]}
-          to="/product/update/"
+          to="/product/update/1"
         >
           <button
             className="cardButton2 cardButtonModify"
@@ -1573,18 +1841,53 @@ exports[`Pruebas en Card Deberia mostrarse el componente al hacer click para mos
             Modificar
           </button>
         </Link>
-        <Link
+        <div
           className="link"
-          key="1"
           onClick={[Function]}
-          to="/product/delete/1"
         >
           <button
             className="cardButton2 cardButtonModify"
+            onClick={[Function]}
           >
             Eliminar
           </button>
-        </Link>
+        </div>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ConfirmProductModal
+            accion="eliminar el producto"
+            closeModalConfirm={[Function]}
+            funcionProducto={[Function]}
+            setModalConfirmIsOpen={[Function]}
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="tildeOk.svg"
+            message="Se ha borrado el producto exitosamente."
+            title="Operación confirmada."
+          />
+        </ForwardRef>
+        <ForwardRef
+          center={true}
+          onClose={[Function]}
+          open={false}
+        >
+          <ProductModalSucceed
+            closeModal={[Function]}
+            icon="X"
+            message="Tiene reservas asignadas."
+            title="El producto no pudo borrarse."
+          />
+        </ForwardRef>
       </div>
     </div>
   </div>

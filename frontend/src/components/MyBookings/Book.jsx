@@ -7,7 +7,8 @@ import ScoreDescription from '../Product/ScoreDescription';
 import { Modal } from 'react-responsive-modal';
 import ConfirmProductModal from '../Administrator/Product/ConfirmProductModal';
 import ModalProductAviso from "../Administrator/Product/ModalProductSucceed";
-import tildeOk from "../Administrator/icons/tildeOk.svg"
+import tildeOk from "../Administrator/icons/tildeOk.svg";
+import { AxiosDeleteReservation } from '../../axiosCollection/MyBookings/AxiosMyBookings';
 import axios from 'axios';
 
 export default function Book({ id, startDate, endDate, reservationId }) {
@@ -37,7 +38,9 @@ export default function Book({ id, startDate, endDate, reservationId }) {
     }, [role])
 
     const deleteReservation = (id) => {
-        axios.delete(`http://localhost:8080/reservations/delete/${reservationId}`)
+        closeModalConfirmDeleted()
+        AxiosDeleteReservation(reservationId, id,openModalSucceed)
+        /*axios.delete(`http://localhost:8080/reservations/delete/${reservationId}`)
             .then(response => {
                 console.log(response.data, `delete reservation ${id}`);
                 openModalSucceed()
@@ -45,7 +48,7 @@ export default function Book({ id, startDate, endDate, reservationId }) {
             })
             .catch(error => {
                 console.log(error.message);
-            })
+            })*/
     }
 
     let loggued = sessionStorage.getItem("log");

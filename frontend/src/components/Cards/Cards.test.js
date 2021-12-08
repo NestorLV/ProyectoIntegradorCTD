@@ -6,6 +6,8 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createSerializer } from 'enzyme-to-json';
 import Card from './Card';
 import Cards from './Cards';
+import ClearFilters from './ClearFilters';
+import ConsultarLike from "./ConsultarLike";
 import MapModal from "./MapModal";
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -94,4 +96,32 @@ describe("Probando el componente <MapModal/>", () => {
         expect(wrapper).toMatchSnapshot();
     });
 
+})
+
+
+describe("Probando el componente <ClearFilters/>", () => {
+    let wrapper;
+    let id=2;
+
+    beforeEach(() => {
+        wrapper = shallow(<ClearFilters id={id}/>)
+    });
+
+    it("Deberia mostrar <ClearFilters/> correctamente", () => {
+        expect(wrapper).toMatchSnapshot();
+    });
+    
+})
+
+describe("Probando el componente <ConsultarLike/>", () => {
+    let wrapper;
+    let id=2;
+
+    beforeEach(() => {
+        wrapper = shallow(<ConsultarLike id={id}/>)
+    });
+
+    it("Deberia mostrar <ConsultarLike/> correctamente", () => {
+        expect(wrapper).toMatchSnapshot();
+    });
 })

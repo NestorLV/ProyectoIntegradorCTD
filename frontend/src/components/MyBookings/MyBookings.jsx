@@ -5,7 +5,7 @@ import Book from "./Book.jsx";
 import arrow from "./img/arrow.svg";
 import TitleBar from "../Product/TitleBar";
 import { AxiosGetProductosFavoritos } from "../../axiosCollection/Cards/AxiosCards";
-import axios from "axios";
+import { AxiosGetReservationsByUserId } from "../../axiosCollection/MyBookings/AxiosMyBookings";
 
 
 export default function MyBookings(props) {
@@ -19,7 +19,8 @@ export default function MyBookings(props) {
 
   useEffect(() => {
     AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage);
-    axios.get(`http://localhost:8080/reservations/get/user/${sessionStorage.getItem("id")}`)
+    AxiosGetReservationsByUserId(setData, setLoading, setErrorMessage);
+    /*axios.get(`http://localhost:8080/reservations/get/user/${sessionStorage.getItem("id")}`)
       .then(response => {
         setData(response.data);
         setLoading(false);
@@ -28,7 +29,7 @@ export default function MyBookings(props) {
       .catch(error => {
         setErrorMessage(error.message);
         setLoading(false);
-      })
+      })*/
     setNumberPage(1);
   }, []);
 

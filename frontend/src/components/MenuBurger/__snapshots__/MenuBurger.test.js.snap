@@ -59,32 +59,10 @@ exports[`Probando el componente <MenuBurger/> Deberia mostrar <MenuBurger/> corr
         src="Line.png"
       />
       <Link
-        to="/"
+        to="/mybookings"
       >
         <p>
           Mis reservas
-        </p>
-      </Link>
-      <img
-        alt=""
-        src="Line.png"
-      />
-      <Link
-        to="/product/create"
-      >
-        <p>
-          Crear Producto
-        </p>
-      </Link>
-      <img
-        alt=""
-        src="Line.png"
-      />
-      <Link
-        to="/product/update"
-      >
-        <p>
-          Modificar Producto
         </p>
       </Link>
     </div>
@@ -92,6 +70,7 @@ exports[`Probando el componente <MenuBurger/> Deberia mostrar <MenuBurger/> corr
       className="botones null null"
     >
       <Link
+        id="createC"
         to="/create"
       >
         <p

@@ -37,6 +37,7 @@ exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctament
         >
           <button
             className={null}
+            id="createC"
           >
             Crear Cuenta
           </button>
@@ -90,7 +91,9 @@ exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctament
       />
     </div>
     <MenuMobile
+      admin={false}
       handleFavourite={[MockFunction]}
+      handleFavouriteClick={[Function]}
       handleHide={[Function]}
       handleLogOut={[Function]}
       iniciales={null}
@@ -113,7 +116,7 @@ exports[`Probando el componente <Header/> Deberia mostrar <Header/> correctament
         src="LineOrange.png"
       />
       <Link
-        to="/"
+        to="/mybookings"
       >
         <h4
           className="seeMyAccount"

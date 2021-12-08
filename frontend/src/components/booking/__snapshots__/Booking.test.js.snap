@@ -12,7 +12,7 @@ exports[`Probando el componente <ArrivalTimeBar/> Deberia mostrar <ArrivalTimeBa
       Tu habitación va a estar lista para el check-in entre las 10:00 AM y las 11:00 PM
     </h4>
     <label>
-      Indicá tu horario estimado de llegada
+      Indicá tu horario estimado de llegada*
     </label>
     <div
       className="selectContainer"
@@ -461,7 +461,7 @@ exports[`Probando el componente <CalendarBar/> Deberia mostrar <CalendarBar/> co
             displayStaticWrapperAs="desktop"
             hintText="Dates Disabled"
             maxDate={null}
-            minDate={2021-12-05T12:14:44.102Z}
+            minDate={2021-12-08T20:02:09.057Z}
             onChange={[Function]}
             renderInput={[Function]}
             shouldDisableDate={[Function]}
@@ -512,13 +512,13 @@ exports[`Probando el componente <DetailBar/> Deberia mostrar <DetailBar/> correc
       >
         <div>
           <p>
-            Check-in:
+            Check-in*:
           </p>
           <p />
         </div>
         <div>
           <p>
-            Check-out:
+            Check-out*:
           </p>
           <p />
         </div>
@@ -557,7 +557,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="name"
         >
-          Nombre
+          Nombre*
         </label>
         <input
           id="name"
@@ -573,7 +573,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="surname"
         >
-          Apellido
+          Apellido*
         </label>
         <input
           id="surname"
@@ -593,7 +593,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="email"
         >
-          Correo electrónico
+          Correo electrónico*
         </label>
         <input
           id="email"
@@ -609,7 +609,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="city"
         >
-          Ciudad de origen
+          Ciudad de origen*
         </label>
         <input
           id="city"
@@ -620,7 +620,9 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         />
       </div>
     </div>
-    <div>
+    <div
+      className="observaciones"
+    >
       <label
         htmlFor="esquema"
       >
@@ -659,9 +661,10 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         }
       />
     </div>
-    <div>
+    <div
+      className="observaciones"
+    >
       <label
-        className="observaciones"
         for="observaciones"
       >
         Observaciones:
@@ -702,7 +705,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="name"
         >
-          Nombre
+          Nombre*
         </label>
         <input
           id="name"
@@ -718,7 +721,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="surname"
         >
-          Apellido
+          Apellido*
         </label>
         <input
           id="surname"
@@ -738,7 +741,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="email"
         >
-          Correo electrónico
+          Correo electrónico*
         </label>
         <input
           id="email"
@@ -754,7 +757,7 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         <label
           htmlFor="city"
         >
-          Ciudad de origen
+          Ciudad de origen*
         </label>
         <input
           id="city"
@@ -765,7 +768,9 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         />
       </div>
     </div>
-    <div>
+    <div
+      className="observaciones"
+    >
       <label
         htmlFor="esquema"
       >
@@ -804,9 +809,10 @@ exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> co
         }
       />
     </div>
-    <div>
+    <div
+      className="observaciones"
+    >
       <label
-        className="observaciones"
         for="observaciones"
       >
         Observaciones:

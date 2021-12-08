@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8080/cities/all";
+const baseURL = "http://localhost:8080/";
 
-export default function AxiosGetAllCities(setData, setErrorMessage){
-    axios
-    .get(baseURL)
+function AxiosGetAllCities(setData, setErrorMessage){
+    axios.get(`${baseURL}cities/all`)
     .then((response) => {
       setData(response.data);     
     })
@@ -13,3 +12,4 @@ export default function AxiosGetAllCities(setData, setErrorMessage){
     });
 }
 
+export {AxiosGetAllCities}

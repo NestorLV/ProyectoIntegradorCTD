@@ -1,29 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Probando el componente <ConfirmProductModal/> Deberia mostrar <ConfirmProductModal/> correctamente 1`] = `
+<div
+  className="containerCreateModal"
+>
+  <div
+    className="question"
+  >
+    ?
+  </div>
+  <p>
+    ¿Está seguro que desea 
+    ?
+  </p>
+  <button
+    className="ok"
+  >
+    Ok
+  </button>
+  <button
+    className="cancel"
+  >
+    Cancelar
+  </button>
+</div>
+`;
+
 exports[`Probando el componente <CreateProduct/> Deberia mostrar <CreateProduct/> correctamente 1`] = `
 <section>
   <Spinner />
 </section>
-`;
-
-exports[`Probando el componente <CreateProductModal/> Deberia mostrar <CreateProductModal/> correctamente 1`] = `
-<div
-  className="containerCreateModal"
->
-  <img
-    alt="Tilde ok"
-    src="tildeOk.svg"
-  />
-  <h3 />
-  <p />
-  <Link
-    to="/"
-  >
-    <button>
-      Ok
-    </button>
-  </Link>
-</div>
 `;
 
 exports[`Probando el componente <FormProductCreate/> Deberia mostrar <FormProductCreate/> correctamente 1`] = `
@@ -37,23 +43,22 @@ exports[`Probando el componente <FormProductCreate/> Deberia mostrar <FormProduc
       address=""
       cancellationPolicy=""
       description=""
+      enviarDatos={[Function]}
+      errorCamposVacios=""
       healthAndSecurity=""
       images={Array []}
+      modalExistedProductIsOpen={false}
+      modalExpiredLoginIsOpen={false}
       name=""
+      qualification={
+        Object {
+          "campo": "",
+          "error": "",
+          "valido": false,
+        }
+      }
       reference=""
       rules=""
-      selectedCategory={
-        Object {
-          "id": "",
-          "name": "",
-        }
-      }
-      selectedCity={
-        Object {
-          "id": "",
-          "name": "",
-        }
-      }
       selectedFeatures={Array []}
       setAddress={[Function]}
       setCancellationPolicy={[Function]}
@@ -64,7 +69,9 @@ exports[`Probando el componente <FormProductCreate/> Deberia mostrar <FormProduc
       setImages={[Function]}
       setLatitude={[Function]}
       setLongitude={[Function]}
-      setModalCreateIsOpen={[Function]}
+      setModalExistedProductIsOpen={[Function]}
+      setModalExpiredLoginIsOpen={[Function]}
+      setModalProductSucceedIsOpen={[Function]}
       setName={[Function]}
       setQualification={[Function]}
       setReference={[Function]}
@@ -72,13 +79,29 @@ exports[`Probando el componente <FormProductCreate/> Deberia mostrar <FormProduc
       setSelectedCategory={[Function]}
       setSelectedCity={[Function]}
       setSelectedFeatures={[Function]}
+      tituloBoton="Crear"
     />
     <ForwardRef
       center={true}
       onClose={[Function]}
       open={false}
     >
-      <CreateProductModal />
+      <ConfirmProductModal
+        accion="crear el producto"
+        closeModalConfirm={[Function]}
+        funcionProducto={[Function]}
+        setModalConfirmIsOpen={[Function]}
+      />
+    </ForwardRef>
+    <ForwardRef
+      center={true}
+      onClose={[Function]}
+      open={false}
+    >
+      <ProductModalSucceed
+        closeModal={[Function]}
+        icon="tildeOk.svg"
+      />
     </ForwardRef>
   </div>
 </section>
@@ -95,10 +118,19 @@ exports[`Probando el componente <FormProductUpdate/> Deberia mostrar <FormProduc
       address=""
       cancellationPolicy=""
       description=""
+      enviarDatos={[Function]}
+      errorCamposVacios=""
       healthAndSecurity=""
       images={Array []}
+      modalExpiredLoginIsOpen={false}
       name=""
-      reference=""
+      qualification={
+        Object {
+          "campo": "",
+          "error": "",
+          "valido": false,
+        }
+      }
       rules=""
       selectedCategory={
         Object {
@@ -122,29 +154,61 @@ exports[`Probando el componente <FormProductUpdate/> Deberia mostrar <FormProduc
       setImages={[Function]}
       setLatitude={[Function]}
       setLongitude={[Function]}
-      setModalCreateIsOpen={[Function]}
+      setModalExpiredLoginIsOpen={[Function]}
+      setModalProductSucceedIsOpen={[Function]}
       setName={[Function]}
       setQualification={[Function]}
       setReference={[Function]}
       setRules={[Function]}
-      setSelectedCategory={
-        Object {
-          "id": "",
-          "name": "",
-        }
-      }
+      setSelectedCategory={[Function]}
       setSelectedCity={[Function]}
       setSelectedFeatures={[Function]}
+      tituloBoton="Modificar"
     />
     <ForwardRef
       center={true}
       onClose={[Function]}
       open={false}
     >
-      <CreateProductModal />
+      <ConfirmProductModal
+        accion="modificar el producto"
+        closeModalConfirm={[Function]}
+        funcionProducto={[Function]}
+        setModalConfirmIsOpen={[Function]}
+      />
+    </ForwardRef>
+    <ForwardRef
+      center={true}
+      onClose={[Function]}
+      open={false}
+    >
+      <ProductModalSucceed
+        closeModal={[Function]}
+        icon="tildeOk.svg"
+      />
     </ForwardRef>
   </div>
 </section>
+`;
+
+exports[`Probando el componente <ModalProductSucceed/> Deberia mostrar <ModalProductSucceed/> correctamente 1`] = `
+<div
+  className="containerCreateModal"
+>
+  <div
+    className={null}
+  >
+     
+    <img
+      alt="icon"
+    />
+  </div>
+  <h3 />
+  <p />
+  <button>
+    Ok
+  </button>
+</div>
 `;
 
 exports[`Probando el componente <ProductSelect/> Deberia mostrar <ProductSelect/> correctamente 1`] = `

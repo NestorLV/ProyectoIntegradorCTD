@@ -6,6 +6,7 @@ import mockAxios from "./__mocks__/axios";
 import AxiosSearchBlock from "./SearchBlock/AxiosSearchBlock"
 import {AxiosGetProductById,AxiosGetCalificarProducto, AxiosGetReservasPorProducto, AxiosGetProductScore, AxiosGetCategories, AxiosGetCities, AxiosGetFeatures } from "./Product/AxiosProduct"
 import  { AxiosGetProductosRecomendados, AxiosGetProductosFavoritos, AxiosGetProductosPorCiudadFechaYCategoria, AxiosCreateFavourite, AxiosGetProductoFavorito } from "./Cards/AxiosCards"
+import { AxiosGetReservationsByUserId } from "./MyBookings/AxiosMyBookings";
 
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
@@ -32,6 +33,28 @@ describe("Probando AxiosGetAllCities", () => {
        
     })
 })
+
+//PROBANDO AXIOS MYBOOKINGS
+
+describe("Probando AxiosGetReservationsByIdUser", () => {
+    it("Deberia llamarse al axios get una vez", async () => {
+        
+        let setData=jest.fn()
+        let setLoading=jest.fn()
+        let setErrorMessage=jest.fn()
+        
+        mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+            data:[
+                {}
+            ]
+        }))
+        
+        await AxiosGetReservationsByUserId(setData, setLoading, setErrorMessage)
+        expect(mockAxios.get).toHaveBeenCalledTimes(1)
+       
+    })
+})
+
 
 //PROBANDO ARCHIVO AXIOS PRODUCT
 

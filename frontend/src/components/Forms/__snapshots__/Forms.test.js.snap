@@ -171,6 +171,7 @@ exports[`Probando el componente <FormCreate/> Deberia mostrar <FormCreate/> corr
         className="inputLabel boton"
       >
         <button
+          id="butCreate"
           type="submit"
         >
           Crear cuenta
@@ -305,6 +306,7 @@ exports[`Probando el componente <FormLogin/> Deberia mostrar <FormLogin/> correc
         className="inputLabel boton"
       >
         <button
+          id="login"
           type="submit"
         >
           Ingresar
