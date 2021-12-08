@@ -2,14 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Styles from './styles.module.css';
 import iconLocation from "./img/IconLocation.svg";
 import { Link } from "react-router-dom";
-import { Modal } from 'react-responsive-modal';
 import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
-import Icons from "../Product/icons/Icons";
-import ConfirmProductModal from '../Administrator/Product/ConfirmProductModal';
-import ModalProductSucceed from "../Administrator/Product/ModalProductSucceed";
-import tildeOk from "../Administrator/icons/tildeOk.svg"
-import { AxiosCreateFavourite, AxiosDeletedMark } from '../../axiosCollection/Cards/AxiosCards';
 import axios from 'axios';
 
 export default function Book({ id, startDate, endDate, reservationId }) {
@@ -46,7 +40,6 @@ export default function Book({ id, startDate, endDate, reservationId }) {
         console.log(error.message);
       })
   }
-
 
     let loggued = sessionStorage.getItem("log");
 
@@ -96,5 +89,4 @@ export default function Book({ id, startDate, endDate, reservationId }) {
             </div>
         }</>
     );
-
 }
