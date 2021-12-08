@@ -124,7 +124,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
                     </div>
                     <MenuButton show={showBurger} handleShow={handleShow} />
                 </div>
-                <MenuBurger handleFavouriteClick={handleFavouriteClick} show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={sessionStorage.getItem("iniciales")} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
+                <MenuBurger admin={admin} handleFavouriteClick={handleFavouriteClick} show={showBurger} handleHide={handleHide} isLogged={isLogged} iniciales={sessionStorage.getItem("iniciales")} activeLogin={activeLogin} activeCreate={activeCreate} handleLogOut={handleLogOut} handleFavourite={handleFavourite} />
                 <div className={userMenu ? `${Styles.headerOptions} ${Styles.userOptions}` : Styles.hideButton}/* className={Styles.closeNav} */ /* onMouseLeave={handleCloseNav} */>
                     <Link to="/">
                         <h4 className={Styles.seeMyAccount} onClick={handleFavouriteClick}>Ver favoritos</h4>

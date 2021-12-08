@@ -9,7 +9,7 @@ import { MenuBurgerWrapper } from "./MenuBurgerWrapped.jsx";
 import Share from '../../components/Product/Share';
 import iconSocial from "./img/icon-share.svg"
 
-export default function MenuMobile({ handleFavouriteClick, show, handleHide, isLogged, iniciales, activeLogin, activeCreate, handleLogOut }) {
+export default function MenuMobile({ admin, handleFavouriteClick, show, handleHide, isLogged, iniciales, activeLogin, activeCreate, handleLogOut }) {
 
     const hideObject = (isLogged) ? "hide" : null; //Para esconder los botones cuando esta logueado
     const showObject = (isLogged) ? null : "hide"; //Para que se vea el avatar cuando se loguea
@@ -42,14 +42,18 @@ export default function MenuMobile({ handleFavouriteClick, show, handleHide, isL
                     <Link to="/mybookings">
                         <p>Mis reservas</p>
                     </Link>
-                    <img src={line} alt="" />
-                    <Link to="/product/create">
-                        <p>Crear Producto</p>
-                    </Link>
-                    <img src={line} alt="" />
-                    <Link to="/product/update">
-                        <p>Modificar Producto</p>
-                    </Link>
+                    {admin &&
+                        <div>
+                            <img src={line} alt="" />
+                            <Link to="/product/create">
+                                <p>Crear Producto</p>
+                            </Link>
+                            <img src={line} alt="" />
+                            <Link to="/product/update">
+                                <p>Modificar Producto</p>
+                            </Link>
+                        </div>
+                    }
                 </div>
                 <div className={`botones ${hideObject} ${(!activeLogin && activeCreate) ? "subir" : null}`}>
 
@@ -64,7 +68,7 @@ export default function MenuMobile({ handleFavouriteClick, show, handleHide, isL
                     <img className="iconsImgMobile" src={line} alt="" />
                 </div>
                 <div className="iconsMobile">
-                    
+
                     <a href="https://www.facebook.com/profile.php?id=100074545225635" target="_blank" rel="noreferrer" ><img src={logoFb} alt="" /></a>
                     <a href="https://www.linkedin.com/in/world-guest-2b195b225/" target="_blank" rel="noreferrer" ><img src={logoLinkedIn} alt="" /></a>
                     <a href="https://twitter.com/WorldGuest2" target="_blank" rel="noreferrer" > <img src={logoTwitter} alt="" /></a>
