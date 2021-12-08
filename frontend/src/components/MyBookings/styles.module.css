@@ -27,6 +27,12 @@ a:active {
   justify-content: space-between;
 }
 
+.sinReservas{
+  font-size: 22px;
+  font-weight: 700;
+  padding-top: 10px;
+}
+
 .cardBox {
   align-items: center;
   background-color: white;
@@ -174,7 +180,6 @@ div.buttons button.create:hover {
   border: 2px solid  #ffd6c6;
   cursor: pointer;
 }
-
 
 
 .cardInfo {
@@ -450,6 +455,7 @@ min-width: 80px;
   .cardsBox{
     justify-content: center;
   }
+  
 }
 
 @media all and (max-width: 769px) {

@@ -3,6 +3,7 @@ import Styles from "./styles.module.css";
 import StylesApp from "../../App.module.css";
 import Book from "./Book.jsx";
 import arrow from "./img/arrow.svg";
+import TitleBar from "../Product/TitleBar";
 import { AxiosGetProductosFavoritos } from "../../axiosCollection/Cards/AxiosCards";
 import axios from "axios";
 
@@ -22,7 +23,7 @@ export default function MyBookings(props) {
       .then(response => {
         setData(response.data);
         setLoading(false);
-        console.log(response.data,"data mybookings");
+        console.log(response.data, "data mybookings");
       })
       .catch(error => {
         setErrorMessage(error.message);
@@ -37,8 +38,6 @@ export default function MyBookings(props) {
       (numberPage - 1) * limitCardPerPage,
       numberPage * limitCardPerPage
     );
-
-
 
   const indexPages = () => {
     let pages = [];
@@ -60,7 +59,7 @@ export default function MyBookings(props) {
     return pages;
   };
 
- 
+
   return errorMessage && loading ? (
     <div className={`${StylesApp.delimiter}`}>
       <div className={`${Styles.cardsBlock} ${StylesApp.delimiterChild}`}>
@@ -69,40 +68,44 @@ export default function MyBookings(props) {
       </div>
     </div>
   ) : (
-    <div className={`${StylesApp.delimiter}`}>
-      <div className={`${Styles.cardsBlock} ${StylesApp.delimiterChild}`}>
-        <h2>Mis Reservas</h2>
-        <div className={Styles.cardsBox}>
-          {dataLimited().map((e) => (
-            <Book
-              key={e.id}
-              id={e.productId}
-              reservationId={e.id}
-              startDate={e.startDate}
-              endDate={e.endDate}
-            />
-          ))}
-        </div>
-        <div className={Styles.pages}>
-          {numberPage > 1 && (
-            <img
-              className={Styles.left}
-              onClick={() => setNumberPage(numberPage - 1)}
-              src={arrow}
-              alt="arrowLeft"
-            />
-          )}
-          {indexPages()}
-          {numberPage < indexPages().length && (
-            <img
-              className={Styles.right}
-              onClick={() => setNumberPage(numberPage + 1)}
-              src={arrow}
-              alt="arrowRight"
-            />
-          )}
+    <>
+      <TitleBar name="Mis reservas" goBack={props.goBack} />
+      <div className={`${StylesApp.delimiter}`}>
+        <div className={`${Styles.cardsBlock} ${StylesApp.delimiterChild}`}>
+          {data.length != 0 ?
+            <div className={Styles.cardsBox}>{
+             dataLimited().map((e) => (
+              <Book
+                key={e.id}
+                id={e.productId}
+                reservationId={e.id}
+                startDate={e.startDate}
+                endDate={e.endDate}
+              />
+              ))}
+            </div>
+            : <div className={Styles.sinReservas}>No hay reservas disponibles</div>}
+          <div className={Styles.pages}>
+            {numberPage > 1 && (
+              <img
+                className={Styles.left}
+                onClick={() => setNumberPage(numberPage - 1)}
+                src={arrow}
+                alt="arrowLeft"
+              />
+            )}
+            {indexPages()}
+            {numberPage < indexPages().length && (
+              <img
+                className={Styles.right}
+                onClick={() => setNumberPage(numberPage + 1)}
+                src={arrow}
+                alt="arrowRight"
+              />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
