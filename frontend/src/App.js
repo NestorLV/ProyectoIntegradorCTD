@@ -9,8 +9,8 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Booking from "./components/booking/Booking.jsx";
 import './App.module.css';
-
 import CreateProduct from "./components/Administrator/Product/CreateProduct";
+import MyBookings from "./components/MyBookings/MyBookings.jsx";
 
 function App() {
   
@@ -83,6 +83,8 @@ function App() {
           <Route exact path={"/product/update"} component={() => role === "ADMIN" && <UpdateProduct goBack={goBack}/>} />
           <Route exact path={"/product/:id"} render={() => <Product setBookingWithoutLogin={setBookingWithoutLogin} goBack={goBack} setLastLocation={setLastLocation} lastLocation={lastLocation} />} />   
           <Route exact path={"/product/:id/reserva"} component={Booking}/>    
+          <Route exact path={"/mybookings"} component={MyBookings}/>    
+          
           <Route path="*"> <NotFound /> </Route>
         </Switch>
       </LayoutPrincipal>

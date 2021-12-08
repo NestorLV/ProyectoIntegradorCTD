@@ -130,7 +130,7 @@ export default function Header({ setLastLocation, setBookingWithoutLogin, setLoa
                         <h4 className={Styles.seeMyAccount} onClick={handleFavouriteClick}>Ver favoritos</h4>
                     </Link>
                     <img src={lineOrange} alt="" />
-                    <Link to="/">
+                    <Link to="/mybookings">
                         <h4 className={Styles.seeMyAccount}>Mis reservas</h4>
                     </Link>
                     <img src={lineOrange} alt="" />
