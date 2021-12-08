@@ -5,15 +5,6 @@ import Styles from "./styles.module.css"
 
 function SearchForm({ borrarCity, setBorrarCity, borrarDate, setBorrarDate, handleSearch, handleCity, setStartDate, setEndDate, startDate, endDate }) {
 
-  /*const onClear = () => {
-    selectInputRef.current.select.clearValue();
-  };*/
-
-  //const selectInputRef = useRef();
-  //onClear={onClear} selectInputRef={selectInputRef} VA EN SELECTEDCITY Y SELECTEDDATE
-
-  
-
   return (
     <form className={Styles.gridContainer} action="">
       <div className={`${Styles.iconSelectBox} grid-item`}>

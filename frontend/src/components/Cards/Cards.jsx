@@ -11,6 +11,8 @@ import {
 } from "../../axiosCollection/Cards/AxiosCards";
 
 export default function Cards({
+  setBorrarCity, 
+  setBorrarDate,
   setLastLocation,
   handleClean,
   category,
@@ -66,20 +68,13 @@ export default function Cards({
         endDate,
         category
       );
-      console.log(category, "category");
-      console.log(startDate);
-      console.log(endDate);
-      console.log("Ingreso al segundo if");
     } else if (favourite) {
       AxiosGetProductosFavoritos(setData, setErrorMessage);
       setListadoFavoritos(data);
       setTitulo(`Favoritos`);
-      console.log("Ingreso al 3 if");
     } else {
       setErrorMessage("Error");
       setLoading(false);
-      console.log("Ingreso al 4 if");
-
     }
     setNumberPage(1);
   }, [category, clickBusqueda, favourite, clickSeeFavourites]);
@@ -130,6 +125,8 @@ export default function Cards({
             setEndDate={setEndDate}
             setSearch={setSearch}
             setFavourite={setFavourite}
+            setBorrarCity={setBorrarCity} 
+            setBorrarDate={setBorrarDate}
           />
         </h2>
         <div className={Styles.cardsBox}>
