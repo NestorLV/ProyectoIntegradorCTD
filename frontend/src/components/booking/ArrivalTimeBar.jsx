@@ -72,7 +72,7 @@ export default function ArrivalTimeBar({errorBookingArrivalTime, setArrivalSched
             <h3>Tu horario de llegada</h3>
             <div>
                 <h4>Tu habitación va a estar lista para el check-in entre las 10:00 AM y las 11:00 PM</h4>
-                <label>Indicá tu horario estimado de llegada</label>
+                <label>Indicá tu horario estimado de llegada*</label>
                 <div className={Styles.selectContainer}>
                     <Select 
                         options={options} 
