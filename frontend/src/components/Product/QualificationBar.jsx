@@ -4,7 +4,7 @@ import Styles from "./styles.module.css";
 import { AxiosCalificarProducto, AxiosGetProductScore, AxiosResetPuntuacion } from "../../axiosCollection/Product/AxiosProduct";
 
 export default function QualificationBar({ id }) {
-    const [starIndex, setStarIndex] = useState();
+    const [starIndex, setStarIndex] = useState(0);
     const [submit, setSubmit] = useState(false);
     const [calificacion_text, setCalificacion_text] = useState(`Puntuación: ${starIndex === 0 ? "" : starIndex}`);
     const [errorMessage, setErrorMessage] = useState("");  
@@ -15,7 +15,9 @@ export default function QualificationBar({ id }) {
     
     useEffect(()=>{
         AxiosGetProductScore(sessionStorage.getItem("email"), id, setStarIndex);
+        console.log(starIndex,"starIndex useEffect");
         setCalificacion_text(`Seleccione puntuación`);
+
     },[])
     
 
@@ -41,8 +43,7 @@ export default function QualificationBar({ id }) {
     }
 
     const handleReset = () => {
-        AxiosResetPuntuacion(sessionStorage.getItem("email"), id, setStarIndex)
-        setSubmit(false);
+        setStarIndex(0);
         setCalificacion_text(`Seleccione puntuación`);
     }
 

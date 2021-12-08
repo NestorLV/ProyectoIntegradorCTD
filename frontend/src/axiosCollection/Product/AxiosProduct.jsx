@@ -27,7 +27,6 @@ function AxiosCalificarProducto(starIndex, id, setCalificacion_text, setErrorMes
             if (response.status === 200) {
                 setCalificacion_text(`Se envió correctamente la puntuación de: ${starIndex}`);
             }
-
         })
         .catch((error) => {
             setErrorMessage(error);
@@ -67,22 +66,13 @@ function AxiosGetProductScore(email, idProduct, setStartIndex) {
             }
         })
         .then((response) => {
-            setStartIndex(response.data.score);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}
-
-function AxiosResetPuntuacion(email, idProduct, setStartIndex) {
-    axios
-        .put(`${baseURL}products/scores/resetScore/${email}/${idProduct}`, {
-            headers: {
-                "Authorization": `Bearer ${sessionStorage.getItem("token")}`
-            }
-        })
-        .then((response) => {
-            setStartIndex(response.data.score);
+            console.log(response.data.score,"response.data.score"); 
+            if(response.data.score !== undefined){
+               setStartIndex(response.data.score); 
+            } else {
+                setStartIndex(0);
+            }          
+            
         })
         .catch((error) => {
             console.log(error);
