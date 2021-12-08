@@ -69,7 +69,8 @@ flex-direction: column;
   max-width: 520px;
 }
 
-input,
+.inputLabel input,
+.apellido input,
 .boton button {
   border:none;
   border-radius: 5px;
@@ -78,7 +79,7 @@ input,
   width: 100%;
 }
 
-input{
+.inputLabel input{
   padding-left: 10px;
 }
 
