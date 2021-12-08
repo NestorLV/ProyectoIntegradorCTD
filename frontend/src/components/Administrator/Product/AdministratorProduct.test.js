@@ -2,11 +2,11 @@ import React from "react";
 import { shallow, mount, render } from "enzyme";
 import "@testing-library/jest-dom";
 import CreateProduct from "./CreateProduct";
-import CreateProductModal from "./CreateProductModal";
+import ConfirmProductModal from "./ConfirmProductModal";
 import FormProduct from "./FormProduct";
 import FormProductCreate from "./FormProductCreate";
 import FormProductUpdate from "./FormProductUpdate";
-import OptionsSelect from "./OptionsSelect";
+import ModalProductSucceed from "./ModalProductSucceed";
 import ProductSelect from "./ProductSelect";
 import UpdateSelect from "./UpdateProduct";
 
@@ -33,16 +33,16 @@ describe("Probando el componente <CreateProduct/>", () => {
 
 })
 
-//PROBANDO ARCHIVO CREATE-PRODUCT-MODAL
+//PROBANDO ARCHIVO CONFIRM-PRODUCT-MODAL
 
-describe("Probando el componente <CreateProductModal/>", () => {
+describe("Probando el componente <ConfirmProductModal/>", () => {
     let wrapper;
     
     beforeEach(() => {
-        wrapper = shallow(<CreateProductModal/>)
+        wrapper = shallow(<ConfirmProductModal/>)
     });
 
-    it("Deberia mostrar <CreateProductModal/> correctamente", () => {
+    it("Deberia mostrar <ConfirmProductModal/> correctamente", () => {
         expect(wrapper).toMatchSnapshot();
     });
 
@@ -60,6 +60,12 @@ describe("Probando el componente <FormProduct/>", () => {
     it("Deberia mostrar <FormProduct/> correctamente", () => {
         expect(wrapper).toMatchSnapshot();
     });
+
+    it("Deberia llamar a la funcion handleClickImage al hacer click", () => {
+        wrapper.find('.containerCheckbox label').simulate("click")
+        expect(wrapper).toMatchSnapshot();
+    });
+
 
 })
 
@@ -93,20 +99,20 @@ describe("Probando el componente <FormProductUpdate/>", () => {
 
 })  
 
-//PROBANDO ARCHIVO OPTIONS-SELECT
+//PROBANDO ARCHIVO MODAL-PRODUCT-SUCCEED
 
-describe("Probando el componente <OptionsSelect/>", () => {
+describe("Probando el componente <ModalProductSucceed/>", () => {
     let wrapper;
     
     beforeEach(() => {
-        wrapper = shallow(<OptionsSelect/>)
+        wrapper = shallow(<ModalProductSucceed/>)
     });
 
-    it("Deberia mostrar <OptionsSelect/> correctamente", () => {
+    it("Deberia mostrar <ModalProductSucceed/> correctamente", () => {
         expect(wrapper).toMatchSnapshot();
     });
 
-})  
+})
 
 //PROBANDO ARCHIVO PRODUCT-SELECT
 

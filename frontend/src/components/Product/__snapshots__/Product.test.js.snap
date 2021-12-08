@@ -930,7 +930,7 @@ exports[`Probando el componente <DateBar/> Deberia mostrar <DateBar/> correctame
               displayStaticWrapperAs="desktop"
               hintText="Dates Disabled"
               maxDate={null}
-              minDate={2021-12-05T12:14:44.590Z}
+              minDate={2021-12-08T20:02:09.473Z}
               onChange={[Function]}
               renderInput={[Function]}
               shouldDisableDate={[Function]}
@@ -1398,7 +1398,7 @@ exports[`Probando el componente <QualificationBar/> Deberia mostrar <Qualificati
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              className="starActive"
+              className="star"
               d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
             />
           </svg>
@@ -1416,7 +1416,7 @@ exports[`Probando el componente <QualificationBar/> Deberia mostrar <Qualificati
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              className="starActive"
+              className="star"
               d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
             />
           </svg>
@@ -1434,7 +1434,7 @@ exports[`Probando el componente <QualificationBar/> Deberia mostrar <Qualificati
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              className="starActive"
+              className="star"
               d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
             />
           </svg>
@@ -1452,7 +1452,7 @@ exports[`Probando el componente <QualificationBar/> Deberia mostrar <Qualificati
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              className="starActive"
+              className="star"
               d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
             />
           </svg>
@@ -1470,7 +1470,7 @@ exports[`Probando el componente <QualificationBar/> Deberia mostrar <Qualificati
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              className="starActive"
+              className="star"
               d="M7.27778 0L8.91174 4.83688H14.1994L9.92159 7.82624L11.5555 12.6631L7.27778 9.67376L3.00001 12.6631L4.63397 7.82624L0.3562 4.83688H5.64382L7.27778 0Z"
             />
           </svg>
@@ -1499,7 +1499,7 @@ exports[`Probando el componente <QualificationBar/> Deberia mostrar <Qualificati
       <div
         className="qualificationConfirm"
       >
-        Puntuación: undefined
+        Puntuación: 
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AxiosGetProductosFavoritos } from '../../axiosCollection/Cards/axiosCollection'
+import { AxiosGetProductosFavoritos } from '../../axiosCollection/Cards/AxiosCards';
 
 export default function ConsultarLike(idProd) {
 

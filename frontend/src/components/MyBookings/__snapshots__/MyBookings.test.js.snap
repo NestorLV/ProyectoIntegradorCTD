@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <Book/> Deberia mostrar <Book/> correctamente 1`] = `<Fragment />`;
+
+exports[`Probando el componente <MyBookings/> Deberia mostrar <MyBookings/> correctamente 1`] = `
+<Fragment>
+  <TitleBar
+    name="Mis reservas"
+  />
+  <div
+    className="delimiter"
+  >
+    <div
+      className="cardsBlock delimiterChild"
+    >
+      <div
+        className="sinReservas"
+      >
+        No hay reservas disponibles
+      </div>
+      <div
+        className="pages"
+      />
+    </div>
+  </div>
+</Fragment>
+`;

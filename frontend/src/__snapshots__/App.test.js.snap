@@ -30,6 +30,7 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
           handleClean={[Function]}
           handleSearch={[Function]}
           loading={false}
+          productoErroneo={false}
           search={false}
           setActiveCreate={[Function]}
           setActiveLogin={[Function]}
@@ -38,6 +39,7 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
           setEndDate={[Function]}
           setFavourite={[Function]}
           setLastLocation={[Function]}
+          setProductoErroneo={[Function]}
           setSearch={[Function]}
           setStartDate={[Function]}
           startDate={null}
@@ -61,6 +63,11 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
       <Route
         component={[Function]}
         exact={true}
+        path="/product/update/:id"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
         path="/product/update"
       />
       <Route
@@ -72,6 +79,11 @@ exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] 
         component={[Function]}
         exact={true}
         path="/product/:id/reserva"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/mybookings"
       />
       <Route
         path="*"

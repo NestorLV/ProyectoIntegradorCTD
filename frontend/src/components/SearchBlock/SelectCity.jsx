@@ -4,7 +4,7 @@ import Select from 'react-select';
 import CityOption from './CityOption';
 import vector from './img/Vector.png'
 import localizador from './img/localizador.png'
-import AxiosGetAllCities from "../../axiosCollection/SearchBlock/AxiosSearchBlock";
+import {AxiosGetAllCities} from "../../axiosCollection/SearchBlock/AxiosSearchBlock";
 
 
 function SelectCity({ handleCity, borrarCity, setBorrarCity }) {
