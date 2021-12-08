@@ -8,8 +8,7 @@
   width: 100%; 
   background: linear-gradient(-45deg, var(--tertiary-color),  rgb(236, 236, 236), var(--tertiary-color), var(--tertiary-color));
   background-size: 800%;
-  animation: fondo 5s ease-in-out;
-  transition: all 2s;
+  animation: fondo 4s ease-in-out; 
 }
 
 @keyframes fondo {
