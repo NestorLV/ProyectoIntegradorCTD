@@ -98,7 +98,7 @@ export default function FormProductCreate({ categories, cities, features, titleM
                     modalExistedProductIsOpen={modalExistedProductIsOpen} setModalExistedProductIsOpen={setModalExistedProductIsOpen}
                 />
                 <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
-                    <ConfirmProductModal accion="crear" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={crearProducto} closeModalConfirm={closeModalConfirm}/>
+                    <ConfirmProductModal accion="crear el producto" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={crearProducto} closeModalConfirm={closeModalConfirm}/>
                 </Modal>
                 <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
                     <ModalProductSucceed title={titleModal} message={messageModal} closeModal={closeModalSucceed} icon={tildeOk}/>

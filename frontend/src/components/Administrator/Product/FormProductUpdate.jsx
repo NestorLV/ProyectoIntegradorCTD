@@ -114,7 +114,7 @@ export default function FormProductUpdate({ product, categories, cities, feature
                     errorCamposVacios={errorCamposVacios} modalExpiredLoginIsOpen={modalExpiredLoginIsOpen} setModalExpiredLoginIsOpen={setModalExpiredLoginIsOpen}
                 />
                 <Modal open={modalConfirmIsOpen} onClose={closeModalConfirm} center>
-                    <ConfirmProductModal accion="Modificar" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={modificarProducto} closeModalConfirm={closeModalConfirm} />
+                    <ConfirmProductModal accion="modificar el producto" setModalConfirmIsOpen={setModalConfirmIsOpen} funcionProducto={modificarProducto} closeModalConfirm={closeModalConfirm} />
                 </Modal>
                 <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
                     <ModalProductSucceed title={titleModal} message={messageModal} closeModal={closeModalSucceed} icon={tildeOk}/>

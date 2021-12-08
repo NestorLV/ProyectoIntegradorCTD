@@ -92,7 +92,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     })
 
     function eliminarProducto() {
-        closeModalConfirmDeleted()
+        //closeModalConfirmDeleted()
         AxiosDeletedMark(id, openModalSucceed, openModalErrorProductoConReservas)
     }
 
@@ -164,7 +164,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                                 <button className={`${Styles.cardButton2} ${Styles.cardButtonModify}`} onClick={openModalConfirmDeleted}>Eliminar</button>
                             </div>
                             <Modal open={modalConfirmDeletedIsOpen} onClose={closeModalConfirmDeleted} center>
-                                <ConfirmProductModal accion="eliminar" setModalConfirmIsOpen={setModalConfirmDeletedIsOpen} funcionProducto={eliminarProducto} closeModalConfirm={closeModalConfirmDeleted} />
+                                <ConfirmProductModal accion="eliminar el producto" setModalConfirmIsOpen={setModalConfirmDeletedIsOpen} funcionProducto={eliminarProducto} closeModalConfirm={closeModalConfirmDeleted} />
                             </Modal>
                             <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
                                 <ModalProductAviso title="Operación confirmada." message="Se ha borrado el producto exitosamente." closeModal={closeModalSucceed} icon={tildeOk} />

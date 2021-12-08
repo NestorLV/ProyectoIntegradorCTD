@@ -4,6 +4,10 @@ import iconLocation from "./img/IconLocation.svg";
 import { Link } from "react-router-dom";
 import ScoreStar from '../Product/ScoreStar';
 import ScoreDescription from '../Product/ScoreDescription';
+import { Modal } from 'react-responsive-modal';
+import ConfirmProductModal from '../Administrator/Product/ConfirmProductModal';
+import ModalProductAviso from "../Administrator/Product/ModalProductSucceed";
+import tildeOk from "../Administrator/icons/tildeOk.svg"
 import axios from 'axios';
 
 export default function Book({ id, startDate, endDate, reservationId }) {
@@ -11,6 +15,8 @@ export default function Book({ id, startDate, endDate, reservationId }) {
     const [data, setData] = useState({});
     const [admin, setAdmin] = useState(true);
     const [loading, setLoading] = useState(true);
+    const [modalConfirmDeletedIsOpen, setModalConfirmDeletedIsOpen] = useState(false)
+    const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
 
     useEffect(() => {
         axios.get(`http://localhost:8080/products/get/${id}`)
@@ -30,18 +36,36 @@ export default function Book({ id, startDate, endDate, reservationId }) {
         }
     }, [role])
 
-     const deleteReservation = (id) => {
-    axios.delete(`http://localhost:8080/reservations/delete/${reservationId}`)
-      .then(response => {
-        console.log(response.data, `delete reservation ${id}`);
-        window.location.href = "/mybookings";
-      })
-      .catch(error => {
-        console.log(error.message);
-      })
-  }
+    const deleteReservation = (id) => {
+        axios.delete(`http://localhost:8080/reservations/delete/${reservationId}`)
+            .then(response => {
+                console.log(response.data, `delete reservation ${id}`);
+                openModalSucceed()
+                //window.location.href = "/mybookings";
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
 
     let loggued = sessionStorage.getItem("log");
+
+    const openModalSucceed = (() => {
+        setModalProductSucceedIsOpen(true)
+    })
+
+    const closeModalSucceed = (() => {
+        setModalProductSucceedIsOpen(false)
+        window.location.href = "/"
+    })
+
+    function openModalConfirmDeleted() {
+        setModalConfirmDeletedIsOpen(true)
+    }
+
+    function closeModalConfirmDeleted() {
+        setModalConfirmDeletedIsOpen(false)
+    }
 
     return (
         <>{!loading &&
@@ -82,8 +106,14 @@ export default function Book({ id, startDate, endDate, reservationId }) {
                         <Link to={`/product/${id}`} key={id} className={Styles.link}>
                             <button className={Styles.cardButton2}>Ver Locacion</button>
                         </Link>
-                        <button className={Styles.cardButton2} onClick={deleteReservation}>Eliminar</button>
+                        <button className={Styles.cardButton2} onClick={openModalConfirmDeleted}>Eliminar</button>
                     </div>
+                    <Modal open={modalConfirmDeletedIsOpen} onClose={closeModalConfirmDeleted} center>
+                        <ConfirmProductModal accion="eliminar la reserva" setModalConfirmIsOpen={setModalConfirmDeletedIsOpen} funcionProducto={deleteReservation} closeModalConfirm={closeModalConfirmDeleted} />
+                    </Modal>
+                    <Modal open={modalProductSucceedIsOpen} onClose={closeModalSucceed} center>
+                        <ModalProductAviso title="Operación confirmada." message="Se ha borrado la reserva exitosamente." closeModal={closeModalSucceed} icon={tildeOk} />
+                    </Modal>
                 </div>
 
             </div>
