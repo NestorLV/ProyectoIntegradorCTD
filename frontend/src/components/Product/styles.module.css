@@ -767,9 +767,6 @@ div.buttons button.create:hover {
   .contenedorReserva {    
     background-color: white;
   }  
-
- 
-  
 }
 
 @media all and (min-width:720px){
@@ -942,6 +939,12 @@ justify-content: space-evenly;
     flex-direction: column;
     width: 80%;
   }
+
+  .featuresBarChild .icons {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  
 }
 
 @media all and (max-width: 415px) {
