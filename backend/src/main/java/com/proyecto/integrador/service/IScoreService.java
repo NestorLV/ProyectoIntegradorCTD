@@ -18,6 +18,5 @@ public interface IScoreService {
     ScoreDTO update(ScoreDTO scores) throws FindByIdException;
     Set<ScoreDTO> findAllByIdProduct(Integer idProduct)throws FindByIdException;
     ScoreDTO findByUserAndProduct(String email, Integer idProduct) throws FindByIdException, BadRequestException;
-    ScoreDTO resetScore(String email, Integer idProduct) throws FindByIdException, BadRequestException;
     Double average(Integer idProduct);
 }

@@ -60,15 +60,13 @@ public class ScoreServiceImpl implements IScoreService {
     @Override
     public ScoreDTO save(ScoreDTO score) throws FindByIdException, BadRequestException {
         logger.debug("Iniciando método guardar puntuación");
-        UserResponseDTO user = userService.findByEmail(score.getUserEmail());
         Score scoreEntity = score.toEntity();
-        scoreEntity.setIdUser(user.getId());
-        List<Score> scores = scoresRepository.findAll();
-        scores.removeIf(s -> s.equals(scoreEntity));
-        ScoreDTO scoreDto = scoresRepository.save(scoreEntity).toDto();
-        scoreDto.setUserEmail(score.getUserEmail());
+        scoreEntity.setIdUser(userService.findByEmail(score.getUserEmail()).getId());
+        if(findByUserAndProduct(score.getUserEmail(),score.getProductId()) == null) {
+            scoresRepository.save(scoreEntity);
+        }
         logger.debug("Terminó la ejecución del método guardar puntuación");
-        return scoreDto;
+        return findByUserAndProduct(score.getUserEmail(),score.getProductId());
     }
 
     @Override
@@ -94,7 +92,7 @@ public class ScoreServiceImpl implements IScoreService {
 
     @Override
     public ScoreDTO update(ScoreDTO score) throws FindByIdException {
-        logger.debug("Iniciando método actualizar producto");
+        logger.debug("Iniciando método actualizar puntuación");
         if (!scoresRepository.existsById(score.getIdScore())) {
             throw new FindByIdException("No existe una puntuación con el id ingresado");
         }
@@ -127,28 +125,6 @@ public class ScoreServiceImpl implements IScoreService {
             }
         }
         logger.debug("Terminó la ejecución del método obtener puntuacion por usuario y producto");
-        return scoreDTOGuardado;
-    }
-
-    @Override
-    public ScoreDTO resetScore(String email, Integer idProduct) throws FindByIdException, BadRequestException {
-        logger.debug("Iniciando método obtener puntuacion por usuario y producto");
-        UserResponseDTO user = userService.findByEmail(email);
-        if (user == null) {
-            throw new BadRequestException("El usuario no existe");
-        }
-        List<ScoreDTO> scoresByUser = scoresRepository.findByIdUser(user.getId()).stream().map(Score::toDto).collect(Collectors.toList());
-        ScoreDTO scoreDTOGuardado = null;
-        for (ScoreDTO scoreDTO : scoresByUser) {
-            if (Objects.equals(scoreDTO.getProductId(), idProduct)) {
-                scoreDTOGuardado = scoreDTO;
-            }
-        }
-        if (scoreDTOGuardado != null) {
-            scoreDTOGuardado.setScore(null);
-            update(scoreDTOGuardado);
-        }
-        logger.debug("Terminó la ejecución del método reset score");
         return scoreDTOGuardado;
     }
 }
