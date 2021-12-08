@@ -1027,5 +1027,11 @@ justify-content: space-evenly;
     width: 90%;
   }
   
-  
+  .titleBarChild .iconLocation {
+    width: 21px;
+  }
+
+  .titleBarTitles h2{
+    font-size: 20px;
+  }
 }
