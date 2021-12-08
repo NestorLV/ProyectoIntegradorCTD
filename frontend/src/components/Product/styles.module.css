@@ -1,8 +1,15 @@
 /* Estilos de titleBar */
 
-.titleBar {
-  background-color: var(--tertiary-color);
+.titleBar {  
   color: white;
+  background: linear-gradient(-45deg, var(--tertiary-color),  rgb(236, 236, 236), var(--tertiary-color), var(--tertiary-color));
+  background-size: 800%;
+  animation: fondo 2s ease-in-out; 
+}
+
+@keyframes fondo {
+  0% { background-position: 0 50% } 
+  100% { background-position: 120% 50% }   
 }
 
 .titleBar .titleBarChild {
@@ -11,8 +18,9 @@
   justify-content: flex-start;
   min-height: 60px;
   padding-left: clamp(20px, 3.9%, 40px);
-  padding-right: clamp(20px, 3.9%, 40px);
+  padding-right: clamp(20px, 3.9%, 40px);  
 }
+
 .titleBarChild div p {
   text-transform: uppercase;
 }
