@@ -42,7 +42,7 @@ footer>.delimiterChild {
 @media all and (max-width: 415px) {
   /*Footer */
   .footer {
-    z-index: 50;
+    z-index: 99;
   }
   .icons {
     display: none;

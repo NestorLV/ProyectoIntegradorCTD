@@ -147,8 +147,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
                     {features.map((feature, index) => <div className={Styles.cardFeatures} key={index}>{Icons(feature.id - 1, "#31363F")}</div>)}
                 </div>
                 <div className={Styles.cardDescription}>
-                    <p className={despliegue ? Styles.desplegado : Styles.noDesplegado}>{description}</p>
-                    <span onClick={handleDespliegue}>{textoDespliegue}</span>
+                    <textarea className={Styles.cardTextarea}>{description}</textarea>
                 </div>
                 <div className={Styles.buttonsBox}>
                     <Link to={`/product/${id}`} key={id} className={Styles.link} onClick={handleLastLocation}>

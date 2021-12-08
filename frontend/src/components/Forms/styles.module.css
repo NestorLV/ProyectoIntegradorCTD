@@ -65,7 +65,7 @@ flex-direction: column;
 .containerFullname,
 .errorLogin {
   justify-content: space-between;  
-  width: 34vw;
+  width: 100%;
   max-width: 520px;
 }
 
@@ -79,7 +79,7 @@ flex-direction: column;
   width: 100%;
 }
 
-.inputLabel input{
+.inputLabel input, .apellido input{
   padding-left: 10px;
 }
 
@@ -96,7 +96,7 @@ form ul {
   height: 1rem;
   font-size: 12px;
   max-width: 520px;
-  width: 34vw;
+  width: 100%;
 }
 
 .error {
@@ -291,10 +291,6 @@ form ul {
 
   .apellido{
     margin-top: 5px;
-  }
-
-  .error{
-    width:45vw;
   }
 
   .login{

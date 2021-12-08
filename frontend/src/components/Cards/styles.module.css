@@ -292,23 +292,47 @@ min-width: 80px;
   font-size: var(--text3);
   font-weight: var(--font-bold);
   overflow: hidden;
-  padding-top: 5px;
+  padding: 5px 0;
   display: flex;
   flex-direction: column;
+  height: 22%;
+  width: 100%;
 }
 
-.cardDescription p.noDesplegado {
+.cardDescription textarea{
+  border:none;
+  height: 100%;
+  resize: none;
+}
+
+.cardDescription textarea .cardTextarea{
   font-weight: var(--font-bold);
   max-height: 35px;
-  overflow: hidden;
+  overflow: auto;
   padding: 0 2px; 
 
 }
 
-.cardDescription p.desplegado {
-  max-height: 67px;
-  overflow: hidden;
-  padding: 0 2px;
+.cardDescription textarea::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.cardDescription textarea::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.cardDescription textarea::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.cardDescription textarea::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.cardDescription textarea::-webkit-scrollbar-track {
+  border-radius: 10px;  
 }
 
 .cardDescription span {
@@ -524,7 +548,7 @@ min-width: 80px;
 @media all and (max-width: 415px){
 .modalFavourite{
   width: 70vw;
-  height:21vh
+  height:22vh
   
   }
   .modalFavourite p{
