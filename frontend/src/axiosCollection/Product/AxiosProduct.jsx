@@ -65,8 +65,7 @@ function AxiosGetProductScore(email, idProduct, setStartIndex) {
                 "Authorization": `Bearer ${sessionStorage.getItem("token")}`
             }
         })
-        .then((response) => {
-            console.log(response.data.score,"response.data.score"); 
+        .then((response) => {            
             if(response.data.score !== undefined){
                setStartIndex(response.data.score); 
             } else {
