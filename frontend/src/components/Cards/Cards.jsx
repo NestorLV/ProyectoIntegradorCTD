@@ -11,8 +11,6 @@ import {
 } from "../../axiosCollection/Cards/AxiosCards";
 
 export default function Cards({
-  setBorrarCity,
-  setBorrarDate,
   setLastLocation,
   handleClean,
   category,
@@ -36,6 +34,7 @@ export default function Cards({
   const limitCardPerPage = 8;
   const [numberPage, setNumberPage] = useState(1);
   const [titulo, setTitulo] = useState("Recomendaciones");
+  const [like, setLike] = useState(false);
   const startDate =
     new Date(propStartDate).setHours(0, 0, 0, 0) >=
     new Date().setHours(0, 0, 0, 0)
@@ -45,7 +44,7 @@ export default function Cards({
     new Date(propEndDate).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
       ? new Date(propEndDate)
       : null;
-  const [listadoFavoritos, setListadoFavoritos] = useState([]);
+  const [listadoFavoritos, setListadoFavoritos] = useState([]);  
 
   useEffect(() => {
     AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage);
@@ -123,8 +122,6 @@ export default function Cards({
         <h2>
           {titulo}
           <ClearFilters
-            setBorrarCity={setBorrarCity}
-            setBorrarDate={setBorrarDate}
             handleClean={handleClean}
             setCategory={setCategory}
             setCity={setCity}
@@ -152,7 +149,7 @@ export default function Cards({
               features={e.features}
               latitude={e.latitude}
               longitude={e.longitude}
-              address={e.address}
+              address={e.address}              
               favorite={
                 listadoFavoritos.find((pf) => pf.id === e.id) ? true : false
               }

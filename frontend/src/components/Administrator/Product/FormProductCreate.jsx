@@ -9,7 +9,6 @@ import FormProduct from "./FormProduct";
 import { AxiosCrearProducto } from "../../../axiosCollection/Product/AxiosProduct";
 import tildeOk from "../icons/tildeOk.svg"
 
-
 export default function FormProductCreate({ categories, cities, features, titleModal, messageModal }) {
     const [name, setName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState()
@@ -27,33 +26,13 @@ export default function FormProductCreate({ categories, cities, features, titleM
     const [imageTitle, setImageTitle] = useState()
     const [imageUrl, setImageUrl] = useState()
     const [images, setImages] = useState([])
-
     const [errorProduct, setErrorProduct] = useState("");
-
     const [errorCamposVacios, setErrorCamposVacios] = useState("")
-
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
     const [modalConfirmIsOpen, setModalConfirmIsOpen] = useState(false)
     const [modalExpiredLoginIsOpen, setModalExpiredLoginIsOpen] = useState(false)
-    const [modalExistedProductIsOpen, setModalExistedProductIsOpen] = useState(false)
-
-    /*console.log(name);
-    console.log(selectedCategory);
-    console.log(address);
-    console.log(selectedCity);
-    console.log(latitude);
-    console.log(longitude);
-    console.log(reference);
-    console.log(qualification);
-    console.log(description);
-    console.log(selectedFeatures);
-    console.log(rules);
-    console.log(healthAndSecurity);
-    console.log(cancellationPolicy);
-    console.log(selectedCity);
-    console.log(selectedCategory);
-*/
-
+    const [modalExistedProductIsOpen, setModalExistedProductIsOpen] = useState(false) 
+    
     const openModalSucceed = (() => {
         setModalProductSucceedIsOpen(true)
     })

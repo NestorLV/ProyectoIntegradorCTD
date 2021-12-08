@@ -11,15 +11,14 @@ function CreateProduct(props) {
     const [optionsFeatures, setOptionsFeatures] = useState([])
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    const title = "¡Gracias!";
+    const message = "Se ha creado exitosamente el producto";
 
     useEffect(() => {
         AxiosGetCategories(setLoading, setOptionsCategories, setErrorMessage)
         AxiosGetCities(setLoading, setOptionsCities, setErrorMessage)
         AxiosGetFeatures(setLoading, setOptionsFeatures, setErrorMessage)
-    }, [])
-
-    const title = "¡Gracias!";
-    const message = "Se ha creado exitosamente el producto";
+    }, [])    
 
     return (
         (errorMessage && loading) ?
