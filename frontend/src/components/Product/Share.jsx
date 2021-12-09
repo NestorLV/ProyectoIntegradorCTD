@@ -10,14 +10,14 @@ export default function Share(props) {
 
     function urlValue() {
         if (props.placeShareCall === "producto") {
-            return [`mailto:?Subject=Mira este alojamiento localhost:3000/product/${props.id}`,
-            `https://www.facebook.com/sharer/sharer.php?u=[localhost:3000/product/${props.id}]`, `https://twitter.com/intent/tweet?text=[Mira este producto ]&url=[localhost:3000/product/${props.id}]&hashtags=[GranAlojamiento]`,
-            `https://api.whatsapp.com/send?text=[Mira este alojamiento: localhost:3000/product/${props.id}]`]
+            return [`mailto:?Subject=Mira este alojamiento http://worldguestbooking.com/product/${props.id}`,
+            `https://www.facebook.com/sharer/sharer.php?u=[http://worldguestbooking.com/product/${props.id}]`, `https://twitter.com/intent/tweet?text=[Mira este producto ]&url=[http://worldguestbooking.com/product/${props.id}]&hashtags=[GranAlojamiento]`,
+            `https://api.whatsapp.com/send?text=[Mira este alojamiento: http://worldguestbooking.com/product/${props.id}]`]
         }
         else if (props.placeShareCall === "footer") {
-            return [`mailto:?Subject=Mira esta aplicación localhost:3000`,
-                `https://www.facebook.com/sharer/sharer.php?u=[localhost:3000]`, `https://twitter.com/intent/tweet?text=[Mira esta aplicación ]&url=[localhost:3000]&hashtags=[GranAlojamiento]`,
-                `https://api.whatsapp.com/send?text=[Mira esta aplicación: localhost:3000]`]
+            return [`mailto:?Subject=Mira esta aplicación http://worldguestbooking.com`,
+                `https://www.facebook.com/sharer/sharer.php?u=[http://worldguestbooking.com]`, `https://twitter.com/intent/tweet?text=[Mira esta aplicación ]&url=[http://worldguestbooking.com]&hashtags=[GranAlojamiento]`,
+                `https://api.whatsapp.com/send?text=[Mira esta aplicación: http://worldguestbooking.com]`]
         }
     }
 

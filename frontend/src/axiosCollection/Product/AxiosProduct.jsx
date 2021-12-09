@@ -65,13 +65,13 @@ function AxiosGetProductScore(email, idProduct, setStartIndex) {
                 "Authorization": `Bearer ${sessionStorage.getItem("token")}`
             }
         })
-        .then((response) => {            
-            if(response.data.score !== undefined){
-               setStartIndex(response.data.score); 
+        .then((response) => {
+            if (response.data.score !== undefined) {
+                setStartIndex(response.data.score);
             } else {
                 setStartIndex(0);
-            }          
-            
+            }
+
         })
         .catch((error) => {
             console.log(error);
@@ -148,21 +148,19 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`
             }
         })
-        .then(product => {
-            console.log("primer post con éxito")
+        .then(product => {            
             setErrorProduct("")
-            let idProduct = product.data.id;
-            console.log(qualificationInt, "qualificationint");
+            let idProduct = product.data.id;           
             axios
                 .post(`http://localhost:8080/products/scores/create`, {
                     score: qualificationInt,
                     userEmail: sessionStorage.getItem('email'),
                     productId: idProduct
-                })                
+                })
                 .catch((error) => {
                     setErrorProduct(error);
                 });
-            images.forEach(image => {
+            images.forEach(image => {               
                 axios
                     .post(`http://localhost:8080/images/create`, {
                         title: image.title,
@@ -177,28 +175,30 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                         setErrorProduct(`Lamentablemente no se ha podido cargar la imagen ${image.title} debido a ${error} . Por favor, intente más tarde`)
                     });
             });
+            let featuresInt = []
             features.forEach(feature => {
-                let featureInt = parseInt(feature.id);
-                axios
-                    .post(`http://localhost:8080/features/updateproduct/${featureInt}/${idProduct}`, {},
-                        {
-                            headers: {
-                                Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                            }
-                        })
-                    .catch((error) => {
-                        setErrorProduct(`Lamentablemente no se ha podido cargar el atributo ${feature.value} debido a ${error} . Por favor, intente más tarde`)                        
-                    });
+                featuresInt.push(parseInt(feature.id));
             });
+            axios
+                .post(`http://localhost:8080/features/update/${idProduct}`,
+                    featuresInt,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${sessionStorage.getItem("token")}`
+                        }
+                    })
+                .catch((error) => {
+                    setErrorProduct(`Lamentablemente no se han podido cargar los atributos debido a ${error}. Por favor, intente más tarde`)
+                });
         })
         .then(() => {
             openModalSucceed()
         })
         .catch((error) => {
-            if (error.response.status === 400) {                
+            if (error.response.status === 400) {
                 openModalExistedProduct()
             };
-            if (error.response.status === 404) {                
+            if (error.response.status === 404) {
                 openModalExpiredLogin()
             };
             setErrorProduct("Lamentablemente el producto no ha podido crearse. Por favor, intente más tarde")
@@ -240,12 +240,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                     score: qualificationInt,
                     userEmail: sessionStorage.getItem('email'),
                     productId: idProduct
-                })
-                .then((response) => {
-                    if (response.status === 200) {
-                        console.log("Se envió correctamente la puntuación");
-                    }
-                })
+                })                
                 .catch((error) => {
                     setErrorProduct(error);
                 });
@@ -273,7 +268,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
             let featuresInt = []
             features.forEach(feature => {
                 featuresInt.push(parseInt(feature.id));
-            });            
+            });
             axios
                 .post(`http://localhost:8080/features/update/${idProduct}`,
                     featuresInt,
@@ -281,7 +276,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                         headers: {
                             Authorization: `Bearer ${sessionStorage.getItem("token")}`
                         }
-                    })                
+                    })
                 .catch((error) => {
                     setErrorProduct(`Lamentablemente no se han podido cargar los atributos debido a ${error}. Por favor, intente más tarde`)
                 });
@@ -290,7 +285,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
             openModalSucceed()
         })
         .catch((error) => {
-            if (error.response.status === 404) {                
+            if (error.response.status === 404) {
                 openModalExpiredLogin()
             };
             setErrorProduct(`Lamentablemente el producto no ha podido crearse debido a ${error}. Por favor, intente más tarde`)
