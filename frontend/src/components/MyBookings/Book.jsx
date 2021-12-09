@@ -39,16 +39,7 @@ export default function Book({ id, startDate, endDate, reservationId }) {
 
     const deleteReservation = (id) => {
         closeModalConfirmDeleted()
-        AxiosDeleteReservation(reservationId, id,openModalSucceed)
-        /*axios.delete(`http://localhost:8080/reservations/delete/${reservationId}`)
-            .then(response => {
-                console.log(response.data, `delete reservation ${id}`);
-                openModalSucceed()
-                //window.location.href = "/mybookings";
-            })
-            .catch(error => {
-                console.log(error.message);
-            })*/
+        AxiosDeleteReservation(reservationId, id,openModalSucceed)        
     }
 
     let loggued = sessionStorage.getItem("log");
@@ -96,7 +87,7 @@ export default function Book({ id, startDate, endDate, reservationId }) {
                     </div>
                     <div className={Styles.cardLocation}>
                         <img className={Styles.iconLocation} src={iconLocation} alt="" />
-                        {data.city.name},&#160;{data.country},&#160;{data.reference}
+                        {data.city.name},&#160;{data.city.country},&#160;{data.reference}
                     </div>
 
                     <div className={Styles.cardDescription}>

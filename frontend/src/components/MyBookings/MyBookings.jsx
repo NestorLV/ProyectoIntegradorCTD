@@ -19,17 +19,7 @@ export default function MyBookings(props) {
 
   useEffect(() => {
     AxiosGetProductosFavoritos(setListadoFavoritos, setErrorMessage);
-    AxiosGetReservationsByUserId(setData, setLoading, setErrorMessage);
-    /*axios.get(`http://localhost:8080/reservations/get/user/${sessionStorage.getItem("id")}`)
-      .then(response => {
-        setData(response.data);
-        setLoading(false);
-        console.log(response.data, "data mybookings");
-      })
-      .catch(error => {
-        setErrorMessage(error.message);
-        setLoading(false);
-      })*/
+    AxiosGetReservationsByUserId(setData, setLoading, setErrorMessage);    
     setNumberPage(1);
   }, []);
 

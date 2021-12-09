@@ -8,9 +8,7 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         { value: 'esquemaIncompleto', label: 'Esquema Incompleto' },
         { value: 'noVacunado', label: 'No Vacunado' }
     ]
-    /*const optionsC = () => (
-        <Select options={options} />
-    )*/
+    
     const customStyles = {
        
         control: () => ({
@@ -40,7 +38,6 @@ export default function FormBooking({ errorBooking, name, setName, surname, setS
         input: () => ({
             opacity: 0,
             width: 0,
-
         }),
 
         option: () => ({

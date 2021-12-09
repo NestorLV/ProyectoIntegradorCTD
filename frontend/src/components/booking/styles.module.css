@@ -132,6 +132,7 @@
   margin: 0 !important;
   outline: none;
   padding: 10px;
+  resize:none;
 }
 
 
