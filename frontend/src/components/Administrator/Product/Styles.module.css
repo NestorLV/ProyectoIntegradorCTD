@@ -191,6 +191,7 @@ h1{
     color: var(--tertiary-color);
     font-size: var(--text2);
     font-weight: 500;
+    outline: none;
     padding: 15px;
    resize: none;
 }

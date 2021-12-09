@@ -302,12 +302,14 @@ min-width: 80px;
 .cardDescription textarea{
   border:none;
   height: 100%;
+  outline: none;
   resize: none;
 }
 
 .cardDescription textarea .cardTextarea{
   font-weight: var(--font-bold);
   max-height: 35px;
+  
   overflow: auto;
   padding: 0 2px; 
 
