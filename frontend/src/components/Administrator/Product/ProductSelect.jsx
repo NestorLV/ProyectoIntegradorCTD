@@ -26,7 +26,7 @@ function ProductSelect({ handleProduct }) {
         address: "",
     });
     console.log(chosenProduct);
-    const baseURL = "http://localhost:8080/";
+    const baseURL = "http://worldguestbooking.com.ar:8080/";
 
     useEffect(() => {
         axios

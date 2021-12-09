@@ -92,7 +92,7 @@ function Card({ setLastLocation, image, cardCategory, name, city, country, descr
     })
 
     function eliminarProducto() {
-        //closeModalConfirmDeleted()
+        closeModalConfirmDeleted()
         AxiosDeletedMark(id, openModalSucceed, openModalErrorProductoConReservas)
     }
 

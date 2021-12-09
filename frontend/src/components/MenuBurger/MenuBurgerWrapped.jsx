@@ -69,7 +69,7 @@ export const MenuBurgerWrapper = styled.nav`
   
   .text h3.great {
     color:var(--quaternary-color);
-    opacity: 50%;
+    opacity: 0.5;
     text-align: right;
   }
   

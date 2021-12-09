@@ -137,7 +137,7 @@ div.loggedIn>div {
   position: relative;
   transform: rotate(45deg);
   width: 8px;
-  opacity: 50%;
+  opacity: 0.5;
   margin: 16px 0 0 6px;
   vertical-align: top;
 }
@@ -167,7 +167,7 @@ div.user div.text h3 {
 }
 
 div.user div.text h3.great {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 div.user div.text h3.name {
@@ -217,7 +217,7 @@ div.user div.close{
   position: relative;
   transform: rotate(45deg);
   width: 7px;
-  opacity: 50%;
+  opacity: 0.5;
   margin-left: 6px;
   vertical-align: top;
 }
@@ -238,11 +238,11 @@ div.user div.close{
 @keyframes fadeIn {
   from {
     top: 5%;
-    opacity: 20%;
+    opacity: 0.2;
   }
   to {
     top: 80px;
-    opacity: 100%;
+    opacity: 1;
   }
 }
 
@@ -353,11 +353,11 @@ div.mobile {
   @keyframes fadeIn {
     from {
       top: 5%;
-      opacity: 20%;
+      opacity: 0.2;
     }
     to {
       top: 99px;
-      opacity: 100%;
+      opacity: 1;
     }
   }
   

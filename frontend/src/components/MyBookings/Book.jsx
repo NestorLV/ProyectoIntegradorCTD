@@ -20,7 +20,7 @@ export default function Book({ id, startDate, endDate, reservationId }) {
     const [modalProductSucceedIsOpen, setModalProductSucceedIsOpen] = useState(false)
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/products/get/${id}`)
+        axios.get(`http://worldguestbooking.com.ar:8080/products/get/${id}`)
             .then(response => {
                 setData(() => response.data);
                 console.log(response.data, "data Book");

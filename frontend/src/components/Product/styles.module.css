@@ -320,6 +320,10 @@ div.buttons button.create:hover {
   outline: none;
 }
 
+.shareItem a:hover {
+  cursor: pointer;
+}
+
 .closeButton {
   background-color: transparent;
   border: none;

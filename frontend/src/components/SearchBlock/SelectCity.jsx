@@ -129,13 +129,7 @@ function SelectCity({ handleCity, borrarCity, setBorrarCity }) {
 
     singleValue: () => ({
       display: 'flex',
-    }),
-
-    input: () => ({
-     
-      opacity: "0",
-      width:"0"
-    }),
+    })
   }
 
   const options = data.map((city) => {
