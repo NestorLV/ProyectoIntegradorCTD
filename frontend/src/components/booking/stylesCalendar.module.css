@@ -1,0 +1,261 @@
+/* Estilos CalendarBar */
+
+.dateBar {
+  padding: 20px 0;
+}
+
+.contenedorInterno {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contenedorCalendario {
+  width: 100%;
+  min-width: 300px;
+  background-color: white;
+  box-shadow: 0 5px 5px grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border-radius: 25px;
+}
+
+.contenedorCalendario > div {
+  border-radius: 25px !important;
+}
+
+.buttonsDateBar {
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  justify-content: space-between;
+}
+
+.selectedDatesButton {
+  border: none;
+  border-radius: 5px;
+  font-size: 12pt;
+  font-weight: var(--font-bold);
+  padding: 0.4rem 3.5rem;
+  color: white;
+  background: #f0572d;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.selectedDatesButton:hover {
+  transform: scaleX(1.02);
+}
+
+.selectedDatesButton:active {
+  transform: scale(0.9);
+}
+
+.dateBar svg {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+}
+
+.dateBarTitleBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.dateBarTitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  
+}
+
+.dateBarTitle h2 {
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  font-weight: var(--font-bold);
+  margin: 10px 10px 10px 0;  
+  min-width: 400px;
+  position: relative;
+}
+
+.dateBarTitle svg path {
+  fill: var(--secondary-color); 
+}
+
+.infoBox {  
+  display: inline-block;
+  padding-left: 5px;
+}
+
+.calendarInfo {
+  width: 400px;
+  background-color: white;
+  border: 1px solid grey;
+  padding: 1px;
+  font-size: 10pt;
+  font-weight: bold;
+  position: absolute;
+  right: -420px;
+  top: 0;
+  z-index: 10;
+}
+
+
+
+.dateBarDayContainer {
+  display: flex;
+  color: var(--secondary-color);
+  font-size: var(--heading2);
+  font-weight: var(--font-bold); 
+  margin: 2px 30px 2px 0;
+}
+
+.dateBarDayBox {
+  background-color: var(--primary-color);
+  box-shadow: 2px 2px 4px var(--secondary-color);
+  color: white;
+  margin: 0 10px 20px 0;
+  padding: 8px 20px;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.dateBarTitleBoxClose {
+  position: relative;
+  display: inline;
+  left: 14px;
+  bottom: 9px;
+}
+
+.dateBarTitleBoxClose:hover {
+  cursor: pointer;
+}
+
+/*  media queries responsive */
+
+@media all and (min-width: 1080px) {
+  
+
+  .contenedorCalendario > div > div > div > div > div:first-child {
+    position: relative;
+    justify-content: center;
+  }
+
+  .contenedorCalendario > div > div > div > div > div:first-child > button:first-child {
+    background-color: #f0572d;
+    box-shadow: 0 3px 3px grey;
+    color: white;
+    position: absolute;
+    left: clamp(-20px,-8%,-45px);
+    transition: all 0.3s;
+    top: 150px;
+    z-index: 1;
+  }
+
+  .contenedorCalendario > div > div > div > div > div:first-child > button:hover {
+    transform: scale(1.1);
+  }
+
+  .contenedorCalendario > div > div > div > div > div:first-child > button:last-child {
+    background-color: #f0572d;
+    box-shadow: 0 3px 3px grey;
+    color: white;
+    position: absolute;
+    right: clamp(-20px,-8%,-45px);
+    top: 150px;
+    transition: all 0.3s;
+    z-index: 1;
+  } 
+
+ 
+}
+
+@media all and (min-width: 720px) {
+  .contenedorCalendario > div {
+    justify-content: center;
+    width: 100%;
+  }
+  .contenedorCalendario > div > div > div > div {
+    width: 46%;
+    
+  }
+  /* .contenedorCalendario > div > div > div > div > div, .contenedorCalendario > div > div > div > div > div:last-child > div> div  {
+    justify-content: space-between;
+  } */
+}
+
+@media all and (min-width: 415px) {
+  .contenedorCalendario > div > div > div {
+    justify-content: center;  }  
+} 
+
+@media all and (max-width: 1200px) {
+  .contenedorInterno {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}  
+
+@media all and (max-width: 900px) {
+  .dateBarTitle {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dateBar .dateBarTitleBox .dateBarTitle h2 {
+    min-width: 100%;  
+  }
+
+  .dateBarTitle h2 {    
+    margin: 2px 2px 2px 2px;
+  } 
+
+  /* .dateBarTitle svg, .calendarInfo {
+    margin: 10px;
+  }  
+ */
+}    
+
+@media all and (max-width: 680px) {   
+  .contenedorCalendario > div > div > div {
+    flex-direction: column;
+  }
+  .contenedorCalendario > div > div {
+    height: 100%;
+  }
+
+  .contenedorCalendario > div > div > div > div:first-child {
+    border-right: none;
+  }
+
+  .contenedorCalendario > div > div > div > div > div:nth-child(3) {
+    min-height: 260px !important;
+  }
+
+  .dateBarDayContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .calendarInfo {
+    width: 300px;
+    background-color: white;
+    border: 1px solid grey;
+    padding: 1px;
+    font-size: 10pt;
+    font-weight: bold;
+    position: absolute;
+    top: 40px;
+    right: 0;
+  }
+  
+}
+

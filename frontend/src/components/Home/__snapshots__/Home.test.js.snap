@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <Home/> Deberia mostrar <Home/> correctamente 1`] = `
+<Fragment>
+  <SearchBlock
+    borrarCity={false}
+    borrarDate={false}
+    setBorrarCity={[Function]}
+    setBorrarDate={[Function]}
+  />
+  <Categories />
+  <Cards
+    setBorrarCity={[Function]}
+    setBorrarDate={[Function]}
+  />
+  <ForwardRef
+    center={true}
+    onClose={[Function]}
+  >
+    <ProductModalSucceed
+      closeModal={[Function]}
+      icon="X"
+      message="El producto no existe."
+      title="Error"
+    />
+  </ForwardRef>
+</Fragment>
+`;

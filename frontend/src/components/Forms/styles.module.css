@@ -1,0 +1,348 @@
+.inputLabel,
+.formFlex {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerPrincipal{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: calc(100vh - 80px - 58px);
+  width: 100%;
+}
+
+.containerForm {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+ height:75%;
+  justify-content: space-evenly;
+  top: 0;
+  width: 35%;
+}
+
+.containerForm h3 {
+  color: var(--primary-color);
+  font-size: var(--heading1);
+  font-weight: var(--font-bold);
+  margin-bottom: 25px;
+  text-align: center;
+  width: 100%;
+}
+
+.formFlex {
+  align-items: center;
+  height: 54vh;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.login{
+  height: 35vh;
+}
+
+.fullName {
+  display: flex;
+  align-items: center;
+flex-direction: column;
+  width: 100%;
+}
+
+.containerFullname{
+  display: flex;
+ justify-content: space-around;
+}
+
+.inputLabel label {
+  color: var(--secondary-color);
+  font-size: var(--text2);
+  font-weight: var(--font-medium);
+}
+
+.inputLabel,
+.containerFullname,
+.errorLogin {
+  justify-content: space-between;  
+  width: 100%;
+  max-width: 520px;
+}
+
+.inputLabel input,
+.apellido input,
+.boton button {
+  border:none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px 2px #d1cfcf;
+  height: 40px;
+  width: 100%;
+}
+
+.inputLabel input, .apellido input{
+  padding-left: 10px;
+}
+
+.containerFullname input[type=text]{
+  width: 16.5vw;
+  max-width: 255px;
+}
+
+form ul {
+  height: 20px;
+}
+
+.errorContainer{
+  height: 1rem;
+  font-size: 12px;
+  max-width: 520px;
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 8pt;
+  font-weight: bold;
+  text-align: right;
+  
+}
+
+.boton button,
+.boton p {
+  align-self: center;
+  width: 206px;
+}
+
+.inputLabel button {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: var(--button2);
+  font-weight: var(--font-bold);
+  transition: all 0.3s;
+}
+
+.inputLabel button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.inputLabel button:active {  
+  transform: scale(0.85);
+}
+
+
+
+.inputLabel p,
+.inputLabel p a {
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.inputLabel p a {
+  color: #4285f4;
+}
+
+.inputError{
+  background-color: #FFE1E1;
+  border: solid 2px red;
+}
+
+.inputHidePassword{
+  position: relative;
+}
+
+.hidePassword{
+  position: absolute;
+  right:4px;
+  top:7px;
+  bottom:7px;
+  opacity: 0.7;
+}
+
+.confirm{
+  bottom:39.4%
+}
+
+.confirmPassword input{
+  justify-self: flex-start;
+}
+
+.passLogin{
+  bottom: 44.5vh;
+}
+
+.errorLogin{
+  background-color:rgba(255,0,0,.1);
+  border-radius: 8px;
+  color: #B00020;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px;
+  
+}
+.errorLogin div{
+  padding-left: 10px;
+}
+
+.hide{
+  display: none;
+}
+.modalConfirm{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height:22vh;
+  width:39vw;
+  border: 4px solid var(--primary-color); 
+
+}
+
+.modalConfirm p{
+  color: black;
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+  padding: 10px 5px;  
+}
+
+.modalConfirm p a{
+  text-decoration: black;
+}
+
+.modalConfirm button {
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid  var(--primary-color);
+  background-color: var(--primary-color);
+  color: white;
+  font-size: var(--button1);
+  font-weight: var(--font-bold);
+  padding: 5pt;
+  width: clamp(164px,22.2vw,206px);
+  transition: all 0.5s;
+}
+
+.modalConfirm button:hover {
+  background-color: #cf411d;
+  border: 2px solid  #b9411f;
+  transform: scale(1.1);
+
+}
+/* media queries */
+
+@media all and (min-height: 900px) {
+  .passLogin{
+    bottom: 50%;
+  }
+  .confirm{
+    bottom: 40%;
+  }
+  }
+
+  @media all and (min-height: 1200px) {
+    .passLogin{
+      bottom: 51%;
+    }
+    .confirm{
+      bottom: 41.5%;
+    }
+    }
+
+
+@media all and (max-width: 769px) {
+  .containerPrincipal{
+    height: calc(100vh - 99px - 58px);
+  }
+  .containerForm{
+   
+    width:50%;
+  }
+
+  input,
+  .boton button,
+  .error,
+  .containerFullname,
+  .containerFullname input[type=text],
+  .inputLabel,
+  .errorLogin{
+    width: 100%;
+  }
+
+  .formFlex{
+    height:55vh;
+    min-height: 400px;
+  }
+
+  .containerFullname {
+    flex-direction: column;
+  }
+
+  .containerFullname input[type=text]{
+    max-width: 100%;
+  }
+
+  .fullName{
+    align-items: center;
+  }
+
+  .apellido{
+    margin-top: 5px;
+  }
+
+  .login{
+    height:38vh;
+    min-height: 300px;
+  } 
+
+  .confirm{
+    bottom:34.3%
+  }
+
+  .passLogin{
+    bottom: 43.5vh;
+  }
+  
+}
+
+@media all and (max-width: 415px) {
+  .containerForm {
+    height: calc(100vh - 93px - 58px);    
+    justify-content: space-evenly;
+    width: 75%;
+  }
+
+  .containerForm h3 {
+    margin:0;
+   
+  }
+  
+  input,
+  .boton button,
+  .error{
+    width: 100%;
+  }
+
+  .inputLabel input[type=text]{
+    max-width: 320px;
+  }
+  .containerFullname{
+    width: 100%;
+  }
+  .confirm{
+    bottom:31.7%
+  }
+
+  .passLogin{
+    bottom: 36.6vh;
+  }
+  .formFlex{
+    height: 59vh;
+  }
+  .login{
+    height:40vh
+  }
+}

@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <App/> Deberia mostrar <App/> correctamente 1`] = `
+<BrowserRouter>
+  <LayoutPrincipal
+    handleClean={[Function]}
+    handleFavourite={[Function]}
+    iniciales=""
+    isLogged={false}
+    setBookingWithoutLogin={[Function]}
+    setLastLocation={[Function]}
+    setLoading={[Function]}
+    userName=""
+    userSurname=""
+  >
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+      >
+        <Home
+          category="All"
+          city=""
+          clickBusqueda={false}
+          clickSeeFavourites={false}
+          endDate={null}
+          favourite={false}
+          handleCategory={[Function]}
+          handleCity={[Function]}
+          handleClean={[Function]}
+          handleSearch={[Function]}
+          loading={false}
+          productoErroneo={false}
+          search={false}
+          setActiveCreate={[Function]}
+          setActiveLogin={[Function]}
+          setCategory={[Function]}
+          setCity={[Function]}
+          setEndDate={[Function]}
+          setFavourite={[Function]}
+          setLastLocation={[Function]}
+          setProductoErroneo={[Function]}
+          setSearch={[Function]}
+          setStartDate={[Function]}
+          startDate={null}
+        />
+      </Route>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/login"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/create"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/product/create"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/product/update/:id"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/product/update"
+      />
+      <Route
+        exact={true}
+        path="/product/:id"
+        render={[Function]}
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/product/:id/reserva"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/mybookings"
+      />
+      <Route
+        path="*"
+      >
+         
+        <NotFound />
+         
+      </Route>
+    </Switch>
+  </LayoutPrincipal>
+</BrowserRouter>
+`;

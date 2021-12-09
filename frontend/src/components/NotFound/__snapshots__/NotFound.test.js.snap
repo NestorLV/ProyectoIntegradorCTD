@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <NotFound/> Deberia mostrar <NotFound/> correctamente 1`] = `
+<section
+  className="delimiter"
+>
+  <div
+    className="box"
+  >
+    <div
+      className="titleBox"
+    >
+      <p
+        className="title"
+      >
+        Error 404
+      </p>
+      <h2>
+        No se ha encontrado la página solicitada
+      </h2>
+    </div>
+    <Link
+      to="/"
+    >
+      <button
+        className="button"
+      >
+        Página Principal
+      </button>
+    </Link>
+  </div>
+</section>
+`;

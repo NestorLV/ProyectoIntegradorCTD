@@ -1,0 +1,874 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <ArrivalTimeBar/> Deberia mostrar <ArrivalTimeBar/> correctamente 1`] = `
+<div
+  className="containerArrival"
+>
+  <h3>
+    Tu horario de llegada
+  </h3>
+  <div>
+    <h4>
+      Tu habitación va a estar lista para el check-in entre las 10:00 AM y las 11:00 PM
+    </h4>
+    <label>
+      Indicá tu horario estimado de llegada*
+    </label>
+    <div
+      className="selectContainer"
+    >
+      <ForwardRef
+        getOptionValue={[Function]}
+        options={
+          Array [
+            Object {
+              "label": <TimeOption
+                time="10:00 AM"
+              />,
+              "value": "10:00 AM",
+            },
+            Object {
+              "label": <TimeOption
+                time="11:00 AM"
+              />,
+              "value": "11:00 AM",
+            },
+            Object {
+              "label": <TimeOption
+                time="12:00 AM"
+              />,
+              "value": "12:00 AM",
+            },
+            Object {
+              "label": <TimeOption
+                time="01:00 PM"
+              />,
+              "value": "01:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="02:00 PM"
+              />,
+              "value": "02:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="03:00 PM"
+              />,
+              "value": "03:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="04:00 PM"
+              />,
+              "value": "04:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="05:00 PM"
+              />,
+              "value": "05:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="06:00 PM"
+              />,
+              "value": "06:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="07:00 PM"
+              />,
+              "value": "07:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="08:00 PM"
+              />,
+              "value": "08:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="09:00 PM"
+              />,
+              "value": "09:00 PM",
+            },
+            Object {
+              "label": <TimeOption
+                time="10:00 PM"
+              />,
+              "value": "10:00 PM",
+            },
+          ]
+        }
+        placeholder="Seleccionar hora"
+        styles={
+          Object {
+            "control": [Function],
+            "dropdownIndicator": [Function],
+            "indicatorsContainer": [Function],
+            "input": [Function],
+            "option": [Function],
+            "placeholder": [Function],
+            "singleValue": [Function],
+            "valueContainer": [Function],
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Probando el componente <CalendarBar/> Deberia mostrar <CalendarBar/> correctamente 1`] = `
+<div
+  className="dateBar"
+>
+  <div
+    className="dateBarTitleBox"
+  >
+    <div
+      className="dateBarTitle"
+    >
+      <h2>
+        Seleccioná tu fecha de reserva
+        <div
+          className="infoBox"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-info-circle fa-w-16"
+            data-icon="info-circle"
+            data-prefix="fas"
+            focusable="false"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </h2>
+    </div>
+    <div
+      className="dateBarDayContainer"
+    />
+  </div>
+  <div
+    className="contenedorInterno"
+  >
+    <div
+      className="contenedorCalendario"
+    >
+      <ThemeProvider
+        theme={
+          Object {
+            "breakpoints": Object {
+              "between": [Function],
+              "down": [Function],
+              "keys": Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ],
+              "only": [Function],
+              "unit": "px",
+              "up": [Function],
+              "values": Object {
+                "lg": 1200,
+                "md": 900,
+                "sm": 600,
+                "xl": 1536,
+                "xs": 0,
+              },
+            },
+            "components": Object {},
+            "direction": "ltr",
+            "mixins": Object {
+              "toolbar": Object {
+                "@media (min-width:0px) and (orientation: landscape)": Object {
+                  "minHeight": 48,
+                },
+                "@media (min-width:600px)": Object {
+                  "minHeight": 64,
+                },
+                "minHeight": 56,
+              },
+            },
+            "palette": Object {
+              "action": Object {
+                "activatedOpacity": 0.12,
+                "active": "rgba(0, 0, 0, 0.54)",
+                "disabled": "rgba(0, 0, 0, 0.26)",
+                "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                "disabledOpacity": 0.38,
+                "focus": "rgba(0, 0, 0, 0.12)",
+                "focusOpacity": 0.12,
+                "hover": "rgba(0, 0, 0, 0.04)",
+                "hoverOpacity": 0.04,
+                "selected": "rgba(0, 0, 0, 0.08)",
+                "selectedOpacity": 0.08,
+              },
+              "augmentColor": [Function],
+              "background": Object {
+                "default": "#fff",
+                "paper": "#fff",
+              },
+              "common": Object {
+                "black": "#000",
+                "white": "#fff",
+              },
+              "contrastThreshold": 3,
+              "divider": "rgba(0, 0, 0, 0.12)",
+              "error": Object {
+                "contrastText": "#fff",
+                "dark": "#c62828",
+                "light": "#ef5350",
+                "main": "#d32f2f",
+              },
+              "getContrastText": [Function],
+              "grey": Object {
+                "100": "#f5f5f5",
+                "200": "#eeeeee",
+                "300": "#e0e0e0",
+                "400": "#bdbdbd",
+                "50": "#fafafa",
+                "500": "#9e9e9e",
+                "600": "#757575",
+                "700": "#616161",
+                "800": "#424242",
+                "900": "#212121",
+                "A100": "#f5f5f5",
+                "A200": "#eeeeee",
+                "A400": "#bdbdbd",
+                "A700": "#616161",
+              },
+              "info": Object {
+                "contrastText": "#fff",
+                "dark": "#01579b",
+                "light": "#03a9f4",
+                "main": "#0288d1",
+              },
+              "mode": "light",
+              "primary": Object {
+                "contrastText": "#fff",
+                "dark": "rgb(168, 60, 31)",
+                "light": "rgb(243, 120, 87)",
+                "main": "#F0572D",
+              },
+              "secondary": Object {
+                "contrastText": "#fff",
+                "dark": "#7b1fa2",
+                "light": "#ba68c8",
+                "main": "#9c27b0",
+              },
+              "success": Object {
+                "contrastText": "#fff",
+                "dark": "#1b5e20",
+                "light": "#4caf50",
+                "main": "#2e7d32",
+              },
+              "text": Object {
+                "disabled": "rgba(0,0,0,0.38)",
+                "primary": "rgba(0, 0, 0, 0.87)",
+                "secondary": "rgba(0, 0, 0, 0.6)",
+              },
+              "tonalOffset": 0.2,
+              "warning": Object {
+                "contrastText": "#fff",
+                "dark": "#e65100",
+                "light": "#ff9800",
+                "main": "#ED6C02",
+              },
+            },
+            "shadows": Array [
+              "none",
+              "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+              "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)",
+              "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
+              "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)",
+              "0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12)",
+              "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)",
+              "0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)",
+              "0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)",
+              "0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)",
+              "0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)",
+              "0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12)",
+              "0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12)",
+              "0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12)",
+              "0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12)",
+              "0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12)",
+              "0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12)",
+              "0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12)",
+              "0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12)",
+              "0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12)",
+              "0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12)",
+              "0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12)",
+              "0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12)",
+              "0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)",
+              "0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)",
+            ],
+            "shape": Object {
+              "borderRadius": 4,
+            },
+            "spacing": [Function],
+            "transitions": Object {
+              "create": [Function],
+              "duration": Object {
+                "complex": 375,
+                "enteringScreen": 225,
+                "leavingScreen": 195,
+                "short": 250,
+                "shorter": 200,
+                "shortest": 150,
+                "standard": 300,
+              },
+              "easing": Object {
+                "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
+                "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
+                "easeOut": "cubic-bezier(0.0, 0, 0.2, 1)",
+                "sharp": "cubic-bezier(0.4, 0, 0.6, 1)",
+              },
+              "getAutoHeightDuration": [Function],
+            },
+            "typography": Object {
+              "body1": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "1.1428571428571428rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.00938em",
+                "lineHeight": 1.5,
+              },
+              "body2": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "1rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.01071em",
+                "lineHeight": 1.43,
+              },
+              "button": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "1rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.02857em",
+                "lineHeight": 1.75,
+                "textTransform": "uppercase",
+              },
+              "caption": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "0.8571428571428571rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.03333em",
+                "lineHeight": 1.66,
+              },
+              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+              "fontSize": 16,
+              "fontWeightBold": 700,
+              "fontWeightLight": 700,
+              "fontWeightMedium": 700,
+              "fontWeightRegular": 700,
+              "h1": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "6.857142857142857rem",
+                "fontWeight": 700,
+                "letterSpacing": "-0.01562em",
+                "lineHeight": 1.167,
+              },
+              "h2": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "4.285714285714286rem",
+                "fontWeight": 700,
+                "letterSpacing": "-0.00833em",
+                "lineHeight": 1.2,
+              },
+              "h3": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "3.4285714285714284rem",
+                "fontWeight": 700,
+                "letterSpacing": "0em",
+                "lineHeight": 1.167,
+              },
+              "h4": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "2.4285714285714284rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.00735em",
+                "lineHeight": 1.235,
+              },
+              "h5": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "1.7142857142857142rem",
+                "fontWeight": 700,
+                "letterSpacing": "0em",
+                "lineHeight": 1.334,
+              },
+              "h6": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "1.4285714285714284rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.0075em",
+                "lineHeight": 1.6,
+              },
+              "htmlFontSize": 16,
+              "overline": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "0.8571428571428571rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.08333em",
+                "lineHeight": 2.66,
+                "textTransform": "uppercase",
+              },
+              "pxToRem": [Function],
+              "subtitle1": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "1.1428571428571428rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.00938em",
+                "lineHeight": 1.75,
+              },
+              "subtitle2": Object {
+                "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                "fontSize": "1rem",
+                "fontWeight": 700,
+                "letterSpacing": "0.00714em",
+                "lineHeight": 1.57,
+              },
+            },
+            "zIndex": Object {
+              "appBar": 1100,
+              "drawer": 1200,
+              "mobileStepper": 1000,
+              "modal": 1300,
+              "snackbar": 1400,
+              "speedDial": 1050,
+              "tooltip": 1500,
+            },
+          }
+        }
+      >
+        <LocalizationProvider
+          dateAdapter={[Function]}
+        >
+          <ForwardRef(StaticDateRangePicker)
+            className="makeStyles-root-2"
+            displayStaticWrapperAs="desktop"
+            hintText="Dates Disabled"
+            maxDate={null}
+            minDate={2021-12-08T20:02:09.057Z}
+            onChange={[Function]}
+            renderInput={[Function]}
+            shouldDisableDate={[Function]}
+            showToolbar={false}
+            value={Array []}
+          />
+        </LocalizationProvider>
+      </ThemeProvider>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Probando el componente <DetailBar/> Deberia mostrar <DetailBar/> correctamente 1`] = `
+<div
+  className="detailBar"
+>
+  <h2>
+    Detalle de la Reserva
+  </h2>
+  <div>
+    <img
+      alt="imageHotel"
+    />
+    <div
+      className="detail"
+    >
+      <div
+        className="detailProduct"
+      >
+        <p />
+        <h3 />
+        <ScoreStar
+          starColor="var(--primary-color)"
+        />
+        <p>
+          <img
+            alt=""
+            className="iconLocation"
+            src="IconLocation.svg"
+          />
+          , 
+          , 
+        </p>
+      </div>
+      <div
+        className="detailCheck"
+      >
+        <div>
+          <p>
+            Check-in*:
+          </p>
+          <p />
+        </div>
+        <div>
+          <p>
+            Check-out*:
+          </p>
+          <p />
+        </div>
+      </div>
+      <button
+        onClick={[Function]}
+      >
+        Confirmar Reserva
+      </button>
+      <div
+        className="containerErrorBooking"
+      />
+      <ForwardRef
+        center={true}
+        onClose={[Function]}
+        open={false}
+      >
+        <Succeed />
+      </ForwardRef>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> correctamente 1`] = `
+<div
+  className="containerForm"
+>
+  <form>
+    <div
+      className="block"
+    >
+      <div
+        className="labelInputBooking"
+      >
+        <label
+          htmlFor="name"
+        >
+          Nombre*
+        </label>
+        <input
+          id="name"
+          name="name"
+          onChange={[Function]}
+          required={true}
+          type="text"
+        />
+      </div>
+      <div
+        className="labelInputBooking"
+      >
+        <label
+          htmlFor="surname"
+        >
+          Apellido*
+        </label>
+        <input
+          id="surname"
+          name="surname"
+          onChange={[Function]}
+          required={true}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="block"
+    >
+      <div
+        className="labelInputBooking"
+      >
+        <label
+          htmlFor="email"
+        >
+          Correo electrónico*
+        </label>
+        <input
+          id="email"
+          name="email"
+          onChange={[Function]}
+          required={true}
+          type="email"
+        />
+      </div>
+      <div
+        className="labelInputBooking"
+      >
+        <label
+          htmlFor="city"
+        >
+          Ciudad de origen*
+        </label>
+        <input
+          id="city"
+          name="city"
+          onChange={[Function]}
+          required={true}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="observaciones"
+    >
+      <label
+        htmlFor="esquema"
+      >
+        Vacunación COVID-19
+      </label>
+      <ForwardRef
+        getOptionValue={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "Esquema Completo",
+              "value": "esquemaCompleto",
+            },
+            Object {
+              "label": "Esquema Incompleto",
+              "value": "esquemaIncompleto",
+            },
+            Object {
+              "label": "No Vacunado",
+              "value": "noVacunado",
+            },
+          ]
+        }
+        placeholder="Selecciona una opción"
+        styles={
+          Object {
+            "control": [Function],
+            "dropdownIndicator": [Function],
+            "indicatorsContainer": [Function],
+            "input": [Function],
+            "option": [Function],
+            "placeholder": [Function],
+            "singleValue": [Function],
+            "valueContainer": [Function],
+          }
+        }
+      />
+    </div>
+    <div
+      className="observaciones"
+    >
+      <label
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        id="observaciones"
+        name="observaciones"
+        style={
+          Object {
+            "border": "none",
+            "boxShadow": "1px 2px 4px rgba(0, 0, 0, 0.25)",
+            "display": "block",
+            "height": "44px",
+            "marginTop": "15px",
+            "minWidth": "100%",
+          }
+        }
+      />
+    </div>
+    <div
+      className="containerErrorBooking"
+    />
+  </form>
+</div>
+`;
+
+exports[`Probando el componente <FormBooking/> Deberia mostrar <FormBooking/> correctamente 2`] = `
+<div
+  className="containerForm"
+>
+  <form>
+    <div
+      className="block"
+    >
+      <div
+        className="labelInputBooking"
+      >
+        <label
+          htmlFor="name"
+        >
+          Nombre*
+        </label>
+        <input
+          id="name"
+          name="name"
+          onChange={[Function]}
+          required={true}
+          type="text"
+        />
+      </div>
+      <div
+        className="labelInputBooking"
+      >
+        <label
+          htmlFor="surname"
+        >
+          Apellido*
+        </label>
+        <input
+          id="surname"
+          name="surname"
+          onChange={[Function]}
+          required={true}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="block"
+    >
+      <div
+        className="labelInputBooking"
+      >
+        <label
+          htmlFor="email"
+        >
+          Correo electrónico*
+        </label>
+        <input
+          id="email"
+          name="email"
+          onChange={[Function]}
+          required={true}
+          type="email"
+        />
+      </div>
+      <div
+        className="labelInputBooking"
+      >
+        <label
+          htmlFor="city"
+        >
+          Ciudad de origen*
+        </label>
+        <input
+          id="city"
+          name="city"
+          onChange={[Function]}
+          required={true}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="observaciones"
+    >
+      <label
+        htmlFor="esquema"
+      >
+        Vacunación COVID-19
+      </label>
+      <ForwardRef
+        getOptionValue={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "Esquema Completo",
+              "value": "esquemaCompleto",
+            },
+            Object {
+              "label": "Esquema Incompleto",
+              "value": "esquemaIncompleto",
+            },
+            Object {
+              "label": "No Vacunado",
+              "value": "noVacunado",
+            },
+          ]
+        }
+        placeholder="Selecciona una opción"
+        styles={
+          Object {
+            "control": [Function],
+            "dropdownIndicator": [Function],
+            "indicatorsContainer": [Function],
+            "input": [Function],
+            "option": [Function],
+            "placeholder": [Function],
+            "singleValue": [Function],
+            "valueContainer": [Function],
+          }
+        }
+      />
+    </div>
+    <div
+      className="observaciones"
+    >
+      <label
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        id="observaciones"
+        name="observaciones"
+        style={
+          Object {
+            "border": "none",
+            "boxShadow": "1px 2px 4px rgba(0, 0, 0, 0.25)",
+            "display": "block",
+            "height": "44px",
+            "marginTop": "15px",
+            "minWidth": "100%",
+          }
+        }
+      />
+    </div>
+    <div
+      className="containerErrorBooking"
+    >
+      error
+    </div>
+  </form>
+</div>
+`;
+
+exports[`Probando el componente <Succeed/> Deberia mostrar <Succeed/> correctamente 1`] = `
+<div
+  className="containerSucceed"
+>
+  <img
+    alt="Tilde ok"
+    src="tildeOk.svg"
+  />
+  <h3>
+    ¡Muchas gracias!
+  </h3>
+  <p>
+    Su reserva se ha realizado con éxito
+  </p>
+  <Link
+    onClick={[Function]}
+    to="/"
+  >
+    <button>
+      Ok
+    </button>
+  </Link>
+</div>
+`;
+
+exports[`Probando el componente <TimeOption/> Deberia mostrar <TimeOption/> correctamente 1`] = `
+<div
+  className="timeOption"
+  onClick={[Function]}
+/>
+`;

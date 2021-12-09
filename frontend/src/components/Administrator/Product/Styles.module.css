@@ -1,0 +1,490 @@
+h1{
+    padding-left: clamp(10px,3.9%,40px);
+    padding-right: clamp(10px,3.9%,40px);
+    padding-top: 10px;
+    font-size: var(--heading2);
+}
+
+.containerPrincipal{
+    margin:20px 0;
+}
+
+.containerForm{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px clamp(10px,3.9%,40px);
+    width: 94%;
+}
+
+.containerForm form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    margin:0 auto;
+    min-height: 1250px;
+    
+}
+
+.containerProductSelect {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.selectProductBox {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;      
+}
+
+.titleProductSelect {
+    padding-bottom: 10px;
+}
+
+.buttonSearchProduct {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    color: white;
+    font-size: var(--button4);
+    font-weight: var(--font-bold);    
+    width: clamp(100px,10vw,150px);
+    transition: all 0.3s;
+}
+
+.buttonSearchProduct:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.buttonSearchProduct:active {   
+    transform: scale(0.85);
+}
+
+.containerForm label, .containerForm h3, .containerForm h5, .containerForm h6{
+    color: var(--secondary-color);
+    padding-bottom: 5px;  
+}
+
+.containerForm h3{
+    font-size: var(--heading3);
+    font-weight: var(--font-bold);
+}
+
+.containerForm label, .containerForm h5{
+    font-size: var(--text2);
+    font-weight: var(--font-medium);
+}
+
+.containerBlockAdministrator, .containerBlockAdministratorImage{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.containerBlockAdministratorImage .blockInputsImages{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 93.5%;
+}
+
+.containerBlockAdministrator .blockInputs, .containerBlockAdministratorImage .blockInputsImages .image{
+    width: 49%;
+}
+
+.containerBlockAdministrator input, .containerBlockAdministratorImage input, .insertedImage input{
+    border: 1px solid rgba(0,0,0,.4);
+    border-radius: 7px;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
+    font-size: 16px;
+    padding: 9px 5px;
+    width: 100%;
+}
+
+
+.description{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.description label{
+    align-self: center;
+    width: 100%;
+}
+
+.containerPoliticsPrincipal, .containerCheckbox, .containerImages{
+    width: 100%;
+}
+
+.containerImages .image{
+    width: 46%;
+}
+
+.containerImages .insertedImages{
+    display: flex;
+    flex-direction: column;
+}
+
+.containerImages .insertedImageAndButton{
+    display: flex;
+   justify-content: space-between;
+  
+}
+
+.insertedImageAndButton{
+    margin-top: 5px;
+}
+
+.insertedImageAndButton .insertedImage{
+    display: flex;
+    width: 93.5%;
+    justify-content: space-between;
+}
+
+.insertedImage .imageItem{
+    padding: 9px 5px;
+    width: 49%;
+}
+
+.containerImages .insertedImageAndButton .deleteImage{
+    display: flex;
+    justify-content: center;
+    width: 41px;
+}
+
+.deleteImage>img{
+    width: 22px;
+}
+.containerImages button{
+    align-self: flex-end;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    color:white;
+    font-size: 33px;
+    font-weight: var(--font-bold);
+    height: 41px;
+    width: 41px;
+    transition: all 0.3s;
+}
+
+.containerImages button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.containerImages button:active{   
+    transform: scale(0.85);
+}
+
+
+
+.description textarea, .politics textarea{
+    align-self: center;
+    border: 1px solid rgba(0,0,0,.4);
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
+    color: var(--tertiary-color);
+    font-size: var(--text2);
+    font-weight: 500;
+    outline: none;
+    padding: 15px;
+   resize: none;
+}
+
+.description textarea{
+    width: 100%;
+}
+
+.politics textarea{
+    height:80%;
+}
+.containerCheckbox{
+    display: flex;
+    flex-direction: column;
+    margin:0 auto;
+}
+
+.containerCheckbox label{
+text-transform: capitalize;
+}
+
+.containerCheckbox input[type="checkbox"]{
+    height: 12px;
+    width: 12px;
+}
+
+.containerPolitics{
+    border: 1px solid rgba(0,0,0,.4);
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 15%);
+    height: 32vh;
+    padding: 15px 0;
+}
+
+.politics{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.politics textarea{
+width: 100%;
+}
+
+#buttonCreateProduct{
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    color: white;
+    font-size: var(--button1);
+    font-weight: var(--font-bold);
+    margin-top: 30px;
+    padding: 5pt;
+    width: clamp(164px,22.2vw,250px);
+    transition: all 0.3s;
+}
+
+#buttonCreateProduct:hover{
+    cursor: pointer;
+    transform:scale(1.1);
+}
+
+#buttonCreateProduct:active{   
+    transform:scale(0.85);
+}
+
+
+.hide{
+    display: none;
+}
+
+/*Estilos Create*/
+
+.containerCreateModal {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+    justify-content: space-evenly;
+    max-height: 350px;
+    max-width: 600px;
+    min-height: 300px;
+    min-width: 230px;
+    padding: 35px;
+    width: 46vw;
+}
+  
+.containerCreateModal img {
+    width: 78px;
+}
+
+.containerCreateModal h3 {
+    color: var(--primary-color);
+    font-size: 24px;
+    text-align: center;
+}
+
+.containerCreateModal p {
+    color: var(--secondary-color);
+    font-size: 20px;
+    font-weight: var(--font-bold);
+    text-align: center;
+}
+  
+
+.containerCreateModal button {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+    color: white;
+    font-size: 16px;
+    font-weight: var(--font-bold);
+    padding: 8px;
+    width: 55%;
+}
+
+.containerCreateModal .question, .cruz{
+    border-radius: 100%;
+    font-size: 55px;
+    height: 70px;
+    text-align: center;
+    width: 70px;
+}
+.containerCreateModal .question{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.cruz{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+
+.containerCreateModal .ok{
+    width:55%;
+}
+
+.containerCreateModal .cancel{
+    background-color: var(--tertiary-color);
+    color: white;
+    width:47%;
+}
+
+.containerCreateModal button:hover{
+    cursor: pointer;
+    transition: all 0.7s;
+    transform: scale(1.2);
+}
+
+
+.error{
+    color: red;
+    font-size: 12pt;
+    font-weight: bold;
+    height: 1em;
+}
+
+@media all and (max-width:769px){
+    .containerForm form{
+        min-height: 1500px;
+        
+    }
+
+    .containerPoliticsPrincipal{
+        width: 100%;
+    }
+    .containerPolitics{
+        flex-direction: column;
+        justify-content: space-between;
+        height: 60vh;
+       padding: 20px;
+    }
+
+    .politics{
+        height: 30%;
+        width: 100%;
+    }
+
+    .politics textarea{
+        height: 65%;
+    }
+
+    .selectProductBox {       
+        width: 100%;        
+    }
+
+    .insertedImageAndButton .insertedImage, .blockInputsImages{
+        flex-direction: column;
+    }
+    .containerBlockAdministratorImage .blockInputsImages{
+        width: 90.5%;
+    }
+
+    .containerBlockAdministratorImage .blockInputsImages .image{
+        width: 49%;
+    }
+
+    .insertedImageAndButton .insertedImage{
+        flex-direction: row;
+        width: 90.5%;
+    }
+
+    .containerCreateModal{
+        height: 32vh;
+    }
+
+    .containerCreateModal p,.containerCreateModal h3 {
+        font-size: 18px;
+    }
+
+    .containerCreateModal button {
+        font-size: 14px;
+    }
+
+
+    .containerCreateModal .question, .cruz{
+        font-size: 48px;
+        height: 60px;
+        width: 60px;
+    }
+   
+}
+
+@media all and (max-width:600px){
+    .containerForm form{
+        min-height: 1800px;
+    }
+
+    .containerBlockAdministrator, .containerBlockAdministratorImage .blockInputsImages{
+        flex-direction: column;
+    }
+
+    .containerBlockAdministratorImage .blockInputsImages .image{
+        width: 100%;
+    }
+
+    .containerBlockAdministrator .blockInputs{
+        
+        width: 100%;
+    }
+
+    .containerBlockAdministratorImage .blockInputsImages {
+        width: 87.5%;
+    }
+
+    .insertedImageAndButton .insertedImage{
+        flex-direction: column;
+       
+    }
+    .insertedImageAndButton .insertedImage input{
+        margin-top: 13px;
+        width: 97.5%;
+    }
+}
+
+@media all and (max-width:415px){
+    .selectProductBox {       
+        flex-direction: column;        
+    }
+
+    .buttonSearchProduct {
+        padding: 6px 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+    .containerBlockAdministratorImage .blockInputsImages {
+        width: 84.5%;
+    }
+
+    .containerCreateModal{
+        height: 26vh;
+        min-height: 270px;
+        padding: 8px;
+    }
+    .containerCreateModal p, .containerCreateModal h3{
+        font-size: 16px;
+    }
+    .containerCreateModal .question, .cruz{
+        font-size: 40px;
+        height: 50px;
+        width: 50px;
+    }
+    
+
+    .containerCreateModal button{
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,125 @@
+.carousel-root{
+    background-color: white;
+    border-radius: 8px;
+    height: 61vh;
+    width: 44vw;
+    margin: 0 auto;
+    max-width: 800px;
+;
+ }
+
+ .carousel.carousel-slider{
+    border-radius: 8px 8px 0 0;
+    
+ }
+
+ .slide div img{
+    height: 44vh;
+    object-fit:cover;
+    
+ }
+ 
+ .thumb img{
+     border-radius: 10px;
+     height:11vh;
+ }
+ .carousel .thumb{
+     margin-right: 0 !important;
+ }
+
+ .carousel-slider .control-next.control-arrow,
+ .carousel-slider .control-prev.control-arrow{
+     height:42px;
+     width:42px;
+     background-color: #F0572D !important;
+     border-radius: 21px;
+     opacity: 1;
+     border-top: 5px solid #fff;
+     border-right: 5px solid #fff;
+
+ }
+
+ .carousel-slider .control-next.control-arrow{
+     margin-right: 0.5vw;
+ }
+
+ .carousel-slider .control-prev.control-arrow{
+    margin-left: 0.5vw;
+}
+
+ .carousel.carousel-slider.control-arrow{
+    margin-top:100px;
+ }
+ 
+ .carousel .control-arrow{
+     opacity: 1 !important;
+ }
+ .carousel .control-arrow:before,.carousel.carousel-slider .control-arrow:before{
+     margin:3px 5px;
+     border-top:4px solid #fff !important;
+     height:14px ;
+     width:14px ;
+     border-bottom: none !important;
+ }
+
+ .carousel .control-prev.control-arrow:before{
+     border-right:4px solid #fff !important;
+     transform:rotate(-135deg);
+     position: relative;
+        right:-3px;
+    }
+ 
+    .carousel .control-next.control-arrow:before{
+        border-left:4px solid #fff !important;
+        transform:rotate(135deg);
+        position: relative;
+        left:-3px;
+    }
+
+    .carousel .control-arrow,.carousel.carousel-slider .control-arrow{
+        opacity:1;
+        background-color: #F0572D;
+
+    }
+
+    .carousel.carousel-slider .control-arrow{
+        margin-top: 22vh !important;
+        
+    }
+
+    .carousel .carousel-status{
+        text-align: center !important;
+        position:relative !important;
+        color:black !important;
+        font-size: 14px !important;
+        padding-top: 11px !important;
+        padding-bottom: 2px !important;
+    }
+
+    .carousel .thumbs-wrapper{
+        margin:4px !important
+    }
+
+    .closeButton{
+        position: absolute;
+        z-index: 10;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 24px;
+        font-weight: 500;
+        right:1vw;
+        top: 0.5vw;
+        cursor:pointer;
+    }
+
+    .react-responsive-modal-modal{
+        border-radius: 10px;
+        overflow-x: hidden;
+        padding: 0rem !important;
+        
+    }
+
+    .react-responsive-modal-closeButton{
+        display: none !important;
+    }

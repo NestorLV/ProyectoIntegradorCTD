@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <CityOption /> <CityOption /> deberia renderizar el pais en props 1`] = `
+<Fragment>
+  <h3
+    className="titleCity"
+    onClick={[Function]}
+  >
+    , 
+  </h3>
+  <h3
+    className="titleCountry"
+    onClick={[Function]}
+  >
+    Argentina
+  </h3>
+</Fragment>
+`;
+
+exports[`Pruebas en <CityOption /> <CityOption /> deberia renderizar la ciudad en props 1`] = `
+<Fragment>
+  <h3
+    className="titleCity"
+    onClick={[Function]}
+  >
+    Buenos Aires
+    , 
+  </h3>
+  <h3
+    className="titleCountry"
+    onClick={[Function]}
+  />
+</Fragment>
+`;
+
+exports[`Pruebas en <CityOption /> Deberia mostrar <CityOption/> correctamente 1`] = `
+<Fragment>
+  <h3
+    className="titleCity"
+    onClick={[Function]}
+  >
+    , 
+  </h3>
+  <h3
+    className="titleCountry"
+    onClick={[Function]}
+  />
+</Fragment>
+`;
+
+exports[`Pruebas en <SearchBlock/> Deberia mostrar <SearchBlock/> correctamente 1`] = `
+<div
+  className="container delimiter"
+>
+  <div
+    className="subContainer delimiterChild"
+  >
+    <h1>
+      Buscá ofertas en hoteles, casas y mucho más
+    </h1>
+    <SearchForm />
+  </div>
+</div>
+`;
+
+exports[`Pruebas en <SearchForm/> Deberia mostrar <SearchForm/> correctamente 1`] = `
+<form
+  action=""
+  className="gridContainer"
+>
+  <div
+    className="iconSelectBox grid-item"
+  >
+    <SelectCity />
+  </div>
+  <div
+    className="iconSelectBox grid-item"
+  >
+    <SelectDate />
+  </div>
+  <button
+    className="buttonSearch limitation"
+    onClick={[Function]}
+  >
+    Buscar
+  </button>
+</form>
+`;
+
+exports[`Pruebas en <SelectDate /> Deberia mostrar <SelectDate/> correctamente 1`] = `
+<div
+  className="calendarButton"
+>
+  <button
+    className="date"
+    onClick={[Function]}
+  >
+    Check in - Check out
+  </button>
+  <Calendar
+    calendarState="hidden"
+    handleSelected={[Function]}
+    responsiveness="desktop"
+  />
+</div>
+`;
