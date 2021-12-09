@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8080/";
+const baseURL = "http://worldguestbooking.com.ar:8080/";
 
 function AxiosGetAllCities(setData, setErrorMessage){
     axios.get(`${baseURL}cities/all`)

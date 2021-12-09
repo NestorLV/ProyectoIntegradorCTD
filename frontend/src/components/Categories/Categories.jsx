@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import Spinner from "../spinner/Spinner";
 
 export default function Categories({ handleCategory }) {
-  const baseURL = "http://localhost:8080/categories/all";
+  const baseURL = "http://worldguestbooking.com.ar:8080/categories/all";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");

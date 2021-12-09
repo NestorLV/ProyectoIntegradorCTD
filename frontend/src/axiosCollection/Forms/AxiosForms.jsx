@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:8080/"
+const baseUrl = "http://worldguestbooking.com.ar:8080/"
 
 function AxiosLogin(email, password, setFormValido, setLog, setError, setEmail, setPassword, setLoading, lastLocation) {
     axios.post(baseUrl + "users/login", {

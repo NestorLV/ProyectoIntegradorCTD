@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = "http://localhost:8080/"
+const baseURL = "http://worldguestbooking.com.ar:8080/"
 
 //YA TESTEADO
 function AxiosGetProductById(id, setProd, setLoading, setErrorMessage) {
@@ -127,7 +127,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
     let qualificationInt = parseInt(qualification);
 
     axios
-        .post("http://localhost:8080/products/create", {
+        .post("http://worldguestbooking.com.ar:8080/products/create", {
             name,
             description,
             latitude,
@@ -154,7 +154,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
             let idProduct = product.data.id;
             console.log(qualificationInt, "qualificationint");
             axios
-                .post(`http://localhost:8080/products/scores/create`, {
+                .post(`http://worldguestbooking.com.ar:8080/products/scores/create`, {
                     score: qualificationInt,
                     userEmail: sessionStorage.getItem('email'),
                     productId: idProduct
@@ -164,7 +164,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
                 });
             images.forEach(image => {
                 axios
-                    .post(`http://localhost:8080/images/create`, {
+                    .post(`http://worldguestbooking.com.ar:8080/images/create`, {
                         title: image.title,
                         url: image.url,
                         productId: idProduct
@@ -180,7 +180,7 @@ function AxiosCrearProducto(name, description, latitude, longitude, address, qua
             features.forEach(feature => {
                 let featureInt = parseInt(feature.id);
                 axios
-                    .post(`http://localhost:8080/features/updateproduct/${featureInt}/${idProduct}`, {},
+                    .post(`http://worldguestbooking.com.ar:8080/features/updateproduct/${featureInt}/${idProduct}`, {},
                         {
                             headers: {
                                 Authorization: `Bearer ${sessionStorage.getItem("token")}`
@@ -210,7 +210,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
 
     let qualificationInt = parseInt(qualification);
     axios
-        .post("http://localhost:8080/products/update", {
+        .post("http://worldguestbooking.com.ar:8080/products/update", {
             id: idProduct,
             name,
             description,
@@ -236,7 +236,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
             setErrorProduct("")
             let idProduct = product.data.id;
             axios
-                .post(`http://localhost:8080/products/scores/create`, {
+                .post(`http://worldguestbooking.com.ar:8080/products/scores/create`, {
                     score: qualificationInt,
                     userEmail: sessionStorage.getItem('email'),
                     productId: idProduct
@@ -260,7 +260,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                 arrayImages.push(img);
             });
             axios
-                .post(`http://localhost:8080/images/updateimagesperproduct`,
+                .post(`http://worldguestbooking.com.ar:8080/images/updateimagesperproduct`,
                     arrayImages,
                     {
                         headers: {
@@ -275,7 +275,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
                 featuresInt.push(parseInt(feature.id));
             });            
             axios
-                .post(`http://localhost:8080/features/update/${idProduct}`,
+                .post(`http://worldguestbooking.com.ar:8080/features/update/${idProduct}`,
                     featuresInt,
                     {
                         headers: {
@@ -300,7 +300,7 @@ function AxiosModificarProducto(idProduct, name, description, latitude, longitud
 function AxiosFindScoreByIdUser(idProduct) {
     let email = sessionStorage.getItem('email');
     axios
-        .get(`http://localhost:8080/products/scores/getByUserAndProduct/${email}/${idProduct}`, {
+        .get(`http://worldguestbooking.com.ar:8080/products/scores/getByUserAndProduct/${email}/${idProduct}`, {
             headers: {
                 "Authorization": `Bearer ${sessionStorage.getItem("token")}`
             }

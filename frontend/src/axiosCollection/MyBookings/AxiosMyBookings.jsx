@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = "http://localhost:8080/"
+const baseURL = "http://worldguestbooking.com.ar:8080/"
 
 function AxiosGetReservationsByUserId(setData, setLoading, setErrorMessage){
     axios.get(`${baseURL}reservations/get/user/${sessionStorage.getItem("id")}`)

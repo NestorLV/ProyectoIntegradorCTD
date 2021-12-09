@@ -47,7 +47,7 @@ export default function Booking(props) {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/products/get/${id}`)
+            .get(`http://worldguestbooking.com.ar:8080/products/get/${id}`)
             .then((response) => {
                 setProd(response.data);
                 setLoading(false);

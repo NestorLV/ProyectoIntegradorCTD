@@ -2,7 +2,7 @@
 import axios from "axios";
 const { format } = require("date-fns");
 
-const baseUrl = "http://localhost:8080/"
+const baseUrl = "http://worldguestbooking.com.ar:8080/"
 
 //YA TESTEADO
 

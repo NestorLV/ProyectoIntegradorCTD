@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("http://worldguestbooking.com.ar")
 @RestController
 @RequestMapping("/products")
 public class ProductController implements CRUDController<ProductDTO> {

@@ -1,0 +1,66 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+
+version: '3.7'
+
+# Define services
+services:
+  # App backend service
+  app-server:
+    # Configuration for building the docker image for the backend service
+    image: tatymoon74/backend:back
+    build:
+      context: backend # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: always
+    depends_on: 
+      - db # This service depends on mysql. Start that first.
+    environment: # Pass environment variables to the service
+      SPRING_DATASOURCE_URL: jdbc:mysql://database-pi.cf5nlaoicciw.us-east-1.rds.amazonaws.com:3306/proyecto_integrador
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: 39643598
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+      - frontend
+
+  # Frontend Service 
+  app-client:
+    image: tatymoon74/frontend:front
+    build:
+      context: frontend # Use an image built from the specified dockerfile in the `polling-app-client` directory.
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: http://3.214.98.239
+    ports:
+      - "80:80" # Map the exposed port 80 on the container to port 9090 on the host machine
+    restart: always
+    depends_on:
+      - app-server
+    networks:
+      - frontend  
+
+  # Database Service (Mysql)
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: proyecto_integrador
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 39643598
+      MYSQL_ROOT_PASSWORD: 39643598
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - backend  
+  
+# Volumes
+volumes:
+  db-data:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
+  frontend:    

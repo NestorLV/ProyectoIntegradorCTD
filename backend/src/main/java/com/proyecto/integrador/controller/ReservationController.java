@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://worldguestbooking.com.ar")
 @RestController
 @RequestMapping("/reservations")
 public class ReservationController implements CRUDController<ReservationDTO>{

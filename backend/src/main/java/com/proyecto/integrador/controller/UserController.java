@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://worldguestbooking.com.ar")
 @RestController
 @RequestMapping("/users")
 public class UserController implements CRUDController<UserRequestDTO> {
@@ -93,7 +93,7 @@ public class UserController implements CRUDController<UserRequestDTO> {
     @GetMapping("/activate/{email}/{hashCode}")
     public ResponseEntity<?> activateUser(@PathVariable String email, @PathVariable Integer hashCode) throws BadRequestException, FindByIdException, URISyntaxException {
         if (userService.activateUser(email, hashCode)) {
-            URI uri = new URI("http://localhost:3000/login");
+            URI uri = new URI("http://worldguestbooking.com.ar/login");
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setLocation(uri);
             return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);

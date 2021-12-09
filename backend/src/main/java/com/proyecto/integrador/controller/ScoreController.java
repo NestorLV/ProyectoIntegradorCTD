@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://worldguestbooking.com.ar")
 @RestController
 @RequestMapping("/products/scores")
 public class ScoreController implements CRUDController <ScoreDTO> {

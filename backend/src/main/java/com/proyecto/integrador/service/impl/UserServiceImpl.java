@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         userRequestDTO.setPassword(encodedPassword);
         userRequestDTO.setRole(roleService.findByName(RolesTypes.USER));
         User newUser = userRepository.save(userRequestDTO.toEntity());
-        emailSenderService.sendSimpleMessage(newUser.getEmail(), "Activa tu usuario", "http://localhost:8080/users/activate/" + newUser.getEmail() + "/" + newUser.hashCode());
+        emailSenderService.sendSimpleMessage(newUser.getEmail(), "Activa tu usuario", "http://worldguestbooking.com.ar:8080/users/activate/" + newUser.getEmail() + "/" + newUser.hashCode());
         logger.debug("Terminó la ejecución del método guardar usuario");
         return newUser.toDto();
     }
